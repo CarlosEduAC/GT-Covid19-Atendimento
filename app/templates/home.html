@@ -1,0 +1,84 @@
+
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Página Inicial</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">
+                <a href="home.html">Página Inicial</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Formulário de Atendimento</h5>
+                </div>
+                <div class="ibox-content">
+                    <h2>Formulário de Atendimento</h2>
+                    <p>Informações referentes ao Paciente</p>
+                    <form id="form" action="#" class="wizard-big">
+                        <h1>Informações Básicas</h1>
+                        <fieldset>
+                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="font-normal">Nome do Paciente *</label>
+                                        <input id="userName" name="userName" type="text" class="form-control required">
+                                    </div> 
+                                    <div class="form-group">
+                                        <label class="font-normal">CPF *</label>
+                                        <input id="userCpf" name="userCpf" type="text" class="form-control required">
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label class="font-normal">Sexo *</label>
+                                            <select class="form-control m-b" name="sexo">
+                                                <option>Masculino</option>
+                                                <option>Feminino</option>
+                                                <option>Não opinou</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <label class="font-normal">Raça *</label>
+                                            <select class="form-control m-b" name="raca">
+                                                <option>Branca</option>
+                                                <option>Preta</option>
+                                                <option>Amarela</option>
+                                                <option>Parda</option>
+                                                <option>Indígena</option>
+                                                <option>Não opinou</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="font-normal">Ocupação *</label>
+                                        <input id="userOcupacao" name="userOcupacao" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-normal">Data de Aniversário</label>
+                                        <div class="input-group date" id="dataAniversario">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="03/04/2014">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+{% endblock %}

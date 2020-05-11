@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>COVID-19 | Norte Fluminense</title>
+
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.css')}}"rel="stylesheet">
+    <link href="{{url_for('static', filename='css/plugins/steps/jquery.steps.css')}}"rel="stylesheet">
+    <link href="{{url_for('static', filename='css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
+
+</head>
+
+<body class="pace-done mini-navbar">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="logo-element">
+                            NF+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> <span class="fa arrow"></span></a>
+                    </li>
+                    <li>
+                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Projeções</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Barreira Sanitária</span><span class="fa arrow"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Bem vindo ao Dashboard.</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            {% block conteudo %} {% endblock %}
+
+            <div class="footer">
+                <div class="float-right">
+                    <strong>Copyright</strong> Universidade Federal Fluminense &copy; 2020
+                </div>
+                <div>
+                    <strong>Copyright</strong> Universidade Federal do Rio de Janeiro &copy; 2020
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="{{url_for('static', filename='js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
+    <script src="{{url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{{url_for('static', filename='js/inspinia.js')}}"></script>
+    <script src="{{url_for('static', filename='js/plugins/pace/pace.min.js')}}"></script>
+
+    <!-- iCheck -->
+    <script src="{{url_for('static', filename='js/plugins/iCheck/icheck.min.js')}}"></script>
+
+    <!-- Data picker -->
+   <script src="{{url_for('static', filename='js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+
+    <!-- Steps -->
+    <script src="{{url_for('static', filename='js/plugins/steps/jquery.steps.min.js')}}"></script>
+
+    <!-- Jquery Validate -->
+    <script src="{{url_for('static', filename='js/plugins/validate/jquery.validate.min.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/template.js')}}"></script>
+</body>
+</html>
