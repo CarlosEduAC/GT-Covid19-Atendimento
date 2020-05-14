@@ -1,13 +1,12 @@
-from api.models import *
 from sqlalchemy.orm import Session
-import sqlalchemy as db 
+from sqlalchemy import create_engine 
 import pandas as pd
 import datetime
 
-DATABASE_URL = 'mysql+pymysql://admin:gtCovid19*2020@covid-19.csrnyzd4qxmh.sa-east-1.rds.amazonaws.com:3306/covid-19'
+DATABASE_URL = 'mysql+pymysql://admin:gtCovid19*2020@dbcovid-19.csrnyzd4qxmh.sa-east-1.rds.amazonaws.com/dbcovid-19'
 
 class Database():
-    engine = db.create_engine(DATABASE_URL, pool_size=200, echo=False, pool_pre_ping=True)
+    engine = create_engine(DATABASE_URL, echo=False)
     s = Session(bind=engine)
 
     def __init__(self):
@@ -18,7 +17,7 @@ class Database():
         session = Session(bind=self.connection)        
         session.add(data)
         session.commit()
-
+    
     def saveIfNew(self, obj):
         session = Session(bind=self.engine)
         res = session.query(type(obj)).filter_by(**obj.retData()).first()
@@ -50,3 +49,5 @@ class Database():
             return pd.read_sql(session.query(type(obj)).statement, session.bind)
         else:
             return pd.read_sql(session.query(type(obj)).filter_by(**obj.retData()).statement, session.bind)
+
+bd = Database()
