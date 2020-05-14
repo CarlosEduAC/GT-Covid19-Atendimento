@@ -15,4 +15,8 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
     python app/app.py
 
-# Obs: Necessário ter o Python 3.x instalado na máquina
+- Atualizando o projeto
+
+    git pull
+
+Obs: Necessário ter o Python 3.x instalado na máquina
