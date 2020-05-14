@@ -49,5 +49,3 @@ class Database():
             return pd.read_sql(session.query(type(obj)).statement, session.bind)
         else:
             return pd.read_sql(session.query(type(obj)).filter_by(**obj.retData()).statement, session.bind)
-
-bd = Database()

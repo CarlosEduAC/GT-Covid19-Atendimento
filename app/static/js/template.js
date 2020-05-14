@@ -1,10 +1,4 @@
 $(document).ready(function(){
-    //<!-- iCheck -->
-    $(".i-checks").iCheck({
-        checkboxClass: 'icheckbox_square-green',
-        radioClass: 'iradio_square-green',
-    });
-
     //<!-- Data picker -->
     $('#dataAniversario').datepicker({
         todayBtn: "linked",
