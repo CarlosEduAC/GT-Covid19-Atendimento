@@ -14,7 +14,7 @@ class Database():
         print("DB Instance created")
     
     def saveData(self, data):
-        session = Session(bind=self.connection)        
+        session = Session(bind=self.connection)  
         session.add(data)
         session.commit()
     
