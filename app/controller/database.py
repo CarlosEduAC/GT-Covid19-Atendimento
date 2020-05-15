@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 import datetime
 
-DATABASE_URL = 'mysql+pymysql://admin:gtCovid19*2020@dbcovid-19.csrnyzd4qxmh.sa-east-1.rds.amazonaws.com/dbcovid-19'
+DATABASE_URL = 'mysql+pymysql://admin:gtCovid19*2020@dbcovid-19.csrnyzd4qxmh.sa-east-1.rds.amazonaws.com/covid-19'
 
 class Database():
     engine = create_engine(DATABASE_URL, echo=False)
