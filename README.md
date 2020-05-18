@@ -2,6 +2,8 @@
 Sistema web responsável pelo atendimento de pacientes com suspeitas de coronavírus.
 
 # Passo a passo para iniciar projeto
+. Necessário ter o Python 3.x instalado na máquina
+. Necessário ter o GIT instalado na máquina
 
 - Clonando o projeto
 
@@ -15,8 +17,13 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
     python app/app.py
 
-- Atualizando o projeto
+- Atualizando o projeto (local)
 
+    git add .
+    git commit -m "ENTRE AQUI COM UM COMENTARIO SOBRE O COMMIT"
     git pull
 
-Obs: Necessário ter o Python 3.x instalado na máquina
+- Atualizando o projeto (git)
+
+    git push
+
