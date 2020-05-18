@@ -17,11 +17,11 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Formulário de Atendimento</h5>
+                    <h5>Formulário de Telemonitoramento</h5>
                 </div>
                 <div class="ibox-content">
-                    <h2>Formulário de Atendimento</h2>
-                    <p>Informações referentes ao Paciente</p>
+                    <h2>Formulário Primeiro Atendimento</h2>
+                    <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
                     <form id="form" action="/atendimento" method="POST" class="wizard-big">
                         <h1>Informações Básicas</h1>
                         <fieldset>
@@ -56,10 +56,10 @@
                                         <div class="form-group col-lg-8">
                                             <label class="font-normal">Sexo *</label>
                                             <div class="row">
-                                                <div class="i-checks col-lg-1"></div>
-                                                <div class="i-checks col-lg-3"><label> <input type="radio" value="option1" name="userSexo"> <i></i> Masculino </label></div>
-                                                <div class="i-checks col-lg-3"><label> <input type="radio" value="option2" name="userSexo"> <i></i> Feminino </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userSexo"> <i></i> Não opinou </label></div>
+                                                <!-- <div class="i-checks col-lg-1"></div> -->
+                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option1" name="userSexo"> <i></i> Masculino </label></div>
+                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option2" name="userSexo"> <i></i> Feminino </label></div>
+                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option2" name="userSexo" checked> <i></i> Não opinou </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-4">
@@ -101,27 +101,23 @@
                                             <label class="font-normal">Caso não more sozinho, quantas pessoas moram com você?</label>
                                             <input id="userName" name="userName" type="text" class="form-control required">
                                         </div>
-                                        <div class="form-group col-lg-6">
+                                        <!-- <div class="form-group col-lg-6"> doença cronica não pe igual a comorbidade ?
                                             <label class="font-normal">Apresenta alguma doença crônica? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
                                                 <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userDoencaCronicaFamilia"> <i></i> Sim </label></div>
                                                 <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userDoencaCronicaFamilia"> <i></i> Não </label></div>
                                             </div>
+                                        </div> -->
+                                        <div class="form-group col-lg-6">
+                                            <label class="font-normal">Caso haja mulheres no domicílio: algumas delas está grávida?  *</label>
+                                            <div class="row">
+                                                <div class="col-lg-1"></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userGravida"> <i></i> Sim </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"  value="option2" name="userGravida"> <i></i> Não </label></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label class="font-normal">Caso haja mulheres no domicílio: algumas delas está grávida?  *</label>
-                                        <div class="row">
-                                            <div class="col-lg-1"></div>
-                                            <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userGravida"> <i></i> Sim </label></div>
-                                            <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userGravida"> <i></i> Não </label></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-lg-6">
-                                    
+                                    </div>  
                                 </div>
                             </div>
                         </fieldset>
@@ -148,7 +144,7 @@
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
                                                 <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userDoencaCronica"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userDoencaCronica"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userDoencaCronica"> <i></i> Não </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -162,7 +158,7 @@
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
                                                 <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamento"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userMedicamento"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userMedicamento"> <i></i> Não </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -171,11 +167,11 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-8">
+                                        <div class="form-group col-lg-7">
                                             <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de vezes ao dia) *</label>
                                             <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
                                         </div>
-                                        <div class="form-group col-lg-4">
+                                        <div class="form-group col-lg-5">
                                             <label class="font-normal">Há quanto tempo toma esses medicamentos? *</label>
                                             <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
                                         </div>
