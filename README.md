@@ -17,13 +17,34 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
     python app/app.py
 
-- Atualizando o projeto (local)
+# Passo a passo para o versionamento do projeto
+
+- Entrar no link do projeto 
+    
+    https://github.com/CarlosEduAC/GT-Covid19-Atendimento
+
+- Fazer o Fork do projeto
+
+- Clonar o projeto para uma pasta
+
+    git clone "Link do projeto forkado no seu github'
+
+- Atualizando o projeto (local) *
 
     git add .
-    git commit -m "ENTRE AQUI COM UM COMENTARIO SOBRE O COMMIT"
+    git commit -m "- Exemplo de Commit"
     git pull
 
 - Atualizando o projeto (git)
 
     git push
+
+- Abrir a pagina do seu fork e clicar em :
+    
+    Nem pull request
+
+* é aconselhável criar um novo branch a cada nova 'feature'.
+    
+    git checkout -b NomeDoNovoBranch
+
 
