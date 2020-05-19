@@ -26,4 +26,4 @@ Sistema web responsÃ¡vel pelo atendimento de pacientes com suspeitas de coronavÃ
 - Atualizando o projeto (git)
 
     git push
-- change readme teste
+- change readme
