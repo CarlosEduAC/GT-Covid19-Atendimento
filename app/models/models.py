@@ -13,6 +13,8 @@ class Usuario(Base):
     created = Column('created_on', DateTime, default=datetime.utcnow)
     id = Column('idUsuario', Integer, primary_key=True)
 
+    usuarioPerfil = relationship("UsuarioPerfil")
+
     def __init__(self, name, cpf, crm, senha):
         self.name = name
         self.cpf = cpf
