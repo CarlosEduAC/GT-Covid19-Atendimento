@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>COVID-19 | Norte Fluminense | Login</title> 
+
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.css')}}"rel="stylesheet">
+
+    <link href="{{url_for('static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    
+</head>
+
+<body class="container">
+    <div id="wrapper">
+
+        <div id="page-wrapper" class="gray-bg">
+
+            <div class="row">
+                <div style="margin-bottom: 0; padding: 10px;">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">COVID-19 | Norte Fluminense</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="middle-box text-center loginscreen animated fadeInDown" style="padding: 10px;">
+                <div>
+                    <div>
+
+                        <h1 class="logo-name">NF+</h1>
+
+                    </div>
+                    <h3>Bem vindo NF+</h3>
+                    <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                        <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+                    </p>
+                    <p>Faça o login.</p>
+                    <form class="m-t" role="form" action="index.html">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Usuário" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Senha" required="">
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">Fazer login</button>
+
+                        <a href="#"><small>Esqueceu a senha?</small></a>
+                        <p class="text-muted text-center"><small>Não tem uma conta?</small></p>
+                        <a class="btn btn-sm btn-white btn-block" href="register.html">Cadastre-se</a>
+                    </form>
+                   
+                </div>           
+            </div>
+            
+            <div class="footer">
+                <div class="float-right">
+                    <strong>Copyright</strong> Universidade Federal Fluminense &copy; 2020
+                </div>
+                <div>
+                    <strong>Copyright</strong> Universidade Federal do Rio de Janeiro &copy; 2020
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="{{url_for('static', filename='js/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+</body>
+
+</html>

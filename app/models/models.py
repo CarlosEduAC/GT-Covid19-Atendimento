@@ -1,24 +1,46 @@
-from datetime import datetime
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import MetaData, Table, Column, String, Integer, DateTime, Boolean
+from datetime import datetime
 
 Base = declarative_base()
 
-class HealthcareWorker(Base):
-    __tablename__ = 'healthcareworker'
-    id = Column('', Integer, primary_key=True)
-    name = Column('', String(50))
+class Usuario(Base):
+    __tablename__ = 'usuario'
+    name = Column('nome', String(50))
+    cpf = Column('cpf', String(16))
+    crm = Column('crm', String(20))
+    senha = Column('senha', String(16))
     created = Column('created_on', DateTime, default=datetime.utcnow)
+    id = Column('idUsuario', Integer, primary_key=True)
 
-    def retData(self):
-        return {'name': self.name}
+    usuarioPerfil = relationship("UsuarioPerfil")
+
+    def __init__(self, name, cpf, crm, senha):
+        self.name = name
+        self.cpf = cpf
+        self.crm = crm
+        self.senha = senha
+
+class UsuarioPerfil(Base):
+    __tablename__ = 'usuario_perfil'  
+    idUsuario = Column('idUsuario', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
+    idPerfil = Column('idPerfil', Integer, ForeignKey('perfil.idPerfil'), primary_key=True)
 
 class Paciente(Base):
-    __tablename__ = 'paciente'
-    id = Column('', Integer, primary_key=True)
-    name = Column('', String(50))
+    __tablename__ = 'pacientes'
+    name = Column('nome', String(50))
+    cpf = Column('cpf', String(16))
+    ocupacao = Column('ocupacao', String(50))
+    sexo = Column('sexo', String(2))
+    raca = Column('raca', String(35))
+    dataNasc = Column('data_nasc', DateTime)
     created = Column('created_on', DateTime, default=datetime.utcnow)
+    id = Column('PacienteId', Integer, primary_key=True)
 
-    def retData(self):
-        return {'name': self.name}
+    def __init__(self, name, cpf, ocupacao, sexo, raca, dataNasc):
+        self.name = name
+        self.cpf = cpf
+        self.ocupacao = ocupacao
+        self.sexo = sexo
+        self.raca = raca
+        self.dataNasc = dataNasc
