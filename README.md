@@ -41,10 +41,15 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Abrir a pagina do seu fork e clicar em :
     
-    Nem pull request
+    New pull request
+
+- Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
+
+    git chekout master
+    git fetch upstream
+    git merge upstream/master
+
 
 * é aconselhável criar um novo branch a cada nova 'feature'.
     
     git checkout -b NomeDoNovoBranch
-
-
