@@ -45,8 +45,8 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
 
-    git chekout master
-    git fetch upstream
+    git chekout master 
+    git fetch upstream 
     git merge upstream/master
 
 
