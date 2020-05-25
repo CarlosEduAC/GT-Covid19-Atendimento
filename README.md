@@ -49,6 +49,10 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
     git fetch upstream 
     git merge upstream/master
 
+     git add .
+    git commit -m "- Exemplo de Commit"
+    git pull
+
 
 * é aconselhável criar um novo branch a cada nova 'feature'.
     
