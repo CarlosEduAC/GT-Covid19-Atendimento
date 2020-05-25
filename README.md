@@ -7,15 +7,15 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Clonando o projeto
 
-    git clone https://github.com/CarlosEduAC/GT-Covid19-Atendimento.git
+    . git clone https://github.com/CarlosEduAC/GT-Covid19-Atendimento.git
 
 - Instalando dependências 
 
-    pip install -r requirements.txt
+    . pip install -r requirements.txt
 
 - Iniciando o sistema
 
-    python app/app.py
+    . python app/app.py
 
 # Passo a passo para o versionamento do projeto
 
@@ -27,33 +27,29 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Clonar o projeto para uma pasta
 
-    git clone "Link do projeto forkado no seu github'
+    . git clone "Link do projeto forkado no seu github'
 
 - Atualizando o projeto (local) *
 
-    git add .
-    git commit -m "- Exemplo de Commit"
-    git pull
+    . git add .
+    . git commit -m "- Exemplo de Commit"
+    . git pull
 
 - Atualizando o projeto (git)
 
-    git push
+    . git push
 
 - Abrir a pagina do seu fork e clicar em :
     
-    New pull request
+    . New pull request
 
 - Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
 
-    git chekout master 
-    git fetch upstream 
-    git merge upstream/master
-
-     git add .
-    git commit -m "- Exemplo de Commit"
-    git pull
+    . git chekout master 
+    . git fetch upstream 
+    . git merge upstream/master
 
 
-* é aconselhável criar um novo branch a cada nova 'feature'.
+* é aconselhável, mas não obrigatório, criar um novo branch a cada nova 'feature'.
     
-    git checkout -b NomeDoNovoBranch
+    . git checkout -b NomeDoNovoBranch
