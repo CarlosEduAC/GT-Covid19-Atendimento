@@ -2,8 +2,8 @@
 Sistema web responsável pelo atendimento de pacientes com suspeitas de coronavírus.
 
 # Passo a passo para iniciar projeto
-. Necessário ter o Python 3.x instalado na máquina
-. Necessário ter o GIT instalado na máquina
+- Necessário ter o Python 3.x instalado na máquina
+- Necessário ter o GIT instalado na máquina
 
 - Clonando o projeto
 
