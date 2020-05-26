@@ -23,25 +23,11 @@ class Database():
         res = session.query(type(obj)).filter_by(**obj.retData()).first()
         if res:
             return res.id
+            
         session.add(obj)
         session.flush()
         session.commit()
         return session.query(type(obj)).filter_by(**obj.retData()).first().id
-
-    def saveIfNewBulk(self, objList):
-        session = Session(bind=self.engine)
-        res = session.query(type(objList[0])).all()
-        def remKeys(rowDict, oList):
-            for key in rowDict.keys():
-                if key not in oList[0].retData().keys():
-                    del rowDict[key]
-            return rowDict
-        dictList = [remKeys(v.retData(), objList) for v in res]
-        for it in objList:
-            if it.retData() not in dictList:
-                session.add(it)
-        session.commit()
-        return True
 
     def select(self, obj):
         session = Session(bind=self.engine)

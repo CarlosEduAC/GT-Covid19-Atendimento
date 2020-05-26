@@ -12,7 +12,6 @@ from sqlalchemy import Column, Date, DateTime, ForeignKey, Integer, SmallInteger
 db = SQLAlchemy()
 
 
-
 class AdmSaude(db.Model):
     __tablename__ = 'adm_saude'
 
