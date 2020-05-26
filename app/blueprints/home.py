@@ -13,4 +13,4 @@ def index():
     # user2 = table.UsuarioPerfil(2,1)
     # db.saveData(user)
     # db.saveData(user2)
-    return render_template('home.html')
+    return render_template('primeiroAtendimento.html')
