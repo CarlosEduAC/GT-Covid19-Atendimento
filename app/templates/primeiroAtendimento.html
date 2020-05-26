@@ -3,10 +3,13 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Página Inicial</h2>
+        <h2>Primeiro Atendimento</h2>
         <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="menuAtendente.html">Página Inicial</a>
+            </li>
             <li class="breadcrumb-item active">
-                <a href="home.html">Página Inicial</a>
+                <a href="primeiroAtendimento.html">Primeiro Atendimento</a>
             </li>
         </ol>
     </div>
@@ -16,17 +19,137 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
-                <div class="ibox-title">
+                <!-- <div class="ibox-title">
                     <h5>Formulário de Telemonitoramento</h5>
-                </div>
+                </div> -->
                 <div class="ibox-content">
                     <h2>Formulário Primeiro Atendimento</h2>
                     <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
                     <form id="form" action="/atendimento" method="POST" class="wizard-big">
                         <!-- Aba 1 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Informações Básicas e Doenças Crônicas</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Informações Básicas do Paciente</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual o seu nome ?
+                                                    </label>
+                                                    <input id="nomeUsuario" name="nomeUsuario" type="text"
+                                                        class="form-control" placeholder="Nome do paciente" required>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual o seu cpf ?
+                                                    </label>
+                                                    <input id="cpfUsuario" name="cpfUsuario" type="text"
+                                                        class="form-control" placeholder="123456789-00" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual o seu número de telefone?
+                                                    </label>
+                                                    <input id="telefoneUsuario" name="telefoneUsuario" type="tel"
+                                                        class="form-control" placeholder="(12) 3456-7890">
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data do seu aniversário ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataAniversario">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Quais as suas Comorbidades ?
+                                                    </label>
+                                                    <select class="form-control m-b" id="comorbidadesUsuario"
+                                                        name="comorbidadesUsuario" multiple>
+                                                        {% for comorbidade in comorbidades %}
+                                                        <option value="{{comorbidade[0]}}">{{comorbidade[1]}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data do surgimento dos primeiros sintomas ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataPrimeiroSintoma">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Doenças Crônicas</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª apresenta alguma doença crônica? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option1"
+                                                                    name="doencaPaciente" id="doencaPaciente"> <i></i>
+                                                                Sim
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option2"
+                                                                    name="doencaPaciente" id="doencaPaciente"> <i></i>
+                                                                Não
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option3"
+                                                                    name="doencaPaciente" id="doencaPaciente" checked>
+                                                                <i></i>
+                                                                Não opinou
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-12">
+                                                    <p>
+                                                        Caso sim, qual (is)?
+                                                    </p>
+                                                    <input class="tagsinput form-control" type="text" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- Aba 2 -->
                         <h1>Informações Básicas</h1>

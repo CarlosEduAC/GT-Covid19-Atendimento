@@ -2778,6 +2778,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 .i-checks {
   padding-left: 0;
+  margin-left: 0px;
 }
 .form-control,
 .single-line {
