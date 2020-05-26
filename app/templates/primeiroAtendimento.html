@@ -44,9 +44,132 @@
                             <h2>Informações Básicas do Paciente</h2>
                         </fieldset>
                         <!-- Aba 5 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>...5</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Características do domicílio e auxílios governamentais</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Quantos cômodos tem a sua casa ?*
+                                                    </label>
+                                                    <input id="qtdComodos" name="qtdComodos" type="number"
+                                                        class="form-control" required>
+                                                </div>
+
+                                                <div class="form-group col-lg-6" >
+                                                    <label class="font-normal">
+                                                        O Sr/Srª tem acesso a agua na torneira de casa ?*
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="aceAgua" id="aceAgua">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="aceAgua" id="aceAgua"> <i></i> Não
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="aceAgua" id="aceAgua" checked> <i></i> Não
+                                                                opinou </label></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6" >
+                                                    <label class="font-normal">
+                                                        O Sr/Srª está recebendo algum auxílio do governo durante esse período da pandemia ?*
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="auxGoverno" id="auxGoverno">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="auxGoverno" id="auxGoverno"> <i></i> Não
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="auxGoverno" id="auxGoverno" checked> <i></i> Não
+                                                                opinou </label></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                       Se sim, qual?
+                                                    </label>
+                                                    <input class="tagsinput form-control" type="text" value="" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data de aniversário ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataAniversario">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data do surgimento dos primeiros sintomas ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataAniversario">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Doenças Crônicas</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data de aniversário ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataAniversario">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Qual a data do surgimento dos primeiros sintomas ?
+                                                    </label>
+                                                    <div class="input-group date" id="dataAniversario">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- Aba 6 -->
                         <h1>Informações Básicas</h1>
@@ -65,7 +188,7 @@
                         </fieldset>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </div>
 {% endblock %}
