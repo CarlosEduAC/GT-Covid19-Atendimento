@@ -117,34 +117,33 @@
                                                         <div class="i-checks col-lg-4">
                                                             <label>
                                                                 <input type="radio" value="option1"
-                                                                    name="doencaPaciente" id="doencaPaciente"> <i></i>
+                                                                name="checkDoencaPaciente" id="checkDoencaPaciente"> <i></i>
                                                                 Sim
                                                             </label>
                                                         </div>
                                                         <div class="i-checks col-lg-4">
                                                             <label>
                                                                 <input type="radio" value="option2"
-                                                                    name="doencaPaciente" id="doencaPaciente"> <i></i>
+                                                                name="checkDoencaPaciente" id="checkDoencaPaciente"> <i></i>
                                                                 Não
                                                             </label>
                                                         </div>
                                                         <div class="i-checks col-lg-4">
                                                             <label>
                                                                 <input type="radio" value="option3"
-                                                                    name="doencaPaciente" id="doencaPaciente" checked>
+                                                                    name="checkDoencaPaciente" id="checkDoencaPaciente" checked>
                                                                 <i></i>
                                                                 Não opinou
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group col-lg-12">
-                                                    <p>
-                                                        Caso sim, qual (is)?
-                                                    </p>
-                                                    <input class="tagsinput form-control" type="text" value="" />
-                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>
+                                                    Caso sim, qual (is)?
+                                                </p>
+                                                <input class="tagsinput form-control" type="text" value="" id="" name="listaDoencaPaciente" id="listaDoencaPaciente"/>
                                             </div>
                                         </div>
                                     </div>
@@ -152,9 +151,103 @@
                             </div>
                         </fieldset>
                         <!-- Aba 2 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Medicamentos e ESF de Referência</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Medicamentos</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª toma algum medicamento diariamente? ? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option1"
+                                                                    name="checkRemedioPaciente" id="checkRemedioPaciente"> <i></i>
+                                                                Sim
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option2"
+                                                                    name="checkRemedioPaciente" id="checkRemedioPaciente"> <i></i>
+                                                                Não
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option3"
+                                                                    name="checkRemedioPaciente" id="checkRemedioPaciente" checked>
+                                                                <i></i>
+                                                                Não opinou
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <p>
+                                                    Caso sim, qual (is)?
+                                                </p>
+                                                <input class="tagsinput form-control" type="text" value="" name="listaRemedioPaciente" id="listaRemedioPaciente"/>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>ESF de Referência</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª é acompanhado por alguma Estratégia de Saúde da Família ?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option1"
+                                                                    name="esf" id="esf"> <i></i>
+                                                                Sim
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option2"
+                                                                    name="esf" id="esf"> <i></i>
+                                                                Não
+                                                            </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4">
+                                                            <label>
+                                                                <input type="radio" value="option3"
+                                                                    name="esf" id="esf" checked>
+                                                                <i></i>
+                                                                Não opinou
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <p>
+                                                    Caso sim, qual (is)?
+                                                </p>
+                                                <input class="tagsinput form-control" type="text" value=""/>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- Aba 3 -->
                         <h1>Informações Básicas</h1>
