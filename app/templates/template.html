@@ -15,6 +15,7 @@
     <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
 </head>
 
 <body class="pace-done mini-navbar">
@@ -89,11 +90,17 @@
 
     <script src="{{url_for('static', filename='js/template.js')}}"></script>
 
+    <!-- Tags Input -->
+    <script src="{{url_for('static', filename='js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+
     <script>
         $(document).ready(function () {
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
+            });
+            $('.tagsinput').tagsinput({
+                tagClass: 'label label-primary'
             });
         });
     </script>

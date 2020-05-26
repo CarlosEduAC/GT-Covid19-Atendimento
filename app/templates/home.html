@@ -29,27 +29,29 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="font-normal">Nome do Paciente *</label>
-                                        <input id="userName" name="userName" type="text" class="form-control required">
-                                    </div> 
+                                        <label class="font-normal">Qual o nome do Paciente ?</label>
+                                        <input id="userName" name="userName" type="text" class="form-control">
+                                    </div>
                                     <div class="form-group">
                                         <label class="font-normal">CPF *</label>
-                                        <input id="userCpf" name="userCpf" type="text" class="form-control required">
+                                        <input id="userCpf" name="userCpf" type="text" class="form-control">
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Telefone *</label>
-                                            <input id="userFone" name="userFone" type="text" class="form-control required">
+                                            <input id="userFone" name="userFone" type="text" class="form-control">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Ocupação *</label>
-                                            <input id="userOcupacao" name="userOcupacao" type="text" class="form-control required">
+                                            <input id="userOcupacao" name="userOcupacao" type="text"
+                                                class="form-contro">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="font-normal">Data de Aniversário *</label>
                                         <div class="input-group date" id="dataAniversario">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
+                                                type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -57,13 +59,19 @@
                                             <label class="font-normal">Sexo *</label>
                                             <div class="row">
                                                 <!-- <div class="i-checks col-lg-1"></div> -->
-                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option1" name="userSexo"> <i></i> Masculino </label></div>
-                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option2" name="userSexo"> <i></i> Feminino </label></div>
-                                                <div class="i-checks col-lg-4"><label> <input type="radio" value="option2" name="userSexo" checked> <i></i> Não opinou </label></div>
+                                                <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                            value="option1" name="userSexo" id="userSexo"> <i></i>
+                                                        Masculino </label></div>
+                                                <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                            value="option2" name="userSexo" id="userSexo"> <i></i>
+                                                        Feminino </label></div>
+                                                <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                            value="option3" name="userSexo" id="userSexo" checked>
+                                                        <i></i> Não opinou </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-4">
-                                            <label class="font-normal">Raça *</label>
+                                            <label class="font-normal">Quais as Comorbidades ? </label>
                                             <select class="form-control m-b" name="raca">
                                                 <option>Branca</option>
                                                 <option>Preta</option>
@@ -84,22 +92,27 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="font-normal">Endereço *</label>
-                                        <input id="userName" name="userEndereco" type="text" class="form-control required">
-                                    </div> 
+                                        <input id="userName" name="userEndereco" type="text"
+                                            class="form-control required">
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Bairro *</label>
-                                            <input id="userName" name="userBairro" type="text" class="form-control required">
+                                            <input id="userName" name="userBairro" type="text"
+                                                class="form-control required">
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Cidade *</label>
-                                            <input id="userName" name="userCidade" type="text" class="form-control required">
+                                            <input id="userName" name="userCidade" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Caso não more sozinho, quantas pessoas moram com você?</label>
-                                            <input id="userName" name="userName" type="text" class="form-control required">
+                                            <label class="font-normal">Caso não more sozinho, quantas pessoas moram com
+                                                você?</label>
+                                            <input id="userName" name="userName" type="text"
+                                                class="form-control required">
                                         </div>
                                         <!-- <div class="form-group col-lg-6"> doença cronica não pe igual a comorbidade ?
                                             <label class="font-normal">Apresenta alguma doença crônica? *</label>
@@ -110,14 +123,19 @@
                                             </div>
                                         </div> -->
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Caso haja mulheres no domicílio: algumas delas está grávida?  *</label>
+                                            <label class="font-normal">Caso haja mulheres no domicílio: algumas delas
+                                                está grávida? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userGravida"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio"  value="option2" name="userGravida"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userGravida"> <i></i> Sim </label>
+                                                </div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option2" name="userGravida"> <i></i> Não </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -130,59 +148,81 @@
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Data dos primeiros sintomas *</label>
                                             <div class="input-group date" id="dataSintomas">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control">
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-calendar"></i></span><input type="text"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Comorbidades *</label>
-                                            <input id="userComorbidades" name="userComorbidades" type="text" class="form-control required">
+                                            <input id="userComorbidades" name="userComorbidades" type="text"
+                                                class="form-control required">
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Apresenta alguma doença crônica? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userDoencaCronica"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userDoencaCronica"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userDoencaCronica"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userDoencaCronica"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userDoencas" name="userDoencas" type="text" class="form-control required">
+                                            <input id="userDoencas" name="userDoencas" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Toma algum medicamento diariamente?  *</label>
+                                            <label class="font-normal">Toma algum medicamento diariamente? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamento"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userMedicamento"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamento"> <i></i> Sim </label>
+                                                </div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamento"> <i></i> Não </label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-7">
-                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de vezes ao dia) *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de
+                                                vezes ao dia) *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                         <div class="form-group col-lg-5">
-                                            <label class="font-normal">Há quanto tempo toma esses medicamentos? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Há quanto tempo toma esses medicamentos?
+                                                *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico, enfermeira, vizinho, etc)?   *</label>
+                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico,
+                                                enfermeira, vizinho, etc)? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamentoIndicacao"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userMedicamentoIndicacao"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamentoIndicacao"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamentoIndicacao"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -208,59 +248,81 @@
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Data dos primeiros sintomas *</label>
                                             <div class="input-group date" id="dataSintomas">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control">
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-calendar"></i></span><input type="text"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Comorbidades *</label>
-                                            <input id="userComorbidades" name="userComorbidades" type="text" class="form-control required">
+                                            <input id="userComorbidades" name="userComorbidades" type="text"
+                                                class="form-control required">
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Apresenta alguma doença crônica? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userDoencaCronica"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userDoencaCronica"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userDoencaCronica"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userDoencaCronica"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userDoencas" name="userDoencas" type="text" class="form-control required">
+                                            <input id="userDoencas" name="userDoencas" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Toma algum medicamento diariamente?  *</label>
+                                            <label class="font-normal">Toma algum medicamento diariamente? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamento"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userMedicamento"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamento"> <i></i> Sim </label>
+                                                </div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamento"> <i></i> Não </label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-7">
-                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de vezes ao dia) *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de
+                                                vezes ao dia) *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                         <div class="form-group col-lg-5">
-                                            <label class="font-normal">Há quanto tempo toma esses medicamentos? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Há quanto tempo toma esses medicamentos?
+                                                *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico, enfermeira, vizinho, etc)?   *</label>
+                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico,
+                                                enfermeira, vizinho, etc)? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamentoIndicacao"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userMedicamentoIndicacao"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamentoIndicacao"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamentoIndicacao"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -286,59 +348,81 @@
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Data dos primeiros sintomas *</label>
                                             <div class="input-group date" id="dataSintomas">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control">
+                                                <span class="input-group-addon"><i
+                                                        class="fa fa-calendar"></i></span><input type="text"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Comorbidades *</label>
-                                            <input id="userComorbidades" name="userComorbidades" type="text" class="form-control required">
+                                            <input id="userComorbidades" name="userComorbidades" type="text"
+                                                class="form-control required">
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Apresenta alguma doença crônica? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userDoencaCronica"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userDoencaCronica"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userDoencaCronica"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userDoencaCronica"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userDoencas" name="userDoencas" type="text" class="form-control required">
+                                            <input id="userDoencas" name="userDoencas" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Toma algum medicamento diariamente?  *</label>
+                                            <label class="font-normal">Toma algum medicamento diariamente? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamento"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked value="option2" name="userMedicamento"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamento"> <i></i> Sim </label>
+                                                </div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamento"> <i></i> Não </label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="font-normal">Caso sim, quais ? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-7">
-                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de vezes ao dia) *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Como toma esse medicamento? (Dose, quantidade de
+                                                vezes ao dia) *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                         <div class="form-group col-lg-5">
-                                            <label class="font-normal">Há quanto tempo toma esses medicamentos? *</label>
-                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text" class="form-control required">
+                                            <label class="font-normal">Há quanto tempo toma esses medicamentos?
+                                                *</label>
+                                            <input id="userQuaisMedicamentos" name="userQuaisMedicamentos" type="text"
+                                                class="form-control required">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
-                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico, enfermeira, vizinho, etc)?   *</label>
+                                            <label class="font-normal">Alguém indicou o uso de algum deles (médico,
+                                                enfermeira, vizinho, etc)? *</label>
                                             <div class="row">
                                                 <div class="col-lg-1"></div>
-                                                <div class="i-checks col-lg-5"><label> <input type="radio" value="option1" name="userMedicamentoIndicacao"> <i></i> Sim </label></div>
-                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked value="option2" name="userMedicamentoIndicacao"> <i></i> Não </label></div>
+                                                <div class="i-checks col-lg-5"><label> <input type="radio"
+                                                            value="option1" name="userMedicamentoIndicacao"> <i></i> Sim
+                                                    </label></div>
+                                                <div class="i-checks col-lg-6"><label> <input type="radio" checked
+                                                            value="option2" name="userMedicamentoIndicacao"> <i></i> Não
+                                                    </label></div>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6">
@@ -358,7 +442,7 @@
                     </form>
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </div>
 
