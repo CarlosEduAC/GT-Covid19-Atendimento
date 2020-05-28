@@ -520,11 +520,6 @@
                         <!-- Aba 4 -->
                         <h1>Conjunto 4</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
-                        </fieldset>
-                        <!-- Aba 5 -->
-                        <h1>Conjunto 5</h1>
-                        <fieldset>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="ibox ">
@@ -634,8 +629,8 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <!-- Aba 6 -->
-                        <h1>Conjunto 6</h1>
+                        <!-- Aba 5 -->
+                        <h1>Conjunto 5</h1>
                         <fieldset>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -900,15 +895,354 @@
                                 </div>
                             </div>
                         </fieldset>
+                        <!-- Aba 6 -->
+                        <h1>Conjunto 6</h1>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Visitas</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª recebeu visitas nos últimos 15 dias ? *
+                                                    </label>
+                                                    <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                value="option1" name="recebeuVisita" id="recebeuVisita">
+                                                            <i></i> Sim </label></div>
+                                                    <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                value="option2" name="recebeuVisita" id="recebeuVisita">
+                                                            <i></i> Não </label></div>
+                                                    <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                value="option3" name="recebeuVisita" id="recebeuVisita"
+                                                                checked>
+                                                            <i></i> Não opinou </label></div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, quem?
+                                                    </label>
+                                                    <input id="quemVisita" name="quemVisita" type="text"
+                                                        class="form-control">
+                                                    <p>Ouvir o relato e, se for possível, orientar o isolamento. Caso
+                                                        não seja possível o isolamento, orientar estratégias de redução
+                                                        de risco de transmissão. Descrever aqui, sucintamente, os
+                                                        motivos, problemas identificados e/ou orientações fornecidas.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Porquê ?
+                                                    </label>
+                                                    <input id="porqueVisita" name="porqueVisita" type="text"
+                                                        class="form-control">
+                                                    <p>Após ouvir o relato e considerando o contexto social, econômico e
+                                                        cultural, oriente a não receber visitas em casa e explique o
+                                                        porquê. Caso seja necessário, oriente medidas de redução de
+                                                        risco da transmissão nessas visitas. Descrever, sucintamente, no
+                                                        campo abaixo, o motivo da visita, os problemas identificados
+                                                        e/ou orientações passadas ao usuário.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Perguntas sobre os sintomas da Covid-19</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª apresentou algum dos sintomas abaixo nos últimos dias
+                                                        (desde do último atendimento em saúde, por exemplo) ?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="sintomas" id="sintomas">
+                                                                <i></i> Tosse </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="sintomas" id="sintomas">
+                                                                <i></i> Dor de cabeça ou no corpo </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="sintomas" id="sintomas">
+                                                                <i></i> Fadiga </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option4" name="sintomas" id="sintomas">
+                                                                <i></i> Coriza </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option5" name="sintomas" id="sintomas">
+                                                                <i></i> Dor de garganta </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option6" name="sintomas" id="sintomas">
+                                                                <i></i> Dificuldade para respirar </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option7" name="sintomas" id="sintomas">
+                                                                <i></i> Febre </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option8" name="sintomas" id="sintomas">
+                                                                <i></i> Não apresentou nenhum sintoma </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option9" name="sintomas" id="sintomas">
+                                                                <i></i> Outros </label>
+                                                            <input id="sintomasOutros" name="sintomasOutros" type="text"
+                                                                class="form-control"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Caso tenha apresentado febre, de quanto ?
+                                                    </label>
+                                                    <input id="maiorFebre" name="maiorFebre" type="number"
+                                                        class="form-control">
+                                                    <p>anotar o maior número relatado</p>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª tomou algum medicamento para os sintomas que apresentou
+                                                        ? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="tomouMedicamento"
+                                                                    id="tomouMedicamento">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="tomouMedicamento"
+                                                                    id="tomouMedicamento">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="tomouMedicamento"
+                                                                    id="tomouMedicamento">
+                                                                <i></i> Não se aplica </label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Caso tenha tomado, qual?
+                                                    </label>
+                                                    <input id="qualMedicamento" name="qualMedicamento" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Caso tenha tomado, quem indicou o uso desse medicamento ?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="quemIndicou" id="quemIndicou">
+                                                                <i></i> Médico </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="quemIndicou" id="quemIndicou">
+                                                                <i></i> Enfermeiro </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="quemIndicou" id="quemIndicou">
+                                                                <i></i> Vizinho/Familiar/Amigo/Conhecido </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option4" name="quemIndicou" id="quemIndicou">
+                                                                <i></i> Dentista </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option5" name="quemIndicou" id="quemIndicou">
+                                                                <i></i> Tomou por conta própria </label></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Como está tomando esse(s) medicamento(s)?
+                                                    </label>
+                                                    <input id="comoTomandoMedicamentos" name="comoTomandoMedicamentos"
+                                                        type="text" class="form-control"></div>
+                                                <p>Ouvir o relato e considerando os problemas identificados ou dúvidas,
+                                                    oriente quanto ao uso adequado do medicamentos. Descreva aqui,
+                                                    sucintamente, os problemas identificados, dúvidas e orientações
+                                                    fornecidas.</p>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Alguma outra pessoa da sua residência está apresentando algum
+                                                        sintoma de gripe (febre, tosse, dificuldade de respirar, fadiga,
+                                                        dor no corpo, por exemplo)? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="outraPessoaSintoma"
+                                                                    id="outraPessoaSintoma">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="outraPessoaSintoma"
+                                                                    id="outraPessoaSintoma">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="outraPessoaSintoma"
+                                                                    id="outraPessoaSintoma" checked>
+                                                                <i></i> Não se aplica , mora sozinho </label></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
                         <!-- Aba 7 -->
                         <h1>Conjunto 7</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
-                        </fieldset>
-                        <!-- Aba 8 -->
-                        <h1>Conjunto 8</h1>
-                        <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Outros moradores e sintomas COVID-19</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, quem ?
+                                                    </label>
+                                                    <input id="familiaSintoma" name="familiaSintoma" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, quais sintomas ?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Tosse </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Dor de cabeça ou no corpo </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Fadiga </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option4" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Coriza </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option5" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Dor de garganta </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option6" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Dificuldade para respirar </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option7" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Febre </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option8" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Não apresentou nenhum sintoma </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option9" name="familiaSintomas"
+                                                                    id="familiaSintomas">
+                                                                <i></i> Outros </label>
+                                                            <input id="familiaSintomasOutros"
+                                                                name="familiaSintomasOutros" type="text"
+                                                                class="form-control"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Caso tenha apresentado febre, de quanto ?
+                                                    </label>
+                                                    <input id="familiaMaiorFebre" name="familiaMaiorFebre" type="number"
+                                                        class="form-control">
+                                                    <p>anotar o maior número relatado</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Encerramento do atendimento/Orientações finais</h2>
+                                            <p>Despedir-se, agradecer, indicar a data do novo contato, orientar e
+                                                retirar qualquer dúvida dos usuários ou seus familiares.</p>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Orientação final
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="orientacoesFinais"
+                                                                    id="orientacoesFinais">
+                                                                <i></i> Encaminhamento para avaliação presencial
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="orientacoesFinais"
+                                                                    id="orientacoesFinais">
+                                                                <i></i> Acompanhamento telefônico em 24 horas
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="orientacoesFinais"
+                                                                    id="orientacoesFinais">
+                                                                <i></i> Acompanhamento telefônico em 48 horas
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option4" name="orientacoesFinais"
+                                                                    id="orientacoesFinais">
+                                                                <i></i> Discussão do caso com o supervisor </label>
+                                                        </div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option5" name="orientacoesFinais"
+                                                                    id="orientacoesFinais">
+                                                                <i></i> Contato com o serviço </label></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Anotar aqui orientações, dúvidas do atendimento ou qualquer
+                                                        outra informação relevante.
+                                                    </label>
+                                                    <input id="notacoesFinais" name="anotacoesFinais" type="text"
+                                                        class="form-control">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
