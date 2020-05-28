@@ -6,6 +6,5 @@ atendimento = Blueprint('Atendimento', __name__)
 def index():
     if request.method == 'POST':
         print(request.form)
-        # userName = request.form['userName']
         
     return redirect(url_for('Home.index'))

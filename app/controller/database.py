@@ -29,9 +29,12 @@ class Database():
         session.commit()
         return session.query(type(obj)).filter_by(**obj.retData()).first().id
 
-    def select(self, obj):
+    def select(self, data):
+        newData = []
         session = Session(bind=self.engine)
-        if list(set(obj.retData().values()))[0] == None:
-            return pd.read_sql(session.query(type(obj)).statement, session.bind)
-        else:
-            return pd.read_sql(session.query(type(obj)).filter_by(**obj.retData()).statement, session.bind)
+        result = session.query(data).all()
+
+        for r in result:
+            newData.append((r.idComorbidades, r.Descricao))
+
+        return newData
