@@ -19,15 +19,12 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
-                <!-- <div class="ibox-title">
-                    <h5>Formulário de Telemonitoramento</h5>
-                </div> -->
                 <div class="ibox-content">
                     <h2>Formulário Primeiro Atendimento</h2>
                     <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
                     <form id="form" action="/atendimento" method="POST" class="wizard-big">
                         <!-- Aba 1 -->
-                        <h1>Informações Básicas e Doenças Crônicas</h1>
+                        <h1>Conjunto 1</h1>
                         <fieldset>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -155,7 +152,7 @@
                             </div>
                         </fieldset>
                         <!-- Aba 2 -->
-                        <h1>Medicamentos e ESF de Referência</h1>
+                        <h1>Conjunto 2</h1>
                         <fieldset>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -361,7 +358,7 @@
                             </div>
                         </fieldset>
                         <!-- Aba 3 -->
-                        <h1>Domicílio e Características dos Moradores</h1>
+                        <h1>Conjunto 3</h1>
                         <fieldset>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -523,30 +520,399 @@
                             </div>
                         </fieldset>
                         <!-- Aba 4 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Conjunto 4</h1>
                         <fieldset>
                             <h2>Informações Básicas do Paciente</h2>
                         </fieldset>
                         <!-- Aba 5 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Conjunto 5</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Características do domicílio e auxílios governamentais</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Quantos cômodos tem a sua casa ?*
+                                                    </label>
+                                                    <input id="qtdComodos" name="qtdComodos" type="number"
+                                                        class="form-control" required>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª tem acesso a agua na torneira de casa ?*
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="aceAgua" id="aceAgua">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="aceAgua" id="aceAgua"> <i></i>
+                                                                Não
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="aceAgua" id="aceAgua" checked>
+                                                                <i></i> Não
+                                                                opinou </label></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª está recebendo algum auxílio do governo durante esse
+                                                        período da pandemia ?*
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="auxGoverno" id="auxGoverno">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="auxGoverno" id="auxGoverno">
+                                                                <i></i> Não
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="auxGoverno" id="auxGoverno"
+                                                                    checked> <i></i> Não
+                                                                opinou </label></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, qual?
+                                                    </label>
+                                                    <input class="tagsinput form-control" type="text" value="" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Isolamento domiciliar</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+                                                <div class="form-group ">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª está conseguindo se manter isolado dos demais ?*
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="mantIsolado" id="mantIsolado">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="mantIsolado" id="mantIsolado">
+                                                                <i></i> Não
+                                                            </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="mantIsolado" id="mantIsolado"
+                                                                    checked> <i></i> Não
+                                                                opinou </label></div>
+                                                        <br><br>
+                                                        <p>Manter-se isolado significa estar sozinho em um cômodo da
+                                                            casa, sem acesso aos demais habitantes a esse cômodo.</p>
+                                                        <p>Se o usuário responder não, orientar o isolamento domiciliar,
+                                                            quando possível.
+                                                            Caso não seja possível o isolamento, orientar estratégias de
+                                                            redução de risco de transmissão.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- Aba 6 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Conjunto 6</h1>
                         <fieldset>
-                            <h2>Informações Básicas do Paciente</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Rotina domiciliar (menos de 1 pessoa no domicílio)</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, como o Sr/Srª tem feito esse isolamento?
+                                                    </label>
+                                                    <input id="feitoIsolamento" name="feitoIsolamento" type="text"
+                                                        class="form-control">
+                                                    <p>Ouvir o relato e passar informações adequadas sobre a manutenção
+                                                        do isolamento. Descrever, sucintamente, no campo abaixo, os
+                                                        problemas identificados e/ou orientações passadas ao usuário.
+                                                    </p>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se não, porquê?
+                                                    </label>
+                                                    <input id="NOTfeitoIsolamento" name="NOTfeitoIsolamento" type="text"
+                                                        class="form-control">
+                                                    <p>Ouvir o relato e, se for possível, orientar o isolamento. Caso
+                                                        não seja possível o isolamento, orientar estratégias de redução
+                                                        de risco de transmissão. Descrever aqui, sucintamente, os
+                                                        motivos, problemas identificados e/ou orientações fornecidas.
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        O Sr/Srª dorme com alguém na mesma cama? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="dormeCama" id="dormeCama">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="dormeCama" id="dormeCama">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="dormeCama" id="dormeCama"
+                                                                    checked>
+                                                                <i></i> Não opinou </label></div>
+                                                    </div>
+                                                    <p>Se o usuário responder de vez em quando, perguntar se dormiu com
+                                                        alguém na mesma cama nos últimos 15 dias para escolher a
+                                                        alternativa adequada
+                                                    </p>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        E no mesmo quarto? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="mesmoQuarto" id="mesmoQuarto">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="mesmoQuarto" id="mesmoQuarto">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="mesmoQuarto" id="mesmoQuarto"
+                                                                    checked>
+                                                                <i></i> Não opinou </label></div>
+                                                    </div>
+                                                    <p>Se o usuário responder de vez em quando, perguntar se dormiu com
+                                                        alguém na mesmo quarto nos últimos 15 dias para escolher a
+                                                        alternativa adequada
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Algumas das pessoas que mora com você está precisando sair para
+                                                        trabalhar? *
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="sairTrabalhar"
+                                                                    id="sairTrabalhar">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="sairTrabalhar"
+                                                                    id="sairTrabalhar">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="sairTrabalhar"
+                                                                    id="sairTrabalhar" checked>
+                                                                <i></i> Mora sozinho </label></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim, quem e qual a ocupação ?
+                                                    </label>
+                                                    <input id="ocupacao" name="ocupacao" type="text"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Quais cuidados têm tomado ao sair para trabalhar? E ao chegar em
+                                                        casa?
+                                                    </label>
+                                                    <input id="cuidadosSairTrabalho" name="ocupacao" type="text"
+                                                        class="form-control">
+                                                    <p>Ouvir o relato e orientar medidas de redução de risco da
+                                                        transmissão ao sair e voltar para casa, considerando o contexto
+                                                        socioeconômico do domicílio. Descrever, sucintamente, no campo
+                                                        acima, os problemas identificados e/ou orientações passadas ao
+                                                        usuário.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="ibox ">
+                                        <div class="ibox-title">
+                                            <h2>Isolamento domiciliar</h2>
+                                        </div>
+                                        <div class="ibox-content">
+                                            <div class="row">
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Você e as pessoas com quem mora estão conseguindo se manter em
+                                                        casa?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option1" name="manterCasa" id="manterCasa">
+                                                                <i></i> Sim </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option2" name="manterCasa" id="manterCasa">
+                                                                <i></i> Não </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="radio"
+                                                                    value="option3" name="manterCasa" id="manterCasa"
+                                                                    checked>
+                                                                <i></i> Sai só para atividades essenciais. </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <label class="font-normal">
+                                                        Se sim: há quantos dias?
+                                                    </label>
+                                                    <input id="diasCasa" name="diasCasa" type="number"
+                                                        class="form-control">
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Se não: quais são os motivos para sair de casa?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Ir ao supermercado ou a farmácia </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Trabalhar </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Ir a banco/caixas eletrônicos </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option4" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Ir a casa de familiares e amigos </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option5" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Trabalho voluntário </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option6" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Ir a consultas médicas/fazer exames
+                                                                diagnósticos/tratamentos </label></div>
+                                                        <div class="i-checks col-lg-6"><label> <input type="checkbox"
+                                                                    value="option7" name="motivoSairCasa"
+                                                                    id="motivoSairCasa">
+                                                                <i></i> Outros </label>
+                                                            <input id="motivoSairCasaOutro" name="motivoSairCasaOutro"
+                                                                type="text" class="form-control"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Qual tem sido a(s) estratégia(s) usada para a compra de
+                                                        alimentos/medicamentos para o domicílio?
+                                                    </label>
+                                                    <div class="row" style="margin-left: 0px;">
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option1" name="estrategiCompra"
+                                                                    id="estrategiCompra">
+                                                                <i></i> Ida pessoal ao mercado </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option2" name="estrategiCompra"
+                                                                    id="estrategiCompra">
+                                                                <i></i> Entrega em casa (via whatsapp, sites,
+                                                                aplicativos, etc). </label></div>
+                                                        <div class="i-checks col-lg-4"><label> <input type="checkbox"
+                                                                    value="option3" name="estrategiCompra"
+                                                                    id="estrategiCompra">
+                                                                <i></i> Alguém tem feito as compras e deixado no
+                                                                domicílio </label></div>
+                                                        <div class="i-checks col-lg-6"><label> <input type="checkbox"
+                                                                    value="option4" name="estrategiCompra"
+                                                                    id="estrategiCompra">
+                                                                <i></i> Outros </label>
+                                                            <input id="estrategiCompraOutro" name="estrategiCompraOutro"
+                                                                type="text" class="form-control"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="form-group">
+                                                    <label class="font-normal">
+                                                        Quais são os cuidados que essa pessoa tem tido ao sair de casa
+                                                        para comprar esses itens? E ao chegar em casa? Ou ao receber os
+                                                        produtos?
+                                                    </label>
+                                                    <input id="cuidadosSairCasa" name="cuidadosSairCasa" type="text"
+                                                        class="form-control"></div>
+                                                <p>Ouvir o relato e orientar medidas de redução de risco da transmissão
+                                                    ao sair e voltar para casa e higienização dos produtos que vem da
+                                                    rua, considerando o contexto socioeconômico do domicílio. Descrever,
+                                                    sucintamente, no campo acima, os problemas identificados e/ou
+                                                    orientações passadas ao usuário. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- Aba 7 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Conjunto 7</h1>
                         <fieldset>
                             <h2>Informações Básicas do Paciente</h2>
                         </fieldset>
                         <!-- Aba 8 -->
-                        <h1>Informações Básicas</h1>
+                        <h1>Conjunto 8</h1>
                         <fieldset>
                             <h2>Informações Básicas do Paciente</h2>
                         </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
