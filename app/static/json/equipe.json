@@ -1,0 +1,74 @@
+[
+    {
+        "nome": "Janaina Gomide",
+        "universidade": "Universidade Federal do Rio de Janeiro",
+        "cv": "http://lattes.cnpq.br/7073790805586544",
+        "email": "janainagomide@gmail.com",
+        "imagem": "static/img/avatars/janaina.png",
+        "funcao": "Coord. do GT"
+    },
+    {
+        "nome": "Carlos Bazilio",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "http://lattes.cnpq.br/2718845038912088",
+        "email": "carlosbazilio@id.uff.br",
+        "imagem": "static/img/avatars/bazilio.png",
+        "funcao": "Coord. de Desenv."
+    },
+    {
+        "nome": "Leila Weitzel",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "http://lattes.cnpq.br/2768655384552211",
+        "email": "leila_weitzel@id.uff.br",
+        "imagem": "static/img/avatars/leila.png",
+        "funcao": "Coord. de Desenv."
+    },
+    {
+        "nome": "Carlos Eduardo",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/carloseac/",
+        "email": "carloseac@id.uff.br",
+        "imagem": "static/img/avatars/cadu.png",
+        "funcao": "Desenvolvedor"
+    },
+    {
+        "nome": "Luan Cunha",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/luan-pereira-cunha-71b20576/",
+        "email": "luan.pereiracunha@gmail.com",
+        "imagem": "static/img/avatars/luan.png",
+        "funcao": "Desenvolvedor"
+    },
+    {
+        "nome": "Edson Onildo",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/edsononildo/",
+        "email": "inbox.edsononildo@gmail.com",
+        "imagem": "static/img/avatars/edson.png",
+        "funcao": "Desenvolvedor"
+    },
+    {
+        "nome": "Isabela Carvalho",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/isabela-carvalho-69a1b0136/",
+        "email": "isabelacarvalhocf@hotmail.com",
+        "imagem": "static/img/avatars/isabela.png",
+        "funcao": "Desenvolvedora"
+    },
+    {
+        "nome": "Nayara Nunes",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/nayaracunhati/",
+        "email": "nayaracn@outlook.com",
+        "imagem": "static/img/avatars/nayara.png",
+        "funcao": "Desenvolvedora"
+    },
+    {
+        "nome": "Matheus Antonio",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/matheus-antonio-oliveira-cardoso-19515ab8/",
+        "email": "matheus.antonio.c@outlook.com",
+        "imagem": "static/img/avatars/matheus.png",
+        "funcao": "Desenvolvedor"
+    }
+]
