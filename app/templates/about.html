@@ -1,0 +1,79 @@
+<!-- Conteúdo desejado: https://covid19br.github.io/sobre.html -->
+
+{% extends "template.html" %}
+{% block conteudo %}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h2><strong>GT de Computação</strong></h2>
+                </div>
+
+                <div class="ibox-content">
+
+                    <!--p class="font-bold">
+                        Pure text, CSS only, font independent, inline loading indicators.
+                    </p-->
+
+                    <p>
+                        Coordenadores: Janaina Gomide (janainagomide@gmail.com), Edwin Meza(emitacc@id.uff.br) e Matheus Ferreira de Barros<br><br>
+                        Atividades sendo realizadas:<br>
+                        <ul>
+                            <li>Análise e Visualização de Dados; Desenvolvimento e implementação da sala de situação da Covid-19</li>
+                            <li>Modelagem e implementação da base de casos dos Municípios</li>
+                            <li>Auxilio na estruturação e distribuição da informação referente à Covid-19</li>
+                            <li>Modelagem e implementação as bases de casos do Teleatendimento referente à Covid-19</li>
+                            <li>Desenvolvimento e gestão do portal de comunicação do Covid-19</li>
+                        </ul>
+                        Grupo formado por professores da UFRJ-Macaé e UFF-Rio das Ostras.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Equipe</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="row">
+                            {% for membro in membros %}
+                            <div class="col-lg-4">
+                                <div class="contact-box">
+                                    <!--a class="row" href="profile.html"-->
+                                    <div class="row">
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <img alt="image" class="rounded-circle m-t-xs img-fluid" src="{{membro.imagem}}">
+                                            <div class="m-t-xs font-bold">{{membro.funcao}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <h3><strong>{{membro.nome}}</strong></h3>
+                                        <p><i class="fa fa-university"></i>{{membro.universidade}}</p>
+                                        <address>
+                                            <strong><a href="{{membro.cv}}" target="_blank">CV</a></strong><br>
+                                            <p><i class="fa fa-envelope"></i>{{membro.email}}</p>
+                                        </address>
+                                    </div>
+                                    <!--/a-->
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
