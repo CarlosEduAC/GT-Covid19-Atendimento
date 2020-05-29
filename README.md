@@ -47,8 +47,8 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
 
-    Apontar para o repositorio principal com o comando (faça isso apenas uma vez)
-    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento
+    *Apontar para o repositorio principal com o comando (*faça isso apenas uma vez)
+    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento *
 
 
     - git chekout master 
