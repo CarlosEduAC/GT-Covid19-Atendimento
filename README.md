@@ -35,10 +35,6 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
     - git commit -m "- Exemplo de Commit"
     - git push
 
-- Atualizando o projeto (git)
-
-    - git pull
-
 - Abrir a página *do seu fork* e clicar em :
     
     - New pull request
