@@ -4,6 +4,21 @@ from datetime import datetime
 
 Base = declarative_base()
 
+### a partir desta tabela que cadastro no banco
+class AdmSaude(Base):
+    __tablename__ = 'adm_saude'
+
+    idadm_saude = Column('idadm_saude', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
+    nome = Column('nome', String(50))
+    CRM = Column('crm', String(20), unique=True)
+    supervisor = Column('supervisor', String(4))
+
+    def __init__(self, nome, crm, cargo, id):
+        self.nome = nome
+        self.CRM = crm
+        self.supervisor = cargo
+        self.idadm_saude = id
+
 class Usuario(Base):
     __tablename__ = 'usuario'
     name = Column('nome', String(50))
@@ -13,7 +28,7 @@ class Usuario(Base):
     created = Column('created_on', DateTime, default=datetime.utcnow)
     id = Column('idUsuario', Integer, primary_key=True)
 
-    usuarioPerfil = relationship("UsuarioPerfil")
+    #usuarioPerfil = relationship("UsuarioPerfil")
 
     def __init__(self, name, cpf, crm, senha):
         self.name = name
