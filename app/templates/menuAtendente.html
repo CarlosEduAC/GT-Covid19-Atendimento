@@ -33,10 +33,9 @@
                                             <table class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <td>Ultimo atendimento</td>
-                                                        <td>Status</td>
-                                                        <td>Condições Anteriores</td>
-                                                        <td>Mora sozinho</td>
+                                                        <td>Dia do Agendamento</td>
+                                                        <td>Primeiro Atendimento?</td>
+                                                        <td>Dia do Atendimento</td>
                                                         
                                                     </tr>
                                                 </thead>
@@ -44,10 +43,9 @@
                                                     {% for atendimento in atendimentos %}
                                                         <div >
                                                             <tr>
-                                                                <td>{{atendimento['ultimo']}}</td>
-                                                                <td>{{atendimento['status']}}</td>
-                                                                <td>{{atendimento['cond_anteriores']}}</td>
-                                                                <td>{{atendimento['mora_sozinho']}}</td>
+                                                                <td>{{atendimento['diaAgendamento']}}</td>
+                                                                <td>{{atendimento['primeiro']}}</td>
+                                                                <td>{{atendimento['diaAtendimento']}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary">Iniciar Atendimento</button>
                                                                 </td>
