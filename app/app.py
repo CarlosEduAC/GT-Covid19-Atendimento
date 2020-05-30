@@ -9,6 +9,7 @@ from blueprints.registrarUsuario import registrarUsuario
 from blueprints.atendimento import atendimento
 from blueprints.menuAtendente import menuAtendente
 from blueprints.about import about
+from blueprints.jsonTeste import teste
 
 app = Flask(__name__)
 db = SQLAlchemy()
@@ -24,6 +25,7 @@ app.register_blueprint(registrarUsuario, url_prefix='/')
 app.register_blueprint(atendimento, url_prefix='/')
 app.register_blueprint(menuAtendente, url_prefix='/')
 app.register_blueprint(about, url_prefix='/')
+app.register_blueprint(teste, url_prefix='/')
 
 CORS(app)
 
