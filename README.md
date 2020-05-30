@@ -2,7 +2,7 @@
 Sistema web responsável pelo atendimento de pacientes com suspeitas de coronavírus.
 
 # Passo a passo para iniciar projeto
-- Necessário ter o Python 3.x instalado na máquina
+- Necessário ter o Python 3.8.3 instalado na máquina
 - Necessário ter o GIT instalado na máquina
 
 - Clonando o projeto
@@ -12,6 +12,8 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 - Instalando dependências 
 
     - pip install -r requirements.txt
+
+    - * Obs: A cada novo pacote necessario para a implmentação , lembrar de inclui-lo no requirements.txt. É melhor sobrar do que faltar ^^
 
 - Iniciando o sistema
 
@@ -37,7 +39,7 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Atualizando o projeto (git)
 
-    - git push
+    - git push -f origin master
 
 - Abrir a pagina do seu fork e clicar em :
     
@@ -45,9 +47,13 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
 - Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
 
+    *Apontar para o repositorio principal com o comando (*faça isso apenas uma vez)
+    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento *
+
+
     - git chekout master 
     - git fetch upstream 
-    - git merge upstream/master
+    - git rebase upstream/master
 
 
 * é aconselhável, mas não obrigatório, criar um novo branch a cada nova 'feature'.
