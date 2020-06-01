@@ -2,7 +2,7 @@
 Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Covid-19.
 
 # Passo a passo para iniciar projeto
-- Necessário ter o Python 3.x instalado na máquina
+- Necessário ter o Python 3.8.3 instalado na máquina
 - Necessário ter o GIT instalado na máquina
 
 - Clonando o projeto
@@ -12,6 +12,8 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
 - Instalando dependências 
 
     - pip install -r requirements.txt
+
+    - * Obs: A cada novo pacote necessario para a implmentação , lembrar de inclui-lo no requirements.txt. É melhor sobrar do que faltar ^^
 
 - Iniciando o sistema
 
@@ -33,17 +35,24 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
 
     - git add .
     - git commit -m "- Exemplo de Commit"
-    - git push
+    - git pull
+
+- Atualizando o projeto (git)
+
+    - git push -f origin master
 
 - Abrir a página *do seu fork* e clicar em :
     
     - New pull request
 
 - Ao começar uma nova feature ou tarefa, atualize seu repositório local com as atualizações do Git principal do projeto :
+    *Apontar para o repositorio principal com o comando (*faça isso apenas uma vez)
+    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento *
 
-    - git checkout master 
+    - git chekout master 
+    
     - git fetch upstream 
-    - git merge upstream/master
+    - git rebase upstream/master
 
 * É aconselhável, mas não obrigatório, criar um novo branch a cada nova 'feature'.
     
