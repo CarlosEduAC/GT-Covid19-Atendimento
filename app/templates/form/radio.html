@@ -1,3 +1,5 @@
+{% from 'form/text.html' import text %}
+
 {% macro radio(input) -%}
     {% for option in input.options %}
         <div class="i-checks">
@@ -16,9 +18,7 @@
             {% if field.type == "radio" %}
                 {{ radio(field) }}
             {% else %}
-                <input id="{{ field.name }}" name="{{ field.name }}" type="{{ field.type if field.type else 'text' }}"
-                       class="form-control {{ 'required' if field.required }} {{ field.class }}"
-                       placeholder="{{ field.placeholder }}">
+                {{ text(field) }}
             {% endif %}
         {% endfor %}
     </div>
