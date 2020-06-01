@@ -1,0 +1,26 @@
+{% macro radio(input) -%}
+    {% for option in input.options %}
+        <div class="i-checks">
+            <label onclick="radio(this.childNodes[1].childNodes[0])">
+                <input type="radio" checked="" value="{{ loop.index0 }}" name="{{ input.name }}">
+                <i></i>
+                {{ option }}
+            </label>
+        </div>
+    {% endfor %}
+
+    <div id="id-{{ input.name }}" style="visibility: hidden;">
+        {% for field in input.fields %}
+            <label for="{{ field.name }}">{{ field.label }}</label>
+
+            {% if field.type == "radio" %}
+                {{ radio(field) }}
+            {% else %}
+                <input id="{{ field.name }}" name="{{ field.name }}" type="{{ field.type if field.type else 'text' }}"
+                       class="form-control {{ 'required' if field.required }} {{ field.class }}"
+                       placeholder="{{ field.placeholder }}">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{%- endmacro %}
