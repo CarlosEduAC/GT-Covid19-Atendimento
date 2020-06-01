@@ -1,17 +1,17 @@
-import forms.sections as section
+from .sections import *
 
 fieldsetConjunto1 = {
     "name": "Conjunto 1",
     "sections": [
-        section.informacoesBasicas,
-        section.doencasCronicas
+        informacoesBasicas,
+        doencasCronicas
     ]
 }
 
 fieldsetConjunto2 = {
     "name": "Conjunto 2",
     "sections": [
-        section.medicamentos,
-        section.esfReferencia
+        medicamentos,
+        esfReferencia
     ]
 }

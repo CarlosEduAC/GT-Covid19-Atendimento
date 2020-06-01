@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template
-import forms.fieldsets as fieldset
-
+#import forms.fieldsets as fieldset
+from forms.fieldsets import fieldsetConjunto1,fieldsetConjunto2
 form = Blueprint('Test', __name__)
 
 fieldsets = [
-    fieldset.fieldsetConjunto1,
-    fieldset.fieldsetConjunto2,
+    fieldsetConjunto1,
+    fieldsetConjunto2,
 ]
 
 

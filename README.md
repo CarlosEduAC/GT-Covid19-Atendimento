@@ -1,5 +1,5 @@
 # GT-Covid19-Atendimento
-Sistema web responsável pelo atendimento de pacientes com suspeitas de coronavírus.
+Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Covid-19.
 
 # Passo a passo para iniciar projeto
 - Necessário ter o Python 3.8.3 instalado na máquina
@@ -31,7 +31,7 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
     - git clone "Link do projeto forkado no seu github'
 
-- Atualizando o projeto (local) *
+- Atualizando o projeto (local)
 
     - git add .
     - git commit -m "- Exemplo de Commit"
@@ -41,7 +41,7 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
 
     - git push -f origin master
 
-- Abrir a pagina do seu fork e clicar em :
+- Abrir a página *do seu fork* e clicar em :
     
     - New pull request
 
@@ -55,7 +55,6 @@ Sistema web responsável pelo atendimento de pacientes com suspeitas de coronav�
     - git fetch upstream 
     - git rebase upstream/master
 
-
-* é aconselhável, mas não obrigatório, criar um novo branch a cada nova 'feature'.
+* É aconselhável, mas não obrigatório, criar um novo branch a cada nova 'feature'.
     
     - git checkout -b NomeDoNovoBranch

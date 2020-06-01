@@ -1,34 +1,33 @@
-import forms.inputs as input
-
+from .inputs import *
 informacoesBasicas = {
     "name": "Informações Básicas do Paciente",
     "inputs": [
-        input.nome,
-        input.cpf,
-        input.telefone,
-        input.aniversario,
-        input.comorbidades,
-        input.dataPrimeiroSintoma,
+        nome,
+        cpf,
+        telefone,
+        aniversario,
+        comorbidades,
+        dataPrimeiroSintoma,
     ]
 }
 
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        input.doencaCronica,
+        doencaCronica,
     ]
 }
 
 medicamentos = {
     "name": "Medicamentos",
     "inputs": [
-        input.checkRemedioPaciente
+        checkRemedioPaciente
     ]
 }
 
 esfReferencia = {
     "name": "ESF de Referência",
     "inputs": [
-        input.esf
+        esf
     ]
 }
