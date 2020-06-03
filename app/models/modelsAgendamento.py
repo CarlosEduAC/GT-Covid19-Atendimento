@@ -11,7 +11,7 @@ class Agendamento(Base):
     dia = Column('dia', DateTime)
     idProfissional = Column('idProfissional', Integer, ForeignKey('profissional_saude.idProfissional'))
     idAtendimento = Column('idAtendimento', Integer, ForeignKey('atendimento.idAtendimento'))
-    idUsuario = Column('idUsuario', Integer, ForeignKey('usuario.idUsuaio'))
+    idUsuario = Column('idUsuario', Integer, ForeignKey('usuario.idUsuario'))
     id = Column('idAgendamento', Integer, primary_key = True)
 
 
