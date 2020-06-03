@@ -29,7 +29,7 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
 
 - Clonar o projeto para uma pasta
 
-    - git clone "Link do projeto forkado no seu github'
+    - git clone "Link do projeto forkado no seu github"
 
 - Atualizando o projeto (local)
 
