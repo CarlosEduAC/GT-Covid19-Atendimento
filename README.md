@@ -29,7 +29,7 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
 
 - Clonar o projeto para uma pasta
 
-    - git clone "Link do projeto forkado no seu github'
+    - git clone "Link do projeto forkado no seu github"
 
 - Atualizando o projeto (local)
 
@@ -45,12 +45,13 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeitos de Co
     
     - New pull request
 
-- Ao começar uma nova feature ou tarefa, atualize seu repositório local com as atualizações do Git principal do projeto :
-    *Apontar para o repositorio principal com o comando (*faça isso apenas uma vez)
-    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento *
+- Ao começar uma nova feature ou tarefa , atualize seu repositorio local com as atualizações do Git principal do projeto :
 
-    - git chekout master 
-    
+    *Apontar para o repositorio principal com o comando (*faça isso apenas uma vez*)
+    - git remote add upstream https://github.com/CarlosEduAC/GT-Covid19-Atendimento
+
+
+    - git checkout master 
     - git fetch upstream 
     - git rebase upstream/master
 
