@@ -13,7 +13,7 @@
                 <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
             </div>
             <div class="ibox-content p-0 p-md-4">
-                <form id="form" action="#">
+                <form id="form" action="/primeiroAtendimento" method="POST" class="wizard-big">
                     {% for fieldset in fieldsets %}
                     <h1>{{ fieldset.name }}</h1>
                     <fieldset class="w-100 p-0 p-md-4">
