@@ -10,13 +10,7 @@
                 <div class="ibox-title">
                     <h2><strong>GT de Computação</strong></h2>
                 </div>
-
                 <div class="ibox-content">
-
-                    <!--p class="font-bold">
-                        Pure text, CSS only, font independent, inline loading indicators.
-                    </p-->
-
                     <p>
                         Coordenadores: Janaina Gomide (janainagomide@gmail.com), Edwin Meza(emitacc@id.uff.br) e Matheus Ferreira de Barros<br><br>
                         Atividades sendo realizadas:<br>
@@ -29,7 +23,6 @@
                         </ul>
                         Grupo formado por professores da UFRJ-Macaé e UFF-Rio das Ostras.
                     </p>
-
                 </div>
             </div>
         </div>
@@ -44,6 +37,7 @@
                 <div class="ibox-content">
                     <div class="wrapper wrapper-content animated fadeInRight">
                         <div class="row">
+                            {% if membros %}
                             {% for membro in membros %}
                             <div class="col-lg-4">
                                 <div class="contact-box">
@@ -68,6 +62,7 @@
                                 </div>
                             </div>
                             {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

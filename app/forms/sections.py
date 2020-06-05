@@ -8,13 +8,14 @@ informacoesBasicas = {
         aniversario,
         comorbidades,
         dataPrimeiroSintoma,
+        sexo
     ]
 }
 
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        doencaCronica,
+        doencaCronica
     ]
 }
 

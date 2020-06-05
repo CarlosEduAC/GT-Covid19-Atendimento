@@ -33,6 +33,18 @@ dataPrimeiroSintoma = {
     "label": "Qual a data do surgimento dos primeiros sintomas?"
 }
 
+sexo = {
+    "type": "radio",
+    "name": "sexo",
+    "label": "Qual o seu sexo? ",
+    "required": True,
+    "options": [
+        "Masculino",
+        "Feminino",
+        "Não opinou"
+    ]
+}
+
 doencaCronica = {
     "type": "radio",
     "name": "doencaCronica",

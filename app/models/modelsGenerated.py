@@ -76,13 +76,13 @@ from sqlalchemy.ext.declarative import declarative_base
 #     data_coleta = db.Column(db.Date)
 #     id_amostra = db.Column(db.Integer)
 
-Base = declarative_base()
+# Base = declarative_base()
 
-class Comorbidade(Base):
-    __tablename__ = 'comorbidades'
+# class Comorbidade(Base):
+#     __tablename__ = 'comorbidades'
 
-    idComorbidades = Column(Integer, primary_key=True)
-    Descricao = Column(String(150, 'utf8_bin'), nullable=False)
+#     idComorbidades = Column(Integer, primary_key=True)
+#     Descricao = Column(String(150, 'utf8_bin'), nullable=False)
 
 
 

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, Date, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
 
@@ -43,19 +43,19 @@ class UsuarioPerfil(Base):
 
 class Paciente(Base):
     __tablename__ = 'pacientes'
-    name = Column('nome', String(50))
-    cpf = Column('cpf', String(16))
-    ocupacao = Column('ocupacao', String(50))
-    sexo = Column('sexo', String(2))
-    raca = Column('raca', String(35))
-    dataNasc = Column('data_nasc', DateTime)
-    created = Column('created_on', DateTime, default=datetime.utcnow)
+
+    # nome = Column('nome', String(150, 'utf8_bin'))
+    # cpf = Column('cpf', Integer)
+    sexo = Column('sexo', String(2, 'utf8_bin'))
+    raca = Column('raca', String(35, 'utf8_bin'))
+    dataNasc = Column('data_nasc', Date)
     id = Column('PacienteId', Integer, primary_key=True)
 
-    def __init__(self, name, cpf, ocupacao, sexo, raca, dataNasc):
-        self.name = name
-        self.cpf = cpf
-        self.ocupacao = ocupacao
-        self.sexo = sexo
-        self.raca = raca
-        self.dataNasc = dataNasc
+    def __repr__(self):
+        return f'Paciente {self.sexo, self.raca, self.dataNasc}' # self.name, self.cpf
+
+class Comorbidade(Base):
+    __tablename__ = 'comorbidades'
+
+    idComorbidades = Column(Integer, primary_key=True)
+    Descricao = Column(String(150, 'utf8_bin'), nullable=False)
