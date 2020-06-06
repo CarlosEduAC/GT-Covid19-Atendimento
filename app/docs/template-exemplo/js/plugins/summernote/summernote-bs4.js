@@ -5900,13 +5900,13 @@ var LinkDialog = /** @class */ (function () {
     LinkDialog.prototype.initialize = function () {
         var $container = this.options.dialogsInBody ? this.$body : this.$editor;
         var body = [
-            '<div class="macros-group note-macros-group">',
-            "<label class=\"note-macros-label\">" + this.lang.link.textToDisplay + "</label>",
-            '<input class="note-link-text macros-control note-macros-control  note-input" type="text" />',
+            '<div class="form-group note-form-group">',
+            "<label class=\"note-form-label\">" + this.lang.link.textToDisplay + "</label>",
+            '<input class="note-link-text form-control note-form-control  note-input" type="text" />',
             '</div>',
-            '<div class="macros-group note-macros-group">',
-            "<label class=\"note-macros-label\">" + this.lang.link.url + "</label>",
-            '<input class="note-link-url macros-control note-macros-control note-input" type="text" value="http://" />',
+            '<div class="form-group note-form-group">',
+            "<label class=\"note-form-label\">" + this.lang.link.url + "</label>",
+            '<input class="note-link-url form-control note-form-control note-input" type="text" value="http://" />',
             '</div>',
             !this.options.disableLinkTarget
                 ? $$1('<div/>').append(this.ui.checkbox({
@@ -6112,15 +6112,15 @@ var ImageDialog = /** @class */ (function () {
             imageLimitation = "<small>" + (this.lang.image.maximumFileSize + ' : ' + readableSize) + "</small>";
         }
         var body = [
-            '<div class="macros-group note-macros-group note-group-select-from-files">',
-            '<label class="note-macros-label">' + this.lang.image.selectFromFiles + '</label>',
-            '<input class="note-image-input note-macros-control note-input" ',
+            '<div class="form-group note-form-group note-group-select-from-files">',
+            '<label class="note-form-label">' + this.lang.image.selectFromFiles + '</label>',
+            '<input class="note-image-input note-form-control note-input" ',
             ' type="file" name="files" accept="image/*" multiple="multiple" />',
             imageLimitation,
             '</div>',
-            '<div class="macros-group note-group-image-url" style="overflow:auto;">',
-            '<label class="note-macros-label">' + this.lang.image.url + '</label>',
-            '<input class="note-image-url macros-control note-macros-control note-input ',
+            '<div class="form-group note-group-image-url" style="overflow:auto;">',
+            '<label class="note-form-label">' + this.lang.image.url + '</label>',
+            '<input class="note-image-url form-control note-form-control note-input ',
             ' col-md-12" type="text" />',
             '</div>'
         ].join('');
@@ -6329,9 +6329,9 @@ var VideoDialog = /** @class */ (function () {
     VideoDialog.prototype.initialize = function () {
         var $container = this.options.dialogsInBody ? this.$body : this.$editor;
         var body = [
-            '<div class="macros-group note-macros-group row-fluid">',
-            "<label class=\"note-macros-label\">" + this.lang.video.url + " <small class=\"text-muted\">" + this.lang.video.providers + "</small></label>",
-            '<input class="note-video-url macros-control note-macros-control note-input" type="text" />',
+            '<div class="form-group note-form-group row-fluid">',
+            "<label class=\"note-form-label\">" + this.lang.video.url + " <small class=\"text-muted\">" + this.lang.video.providers + "</small></label>",
+            '<input class="note-video-url form-control note-form-control note-input" type="text" />',
             '</div>'
         ].join('');
         var buttonClass = 'btn btn-primary note-btn note-btn-primary note-video-btn';
