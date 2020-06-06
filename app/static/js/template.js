@@ -10,7 +10,7 @@ $(document).ready(function(){
     
     //<!-- Jquery Validate -->
     $("#wizard").steps();
-    $("#form").steps({
+    $("#macros").steps({
         bodyTag: "fieldset",
         onStepChanging: function (event, currentIndex, newIndex)
         {
@@ -64,14 +64,14 @@ $(document).ready(function(){
             // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
             form.validate().settings.ignore = ":disabled";
 
-            // Start validation; Prevent form submission if false
+            // Start validation; Prevent macros submission if false
             return form.valid();
         },
         onFinished: function (event, currentIndex)
         {
             var form = $(this);
 
-            // Submit form input
+            // Submit macros input
             form.submit();
         }
     }).validate({

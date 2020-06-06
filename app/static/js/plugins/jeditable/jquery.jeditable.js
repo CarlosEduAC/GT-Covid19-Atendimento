@@ -43,8 +43,8 @@
  * @param String  options[event]     jQuery event such as 'click' of 'dblclick' **
  * @param String  options[submit]    submit button value, empty means no button **
  * @param String  options[cancel]    cancel button value, empty means no button **
- * @param String  options[cssclass]  CSS class to apply to input form. 'inherit' to copy from parent. **
- * @param String  options[style]     Style to apply to input form 'inherit' to copy from parent. **
+ * @param String  options[cssclass]  CSS class to apply to input macros. 'inherit' to copy from parent. **
+ * @param String  options[style]     Style to apply to input macros 'inherit' to copy from parent. **
  * @param String  options[select]    true or false, when true text is highlighted ??
  * @param String  options[placeholder] Placeholder text or html to insert when element is empty. **
  * @param String  options[onblur]    'cancel', 'submit', 'ignore' or function ??
@@ -176,8 +176,8 @@
                 self.revert     = $(self).html();
                 $(self).html('');
 
-                /* create the form object */
-                var form = $('<form />');
+                /* create the macros object */
+                var form = $('<macros />');
 
                 /* apply css or style or both */
                 if (settings.cssclass) {
@@ -198,7 +198,7 @@
                     }
                 }
 
-                /* add main input element to form and store it in input */
+                /* add main input element to macros and store it in input */
                 var input = element.apply(form, [settings, self]);
 
                 /* set input content via POST, GET, given data or existing value */
@@ -240,16 +240,16 @@
 
                 input.attr('name', settings.name);
 
-                /* add buttons to the form */
+                /* add buttons to the macros */
                 buttons.apply(form, [settings, self]);
 
-                /* add created form to self */
+                /* add created macros to self */
                 $(self).append(form);
 
                 /* attach 3rd party plugin if requested */
                 plugin.apply(form, [settings, self]);
 
-                /* focus to first visible form element */
+                /* focus to first visible macros element */
                 $(':input:visible:enabled:first', form).focus();
 
                 /* highlight input contents when requested */

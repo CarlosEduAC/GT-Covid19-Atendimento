@@ -39,7 +39,7 @@
  && 3) consecutive x data points are not allowed to have the same value
 
  This is version 0.5 of curvedLines so it will probably not work in every case. However
- the basic form of use descirbed next works (:
+ the basic macros of use descirbed next works (:
 
  Feel free to further improve the code
 

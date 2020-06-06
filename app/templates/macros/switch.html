@@ -1,9 +1,9 @@
-{% from 'form/text.html' import text with context %}
-{% from 'form/radio.html' import radio with context %}
-{% from 'form/checkbox.html' import checkbox with context %}
-{% from 'form/select.html' import select with context %}
+{% from 'macros/text.html' import text with context %}
+{% from 'macros/radio.html' import radio with context %}
+{% from 'macros/checkbox.html' import checkbox with context %}
+{% from 'macros/select.html' import select with context %}
 
-{% macro switch(input) -%}
+{% macro switch(input) %}
 
     {% if input.type == "radio" %}
         {{ radio(input) }}
@@ -15,4 +15,4 @@
         {{ text(input) }}
     {% endif %}
 
-{%- endmacro %}
+{% endmacro %}

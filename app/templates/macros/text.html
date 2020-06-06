@@ -1,6 +1,5 @@
-{% macro text(input) -%}
-
-<input id="{{ input.name }}" name="{{ input.name }}" type="{{ input.type if input.type else 'text' }}"
-    class="form-control {{ 'required' if input.required }} {{ input.class }}" placeholder="{{ input.placeholder }}">
-
-{%- endmacro %}
+{% macro text(input, canRequired = True) %}
+    <input id="{{ input.name }}" name="{{ input.name }}" type="{{ input.type if input.type else 'text' }}"
+           class="form-control {{ 'required' if input.required }} {{ input.class }}"
+           placeholder="{{ input.placeholder }}">
+{% endmacro %}

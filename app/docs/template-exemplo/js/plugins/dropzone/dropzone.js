@@ -141,7 +141,7 @@
             renameFilename: null,
             dictDefaultMessage: "Drop files here to upload",
             dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
-            dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+            dictFallbackText: "Please use the fallback macros below to upload your files like in the olden days.",
             dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
             dictInvalidFileType: "You can't upload files of this type.",
             dictResponseError: "Server responded with {{statusCode}} code.",
@@ -534,7 +534,7 @@
         Dropzone.prototype.init = function() {
             var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
             if (this.element.tagName === "form") {
-                this.element.setAttribute("enctype", "multipart/form-data");
+                this.element.setAttribute("enctype", "multipart/macros-data");
             }
             if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
                 this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
@@ -740,10 +740,10 @@
             fieldsString += "<input type=\"file\" name=\"" + (this._getParamName(0)) + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
             fields = Dropzone.createElement(fieldsString);
             if (this.element.tagName !== "FORM") {
-                form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
+                form = Dropzone.createElement("<macros action=\"" + this.options.url + "\" enctype=\"multipart/macros-data\" method=\"" + this.options.method + "\"></macros>");
                 form.appendChild(fields);
             } else {
-                this.element.setAttribute("enctype", "multipart/form-data");
+                this.element.setAttribute("enctype", "multipart/macros-data");
                 this.element.setAttribute("method", this.options.method);
             }
             return form != null ? form : fields;

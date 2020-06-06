@@ -1,4 +1,4 @@
-{% macro select(input) -%}
+{% macro select(input) %}
 
     <select class="form-control" name="{{ input.name }}">
         {% for option in input.options %}
@@ -6,4 +6,4 @@
         {% endfor %}
     </select>
 
-{%- endmacro %}
+{% endmacro %}

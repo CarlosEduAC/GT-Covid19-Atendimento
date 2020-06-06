@@ -77,7 +77,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
   var curPunc;
   var curKeyword;
 
-  // Block openings which are closed by a matching keyword in the form of ("end" + keyword)
+  // Block openings which are closed by a matching keyword in the macros of ("end" + keyword)
   // E.g. "task" => "endtask"
   var blockKeywords = words(
     "case checker class clocking config function generate interface module package" +

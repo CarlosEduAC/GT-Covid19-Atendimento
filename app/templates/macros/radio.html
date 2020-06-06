@@ -1,6 +1,6 @@
-{% from 'form/text.html' import text %}
+{% from 'macros/text.html' import text %}
 
-{% macro radio(input) -%}
+{% macro radio(input) %}
     {% for option in input.options %}
         <div class="i-checks">
             <label onclick="radio(this.childNodes[1].childNodes[0])">
@@ -25,4 +25,4 @@
         </div>
     {% endfor %}
 
-{%- endmacro %}
+{% endmacro %}

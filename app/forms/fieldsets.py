@@ -15,3 +15,11 @@ fieldsetConjunto2 = {
         esfReferencia
     ]
 }
+
+fieldsetConjunto3 = {
+    "name": "Conjunto 3",
+    "sections": [
+        domicilio,
+        caracteristicasDomicilioAuxilio
+    ]
+}
