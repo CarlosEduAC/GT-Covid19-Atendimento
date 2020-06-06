@@ -1,0 +1,80 @@
+{% from 'form/text.html' import text with context %}
+{% from 'form/radio.html' import radio with context %}
+{% from 'form/checkbox.html' import checkbox with context %}
+{% from 'form/select.html' import select with context %}
+
+
+{% extends "template.html" %}
+{% block conteudo %}l
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3 style="font-weight: 400;">Formulário Primeiro Atendimento</h3>
+                    <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
+                </div>
+                <div class="ibox-content p-0 p-md-4">
+                    <form id="form" action="/primeiroAtendimento" method="POST" class="wizard-big">
+                        {% for fieldset in fieldsets %}
+                            <h1>{{ fieldset.name }}</h1>
+                            <fieldset class="w-100 p-0 p-md-4">
+                                <div class="row">
+                                    {% for section in fieldset.sections %}
+                                        <div class="col-12 col-md-6">
+                                            <h3 style="font-weight: 400;">{{ section.name }}</h3>
+                                            <hr>
+                                            <div class="row">
+                                                {% for input in section.inputs %}
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>{{ input.label }} {{ '*' if input.required }}</label>
+
+                                                            {% if input.type == "radio" %}
+                                                                {{ radio(input) }}
+                                                            {% elif input.type == "checkbox" %}
+                                                                {{ checkbox(input) }}
+                                                            {% elif input.type == "select" %}
+                                                                {{ select(input) }}
+                                                            {% else %}
+                                                                {{ text(input) }}
+                                                            {% endif %}
+
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </fieldset>
+                        {% endfor %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        function radio(input) {
+            const contentId = 'id-' + input.getAttribute("name")
+
+            if (input.value == 0) {
+                document.getElementById(contentId).style.visibility = "visible"
+            } else {
+                document.getElementById(contentId).style.visibility = "hidden"
+            }
+        }
+
+        window.addEventListener('load', function () {
+            document.querySelectorAll(".iCheck-helper").forEach(function (input) {
+                input.addEventListener("click", function (event) {
+                    radio(event.target.parentElement.childNodes[0])
+                })
+            })
+        })
+    </script>
+{% endblock %}
