@@ -6,14 +6,14 @@ registrarUsuario = Blueprint('Registrar', __name__)
 
 @registrarUsuario.route('/registrar', methods=['GET','POST'])
 def registrar():
-
-    db = Database()
     if request.method == 'POST':
         nome = request.form['nome']
         CRM = request.form['crm']
         cargo = request.form['cargo']
         id = request.form['id']
-
+        
+        db = Database()
+        
         usuario = AdmSaude(nome, CRM, cargo, id)      
         db.saveData(usuario)
 

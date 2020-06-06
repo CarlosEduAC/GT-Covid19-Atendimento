@@ -7,7 +7,6 @@ registrarPaciente = Blueprint('Paciente', __name__)
 
 @registrarPaciente.route('/paciente', methods=['GET', 'POST'])
 def registrar():
-
     if request.method == 'POST':
         nome = request.form['nome']
         cpf = request.form['cpf']
@@ -16,9 +15,10 @@ def registrar():
         raca = request.form['raca']
         dataNasc = request.form['data_nasc']
 
-        paciente = Paciente(nome, cpf, ocupacao, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
-
         db=Database()
+        
+        paciente = Paciente(nome, cpf, ocupacao, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
+        
         db.saveData(paciente)
     
     return render_template('paciente.html')
