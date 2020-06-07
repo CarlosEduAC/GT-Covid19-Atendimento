@@ -7,104 +7,130 @@
 
     <title>COVID-19 | Norte Fluminense</title>
 
-    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='font-awesome/css/font-awesome.css')}}"rel="stylesheet">
-    <link href="{{url_for('static', filename='css/plugins/steps/jquery.steps.css')}}"rel="stylesheet">
-    <link href="{{url_for('static', filename='css/plugins/iCheck/custom.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/animate.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/plugins/datapicker/datepicker3.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
+          rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"
+          rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/app.css') + "?v=0.6" }}" rel="stylesheet">
 </head>
 
 <body class="pace-done mini-navbar">
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="logo-element">
-                            NF+
-                        </div>
-                    </li>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="logo-element">
+                        NF+
+                    </div>
+                </li>
+                <li>
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> <span
+                            class="fa arrow"></span></a>
+                </li>
+                <li>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Projeções</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Barreira Sanitária</span><span
+                            class="fa arrow"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
+                <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> <span class="fa arrow"></span></a>
-                    </li>
-                    <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Projeções</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Barreira Sanitária</span><span class="fa arrow"></span></a>
+                        <span class="m-r-sm text-muted welcome-message">Bem vindo ao NOME DO SISTEMA.</span>
                     </li>
                 </ul>
-            </div>
-        </nav>
-    
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span class="m-r-sm text-muted welcome-message">Bem vindo ao NOME DO SISTEMA.</span>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            </nav>
+        </div>
 
-            {% block conteudo %} {% endblock %}
+        {% block conteudo %} {% endblock %}
 
-            <div class="footer">
-                <div class="float-right">
-                    <strong>Copyright</strong> Universidade Federal Fluminense &copy; 2020
-                </div>
-                <div>
-                    <strong>Copyright</strong> Universidade Federal do Rio de Janeiro &copy; 2020
-                </div>
+        <div class="footer">
+            <div class="float-right">
+                <strong>Copyright</strong> Universidade Federal Fluminense &copy; 2020
+            </div>
+            <div>
+                <strong>Copyright</strong> Universidade Federal do Rio de Janeiro &copy; 2020
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Mainly scripts -->
-    <script src="{{url_for('static', filename='js/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/popper.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-    <script src="{{url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-    <script src="{{url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- Mainly scripts -->
+<script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="{{url_for('static', filename='js/inspinia.js')}}"></script>
-    <script src="{{url_for('static', filename='js/plugins/pace/pace.min.js')}}"></script>
+<!-- Custom and plugin javascript -->
+<script src="{{ url_for('static', filename='js/inspinia.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/pace/pace.min.js') }}"></script>
 
-    <!-- iCheck -->
-    <script src="{{url_for('static', filename='js/plugins/iCheck/icheck.min.js')}}"></script>
+<!-- iCheck -->
+<script src="{{ url_for('static', filename='js/plugins/iCheck/icheck.min.js') }}"></script>
 
-    <!-- Data picker -->
-   <script src="{{url_for('static', filename='js/plugins/datapicker/bootstrap-datepicker.js')}}"></script>
+<!-- Data picker -->
+<script src="{{ url_for('static', filename='js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
 
-    <!-- Steps -->
-    <script src="{{url_for('static', filename='js/plugins/steps/jquery.steps.min.js')}}"></script>
+<!-- Steps -->
+<script src="{{ url_for('static', filename='js/plugins/steps/jquery.steps.min.js') }}"></script>
 
-    <!-- Jquery Validate -->
-    <script src="{{url_for('static', filename='js/plugins/validate/jquery.validate.min.js')}}"></script>
+<!-- Jquery Validate -->
+<script src="{{ url_for('static', filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
 
-    <script src="{{url_for('static', filename='js/template.js')}}"></script>
+<script src="{{ url_for('static', filename='js/template.js') }}"></script>
 
-    <!-- Tags Input -->
-    <script src="{{url_for('static', filename='js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
+<!-- Tags Input -->
+<script src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-            $('.tagsinput').tagsinput({
-                tagClass: 'label label-primary'
-            });
+{#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
+
+<script>
+    $(document).ready(function () {
+        $(".offscreen").find(".is-required").removeClass("required");
+
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
         });
-    </script>
 
-    {% block script %} {% endblock %}
+        $('.tagsinput').tagsinput({
+            tagClass: 'label label-primary'
+        });
+
+        document.querySelectorAll(".iCheck-helper").forEach(function (input) {
+            input.addEventListener("click", function (event) {
+                radio(event.target.parentElement.childNodes[0]);
+            })
+        })
+    });
+
+    function radio(input) {
+        const contentId = 'id-' + input.getAttribute("name");
+        if (input.value == 0) {
+            $(input).closest(".form-group").find(".is-required").addClass("required")
+            document.getElementById(contentId).classList.remove("offscreen");
+        } else {
+            $(input).closest(".form-group").find(".is-required").removeClass("required")
+            document.getElementById(contentId).classList.add("offscreen");
+        }
+    }
+</script>
+
 </body>
 </html>

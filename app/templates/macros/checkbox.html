@@ -1,14 +1,10 @@
-{% from 'form/text.html' import text with context %}
-
 {% macro checkbox(input) %}
     {% for option in input.options %}
         <div class="i-checks">
             <label>
                 <input type="checkbox" value="">
                 <i></i>
-
                 {{ option.label }}
-
                 {% if option.field %}
                     {{ text(option.field) }}
                 {% endif %}

@@ -39,9 +39,9 @@ sexo = {
     "label": "Qual o seu sexo? ",
     "required": True,
     "options": [
-        "Masculino",
-        "Feminino",
-        "Não opinou"
+        {"label": "Masculino"},
+        {"label": "Feminino"},
+        {"label": "Não opinou"},
     ]
 }
 
@@ -179,7 +179,7 @@ esf = {
         {
             "label": "Não opinou"
         }
-    ]    
+    ]
 }
 
 # Domicilio
@@ -305,7 +305,7 @@ recebeAuxilio = {
         {
             "label": "Já pedi mas ainda não recebi"
         }
-    ]    
+    ]
 }
 
 # Isolamento domiciliar

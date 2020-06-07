@@ -11,6 +11,7 @@ from blueprints.registrarUsuario import registrarUsuario
 from blueprints.registrarPaciente import registrarPaciente
 from blueprints.primeiroAtendimento import primeiroAtendimento
 
+
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')

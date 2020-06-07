@@ -1,12 +1,8 @@
-{% from 'form/text.html' import text with context %}
-{% from 'form/radio.html' import radio with context %}
-{% from 'form/checkbox.html' import checkbox with context %}
-{% from 'form/select.html' import select with context %}
-
+{% from 'macros/switch.html' import switch with context %}
 
 {% extends "template.html" %}
-{% block conteudo %}l
 
+{% block conteudo %}
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
@@ -28,18 +24,7 @@
                                                 {% for input in section.inputs %}
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
-                                                            <label>{{ input.label }} {{ '*' if input.required }}</label>
-
-                                                            {% if input.type == "radio" %}
-                                                                {{ radio(input) }}
-                                                            {% elif input.type == "checkbox" %}
-                                                                {{ checkbox(input) }}
-                                                            {% elif input.type == "select" %}
-                                                                {{ select(input) }}
-                                                            {% else %}
-                                                                {{ text(input) }}
-                                                            {% endif %}
-
+                                                            {{ switch(input) }}
                                                         </div>
                                                     </div>
                                                 {% endfor %}
@@ -54,27 +39,4 @@
             </div>
         </div>
     </div>
-
-{% endblock %}
-
-{% block script %}
-    <script>
-        function radio(input) {
-            const contentId = 'id-' + input.getAttribute("name")
-
-            if (input.value == 0) {
-                document.getElementById(contentId).style.visibility = "visible"
-            } else {
-                document.getElementById(contentId).style.visibility = "hidden"
-            }
-        }
-
-        window.addEventListener('load', function () {
-            document.querySelectorAll(".iCheck-helper").forEach(function (input) {
-                input.addEventListener("click", function (event) {
-                    radio(event.target.parentElement.childNodes[0])
-                })
-            })
-        })
-    </script>
 {% endblock %}

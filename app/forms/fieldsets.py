@@ -19,7 +19,7 @@ fieldsetConjunto2 = {
 fieldsetConjunto3 = {
     "name": "Conjunto 3",
     "sections": [
-        domicilio,
-        caracteristicasDomicilioAuxilio
+        # domicilio,
+        # caracteristicasDomicilioAuxilio
     ]
 }

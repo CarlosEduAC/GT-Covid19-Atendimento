@@ -1,5 +1,3 @@
-{% from 'form/text.html' import text %}
-
 {% macro radio(input) %}
     {% for option in input.options %}
         <div class="i-checks">
@@ -10,19 +8,11 @@
             </label>
         </div>
     {% endfor %}
-
     {% for option in input.options %}
-        <div id="id-{{ input.name }}" style="visibility: hidden;">
+        <div id="id-{{ input.name }}" class="offscreen">
             {% for field in option.fields %}
-                <label for="{{ field.name }}">{{ field.label }}</label>
-
-                {% if field.type == "radio" %}
-                    {{ radio(field) }}
-                {% else %}
-                    {{ text(field) }}
-                {% endif %}
+                {{ switch(field) }}
             {% endfor %}
         </div>
     {% endfor %}
-
 {% endmacro %}

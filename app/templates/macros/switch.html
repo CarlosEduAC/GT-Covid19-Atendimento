@@ -1,0 +1,16 @@
+{% macro switch(input) %}
+    <label for="{{ input.name }}">{{ input.label }} {{ '*' if input.required }}</label>
+    {% if input.type == "radio" %}
+        {% from 'macros/radio.html' import radio with context %}
+        {{ radio(input) }}
+    {% elif input.type == "checkbox" %}
+        {% from 'macros/checkbox.html' import checkbox with context %}
+        {{ checkbox(input) }}
+    {% elif input.type == "select" %}
+        {% from 'macros/select.html' import select with context %}
+        {{ select(input) }}
+    {% else %}
+        {% from 'macros/text.html' import text with context %}
+        {{ text(input) }}
+    {% endif %}
+{% endmacro %}
