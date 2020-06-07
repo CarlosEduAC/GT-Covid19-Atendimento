@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from forms.fieldsets import fieldsetConjunto1, fieldsetConjunto2
+from forms.fieldsets import *
 from controller.primeiroAtendimento import registrar
 
 primeiroAtendimento = Blueprint('primeiroAtendimento', __name__)
@@ -10,7 +10,8 @@ def index():
     if request.method == 'GET':
         return render_template('form.html', fieldsets=[
             fieldsetConjunto1,
-            fieldsetConjunto2
+            fieldsetConjunto2,
+            fieldsetConjunto3,
         ])
     elif request.method == 'POST':
         dadosFormulario = request.form
