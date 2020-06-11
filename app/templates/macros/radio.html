@@ -2,7 +2,7 @@
     {% for option in input.options %}
         <div class="i-checks">
             <label onclick="radio(this.childNodes[1].childNodes[0])">
-                <input data-only id="{{ loop.index0 }}" type="radio" checked="" value="{{ loop.index0 }}"
+                <input data-only id="{{ '{}-{:d}'.format(input.name, loop.index0) }}" type="radio" value="{{ loop.index0 }}"
                        name="{{ input.name }}">
                 <i></i>
                 {{ option.label }}
@@ -11,7 +11,7 @@
     {% endfor %}
     {% for option in input.options %}
         <div class="form-group">
-            <div data-id="{{ loop.index0 }}" class="offscreen">
+            <div data-name="{{ input.name }}" data-id="{{ '{}-{:d}'.format(input.name, loop.index0) }}" class="offscreen">
                 {% for field in option.fields %}
                     {{ switch(field) }}
                 {% endfor %}

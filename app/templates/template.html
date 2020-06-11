@@ -122,13 +122,15 @@
 
     function radio(input) {
         const id = input.getAttribute("id")
-
-        const father = $(input).closest(".form-group");
+        const father = $(input).closest(".form-group")
 
         father.find(".is-required").addClass("required")
+
+        console.log(father)
+
         $("div[data-id='" + id + "']").removeClass("offscreen")
 
-        const brothersDiv = father.find("div[data-id]:not(div[data-id='" + id + "'])")
+        const brothersDiv = father.find("div[data-name='"+ input.getAttribute("name") +"']:not(div[data-id='" + id + "'])")
         const brothersInput = father.find("input[data-only]:not(input[id='" + id + "'])")
 
         brothersDiv.addClass("offscreen")
