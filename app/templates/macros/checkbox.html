@@ -1,0 +1,14 @@
+{% macro checkbox(input) %}
+    {% for option in input.options %}
+        <div class="i-checks">
+            <label>
+                <input type="checkbox" value="">
+                <i></i>
+                {{ option.label }}
+                {% if option.field %}
+                    {{ text(option.field) }}
+                {% endif %}
+            </label>
+        </div>
+    {% endfor %}
+{% endmacro %}
