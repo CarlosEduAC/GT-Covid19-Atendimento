@@ -121,14 +121,18 @@
     });
 
     function radio(input) {
-        const contentId = 'id-' + input.getAttribute("name");
-        if (input.value == 0) {
-            $(input).closest(".form-group").find(".is-required").addClass("required")
-            document.getElementById(contentId).classList.remove("offscreen");
-        } else {
-            $(input).closest(".form-group").find(".is-required").removeClass("required")
-            document.getElementById(contentId).classList.add("offscreen");
-        }
+        const id = input.getAttribute("id")
+
+        const father = $(input).closest(".form-group");
+
+        father.find(".is-required").addClass("required")
+        $("div[data-id='" + id + "']").removeClass("offscreen")
+
+        const brothersDiv = father.find("div[data-id]:not(div[data-id='" + id + "'])")
+        const brothersInput = father.find("input[data-only]:not(input[id='" + id + "'])")
+
+        brothersDiv.addClass("offscreen")
+        brothersInput.removeClass("required")
     }
 </script>
 
