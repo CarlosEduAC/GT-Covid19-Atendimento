@@ -3,7 +3,7 @@
         <div class="i-checks">
             <label onclick="radio(this.childNodes[1].childNodes[0])">
                 <input id="{{ '{}-{:d}'.format(input.name, loop.index0) }}" type="radio" value="{{ loop.index0 }}"
-                       name="{{ input.name }}" required>
+                       name="{{ input.name }}">
                 <i></i>
                 {{ option.label }}
             </label>
