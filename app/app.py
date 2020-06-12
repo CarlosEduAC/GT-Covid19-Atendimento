@@ -10,6 +10,7 @@ from blueprints.menuAtendente import menuAtendente
 from blueprints.registrarUsuario import registrarUsuario
 from blueprints.registrarPaciente import registrarPaciente
 from blueprints.primeiroAtendimento import primeiroAtendimento
+from blueprints.admin import menuAdmin
 
 
 app = Flask(__name__)
@@ -23,6 +24,7 @@ app.register_blueprint(menuAtendente, url_prefix='/')
 app.register_blueprint(registrarUsuario, url_prefix='/')
 app.register_blueprint(registrarPaciente, url_prefix='/')
 app.register_blueprint(primeiroAtendimento, url_prefix='/')
+app.register_blueprint(menuAdmin, url_prefix='/')
 
 CORS(app)
 
