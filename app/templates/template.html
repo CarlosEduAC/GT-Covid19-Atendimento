@@ -102,7 +102,8 @@
 
 <script>
     $(document).ready(function () {
-        $(".offscreen").find(".is-required").removeClass("required");
+        // Remove a obrigatoriedade dos inputs ocultos
+        $('.offscreen .is-required').removeClass('required')
 
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
@@ -122,19 +123,22 @@
 
     function radio(input) {
         const id = input.getAttribute("id")
+        const name = input.getAttribute("name")
         const father = $(input).closest(".form-group")
 
-        father.find(".is-required").addClass("required")
+        // div com o conteudo oculto para o radio selecionado
+        const content = $("div[data-id='" + id + "']")
+        content.removeClass("offscreen")
 
-        console.log(father)
+        // divs com o conteúdo oculto dos radios não selecionados
+        const hiddens = father.find("div[data-name='" + name + "']:not(div[data-id='" + id + "'])")
+        hiddens.addClass("offscreen")
 
-        $("div[data-id='" + id + "']").removeClass("offscreen")
+        // Tornar os campos dessa div marcados como is-required obrigatórios
+        content.find(".is-required").addClass("required")
 
-        const brothersDiv = father.find("div[data-name='"+ input.getAttribute("name") +"']:not(div[data-id='" + id + "'])")
-        const brothersInput = father.find("input[data-only]:not(input[id='" + id + "'])")
-
-        brothersDiv.addClass("offscreen")
-        brothersInput.removeClass("required")
+        // Tornar todos os inputs ocultos como não obrigatórios
+        hiddens.find(".is-required").removeClass("required")
     }
 </script>
 
