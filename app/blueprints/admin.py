@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser, getAdms, removeAdm, updateAdm
+from controller.admin import getUsers, removeUser, updateUser
 
 menuAdmin = Blueprint('admin', __name__)
 
@@ -21,9 +21,9 @@ def admin():
         esf=['opt1', 'opt2']
 
         users = getUsers()
-        adms = getAdms()
+        #adms = getAdms()
 
-        return render_template('admin.html', users = users, adms = adms, 
+        return render_template('admin.html', users = users, 
                                 intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
 
 
@@ -35,10 +35,7 @@ def remove():
 
         id = request.form['user_id']
 
-        if request.form['admin']=='True':
-            removeAdm(id)
-        elif request.form['admin']=='False':
-            removeUser(id)
+        removeUser(id)
 
     return redirect(url_for('admin.admin'))
 
@@ -50,17 +47,9 @@ def update():
         id = request.form['user_id']
         name = request.form['nome']
         crm = request.form['crm']
+        cpf = request.form['cpf']                
+        supervisor = request.form['supervisor']
 
-        if request.form['admin']=='True':
-                
-            supervisor = request.form['supervisor']
-
-            updateAdm(id, name, crm, supervisor)
-            
-        elif request.form['admin']=='False':
-
-            cpf = request.form['cpf']
-
-            updateUser(id, name, cpf, crm)    
+        updateUser(id, name, crm, cpf, supervisor)    
 
     return redirect(url_for('admin.admin'))

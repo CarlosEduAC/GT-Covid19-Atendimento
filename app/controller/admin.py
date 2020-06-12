@@ -4,43 +4,30 @@ from models.models import AdmSaude, Usuario
 def getUsers():
     try:
         db = Database()
-        return db.selectAllData(Usuario)
+        session = db.Session()
+
+        return session.query(AdmSaude, Usuario).filter(AdmSaude.idadm_saude == Usuario.id).all()
     except:
         return [] 
 
-def getAdms():
-    try:
-        db = Database()
-        return db.selectAllData(AdmSaude)
-    except:
-        return [] 
 
 def removeUser(id):
 
     db = Database()
+    db.delete(AdmSaude, id)
     db.delete(Usuario, id)
 
-def removeAdm(id):
 
-    db = Database()
-    db.delete(AdmSaude, id)
-
-def updateUser(id, name, cpf, crm):
-
-    db = Database()
-    session = db.Session()
-    session.query(Usuario).filter(Usuario.id == id).update(
-        { Usuario.name : name,
-          Usuario.cpf : cpf,
-          Usuario.crm : crm })
-    session.commit()
-
-def updateAdm(id, nome, crm, supervisor):
+def updateUser(id, name, crm, cpf, supervisor):
 
     db = Database()
     session = db.Session()
     session.query(AdmSaude).filter(AdmSaude.idadm_saude == id).update(
-        {AdmSaude.nome : nome,
-        AdmSaude.CRM : crm,
-        AdmSaude.supervisor : supervisor})
+        { AdmSaude.nome : name,
+          AdmSaude.CRM : crm,
+          AdmSaude.supervisor : supervisor })
+    session.query(Usuario).filter(Usuario.id == id).update(
+        { Usuario.cpf : cpf}
+    )
     session.commit()
+

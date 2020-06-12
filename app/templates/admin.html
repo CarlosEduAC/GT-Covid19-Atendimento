@@ -11,15 +11,16 @@
                     <div class="full-height-scroll">
                         <div class="table-responsive">
 
-                            <a href="">Novo</a>
+                            <a href="/registrar">Novo</a>
 
                             <table class="table table-striped table-hover">
 
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th>CPF</th>
                                         <th>CRM</th>
+                                        <th>CPF</th>
+                                        <th>Supervisor</th>
                                     </tr>
 
                                 </thead>
@@ -29,16 +30,15 @@
                                     {% for user in users %}
                                         <tr>
                                             <form action="/admin/update" method="POST">
-                                                <input type="hidden" name="admin" value=False>
-                                                <input type="hidden" name="user_id" value={{user.id}}>
-                                                <td><input class="form-control" type="text" name="nome" value={{user.name}}> </td>
-                                                <td><input class="form-control" type="text" name="cpf" value={{user.cpf}}></td>
-                                                <td><input class="form-control" type="text" name="crm" value={{user.crm}}></td>
+                                                <input type="hidden" name="user_id" value={{user[1].id}}>
+                                                <td><input class="form-control" type="text" name="nome" value={{user[0].nome}}> </td>
+                                                <td><input class="form-control" type="text" name="crm" value={{user[0].CRM}}></td>
+                                                <td><input class="form-control" type="text" name="cpf" value={{user[1].cpf}}></td>
+                                                <td><input class="form-control" type="text" name="supervisor" value={{user[0].supervisor}}></td>
                                                 <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                             </form>
                                             <form action="/admin/remove" method="POST">
-                                                <input type="hidden" name="admin" value=False>
-                                                <input type="hidden" name="user_id" value={{user.id}}>
+                                                <input type="hidden" name="user_id" value={{user[1].id}}>
                                                 <td><button type="submit" class="btn btn-w-m btn-primary">Remover</button></td>
                                             </form>
                                         </tr>
@@ -56,64 +56,6 @@
             </div>
         </div>
     </div>
-
-    <div class="tab-content">
-        <h2>Administradores</h2>
-        <div id="tab-1" class="tab-pane active">
-            <div class="full-height-scroll">
-                <div id="tab-1" class="tab-pane active">
-                    <div class="full-height-scroll">
-                        <div class="table-responsive">
-
-                            <a href="">Novo</a>
-
-                            <table class="table table-striped table-hover">
-
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>CRM</th>
-                                        <th>Supervisor</th>
-                                    </tr>
-
-                                </thead>
-
-                                <tbody>
-
-                                    {% for adm in adms %}
-                                        <tr>
-                                            <form action="/admin/update" method="POST">
-                                                <input type="hidden" name="admin" value=True>
-                                                <input type="hidden" name="user_id" value={{adm.idadm_saude}}>
-                                                <td><input class="form-control" type="text" name="nome" value={{adm.nome}}> </td>
-                                                <td><input class="form-control" type="text" name="crm" value={{adm.CRM}}></td>
-                                                <td><input class="form-control" type="text" name="supervisor" value={{adm.supervisor}}></td>
-                                                <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
-                                            </form>
-                                            <form action="/admin/remove" method="POST">
-                                                <input type="hidden" name="admin" value=True>
-                                                <input type="hidden" name="user_id" value={{adm.idadm_saude}}>
-                                                <td><button type="submit" class="btn btn-w-m btn-primary">Remover</button></td>
-                                            </form>
-                                        </tr>
-
-                                    {% endfor %}
-                                        
-                                    
-
-
-                                </tbody>
-
-                            </table>
-
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="ibox-content">
 
