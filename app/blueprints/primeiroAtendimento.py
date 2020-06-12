@@ -12,6 +12,9 @@ def index():
             fieldsetConjunto1,
             fieldsetConjunto2,
             fieldsetConjunto3,
+            fieldsetConjunto4,
+            fieldsetConjunto5,
+            fieldsetConjunto6,
         ])
     elif request.method == 'POST':
         dadosFormulario = request.form

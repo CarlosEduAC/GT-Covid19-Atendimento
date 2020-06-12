@@ -34,6 +34,7 @@
                                                 <thead>
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
+                                                        <td>Nome do Usuário</td>
                                                         <td>Primeiro Atendimento?</td>
                                                         <td>Dia do Atendimento</td>
                                                         
@@ -49,7 +50,8 @@
                                                                 {% else %}
                                                                     <td>Não</td>
                                                                 {%endif%}
-                                
+                                                                <!-- Nome do usuário-->
+                                                                <td></td>
                                                                 <td>{{atendimento.diaAtendimento}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary">Iniciar Atendimento</button>
