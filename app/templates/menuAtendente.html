@@ -44,7 +44,12 @@
                                                         <div >
                                                             <tr>
                                                                 <td>{{atendimento.diaAgendamento}}</td>
-                                                                <td>{{atendimento.primeiro}}</td>
+                                                                {% if atendimento.primeiro %}
+                                                                    <td>Sim</td>
+                                                                {% else %}
+                                                                    <td>Não</td>
+                                                                {%endif%}
+                                
                                                                 <td>{{atendimento.diaAtendimento}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary">Iniciar Atendimento</button>

@@ -40,7 +40,7 @@ class Database():
     # (myFilter é a condição desejada. Ex: cpf='1234567890')
     def selectData(self, model, **myFilter): 
         session = self.Session()
-        result = session.query(table).filter_by(**myFilter) # .all() .first() . count()
+        result = session.query(model).filter_by(**myFilter) # .all() .first() . count()
 
         return result 
 
@@ -48,6 +48,15 @@ class Database():
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectAllData(self, model): 
         session = self.Session()
-        result = session.query(table).all()
+        result = session.query(model).all()
 
         return result
+
+    # Remove um registro pelo id
+    def delete(self, model, id):
+        session = self.Session()
+        result = session.query(model).get(id)
+
+        session.delete(result)
+        session.commit()
+    
