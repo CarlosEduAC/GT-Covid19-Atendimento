@@ -27,14 +27,20 @@ informacoesBasicas = {
         nome,
         cpf,
         telefone,
-        aniversario,
+        aniversario
+    ]
+}
+
+condicaoclinica = {
+    "name": "Comorbidades",
+    "inputs": [
         comorbidades,
         dataPrimeiroSintoma,
     ]
 }
 
 domicilio = {
-    "name": "Domicilio",
+    "name": "Domicílio",
     "inputs": [
         endereco,
         moraSozinho
@@ -56,5 +62,33 @@ isolamentoDomiciliar = {
         consegueIsolamentoDomiciliar,
         consegueManterQuarentena,
         motivosSairDeCasa
+    ]
+}
+
+visitas = {
+    "name": "Visitas",
+    "inputs": [
+        recebeuVisita,
+    ]
+}
+
+sintomascovid = {
+    "name": "Perguntas sobre os sintomas da Covid-19",
+    "inputs": [
+        apresentouSintomasCovid19,
+        apresentouFebreQuantosGraus,
+        tomouAlgumMedicamentoProsSintomas,
+        quemIndicouMedicamento,
+        qualMedicamentoTomou,
+        comoTomaMedicamento,
+        alguemMaisApresentaSintomaEmCasa
+    ]
+}
+
+orientacoesfinais = {
+    "name": "Encerramento do atendimento/Orientações finais",
+    "inputs": [
+        orientacaoFinal,
+        anotarOrientacoes
     ]
 }
