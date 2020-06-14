@@ -1,0 +1,12 @@
+.offscreen {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -999em;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.wizard > .content > .body label.error {
+    display: none !important;
+}

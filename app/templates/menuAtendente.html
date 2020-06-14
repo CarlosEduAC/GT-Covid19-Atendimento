@@ -34,6 +34,7 @@
                                                 <thead>
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
+                                                        <td>Nome do Usuário</td>
                                                         <td>Primeiro Atendimento?</td>
                                                         <td>Dia do Atendimento</td>
                                                         
@@ -43,9 +44,15 @@
                                                     {% for atendimento in atendimentos %}
                                                         <div >
                                                             <tr>
-                                                                <td>{{atendimento['diaAgendamento']}}</td>
-                                                                <td>{{atendimento['primeiro']}}</td>
-                                                                <td>{{atendimento['diaAtendimento']}}</td>
+                                                                <td>{{atendimento.diaAgendamento}}</td>
+                                                                {% if atendimento.primeiro %}
+                                                                    <td>Sim</td>
+                                                                {% else %}
+                                                                    <td>Não</td>
+                                                                {%endif%}
+                                                                <!-- Nome do usuário-->
+                                                                <td></td>
+                                                                <td>{{atendimento.diaAtendimento}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary">Iniciar Atendimento</button>
                                                                 </td>

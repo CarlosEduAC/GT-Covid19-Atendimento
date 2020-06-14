@@ -1,0 +1,7 @@
+{% macro select(input) %}
+    <select class="form-control" name="{{ input.name }}">
+        {% for option in input.options %}
+            <option value="{{ option.value }}">{{ option.label }}</option>
+        {% endfor %}
+    </select>
+{% endmacro %}

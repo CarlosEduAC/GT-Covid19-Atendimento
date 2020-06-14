@@ -48,6 +48,15 @@ class Database():
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectAllData(self, model): 
         session = self.Session()
-        result = session.query(table).all()
+        result = session.query(model).all()
 
         return result
+
+    # Remove um registro pelo id
+    def delete(self, model, id):
+        session = self.Session()
+        result = session.query(model).get(id)
+
+        session.delete(result)
+        session.commit()
+    

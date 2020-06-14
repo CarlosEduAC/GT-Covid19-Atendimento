@@ -38,9 +38,9 @@ CodeMirror.defineMode("rpm-spec", function() {
 
   var preamble = /^(Name|Version|Release|License|Summary|Url|Group|Source|BuildArch|BuildRequires|BuildRoot|AutoReqProv|Provides|Requires(\(\w+\))?|Obsoletes|Conflicts|Recommends|Source\d*|Patch\d*|ExclusiveArch|NoSource|Supplements):/;
   var section = /^%(debug_package|package|description|prep|build|install|files|clean|changelog|preinstall|preun|postinstall|postun|pre|post|triggerin|triggerun|pretrans|posttrans|verifyscript|check|triggerpostun|triggerprein|trigger)/;
-  var control_flow_complex = /^%(ifnarch|ifarch|if)/; // rpm control flow macros
-  var control_flow_simple = /^%(else|endif)/; // rpm control flow macros
-  var operators = /^(\!|\?|\<\=|\<|\>\=|\>|\=\=|\&\&|\|\|)/; // operators in control flow macros
+  var control_flow_complex = /^%(ifnarch|ifarch|if)/; // rpm control flow form
+  var control_flow_simple = /^%(else|endif)/; // rpm control flow form
+  var operators = /^(\!|\?|\<\=|\<|\>\=|\>|\=\=|\&\&|\|\|)/; // operators in control flow form
 
   return {
     startState: function () {

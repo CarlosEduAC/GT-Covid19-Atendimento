@@ -1,0 +1,4 @@
+{% macro text(input) %}
+    <input name="{{ input.name }}" type="text" placeholder="{{ input.placeholder }}"
+           class="form-control {{ 'is-required required' if input.required }} {{ input.class }}">
+{% endmacro %}
