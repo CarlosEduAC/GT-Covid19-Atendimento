@@ -78,19 +78,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 # Base = declarative_base()
 
-# class Comorbidade(Base):
-#     __tablename__ = 'comorbidades'
-
-#     idComorbidades = Column(Integer, primary_key=True)
-#     Descricao = Column(String(150, 'utf8_bin'), nullable=False)
-
-
-
-# t_comorbidades_pacientes = db.Table(
-#     'comorbidades_pacientes',
-#     db.Column('comorbidadeID', db.ForeignKey('comorbidades.idComorbidades'), primary_key=True, nullable=False),
-#     db.Column('PacienteId', db.ForeignKey('pacientes.PacienteId'), primary_key=True, nullable=False, index=True)
-# )
 
 
 
@@ -204,20 +191,44 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 
-# class Paciente(db.Model):
-#     __tablename__ = 'pacientes'
+class Paciente(db.Model):
+    __tablename__ = 'pacientes'
 
-#     PacienteId = db.Column(db.Integer, primary_key=True)
-#     sexo = db.Column(db.String(2, 'utf8_bin'), nullable=False)
-#     data_nasc = db.Column(db.Date)
-#     raca = db.Column(db.String(35, 'utf8_bin'))
+    PacienteId = db.Column(db.Integer, primary_key=True)
+    sexo = db.Column(db.String(2, 'utf8_bin'), nullable=False)
+    data_nasc = db.Column(db.Date)
+    raca = db.Column(db.String(35, 'utf8_bin'))
 
-#     comorbidades = db.relationship('Comorbidade', secondary='comorbidades_pacientes', backref='pacientes')
-#     ends = db.relationship('Endereco', secondary='pac_end', backref='pacientes')
-#     sintomas = db.relationship('Sintoma', secondary='paciente_sintomas', backref='pacientes')
+    comorbidades = db.relationship('Comorbidade', secondary='comorbidades_pacientes', backref='pacientes')
+    ends = db.relationship('Endereco', secondary='pac_end', backref='pacientes')
+    sintomas = db.relationship('Sintoma', secondary='paciente_sintomas', backref='pacientes')
 
 
+class ComorbidadePaciente(Model):
+    __tablename__ = 'comorbidades_pacientes'
 
+    idComorbidade = db.Column('comorbidadeID', db.ForeignKey('comorbidades.idComorbidades'), primary_key=True, nullable=False),
+    idPaciente = db.Column('PacienteId', db.ForeignKey('pacientes.PacienteId'), primary_key=True, nullable=False, index=True)
+
+
+class Comorbidade(Base):
+    __tablename__ = 'comorbidades'
+
+    idComorbidades = Column(Integer, primary_key=True)
+    Descricao = Column(String(150, 'utf8_bin'), nullable=False)
+
+paciente = Paciente(nome, cpf, ...)
+comorbidade - Comorbidade(descricao)
+pacienteComorbidade = ComorbidadePaciente (comorbidade.id, paciente.id)
+
+saveAll([paciente, comorbidade, pacienteComorbidade])
+
+
+t_comorbidades_pacientes = db.Table(
+    'comorbidades_pacientes',
+    db.Column('comorbidadeID', db.ForeignKey('comorbidades.idComorbidades'), primary_key=True, nullable=False),
+    db.Column('PacienteId', db.ForeignKey('pacientes.PacienteId'), primary_key=True, nullable=False, index=True)
+)
 # class Sintoma(db.Model):
 #     __tablename__ = 'sintomas'
 

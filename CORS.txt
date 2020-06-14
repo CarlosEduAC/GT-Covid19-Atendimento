@@ -1,0 +1,2 @@
+CQRS - > Repository (Leitura) e CommandRouter (Escrita)
+Resolver problema do banco oracle

@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, request, url_for
-from datetime import datetime
-from controller.database import Database
-from models.models import Paciente
+from models.util import savePaciente
+# from datetime import datetime
+# from controller.database import Database
+# from models.models import Paciente
 
 registrarPaciente = Blueprint('Paciente', __name__)
 
@@ -15,11 +16,13 @@ def registrar():
         raca = request.form['raca']
         dataNasc = request.form['data_nasc']
 
-        db=Database()
+        savePaciente (nome, cpf, sexo, raca, dataNasc)
+
+        # db=Database()
         
-        paciente = Paciente(nome, cpf, ocupacao, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
+        # paciente = Paciente(nome, cpf, ocupacao, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
         
-        db.saveData(paciente)
+        # db.saveData(paciente)
     
     return render_template('paciente.html')
 

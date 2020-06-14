@@ -10,7 +10,7 @@ class Database():
     # Salva um objeto específico
     # (data é o objeto que vamos salvar)
     def saveData(self, data): 
-        session = self.Session()  
+        session = self.Session()
         session.add(data)
         session.commit()
     
@@ -20,7 +20,7 @@ class Database():
         session = self.Session()  
         session.add_all(data)
         session.commit()
-
+    
     # Retorna um objeto do banco se já existir, caso contrario antes do retorno cria o objeto
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     # (myFilter é a condição desejada. Ex: cpf='1234567890') 
@@ -40,10 +40,10 @@ class Database():
     # (myFilter é a condição desejada. Ex: cpf='1234567890')
     def selectData(self, model, **myFilter): 
         session = self.Session()
-        result = session.query(table).filter_by(**myFilter) # .all() .first() . count()
+        result = session.query(model).filter_by(**myFilter) # .all() .first() . count()
 
         return result 
-
+    
     # Retorna todas as linhas da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectAllData(self, model): 

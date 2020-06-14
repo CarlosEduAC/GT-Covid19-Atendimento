@@ -18,4 +18,3 @@ def index():
         registrar(dadosFormulario)
 
         return redirect(url_for('primeiroAtendimento.index'))
-        

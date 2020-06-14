@@ -44,15 +44,15 @@ class UsuarioPerfil(Base):
 class Paciente(Base):
     __tablename__ = 'pacientes'
 
-    # nome = Column('nome', String(150, 'utf8_bin'))
-    # cpf = Column('cpf', Integer)
+    nome = Column('nome', String(150, 'utf8_bin'))
+    cpf = Column('cpf', Integer)
     sexo = Column('sexo', String(2, 'utf8_bin'))
     raca = Column('raca', String(35, 'utf8_bin'))
     dataNasc = Column('data_nasc', Date)
     id = Column('PacienteId', Integer, primary_key=True)
 
     def __repr__(self):
-        return f'Paciente {self.sexo, self.raca, self.dataNasc}' # self.name, self.cpf
+        return f'Paciente {self.name, self.cpf, self.sexo, self.raca, self.dataNasc}' 
 
 class Comorbidade(Base):
     __tablename__ = 'comorbidades'
