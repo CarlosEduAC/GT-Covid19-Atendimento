@@ -18,10 +18,9 @@ def admin():
 
         intervalo, tempo_maximo = (48, 12) #Fazer consulta ao banco para recuperar esses dados
         
-        esf=['opt1', 'opt2']
+        esf=['opt1', 'opt2'] #Fazer consulta para recuperar ESF
 
         users = getUsers()
-        #adms = getAdms()
 
         return render_template('admin.html', users = users, 
                                 intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
@@ -51,5 +50,14 @@ def update():
         supervisor = request.form['supervisor']
 
         updateUser(id, name, crm, cpf, supervisor)    
+
+    return redirect(url_for('admin.admin'))
+
+@menuAdmin.route('/admin/esf', methods=['POST'])
+def addEsf():
+    if request.method == 'POST':
+        esf = request.form["esf"]
+
+        #Add esf to database
 
     return redirect(url_for('admin.admin'))

@@ -1,7 +1,6 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
-
 <div class="ibox-content">
     <h2>Usuários</h2>
     <div class="tab-content">
@@ -49,7 +48,6 @@
 
                             </table>
 
-                            
                         </div>
                     </div>
                 </div>
@@ -58,41 +56,83 @@
     </div>
 
     <div class="ibox-content">
+        <h2>Tempos e Intervalos</h2>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <div class="full-height-scroll">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="full-height-scroll">
+                            <div class="table-responsive">
 
-    <form action="/admin" method="post">
+                                <form action="/admin" method="post">
 
-        <div class="form-group  row"><label class="col-sm-2 col-form-label">Intervalo de tempo para o contato</label>
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">Intervalo de tempo para o contato</label>
 
-            <div class="col-sm-1"><input name="intervalo" id="intervalo" type="number" value={{intervalo}} class="form-control">Horas</div> 
-        </div>
-        <div class="hr-line-dashed"></div>
+                                        <div class="col-sm-1"><input name="intervalo" id="intervalo" type="number" value={{intervalo}} class="form-control">Horas</div> 
+                                    </div>
 
-        <div class="form-group  row"><label class="col-sm-2 col-form-label">Tempo máximo de acompanhamento</label>
+                                    <div class="form-group  row"><label class="col-sm-2 col-form-label">Tempo máximo de acompanhamento</label>
 
-            <div class="col-sm-1"><input name="tempoMaximo" id="tempoMaximo" type="number" value={{tempo_maximo}} class="form-control">Horas</div>
-        </div>
-        <div class="hr-line-dashed"></div>
+                                        <div class="col-sm-1"><input name="tempoMaximo" id="tempoMaximo" type="number" value={{tempo_maximo}} class="form-control">Horas</div>
+                                    </div>
+                                                        
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary btn-sm" type="submit">Salvar</button>
+                                        </div>
+                                    </div>
+                                </form>
 
-        <div class="form-group  row"><label class="col-sm-2 col-form-label">Estratégia de Saúde Familiar</label>
-
-            
-        </div>
-        <div class="hr-line-dashed"></div>
-
-                            
-        <div class="form-group row">
-            <div class="col-sm-4 col-sm-offset-2">
-                <button class="btn btn-primary btn-sm" type="submit">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="ibox-content">
+        <h2>Estratégias de Saúde Familiar</h2>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <div class="full-height-scroll">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="full-height-scroll">
+                            <div class="table-responsive">
+
+                                <form action="/admin/esf" method="POST">
+                        
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="text" name="esf">
+                                        
+                                    </div>
+                        
+                                    <button class="btn btn-primary btn-sm" type="submit">Adicionar</button>
+                        
+                                </form>
+                                
+                                <div class="ibox-content">
+                                    <div class="col-sm-3">
+                                        {% for e in esf %}
+                            
+                                            <div class="form-group  row">{{e}}</div>
+                            
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                    
+                                <div class="hr-line-dashed"></div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-</div>
-
-
-<table>Usuarios do sistema</table>
-
-<table></table>
-
 
 {% endblock %}
