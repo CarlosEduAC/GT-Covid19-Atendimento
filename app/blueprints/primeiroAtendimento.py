@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from forms.fieldsets import *
 from controller.primeiroAtendimento import registrar
 
-primeiroAtendimento = Blueprint('primeiroAtendimento', __name__)
+primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 
 
 @primeiroAtendimento.route('/primeiroAtendimento', methods=['GET', 'POST'])
@@ -17,6 +17,6 @@ def index():
             fieldsetConjunto6,
         ])
     elif request.method == 'POST':
-        registrar( request.form)
+        registrar(request.form)
     
-        return redirect(url_for('primeiroAtendimento.index'))
+        return redirect(url_for('PrimeiroAtendimento.index'))

@@ -1,11 +1,12 @@
 from sqlalchemy import Column, String, Integer, DateTime, Date, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy_serializer import SerializerMixin
 from datetime import datetime
 
 Base = declarative_base()
 
 ### a partir desta tabela que cadastro no banco
-class AdmSaude(Base):
+class AdmSaude(Base, SerializerMixin):
     __tablename__ = 'adm_saude'
 
     idadm_saude = Column('idadm_saude', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
@@ -19,7 +20,7 @@ class AdmSaude(Base):
         self.supervisor = cargo
         self.idadm_saude = id
 
-class Usuario(Base):
+class Usuario(Base, SerializerMixin):
     __tablename__ = 'usuario'
     name = Column('nome', String(50))
     cpf = Column('cpf', String(16))
@@ -36,12 +37,12 @@ class Usuario(Base):
         self.crm = crm
         self.senha = senha
 
-class UsuarioPerfil(Base):
+class UsuarioPerfil(Base, SerializerMixin):
     __tablename__ = 'usuario_perfil'  
     idUsuario = Column('idUsuario', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
     idPerfil = Column('idPerfil', Integer, ForeignKey('perfil.idPerfil'), primary_key=True)
 
-class Paciente(Base):
+class Paciente(Base, SerializerMixin):
     __tablename__ = 'pacientes'
 
     nome = Column('nome', String(150, 'utf8_bin'))
@@ -54,7 +55,7 @@ class Paciente(Base):
     def __repr__(self):
         return f'Paciente {self.name, self.cpf, self.sexo, self.raca, self.dataNasc}' 
 
-class Comorbidade(Base):
+class Comorbidade(Base, SerializerMixin):
     __tablename__ = 'comorbidades'
 
     idComorbidades = Column(Integer, primary_key=True)

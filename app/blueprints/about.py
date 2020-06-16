@@ -5,6 +5,7 @@ about = Blueprint('About', __name__)
 
 @about.route('/about', methods=['GET'])
 def index():
+    print('here')
     if request.method == 'GET':
         try:
             with about.open_resource('../static/json/equipe.json') as f:

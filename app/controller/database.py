@@ -9,14 +9,14 @@ class Database():
     
     # Salva um objeto específico
     # (data é o objeto que vamos salvar)
-    def saveData(self, data): 
+    def saveData(self, data) -> None: 
         session = self.Session()
         session.add(data)
         session.commit()
     
     # Salva uma lista de dados 
     # (data é o objeto que vamos salvar)
-    def saveAll(self, data):
+    def saveAll(self, data) -> None:
         session = self.Session()  
         session.add_all(data)
         session.commit()
@@ -33,7 +33,7 @@ class Database():
             result = model(data)
             session.add(result)
             session.commit()
-            return result
+            return [r.to_dict() for r in result]
             
     # Retorna um dado específico da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
@@ -42,7 +42,7 @@ class Database():
         session = self.Session()
         result = session.query(model).filter_by(**myFilter) # .all() .first() . count()
 
-        return result 
+        return [r.to_dict() for r in result] 
     
     # Retorna todas as linhas da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
@@ -50,13 +50,23 @@ class Database():
         session = self.Session()
         result = session.query(model).all()
 
-        return result
+        return [r.to_dict() for r in result]
 
+    def selectAllDatabyFilter(**myfilter):
+        session = self.Session()
+        result = session.query(model).filter_by(**myFilter).all()
+
+        return [r.to_dict() for r in result]
     # Remove um registro pelo id
-    def delete(self, model, id):
+    def delete(self, model, id) -> None:
         session = self.Session()
         result = session.query(model).get(id)
 
         session.delete(result)
         session.commit()
     
+    def updateData(self, model, dataUpdate, id) -> None:
+        session = self.Session()
+        data = session.query(model).get(id)
+        session.merge(dataUpdate)
+        session.commit
