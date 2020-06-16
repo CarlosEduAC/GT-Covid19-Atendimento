@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser
+# from controller.admin import getUsers, removeUser, updateUser
 
 menuAdmin = Blueprint('admin', __name__)
 
@@ -30,33 +30,33 @@ def admin():
                                 intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
 
 
-@menuAdmin.route('/admin/remove', methods=['GET', 'POST'])
-def remove():
-    if request.method == 'POST':
-        id = request.form['user_id']
+# @menuAdmin.route('/admin/remove', methods=['GET', 'POST'])
+# def remove():
+#     if request.method == 'POST':
+#         id = request.form['user_id']
 
-        removeUser(id)
+#         removeUser(id)
 
-    return redirect(url_for('admin.admin'))
+#     return redirect(url_for('admin.admin'))
 
-@menuAdmin.route('/admin/update', methods=['GET', 'POST'])
-def update():
-    if request.method == 'POST':
-        id = request.form['user_id']
-        name = request.form['nome']
-        crm = request.form['crm']
-        cpf = request.form['cpf']                
-        supervisor = request.form['supervisor']
+# @menuAdmin.route('/admin/update', methods=['GET', 'POST'])
+# def update():
+#     if request.method == 'POST':
+#         id = request.form['user_id']
+#         name = request.form['nome']
+#         crm = request.form['crm']
+#         cpf = request.form['cpf']                
+#         supervisor = request.form['supervisor']
 
-        updateUser(id, name, crm, cpf, supervisor)    
+#         updateUser(id, name, crm, cpf, supervisor)    
 
-    return redirect(url_for('admin.admin'))
+#     return redirect(url_for('admin.admin'))
 
-@menuAdmin.route('/admin/esf', methods=['POST'])
-def addEsf():
-    if request.method == 'POST':
-        esf = request.form["esf"]
+# @menuAdmin.route('/admin/esf', methods=['POST'])
+# def addEsf():
+#     if request.method == 'POST':
+#         esf = request.form["esf"]
 
-        #Add esf to database
+#         #Add esf to database
 
-    return redirect(url_for('admin.admin'))
+#     return redirect(url_for('admin.admin'))

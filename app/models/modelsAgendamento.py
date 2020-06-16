@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime
-from models.models import Usuario, Paciente
+from models.models import AdmSaude, Paciente
 
 Base = declarative_base()
 
@@ -10,7 +10,7 @@ class Agendamento(Base):
     __tablename__ = 'agendamento'
     
     dia = Column('dia', DateTime)
-    idProfissional = Column('idProfissional', Integer, ForeignKey(Usuario.id))
+    idProfissional = Column('idProfissional', Integer, ForeignKey(AdmSaude.id))
     idAtendimento = Column('idAtendimento', Integer, ForeignKey('atendimento.idAtendimento'))
     idUsuario = Column('idUsuario', Integer, ForeignKey(Paciente.id))
     id = Column('idAgendamento', Integer, primary_key = True)

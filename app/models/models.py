@@ -11,7 +11,7 @@ Base = declarative_base()
 class AdmSaude(Base, SerializerMixin):
     __tablename__ = 'adm_saude'
 
-    idadm_saude = Column('idadm_saude', Integer, primary_key=True)
+    id = Column('idadm_saude', Integer, primary_key=True)
     nome = Column('nome', String(150))
     crm = Column('crm', String(20))
     cpf = Column('cpf', String(20))
@@ -37,9 +37,14 @@ class Paciente(Base, SerializerMixin):
     dataNasc = Column('data_nasc', Date)
     id = Column('PacienteId', Integer, primary_key=True)
 
-    def __repr__(self):
-        return f'Paciente {self.name, self.cpf, self.sexo, self.raca, self.dataNasc}' 
-
+    def __init__(self, nome, cpf, sexo, raca, dataNasc, id):
+        self.id = id
+        self.nome = nome
+        self.crm = crm
+        self.cpf = cpf
+        self.supervisor = supervisor
+        self.senha = encode64.b64encode(bytes(str(senha), 'utf-8'))
+   
 class Comorbidade(Base, SerializerMixin):
     __tablename__ = 'comorbidades'
 

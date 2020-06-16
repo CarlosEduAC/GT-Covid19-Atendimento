@@ -34,15 +34,6 @@ class Database():
             session.add(result)
             session.commit()
             return [r.to_dict() for r in result]
-            
-    # Retorna um dado específico da Tabela indicada.
-    # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
-    # (myFilter é a condição desejada. Ex: cpf='1234567890')
-    def selectData(self, model, **myFilter): 
-        session = self.Session()
-        result = session.query(model).filter_by(**myFilter) # .all() .first() . count()
-
-        return [r.to_dict() for r in result] 
     
     # Retorna todas as linhas da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
@@ -52,11 +43,20 @@ class Database():
 
         return [r.to_dict() for r in result]
 
-    def selectAllDatabyFilter(**myfilter):
+    def selectAllDataFilter(self, model, myfilter): 
+        # myfilter = nome='Carlos', idade=15
+        session = self.Session()
+        result = session.query(model).filter(myFilter).all()
+
+        return [r.to_dict() for r in result]
+
+    def selectAllDataByFilter(self, model, **myfilter): 
+        # **myfilter = {'nome': 'Carlos', 'idade': 15} => nome='Carlos', idade=15
         session = self.Session()
         result = session.query(model).filter_by(**myFilter).all()
 
         return [r.to_dict() for r in result]
+
     # Remove um registro pelo id
     def delete(self, model, id) -> None:
         session = self.Session()
