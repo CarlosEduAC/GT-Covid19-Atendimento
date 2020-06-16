@@ -23,6 +23,48 @@ aniversario = {
     "label": "Qual a data do seu aniversário?",
 }
 
+sexo = {
+    "type": "radio",
+    "name": "sexo",
+    "label": "Qual seu sexo?",
+    "required": True,
+    "options": [
+        {
+            "label": "Masculino",
+        },
+        {
+            "label": "Feminino"
+        },
+        {
+            "label": "Não opinou"
+        }
+    ]
+}
+
+raca = {
+    "type": "radio",
+    "name": "raca",
+    "label": "Qual sua raça?",
+    "required": True,
+    "options": [
+        {
+            "label": "Negra",
+        },
+        {
+            "label": "Amarela"
+        },
+        {
+            "label": "Branca"
+        },
+        {
+            "label": "Parda"
+        },
+        {
+            "label": "Indígena"
+        }
+    ]
+}
+
 comorbidades = {
     "name": "comorbidades",
     "label": "Quais as suas comorbidades?",

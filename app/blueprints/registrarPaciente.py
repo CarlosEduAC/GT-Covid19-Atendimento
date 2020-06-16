@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from datetime import datetime
-from controller.util import savePaciente
+from dao.paciente import Paciente
 
 registrarPaciente = Blueprint('Paciente', __name__)
 
@@ -15,7 +15,7 @@ def registrar():
         raca = request.form['raca']
         dataNasc = request.form['data_nasc']
         
-        savePaciente(None, None, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
+        Paciente().savePaciente(None, None, sexo, raca, datetime.strptime(dataNasc, '%d/%m/%Y'))
 
     return render_template('paciente.html')
 

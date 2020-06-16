@@ -17,8 +17,6 @@ def index():
             fieldsetConjunto6,
         ])
     elif request.method == 'POST':
-        dadosFormulario = request.form
-
-        registrar(dadosFormulario)
-
+        registrar( request.form)
+    
         return redirect(url_for('primeiroAtendimento.index'))

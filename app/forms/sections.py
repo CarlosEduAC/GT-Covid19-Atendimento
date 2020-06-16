@@ -27,7 +27,9 @@ informacoesBasicas = {
         nome,
         cpf,
         telefone,
-        aniversario
+        aniversario,
+        sexo,
+        raca
     ]
 }
 

@@ -1,4 +1,1 @@
-- Não existe tabela para guardar as dooenças crônicas
-- Precisa guardar o número de telefone ? Precisamos dessa pergunta no formulário ?
-- Sexo e Raça existem na tabela e não existem no formulário
-- Assim como o número de telefone, Nome e Cpf não existem no banco
+- Não existe tabela para guardar as doenças crônicas

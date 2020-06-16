@@ -2,7 +2,7 @@ from controller.database import Database
 from models.models import Paciente
 
 class Paciente:
-    def savePaciente (nome, cpf, sexo, raca, dataNasc):
+    def savePaciente (self, nome, cpf, sexo, raca, dataNasc):
         paciente = Paciente(sexo=sexo, raca=raca, dataNasc=dataNasc) #nome=nome, cpf=cpf, 
 
         try:
@@ -11,7 +11,7 @@ class Paciente:
         except Exception as e:
             print (e)
 
-    def selectPaciente ():
+    def selectPaciente (self):
         pacientes = []
         
         try:
