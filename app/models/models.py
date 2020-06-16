@@ -3,44 +3,29 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_serializer import SerializerMixin
 from datetime import datetime
 
+import base64
+
 Base = declarative_base()
 
 ### a partir desta tabela que cadastro no banco
 class AdmSaude(Base, SerializerMixin):
     __tablename__ = 'adm_saude'
 
-    idadm_saude = Column('idadm_saude', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
-    nome = Column('nome', String(50))
-    CRM = Column('crm', String(20), unique=True)
-    supervisor = Column('supervisor', String(4))
-
-    def __init__(self, nome, crm, cargo, id):
-        self.nome = nome
-        self.CRM = crm
-        self.supervisor = cargo
-        self.idadm_saude = id
-
-class Usuario(Base, SerializerMixin):
-    __tablename__ = 'usuario'
-    name = Column('nome', String(50))
-    cpf = Column('cpf', String(16))
+    idadm_saude = Column('idadm_saude', Integer, primary_key=True)
+    nome = Column('nome', String(150))
     crm = Column('crm', String(20))
-    senha = Column('senha', String(16))
-    created = Column('created_on', DateTime, default=datetime.utcnow)
-    id = Column('idUsuario', Integer, primary_key=True)
+    cpf = Column('cpf', String(20))
+    supervisor = Column('supervisor', String(4))
+    senha = Column('senha', String(45))
 
-    #usuarioPerfil = relationship("UsuarioPerfil")
-
-    def __init__(self, name, cpf, crm, senha):
-        self.name = name
-        self.cpf = cpf
+    def __init__(self, id, nome, crm, cpf, supervisor, senha):
+        self.id = id
+        self.nome = nome
         self.crm = crm
-        self.senha = senha
+        self.cpf = cpf
+        self.supervisor = supervisor
+        self.senha = encode64.b64encode(bytes(str(senha), 'utf-8'))
 
-class UsuarioPerfil(Base, SerializerMixin):
-    __tablename__ = 'usuario_perfil'  
-    idUsuario = Column('idUsuario', Integer, ForeignKey('usuario.idUsuario'), primary_key=True)
-    idPerfil = Column('idPerfil', Integer, ForeignKey('perfil.idPerfil'), primary_key=True)
 
 class Paciente(Base, SerializerMixin):
     __tablename__ = 'pacientes'

@@ -9,7 +9,9 @@ atendimento = Blueprint('Atendimento', __name__)
 def index():
     if request.method == 'GET':
         return render_template('atendimento.html', fieldsets=[
-            
+            fieldsetConjunto4,
+            fieldsetConjunto5,
+            fieldsetConjunto6
         ])
     elif request.method == 'POST':
         registrar(request.form)

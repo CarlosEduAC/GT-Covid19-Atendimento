@@ -217,13 +217,6 @@ class Comorbidade(Base):
     idComorbidades = Column(Integer, primary_key=True)
     Descricao = Column(String(150, 'utf8_bin'), nullable=False)
 
-paciente = Paciente(nome, cpf, ...)
-comorbidade - Comorbidade(descricao)
-pacienteComorbidade = ComorbidadePaciente (comorbidade.id, paciente.id)
-
-saveAll([paciente, comorbidade, pacienteComorbidade])
-
-
 t_comorbidades_pacientes = db.Table(
     'comorbidades_pacientes',
     db.Column('comorbidadeID', db.ForeignKey('comorbidades.idComorbidades'), primary_key=True, nullable=False),
