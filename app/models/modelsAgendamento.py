@@ -24,7 +24,12 @@ class Atendimento(Base):
     dia = Column('dia', DateTime)
     id = Column('idAtendimento', Integer, primary_key = True)
 
+    
 
 
+class AtendimentoInicial(Base):
 
+    __tablename__ = 'atendimento_inicial'
+
+    id = Column('id', Integer, primary_key=True)
 

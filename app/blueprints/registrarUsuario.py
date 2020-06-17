@@ -9,12 +9,19 @@ def registrar():
     if request.method == 'POST':
         nome = request.form['nome']
         CRM = request.form['crm']
-        cargo = request.form['cargo']
+        cpf = request.form['cpf']
+        
+        supervisor = 'supervisor' in request.form
+
+        print(supervisor)
+        senha = request.form['senha']
         id = request.form['id']
         
         db = Database()
         
-        usuario = AdmSaude(nome, CRM, cargo, id)      
+        usuario = AdmSaude(id, nome, CRM, cpf, supervisor, senha)      
         db.saveData(usuario)
+
+        return redirect(url_for('admin.admin'))
 
     return render_template('registrar.html')
