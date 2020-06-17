@@ -10,6 +10,4 @@ def index():
 
     atendimentos = userAgendamentos(profissional_atual)
 
-    print(atendimentos)
-
     return render_template('menuAtendente.html', atendimentos = atendimentos)

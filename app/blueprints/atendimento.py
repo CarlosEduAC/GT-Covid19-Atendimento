@@ -4,7 +4,8 @@ from controller.atendimento import registrar
 
 atendimento = Blueprint('Atendimento', __name__)
 
-
+#futuramente, trocar a rota por: /atendimento/<id>
+#no index, passar o id por parâmetro
 @atendimento.route('/atendimento', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
