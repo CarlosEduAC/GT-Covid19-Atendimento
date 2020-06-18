@@ -1,6 +1,8 @@
 from sqlalchemy import Column, String, Integer, DateTime, Date, ForeignKey, Boolean
 from sqlalchemy.ext.declarative import declarative_base
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy_serializer import SerializerMixin
+from flask_login import UserMixin # userMinx me permite herdar os metodos is_authenticated e os outros que flask login exige que tenha 
 from datetime import datetime
 
 import base64
@@ -8,7 +10,7 @@ import base64
 Base = declarative_base()
 
 ### a partir desta tabela que cadastro no banco
-class AdmSaude(Base, SerializerMixin):
+class AdmSaude(Base, SerializerMixin, UserMixin):
     __tablename__ = 'adm_saude'
 
     id = Column('idadm_saude', Integer, primary_key=True)
@@ -24,7 +26,10 @@ class AdmSaude(Base, SerializerMixin):
         self.crm = crm
         self.cpf = cpf
         self.supervisor = supervisor
-        self.senha = base64.b64encode(bytes(str(senha), 'utf-8'))
+        self.senha = generate_password_hash(senha)
+
+    def verificaSenha(self, senha):
+        return check_password_hash(self.senha, senha)
 
 
 class Paciente(Base, SerializerMixin):

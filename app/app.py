@@ -1,6 +1,9 @@
 # Importações básicas
 from flask import Flask
 from flask_cors import CORS
+from flask_login import LoginManager
+from models.models import AdmSaude
+from controller.database import Database
 
 # Importação de rotas 
 from blueprints.about import about
@@ -15,6 +18,17 @@ from blueprints.primeiroAtendimento import primeiroAtendimento
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
+
+login_manager =LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "Login.loginMetodo"
+
+@login_manager.user_loader
+def getUsuario(usuario_id):
+    
+    db = Database()
+    #usuario = AdmSaude(7,"maria", 675, 12345678910, 1,"12345")
+    return db.selectData(AdmSaude,id=usuario_id) #(usuario)
 
 app.register_blueprint(about, url_prefix='/')
 app.register_blueprint(login, url_prefix='/')
