@@ -216,7 +216,7 @@ esf = {
 
 endereco = {
     "name": "endereco",
-    "label": "Para começar, o Sr/Srª poderia me confirmar seu endereço, por favor? (Caso haja divergências da ficha, anotar abaixo)",
+    "label": "O Sr/Srª poderia me confirmar seu endereço, por favor? (Caso haja divergências da ficha, anotar abaixo)",
 }
 
 qntPessoasMesmoDomicilio = {
@@ -348,30 +348,6 @@ recebeAuxilio = {
 
 # Isolamento domiciliar - Lembrar de verificar o fluxo do isolamento domiciliar, proque a parte de manter quarentena aparece duas vezes em dois fluxos diferentes
 
-consegueManterQuarentena = {
-    "name": "consegueManterQuarentena",
-    "type": "radio",
-    "label": "Você e as pessoas com quem mora estão conseguindo se manter em casa?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                {
-                    "name": "quantosDias",
-                    "label": "Há Quantos dias?",
-                }
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Sai só para atividades essenciais (banco, supermercado, etc)."
-        }
-    ]
-}
-
 motivosSairDeCasa = {
     "name": "motivosSairDeCasa",
     "type": "checkbox",
@@ -402,6 +378,33 @@ motivosSairDeCasa = {
                 "placeholder": "Placeholder",
             },
         },
+    ]
+}
+
+consegueManterQuarentena = {
+    "name": "consegueManterQuarentena",
+    "type": "radio",
+    "label": "Você e as pessoas com quem mora estão conseguindo se manter em casa?",
+    "required": True,
+    "options": [
+        {
+            "label": "Sim",
+            "fields": [
+                {
+                    "name": "quantosDias",
+                    "label": "Há Quantos dias?",
+                }
+            ]
+        },
+        {
+            "label": "Não",
+            "fields": [
+                motivosSairDeCasa
+            ]
+        },
+        {
+            "label": "Sai só para atividades essenciais (banco, supermercado, etc)."
+        }
     ]
 }
 
@@ -473,10 +476,6 @@ consegueIsolamentoDomiciliar = {
         {
             "label": "Não se aplica, mora sozinho",
             "fields": [
-                consegueManterQuarentena,
-                motivosSairDeCasa,
-                estrategiaComprarAlimentos,
-                cuidadoPessoaSairCasa
             ]
         }
     ],

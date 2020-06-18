@@ -29,7 +29,8 @@ informacoesBasicas = {
         telefone,
         aniversario,
         sexo,
-        raca
+        raca,
+        endereco
     ]
 }
 
@@ -44,7 +45,6 @@ condicaoclinica = {
 domicilio = {
     "name": "Domicílio",
     "inputs": [
-        endereco,
         moraSozinho
     ]
 }
@@ -62,8 +62,7 @@ isolamentoDomiciliar = {
     "name": "Isolamento Domiciliar",
     "inputs": [
         consegueIsolamentoDomiciliar,
-        consegueManterQuarentena,
-        motivosSairDeCasa
+        consegueManterQuarentena
     ]
 }
 
