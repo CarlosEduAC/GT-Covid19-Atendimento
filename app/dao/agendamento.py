@@ -1,5 +1,5 @@
 from controller.database import Database
-from models.modelsAgendamento import Agendamento, Atendimento
+from models.models import Agendamento, Atendimento
 
 
 def userAgendamentos(user_id):

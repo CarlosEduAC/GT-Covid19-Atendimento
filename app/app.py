@@ -28,7 +28,7 @@ def getUsuario(usuario_id):
     
     db = Database()
     #usuario = AdmSaude(7,"maria", 675, 12345678910, 1,"12345")
-    return db.selectData(AdmSaude,id=usuario_id) #(usuario)
+    return db.selectIf(AdmSaude,id=usuario_id) #(usuario)
 
 app.register_blueprint(about, url_prefix='/')
 app.register_blueprint(login, url_prefix='/')
