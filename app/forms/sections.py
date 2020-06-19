@@ -79,9 +79,6 @@ sintomascovid = {
         apresentouSintomasCovid19,
         apresentouFebreQuantosGraus,
         tomouAlgumMedicamentoProsSintomas,
-        quemIndicouMedicamento,
-        qualMedicamentoTomou,
-        comoTomaMedicamento,
         alguemMaisApresentaSintomaEmCasa
     ]
 }
