@@ -1,14 +1,95 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
-<form action="" method="POST">
-    <input type="text" name="nome" placeholder="Inserir nome">
-    <input type="text" name="crm" placeholder="Inserir crm">
-    <input type="text" name="cpf" placeholder="Inserir cpf">
-    <input type="checkbox" name="supervisor" placeholder="É administrador?">
-    <input type="text" name="senha" placeholder="Inserir senha">
-    <input type="number" name="id" placeholder="Inserir id">
-    <input type="submit" value="Cadastrar" >
-</form>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Cadastro dos Atendentes</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="/registrar">Cadastro dos Atendentes</a>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <h3 class="m-t-none m-b">Dados do Atendente</h3>
+                <p>Insira os dados solicitados</p>
+                <h3 class="m-t-none m-b">Dados do Atendente</h3>
+                <p>Insira os dados solicitados</p>
+                <div class="ibox-content">
+                    <form action="/registrar" method="POST">
+                        <div class="form-group  row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">Nome</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" name="nome"
+                                            placeholder="Inserir nome completo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">CRM</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" name="crm" placeholder="Inserir crm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">CPF</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" name="cpf" placeholder="Inserir cpf">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">Senha</label>
+                                    <div class="col-sm-11">
+                                        <input type="text" class="form-control" name="senha"
+                                            placeholder="Inserir senha de entre 6 e 10 caracteres" maxlength="10">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label">É administrador?</label>
+                                    <div class="col-sm-10">
+                                        <div class="i-checks">
+                                            <label style="margin-top: 5px;"> <input type="checkbox" value="S"> <i></i> Sim </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary btn-sm" type="submit" value="Cadastrar">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
