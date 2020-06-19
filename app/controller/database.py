@@ -37,6 +37,14 @@ class Database():
     
     # Retorna todas as linhas da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
+    def selectData(self, model): 
+        session = self.Session()
+        result = session.query(model).first()
+
+        return result
+
+    # Retorna todas as linhas da Tabela indicada.
+    # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectAllData(self, model): 
         session = self.Session()
         result = session.query(model).all()
