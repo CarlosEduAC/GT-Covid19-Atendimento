@@ -15,11 +15,11 @@ def registrar():
 
         print(supervisor)
         senha = request.form['senha']
-        id = request.form['id']
+        #id = request.form['id']
         
         db = Database()
         
-        usuario = AdmSaude(id, nome, CRM, cpf, supervisor, senha)      
+        usuario = AdmSaude(nome, CRM, cpf, supervisor, senha)      
         db.saveData(usuario)
 
         return redirect(url_for('admin.admin'))

@@ -1,5 +1,5 @@
 from controller.database import Database
-from models.models import AdmSaude, TemposContatoAcompanhamento, EstrategiaSaudeFamiliar
+from models.models import AdmSaude, TemposContatoAcompanhamento, EstrategiaSaudeFamiliar, Paciente
 
 def getUsers():
     try:
@@ -8,7 +8,6 @@ def getUsers():
         return db.selectAllData(AdmSaude)
     except:
         return [] 
-
 
 def removeUser(id):
     db = Database()
@@ -25,6 +24,32 @@ def updateUser(id, name, crm, cpf, supervisor):
                              'crm' : crm,
                              'cpf' : cpf,
                              'supervisor' : supervisor}, id)
+
+
+def getPacientes():
+    try:
+        db = Database()
+
+        return db.selectAllData(Paciente)
+    except:
+        return [] 
+
+def removePaciente(id):
+    db = Database()
+    db.delete(Paciente, id)
+
+
+def updatePaciente(id, nome, cpf, sexo, raca, dataNasc):
+
+    db = Database()
+
+    #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
+
+    db.updateData(Paciente, {'nome' : nome,
+                             'cpf' : cpf,
+                             'sexo' : sexo,
+                             'raca' : raca,
+                             'dataNasc' : dataNasc}, id)
 
 
 

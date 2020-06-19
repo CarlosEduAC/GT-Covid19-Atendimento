@@ -1,10 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf
+from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf, getPacientes
+from flask_login import login_required, LoginManager, current_user
 
 menuAdmin = Blueprint('admin', __name__)
 
 @menuAdmin.route('/admin', methods=['GET', 'POST'])
+@login_required
 def admin():
+
+    if not current_user.supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
         intervalo = request.form['intervalo']
         tempo_maximo = request.form['tempoMaximo']
@@ -17,18 +23,11 @@ def admin():
         intervalo, tempo_maximo = getTimes() 
         
         esf=getEsf()
-        
-        """ [
-            'Estratégia Saúde da Família - ESF Ajuda A Planalto da Ajuda', 
-            'Estratégia Saúde da Família - ESF Ajuda B Ajuda de Baixo',
-            'Estratégia Saúde da Família - ESF Ajuda C Ajuda de Cima', 
-            'Estratégia Saúde da Família - ESF Areia Branca',
-            'Estratégia Saúde da Família - ESF Aroeira'
-        ]  """
 
         users = getUsers()
+        pacientes = getPacientes()
 
-        return render_template('admin.html', users = users, 
+        return render_template('admin.html', users = users, pacientes = pacientes,
                                 intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
 
 

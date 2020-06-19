@@ -14,11 +14,11 @@ def loginMetodo():
 
         db = Database()
         
-        userCPF = db.selectAllDataFilter(AdmSaude,cpf=cpf)[0] #AdmSaude(7,"maria", 12345678910, 675, 1, sh)
+        userCPF = db.selectIf(AdmSaude,cpf=cpf) #AdmSaude(7,"maria", 12345678910, 675, 1, sh)
 
         print(userCPF)
         if not userCPF or not userCPF.verificaSenha(sh):
-            return redirect(url_for('login'))
+            return redirect(url_for('Login.loginMetodo'))
         else:
             login_user(userCPF) 
             return redirect(url_for('MenuAtendente.index'))
@@ -29,4 +29,4 @@ def loginMetodo():
 @login.route('/logout')
 def logout():
     logout_user()
-    return render_template('login.html')
+    return redirect(url_for('Login.loginMetodo'))

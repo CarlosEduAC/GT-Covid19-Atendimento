@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from datetime import datetime
 from dao.paciente import Paciente
+from controller.admin import removePaciente, updatePaciente
 
 registrarPaciente = Blueprint('Paciente', __name__)
 
@@ -19,3 +20,25 @@ def registrar():
 
     return render_template('paciente.html')
 
+@registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
+def remove():
+    if request.method == 'POST':
+        id = request.form['paciente_id']
+
+        removePaciente(id)
+
+    return redirect(url_for('admin.admin'))
+
+@registrarPaciente.route('/paciente/update', methods=['GET', 'POST'])
+def update():
+    if request.method == 'POST':
+        id = request.form['paciente_id']
+        nome = request.form['nome']
+        cpf = request.form['cpf']
+        sexo = request.form['sexo']
+        raca = request.form['raca']
+        dataNasc = request.form['dataNasc']  
+
+        updatePaciente(id, nome, cpf, sexo, raca, dataNasc)    
+
+    return redirect(url_for('admin.admin'))

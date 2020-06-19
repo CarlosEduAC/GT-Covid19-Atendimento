@@ -43,6 +43,12 @@ class Database():
 
         return result
 
+    def selectIf(self, model, **myfilter): 
+        session = self.Session()
+        result = session.query(model).filter_by(**myfilter).first()
+
+        return result
+
     # Retorna todas as linhas da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectAllData(self, model): 
@@ -61,7 +67,7 @@ class Database():
     def selectAllDataByFilter(self, model, **myfilter): 
         # **myfilter = {'nome': 'Carlos', 'idade': 15} => nome='Carlos', idade=15
         session = self.Session()
-        result = session.query(model).filter_by(**myFilter).all()
+        result = session.query(model).filter_by(**myfilter).all()
 
         return [r.to_dict() for r in result]
 
