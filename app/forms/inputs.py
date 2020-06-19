@@ -20,7 +20,7 @@ telefone = {
 
 aniversario = {
     "name": "aniversario",
-    "label": "Qual a data do seu aniversário?",
+    "label": "Qual a data do seu aniversário?"
 }
 
 sexo = {
@@ -68,11 +68,31 @@ raca = {
 comorbidades = {
     "name": "comorbidades",
     "label": "Quais as suas comorbidades?",
+    "type": "checkbox",
+    "options": [
+        {
+            "label": "Comorbidades 1",
+        },
+        {
+            "label": "Comorbidades 2",
+        },
+        {
+            "label": "Outros",
+            "field": {
+                "name": "comorbidadesField",
+                "placeholder": "Placeholder",
+            },
+        },
+    ]
 }
 
 dataPrimeiroSintoma = {
     "name": "dataPrimeiroSintoma",
     "label": "Qual a data do surgimento dos primeiros sintomas?"
+}
+
+tiposdoencasCronicas = {
+    
 }
 
 doencaCronica = {
@@ -86,7 +106,22 @@ doencaCronica = {
                 {
                     "name": "listaDoencasPaciente",
                     "label": "Caso sim, qual(is)?",
-                    "class": "tagsinput"
+                    "type": "checkbox",
+                    "options": [
+                        {
+                            "label": "Crônica 1",
+                        },
+                        {
+                            "label": "Crônica 2",
+                        },
+                        {
+                            "label": "Outros",
+                            "field": {
+                                "name": "listaDoencasPacienteField",
+                                "placeholder": "Placeholder",
+                            },
+                        },
+                    ]
                 }
             ]
         },
@@ -199,7 +234,16 @@ esf = {
                 {
                     "name": "esfDescricao",
                     "label": "Se sim, qual?",
-                    "placeholder": "Estratégia de Saúde da Família - ESF"
+                    "type": "radio",
+                    "required": True,
+                    "options": [
+                        {
+                            "label": "ESF 1"
+                        },
+                        {
+                            "label": "ESF 2"
+                        }
+                    ]
                 }
             ]
         },
@@ -334,6 +378,22 @@ recebeAuxilio = {
                 {
                     "name": "quaisAuxilios",
                     "label": "Quais?",
+                    "type": "checkbox",
+                    "options": [
+                        {
+                            "label": "Auxílio 1",
+                        },
+                        {
+                            "label": "Auxílio 2",
+                        },
+                        {
+                            "label": "Outros",
+                            "field": {
+                                "name": "recebeAuxilioField",
+                                "placeholder": "Placeholder",
+                            },
+                        },
+                    ]
                 }
             ]
         },
@@ -690,6 +750,13 @@ quemIndicouMedicamento = {
     ],
 }
 
+comoTomaMedicamento = {
+    "label": "Como está tomando esse(s) medicamento(s)?",
+    "hint": "Ouvir o relato e considerando os problemas identificados ou dúvidas, oriente quanto ao uso adequado do medicamentos. Descreva aqui, sucintamente, os problemas identificados, dúvidas e orientações fornecidas.",
+    "name": "comoTomaMedicamento",
+    "placeholder": "Sua resposta",
+}
+
 tomouAlgumMedicamentoProsSintomas = {
     "name": "tomouAlgumMedicamentoProsSintomas",
     "type": "radio",
@@ -699,7 +766,9 @@ tomouAlgumMedicamentoProsSintomas = {
         {
             "label": "Sim",
             "fields": [
-                qualMedicamentoTomou
+                qualMedicamentoTomou,
+                quemIndicouMedicamento,
+                comoTomaMedicamento,
             ]
         },
         {
@@ -709,13 +778,6 @@ tomouAlgumMedicamentoProsSintomas = {
             "label": "Não se aplica",
         }
     ],
-}
-
-comoTomaMedicamento = {
-    "label": "Como está tomando esse(s) medicamento(s)?",
-    "hint": "Ouvir o relato e considerando os problemas identificados ou dúvidas, oriente quanto ao uso adequado do medicamentos. Descreva aqui, sucintamente, os problemas identificados, dúvidas e orientações fornecidas.",
-    "name": "comoTomaMedicamento",
-    "placeholder": "Sua resposta",
 }
 
 quemApresentouSintomas = {
@@ -799,7 +861,6 @@ alguemMaisApresentaSintomaEmCasa = {
         }
     ],
 }
-
 
 # Encerramento do Atendimento/Orientações Finais
 
