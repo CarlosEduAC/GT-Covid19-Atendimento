@@ -4,6 +4,7 @@ doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
         doencaCronica,
+        dataPrimeiroSintoma
     ]
 }
 
@@ -31,14 +32,6 @@ informacoesBasicas = {
         sexo,
         raca,
         endereco
-    ]
-}
-
-condicaoclinica = {
-    "name": "Comorbidades",
-    "inputs": [
-        comorbidades,
-        dataPrimeiroSintoma,
     ]
 }
 

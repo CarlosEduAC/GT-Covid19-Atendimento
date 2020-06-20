@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <title>COVID-19 | Norte Fluminense | Histórico</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+<table class="table table-striped">
+<thead>
+<tr>
+    <th>{{ historico.label }}</th>
+    <th>Data</th>
+</tr>
+</thead>
+<tbody>
+    {% for content in historico.content %}
+        <tr>
+            <td>{{ content.value }}</td>
+            <td>{{ content.date }}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+</body>
+
+</html>

@@ -4,11 +4,18 @@
             <label>
                 <input type="checkbox" value="">
                 <i></i>
-                {{ option.label }}
-                {% if option.field %}
-                    {{ switch(option.field) }}
-                {% endif %}
+                {{ input.options[option] }}
             </label>
         </div>
     {% endfor %}
+
+    {% if input.outros %}
+        <div class="i-checks">
+            <label>
+                <input type="checkbox" value="">
+                <i></i>
+                Outros {{ switch(input.outros, outros = True) }}
+            </label>
+        </div>
+    {% endif %}
 {% endmacro %}
