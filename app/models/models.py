@@ -42,8 +42,7 @@ class Paciente(Base, SerializerMixin):
     dataNasc = Column('data_nasc', Date)
     id = Column('PacienteId', Integer, primary_key=True)
 
-    def __init__(self, nome, cpf, sexo, raca, dataNasc, id):
-        self.id = id
+    def __init__(self, nome, cpf, sexo, raca, dataNasc):
         self.nome = nome
         self.cpf = cpf
         self.sexo = sexo
@@ -103,23 +102,27 @@ class Atendimento(Base, SerializerMixin):
     primeiro = Column('primeiro', Boolean)
     dia = Column('dia', DateTime)
     id = Column('idAtendimento', Integer, primary_key = True)
+    idInicial = Column('idInicial', Integer, ForeignKey('atendimento_inicial.id'))
 
-    #Domicilio
+
+
+    #-------Domicilio-------
     moraSozinho = Column('moraSozinho', Boolean)
     qntPessoasMesmoDomicilio = Column('qntPessoasMesmoDomicilio', Integer)
-    qualRelacao = Column('qualRelacao', Enum(Parentesco)) #Deveria condicionar a quantidade ao item anterior?
-    familiarDoencaCronica = Column('familiarDoencaCronica', Boolean) #nao se aplica como null?
-    quaisDoencasCronicas = Column('quaisDoencasCronicas', Enum(DoencasCronicas))
-    mulherGravida = Column('mulherGravida', Boolean)
-    nomeMulheresGravidas = Column('nomeMulheresGravidas', String)
+    # qualRelacao = Column('qualRelacao', Enum(Parentesco)) #Deveria condicionar a quantidade ao item anterior?
+    # familiarDoencaCronica = Column('familiarDoencaCronica', Boolean) #nao se aplica como null?
+    # quaisDoencasCronicas = Column('quaisDoencasCronicas', Enum(DoencasCronicas))
+    # mulherGravida = Column('mulherGravida', Boolean)
+    # nomeMulheresGravidas = Column('nomeMulheresGravidas', String)
 
-    #Visitas
+
+
+    #-------Visitas-------
     recebeuVisita = Column('recebeuVisita', Boolean) #Nao opinou como null?
     quemFoiAVisita = Column('quemFoiAVisita', String)
     porqueRecebeuVisita = Column('porqueRecebeuVisita', String)
 
     #Isolamento Domiciliar
-    #---- Rever esses campos
     consegueIsolamentoDomiciliar = Column('consegueIsolamentoDomiciliar', Boolean)
     porqueMantemIsolamento = Column('porqueMantemIsolamento', String)
     porqueNaoMantemIsolamento = Column('porqueNaoMantemIsolamento', String)
@@ -127,33 +130,30 @@ class Atendimento(Base, SerializerMixin):
     consegueManterQuarentena = Column('consegueManterQuarentena', Boolean)
     quantosDias = Column('quantosDias', Integer) #Se sim
 
-    motivosSairDeCasaField = Column('motivosSairDeCasaField', Enum(MotivosSair)) #Se nao. Adicionar campo para "Outros"?
+    # motivosSairDeCasaField = Column('motivosSairDeCasaField', Enum(MotivosSair)) #Se nao. Adicionar campo para "Outros"?
 
     estrategiaCompraAlimentoField = Column('estrategiaCompraAlimentoField', String) #???
     cuidadoPessoaSairCasa = Column('cuidadoPessoaSairCasa', String) #???
-    # -----
 
-    #REVER-----------------------------------
-    #Perguntas sobre os sintomas da Covid-19
-    sintomaCovid19Field = Column('sintomaCovid19Field', Enum(Sintomas)) #Tem um Enum mas o campo é um select...
+
+    #-------Perguntas sobre os sintomas da Covid-19-------
+    # sintomaCovid19Field = Column('sintomaCovid19Field', Enum(Sintomas)) #Tem um Enum mas o campo é um select...
     apresentouFebreQuantosGraus = Column('apresentouFebreQuantosGraus', Float)
 
     tomouAlgumMedicamentoProsSintomas = Column('tomouAlgumMedicamentoProsSintomas', Boolean)
-    qualMedicamentoTomou = Column('qualMedicamentoTomou', String)#Se sim
-    quemIndicouMedicamento = Column('quemIndicouMedicamento', Enum(IndicadorMedicamento))
+    # qualMedicamentoTomou = Column('qualMedicamentoTomou', String)#Se sim
+    # quemIndicouMedicamento = Column('quemIndicouMedicamento', Enum(IndicadorMedicamento))
+    # quemIndicouField = Column('quemIndicouField', String) #Para "outros"
+    # comoTomaMedicamento = Column('comoTomaMedicamento', String)
 
-    quemIndicouField = Column('quemIndicouField', String) #Para "outros"
-    
-    comoTomaMedicamento = Column('comoTomaMedicamento', String)
+    # alguemMaisApresentaSintomaEmCasa = Column('alguemMaisApresentaSintomaEmCasa', Boolean)
+    # quemApresentouSintomas = Column('quemApresentouSintomas', String)
+    # quaisSintomasApresentou = Column('quaisSintomasApresentou', Enum(SintomasFamiliar))
+    # seFebreDeQuanto = Column('seFebreDeQuanto', Float)
 
-    alguemMaisApresentaSintomaEmCasa = Column('alguemMaisApresentaSintomaEmCasa', String)
-    quemApresentouSintomas = Column('quemApresentouSintomas', String)
-    quaisSintomasApresentou = Column('quaisSintomasApresentou', Enum(SintomasFamiliar))
-    seFebreDeQuanto = Column('seFebreDeQuanto', Float)
-    # ---------------------------------------
 
-    # Encerramento
-    outroAtendimentoField = Column('outroAtendimentoField', Enum(OrientacaoFinal))
+    # -------Encerramento-------
+    # outroAtendimentoField = Column('outroAtendimentoField', Enum(OrientacaoFinal))
     anotarOrientacoes = Column('anotarOrientacoes', String)
     
 
@@ -164,33 +164,36 @@ class AtendimentoInicial(Base, SerializerMixin):
 
     id = Column('id', Integer, primary_key=True)
 
-    #Dados pessoais
+    #-------Dados pessoais-------
     endereco = Column('endereco', String)
     
-    #Comorbidades
-    comorbidades = Column('comorbidades', String)
-    dataPrimeiroSintoma = Column('dataPrimeiroSintoma', DateTime)
+    #-------Comorbidades------- (Tirar isso depois)
+    # comorbidades = Column('comorbidades', String)
+    # dataPrimeiroSintoma = Column('dataPrimeiroSintoma', DateTime)
 
-    #Doenças crônicas
-    doencaCronica = Column('doencaCronica', Boolean)
-    listaDoencasPaciente = Column('listaDoencasPaciente', Enum(DoencasCronicas)) #"Caso sim, quais?" deveria ser um select?
+    #-------Doenças crônicas-------
+    doencaCronica = Column('doencaCronica', Boolean) #Precisa desse boolean? Se não, apenas não terá nenhum registro
+    # listaDoencasPaciente = Column('listaDoencasPaciente', Enum(DoencasCronicas)) #Retirar
 
-    #Medicamentos
-    checkRemedioPaciente = Column('checkRemedioPaciente', Boolean)
-    listaMedicamentosPaciente = Column('listaMedicamentosPaciente', String) #Caso sim, quais?
-    doseRemedioPaciente = Column('doseRemedioPaciente', String) #Como toma
-    tmpRemedioPaciente = Column('tmpRemedioPaciente', String) #Há quanto tempo?
-    indicouRemedioPaciente = Column('indicouRemedioPaciente', Boolean) #Alguém indicou?
-    quemIndicouRemedioPaciente = Column('quemIndicouRemedioPaciente', Enum(IndicadorMedicamento)) #Quem?
+    #------Medicamentos-------
+    checkRemedioPaciente = Column('checkRemedioPaciente', Boolean) #precisa disso? Se não, não haverá nenhum registro.
+    # listaMedicamentosPaciente = Column('listaMedicamentosPaciente', String) #Vai virar tabela Medicamento
+    # doseRemedioPaciente = Column('doseRemedioPaciente', String) #Vai estar na tabela Medicamento
+    # tmpRemedioPaciente = Column('tmpRemedioPaciente', String) #Vai estar na tabela Medicamento
+    # indicouRemedioPaciente = Column('indicouRemedioPaciente', Boolean) #Vai estar na tabela Medicamento
+    # quemIndicouRemedioPaciente = Column('quemIndicouRemedioPaciente', Enum(IndicadorMedicamento)) #Vai estar na tabela Medicamento
 
-    #Estratégias de Saúde Familiar
+    #-------Estratégias de Saúde Familiar-------
     esf = Column('esf', Integer) #Foreign Key, existe uma tabela de esf. Se a pessoa responder não, apenas deixar esse valor null.
 
-    #Características do domicílio e auxílios governamentais
+    #-------Características do domicílio e auxílios governamentais-------
     qntComodos = Column('qntComodos', Integer)
     aguaEncanada = Column('aguaEncanada', Boolean)
+
     recebeAuxilio = Column('recebeAuxilio', Boolean) #Indicar "pediu e não recebeu" como null?
-    quaisAuxilios = Column('quaisAuxilios', Enum(BeneficiosSociais)) 
+                                                     #Podemos indicar o "pediu e não recebeu" como true aqui e
+                                                     #se ele tiver algum auxilio, basta verificar registro na tabela
+    # quaisAuxilios = Column('quaisAuxilios', Enum(BeneficiosSociais)) #Vai sair
 
 
 #Problemas: Alguns campos com Enums são selects
