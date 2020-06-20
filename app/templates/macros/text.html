@@ -1,4 +1,7 @@
+{% from 'macros/mask.html' import mask with context %}
+
 {% macro text(input) %}
-    <input name="{{ input.name }}" type="text" placeholder="{{ input.placeholder }}"
-           class="form-control {{ 'is-required required' if input.required }} {{ input.class }}">
+    <input name="{{ input.name }}" type="text"
+           placeholder="{{ input.placeholder if input.placeholder else input.mask }}"
+           class="form-control {{ 'is-required required' if input.required }} {{ input.class }}" {{ mask(input) if input.mask }}>
 {% endmacro %}

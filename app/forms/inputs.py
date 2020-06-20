@@ -2,33 +2,35 @@ import models.enums_copia
 
 nome = {
     "name": "nome",
-    "label": "Qual o seu nome?",
+    "label": "Nome completo",
     "placeholder": "Nome do paciente",
     "required": True
 }
 
 cpf = {
     "name": "cpf",
-    "label": "Qual o seu CPF?",
-    "placeholder": "123456789-00",
-    "required": True
+    "label": "CPF",
+    "required": True,
+    "mask": "999.999.999-99"
 }
 
 telefone = {
     "name": "telefone",
-    "label": "Qual o seu número de telefone?",
-    "placeholder": "(12) 3456-7890"
+    "label": "Telefone",
+    "mask": "(99) 99999999?9",
+    "placeholder": "(99) 999999999"
 }
 
 aniversario = {
+    "type": "date",
     "name": "aniversario",
-    "label": "Qual a data do seu aniversário?"
+    "label": "Data de nascimento",
 }
 
 sexo = {
     "type": "radio",
     "name": "sexo",
-    "label": "Qual seu sexo?",
+    "label": "Sexo",
     "required": True,
     "options": [
         {
@@ -46,7 +48,7 @@ sexo = {
 raca = {
     "type": "radio",
     "name": "raca",
-    "label": "Qual sua raça?",
+    "label": "Raça",
     "required": True,
     "options": [
         {
@@ -69,7 +71,7 @@ raca = {
 
 comorbidades = {
     "name": "comorbidades",
-    "label": "Quais as suas comorbidades?",
+    "label": "Comorbidades",
     "type": "checkbox",
     "options": [
         {
@@ -94,7 +96,7 @@ dataPrimeiroSintoma = {
 }
 
 tiposdoencasCronicas = {
-    
+
 }
 
 doencaCronica = {
@@ -255,7 +257,7 @@ esf = {
         {
             "label": "Não opinou"
         }
-    ]    
+    ]
 }
 
 # Domicilio
@@ -405,7 +407,7 @@ recebeAuxilio = {
         {
             "label": "Já pedi mas ainda não recebi"
         }
-    ]    
+    ]
 }
 
 # Isolamento domiciliar - Lembrar de verificar o fluxo do isolamento domiciliar, proque a parte de manter quarentena aparece duas vezes em dois fluxos diferentes

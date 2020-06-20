@@ -39,12 +39,13 @@
                     <a href="/admin"><i class="fa fa-diamond"></i> <span class="nav-label">Tela Admin</span></a>
                 </li>
                 <li>
-                    <a href="/about"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Primeiro Atendimento</span><span
+                    <a href="/about"><i class="fa fa-bar-chart-o"></i> <span
+                            class="nav-label">Primeiro Atendimento</span><span
                             class="fa arrow"></span></a>
                 </li>
                 <li>
                     <a href="/logout">
-                        <i class="fa fa-sign-out"></i> 
+                        <i class="fa fa-sign-out"></i>
                         <span class="nav-label">Logout</span>
                         <span class="fa arrow"></span>
                     </a>
@@ -105,10 +106,14 @@
 <!-- Jquery Validate -->
 <script src="{{ url_for('static', filename='js/plugins/validate/jquery.validate.min.js') }}"></script>
 
+<!-- Input Mask-->
+<script src="{{ url_for('static', filename='js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+
 <script src="{{ url_for('static', filename='js/template.js') }}"></script>
 
 <!-- Tags Input -->
 <script src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+
 
 {#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
 
@@ -131,6 +136,16 @@
                 radio(event.target.parentElement.childNodes[0]);
             })
         })
+
+        {#$("input[name=cpf]").inputmask("999.999.999-99");#}
+
+        $('.input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: true,
+            calendarWeeks: true,
+            autoclose: true
+        });
     });
 
     function radio(input) {
