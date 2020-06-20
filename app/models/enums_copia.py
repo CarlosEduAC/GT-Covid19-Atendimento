@@ -24,8 +24,7 @@ doencasCronicas = {
     "dpoc" : "DPOC (Doença Pulmonar Obstrutiva Crônica)",
     "artrite" : "Artrite ou outras doenças reumáticas",
     "renal" : "Doença renal Crônica",
-    "hanseniase" : "Hanseníase",
-    "outros" : "Outros"
+    "hanseniase" : "Hanseníase"
 }
 
 parentesco = {
@@ -86,8 +85,7 @@ sintomas = {
     "perda_paladar_olfato" : "Perda de Paladar ou Olfato",
     "erupcao_cutanea" : "Erupção Cutânea",
     "descoloracao_dedos" : "Descoloração dos Dedos das Mãos e dos Pés",
-    "nao_apresentou" : "Não apresentou nenhum sintoma",
-    "outros" : "Outros"
+    "nao_apresentou" : "Não apresentou nenhum sintoma"
 }
 
 sintomasFamiliar = {
@@ -98,8 +96,7 @@ sintomasFamiliar = {
     "dor_garganta" : "Dor de garganta",
     "dificuldade_respirar" : "Dificuldade para respirar",
     "febre" : "Febre",
-    "nao_apresentou" : "Não apresentou nenhum sintoma",
-    "outros" : "Outros"
+    "nao_apresentou" : "Não apresentou nenhum sintoma"
 }
 
 indicadorMedicamento = {
@@ -118,4 +115,9 @@ orientacaoFinal = {
     "supervisor" : "Discussão do caso com o supervisor",
     "contato_servico" : "Contato com o serviço",
     "outros" : "Outros"
+}
+
+esf = {
+    "esf1": "ESF 1",
+    "esf2": "ESF 2"
 }

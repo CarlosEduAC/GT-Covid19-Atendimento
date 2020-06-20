@@ -19,6 +19,7 @@
     <link href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"
           rel="stylesheet">
     <link href="{{ url_for('static', filename='css/app.css') + "?v=0.6" }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
 </head>
 
 <body class="pace-done mini-navbar">
@@ -114,6 +115,8 @@
 <!-- Tags Input -->
 <script src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 
+<script src="{{ url_for('static', filename='js/plugins/chosen/chosen.jquery.js') }}"></script>
+
 
 {#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
 
@@ -130,6 +133,8 @@
         $('.tagsinput').tagsinput({
             tagClass: 'label label-primary'
         });
+
+        $('.chosen-select').chosen({width: "100%"});
 
         document.querySelectorAll(".iCheck-helper").forEach(function (input) {
             input.addEventListener("click", function (event) {

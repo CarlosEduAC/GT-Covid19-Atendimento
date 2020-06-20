@@ -10,7 +10,6 @@ fieldsetConjunto1 = {
 fieldsetConjunto2 = {
     "name": "Dados sobre saúde",
     "sections": [
-        condicaoclinica,
         doencasCronicas,
         medicamentos,
         esfReferencia,

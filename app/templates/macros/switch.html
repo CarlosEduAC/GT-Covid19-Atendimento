@@ -1,5 +1,13 @@
-{% macro switch(input) %}
-    <label for="{{ input.name }}">{{ input.label }} {{ '*' if input.required }}</label>
+{% macro switch(input, outros = False) %}
+    <div class="row">
+        <label for="{{ input.name }}">
+            {{ input.label }} {{ '*' if input.required }}
+            {% if not outros %}
+                <a href="#" onClick="window.open('/historico?idUsuario=1&inputName={{ input.name }}&label={{ input.label }}',
+                'pagename','resizable,height=260,width=370'); return false;"><i class="fa fa-history"></i></a>
+            {% endif %}
+        </label>
+    </div>
     {% if input.type == "radio" %}
         {% from 'macros/radio.html' import radio with context %}
         {{ radio(input) }}

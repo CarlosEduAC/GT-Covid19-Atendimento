@@ -1,7 +1,11 @@
 {% macro select(input) %}
-    <select class="form-control" name="{{ input.name }}">
+    <select class="{{ "chosen-select" if input.multiselect else "form-control" }}" name="{{ input.name }}" {{ "multiple" if input.multiselect}}>
         {% for option in input.options %}
-            <option value="{{ option.value }}">{{ option.label }}</option>
+            <option value="{{ option }}">{{ input.options[option] }}</option>
         {% endfor %}
     </select>
+
+    {% if input.outros %}
+        {{ switch(input.outros, outros = True) }}
+    {% endif %}
 {% endmacro %}

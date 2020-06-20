@@ -1,4 +1,4 @@
-import models.enums_copia
+import models.enums_copia as enum
 
 nome = {
     "name": "nome",
@@ -28,66 +28,33 @@ aniversario = {
 }
 
 sexo = {
-    "type": "radio",
+    "type": "select",
+    "multiselect": False,
     "name": "sexo",
     "label": "Sexo",
     "required": True,
-    "options": [
-        {
-            "label": "Masculino",
-        },
-        {
-            "label": "Feminino"
-        },
-        {
-            "label": "Não opinou"
-        }
-    ]
+    "options": enum.sexo
 }
 
 raca = {
-    "type": "radio",
+    "type": "select",
+    "multiselect": False,
     "name": "raca",
     "label": "Raça",
     "required": True,
-    "options": [
-        {
-            "label": "Negra",
-        },
-        {
-            "label": "Amarela"
-        },
-        {
-            "label": "Branca"
-        },
-        {
-            "label": "Parda"
-        },
-        {
-            "label": "Indígena"
-        }
-    ]
+    "options": enum.raca
 }
 
 comorbidades = {
     "name": "comorbidades",
     "label": "Comorbidades",
-    "type": "checkbox",
-    "options": [
-        {
-            "label": "Comorbidades 1",
-        },
-        {
-            "label": "Comorbidades 2",
-        },
-        {
-            "label": "Outros",
-            "field": {
-                "name": "comorbidadesField",
-                "placeholder": "Placeholder",
-            },
-        },
-    ]
+    "type": "select",
+    "multiselect": True,
+    "outros": {
+        "placeholder": "Outras comorbidades",
+        "class": "tagsinput"
+    },
+    "options": enum.doencasCronicas
 }
 
 dataPrimeiroSintoma = {
@@ -107,26 +74,7 @@ doencaCronica = {
         {
             "label": "Sim",
             "fields": [
-                {
-                    "name": "listaDoencasPaciente",
-                    "label": "Caso sim, qual(is)?",
-                    "type": "checkbox",
-                    "options": [
-                        {
-                            "label": "Crônica 1",
-                        },
-                        {
-                            "label": "Crônica 2",
-                        },
-                        {
-                            "label": "Outros",
-                            "field": {
-                                "name": "listaDoencasPacienteField",
-                                "placeholder": "Placeholder",
-                            },
-                        },
-                    ]
-                }
+               comorbidades
             ]
         },
         {
@@ -140,7 +88,7 @@ doencaCronica = {
 
 listaMedicamentosPaciente = {
     "name": "listaMedicamentosPaciente",
-    "label": "Caso sim, qual(is)?",
+    "label": "Qual(is)?",
     "class": "tagsinput"
 }
 
@@ -158,27 +106,11 @@ tmpRemedioPaciente = {
 }
 
 quemIndicouRemedioPaciente = {
-    "type": "radio",
+    "type": "select",
     "name": "quemIndicouRemedioPaciente",
-    "label": "Caso sim, quem?",
+    "label": "Quem?",
     "required": True,
-    "options": [
-        {
-            "label": "Médico"
-        },
-        {
-            "label": "Enfermeiro"
-        },
-        {
-            "label": "Vizinho/Familiar/Amigo/Conhecido"
-        },
-        {
-            "label": "Dentista"
-        },
-        {
-            "label": "Outros"
-        }
-    ]
+    "options": enum.indicadorMedicamento
 }
 
 indicouRemedioPaciente = {
@@ -237,17 +169,10 @@ esf = {
             "fields": [
                 {
                     "name": "esfDescricao",
-                    "label": "Se sim, qual?",
-                    "type": "radio",
+                    "label": "Qual?",
+                    "type": "select",
                     "required": True,
-                    "options": [
-                        {
-                            "label": "ESF 1"
-                        },
-                        {
-                            "label": "ESF 2"
-                        }
-                    ]
+                    "options": enum.esf
                 }
             ]
         },
@@ -269,7 +194,9 @@ endereco = {
 
 qntPessoasMesmoDomicilio = {
     "name": "qntPessoasMesmoDomicilio",
-    "label": "Quantas pessoas moram com você?"
+    "label": "Quantas pessoas moram com você?",
+    "mask": "9?9",
+    "placeholder": "1"
 }
 
 qualRelacao = {
@@ -286,17 +213,11 @@ familiarDoencaCronica = {
         {
             "label": "Sim",
             "fields": [
-                {
-                    "name": "quaisDoencasCronicas",
-                    "label": "Caso sim, quem e qual(is) doença crônica apresenta?"
-                }
+                comorbidades
             ]
         },
         {
             "label": "Não"
-        },
-        {
-            "label": "Não se aplica, mora sozinho"
         }
     ]
 }
@@ -313,7 +234,7 @@ mulherGravida = {
             "fields": [
                 {
                     "name": "nomeMulheresGravidas",
-                    "label": "Se sim, quem?"
+                    "label": "Quem?"
                 }
             ]
         },
@@ -353,6 +274,8 @@ qntComodos = {
     "name": "qntComodos",
     "label": "Quantos cômodos tem a sua casa?",
     "required": True,
+    "mask": "9?9",
+    "placeholder": "1"
 }
 
 aguaEncanada = {
@@ -382,22 +305,9 @@ recebeAuxilio = {
                 {
                     "name": "quaisAuxilios",
                     "label": "Quais?",
-                    "type": "checkbox",
-                    "options": [
-                        {
-                            "label": "Auxílio 1",
-                        },
-                        {
-                            "label": "Auxílio 2",
-                        },
-                        {
-                            "label": "Outros",
-                            "field": {
-                                "name": "recebeAuxilioField",
-                                "placeholder": "Placeholder",
-                            },
-                        },
-                    ]
+                    "type": "select",
+                    "options": enum.beneficiosSociais,
+                    "multiselect": True
                 }
             ]
         },
@@ -414,35 +324,15 @@ recebeAuxilio = {
 
 motivosSairDeCasa = {
     "name": "motivosSairDeCasa",
-    "type": "checkbox",
+    "type": "select",
+    "multiselect": True,
     "label": "Se não: quais são os motivos para sair de casa?",
-    "options": [
-        {
-            "label": "Ir ao supermercado ou a farmácia",
-        },
-        {
-            "label": "Trabalhar",
-        },
-        {
-            "label": "Ir a banco/caixas eletrônicos",
-        },
-        {
-            "label": "Ir a casa de familiares e amigos",
-        },
-        {
-            "label": "Trabalho voluntário",
-        },
-        {
-            "label": "Ir a consultas médicas/fazer exames diagnósticos/tratamentos",
-        },
-        {
-            "label": "Outros",
-            "field": {
-                "name": "motivosSairDeCasaField",
-                "placeholder": "Placeholder",
-            },
-        },
-    ]
+    "options": enum.motivosSair,
+    "outros": {
+        "name": "motivosSairDeCasaField",
+        "placeholder": "Outros motivos",
+        "class": "tagsinput"
+    }
 }
 
 consegueManterQuarentena = {
@@ -535,11 +425,6 @@ consegueIsolamentoDomiciliar = {
             "label": "Não",
             "fields": [
                 porqueNaoMantemIsolamento
-            ]
-        },
-        {
-            "label": "Não se aplica, mora sozinho",
-            "fields": [
             ]
         }
     ],
@@ -653,59 +538,15 @@ recebeuVisita = {
 
 apresentouSintomasCovid19 = {
     "name": "apresentouSintomasCovid19",
-    "type": "checkbox",
+    "type": "select",
+    "multiselect": True,
     "label": "O Sr/Srª apresentou algum dos sintomas abaixo nos últimos dias (desde do último atendimento em saúde, por exemplo)?",
-    "options": [
-        {
-            "label": "Febre",
-        },
-        {
-            "label": "Cansaço",
-        },
-        {
-            "label": "Tosse Seca",
-        },
-        {
-            "label": "Mialgia",
-        },
-        {
-            "label": "Fadiga",
-        },
-        {
-            "label": "Congestão Nasal",
-        },
-        {
-            "label": "Dor de Cabeça",
-        },
-        {
-            "label": "Conjutivite",
-        },
-        {
-            "label": "Dor de Garganta",
-        },
-        {
-            "label": "Diarréia",
-        },
-        {
-            "label": "Perda de Paladar ou Olfato",
-        },
-        {
-            "label": "Erupção Cutânea",
-        },
-        {
-            "label": "Descoloração dos Dedos das Mãos e dos Pés",
-        },
-        {
-            "label": "Não apresentou nenhum sintoma",
-        },
-        {
-            "label": "Outros",
-            "field": {
-                "name": "sintomaCovid19Field",
-                "placeholder": "Placeholder",
-            },
-        },
-    ]
+    "options": enum.sintomas,
+    "outros": {
+        "name": "sintomaCovid19Field",
+        "placeholder": "Outros sintomas",
+        "class": "tagsinput"
+    }
 }
 
 apresentouFebreQuantosGraus = {
@@ -722,36 +563,14 @@ qualMedicamentoTomou = {
 
 quemIndicouMedicamento = {
     "name": "quemIndicouMedicamento",
-    "type": "radio",
+    "type": "select",
     "label": "Quem indicou o uso desse medicamento?",
     "required": True,
-    "options": [
-        {
-            "label": "Médico",
-        },
-        {
-            "label": "Enfermeiro"
-        },
-        {
-            "label": "Vizinho/Familiar/Amigo/Conhecido",
-        },
-        {
-            "label": "Dentista"
-        },
-        {
-            "label": "Tomou por conta própria"
-        },
-        {
-            "label": "Outro",
-            "fields": [
-                {
-                    "label": "Quem?",
-                    "name": "quemIndicouField",
-                    "placeholder": "Placeholder",
-                }
-            ]
-        }
-    ],
+    "options": enum.indicadorMedicamento,
+    "outros": {
+        "name": "quemIndicouField",
+        "placeholder": "Outro indicador",
+    }
 }
 
 comoTomaMedicamento = {
@@ -792,42 +611,16 @@ quemApresentouSintomas = {
 
 quaisSintomasApresentou = {
     "name": "quaisSintomasApresentou",
-    "type": "radio",
+    "type": "select",
+    "multiselect": True,
     "label": "Quais sintomas?",
     "required": True,
-    "options": [
-        {
-            "label": "Tosse",
-        },
-        {
-            "label": "Dor de cabeça ou no corpo",
-        },
-        {
-            "label": "Fadiga",
-        },
-        {
-            "label": "Coriza",
-        },
-        {
-            "label": "Dor de garganta",
-        },
-        {
-            "label": "Dificuldade para respirar",
-        },
-        {
-            "label": "Febre",
-        },
-        {
-            "label": "Não apresentou nenhum sintoma",
-        },
-        {
-            "label": "Outros",
-            "field": {
-                "name": "sintomaCovid19Field",
-                "placeholder": "Placeholder",
-            },
-        },
-    ]
+    "options": enum.sintomas,
+    "outros": {
+        "name": "sintomaCovid19Field",
+        "placeholder": "Outros sintomas",
+        "class": "tagsinput"
+    }
 }
 
 seFebreDeQuanto = {
@@ -870,32 +663,14 @@ alguemMaisApresentaSintomaEmCasa = {
 
 orientacaoFinal = {
     "name": "orientacaoFinal",
-    "type": "checkbox",
+    "type": "select",
+    "multiselect": True,
     "label": "Orientação final",
-    "options": [
-        {
-            "label": "Encaminhamento para avaliação presencial",
-        },
-        {
-            "label": "Acompanhamento telefônico em 24 horas",
-        },
-        {
-            "label": "Acompanhamento telefônico em 48 horas",
-        },
-        {
-            "label": "Discussão do caso com o supervisor",
-        },
-        {
-            "label": "Contato com o serviço",
-        },
-        {
-            "label": "Outros",
-            "field": {
-                "name": "outroAtendimentoField",
-                "placeholder": "Placeholder",
-            },
-        },
-    ]
+    "options": enum.orientacaoFinal,
+    "outros": {
+        "name": "outroAtendimentoField",
+        "placeholder": "Outras orientações finais",
+    }
 }
 
 anotarOrientacoes = {
