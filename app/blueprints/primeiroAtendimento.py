@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from forms.fieldsets import *
 from controller.primeiroAtendimento import registrar
+from datetime import datetime
 
 primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 
@@ -15,8 +16,8 @@ def index():
             fieldsetConjunto4,
             fieldsetConjunto5,
             fieldsetConjunto6,
-        ])
+        ], now=datetime.today().strftime('%d/%m/%Y'))
     elif request.method == 'POST':
         registrar(request.form)
-    
+
         return redirect(url_for('PrimeiroAtendimento.index'))

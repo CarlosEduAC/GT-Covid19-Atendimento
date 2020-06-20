@@ -9,6 +9,9 @@
     {% elif input.type == "select" %}
         {% from 'macros/select.html' import select with context %}
         {{ select(input) }}
+    {% elif input.type == "date" %}
+        {% from 'macros/date.html' import date with context %}
+        {{ date(input) }}
     {% else %}
         {% from 'macros/text.html' import text with context %}
         {{ text(input) }}
