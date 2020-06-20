@@ -1,3 +1,5 @@
+import models.enums_copia
+
 nome = {
     "name": "nome",
     "label": "Qual o seu nome?",
