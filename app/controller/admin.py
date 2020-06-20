@@ -1,5 +1,6 @@
 from controller.database import Database
 from models.models import AdmSaude, TemposContatoAcompanhamento, EstrategiaSaudeFamiliar, Paciente
+from werkzeug.security import generate_password_hash
 
 def getUsers():
     try:
@@ -14,7 +15,7 @@ def removeUser(id):
     db.delete(AdmSaude, id)
 
 
-def updateUser(id, name, crm, cpf, supervisor):
+def updateUser(id, name, crm, cpf, supervisor, senha):
 
     db = Database()
 
@@ -23,35 +24,8 @@ def updateUser(id, name, crm, cpf, supervisor):
     db.updateData(AdmSaude, {'name' : name,
                              'crm' : crm,
                              'cpf' : cpf,
-                             'supervisor' : supervisor}, id)
-
-
-def getPacientes():
-    try:
-        db = Database()
-
-        return db.selectAllData(Paciente)
-    except:
-        return [] 
-
-def removePaciente(id):
-    db = Database()
-    db.delete(Paciente, id)
-
-
-def updatePaciente(id, nome, cpf, sexo, raca, dataNasc):
-
-    db = Database()
-
-    #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
-
-    db.updateData(Paciente, {'nome' : nome,
-                             'cpf' : cpf,
-                             'sexo' : sexo,
-                             'raca' : raca,
-                             'dataNasc' : dataNasc}, id)
-
-
+                             'supervisor' : supervisor,
+                             'senha' : generate_password_hash(senha)}, id)
 
 # A princípio, a tabela TemposContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.

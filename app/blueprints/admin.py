@@ -1,15 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf, getPacientes
+from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf
+from dao.paciente import getPacientes
 from flask_login import login_required, LoginManager, current_user
 
 menuAdmin = Blueprint('admin', __name__)
 
 @menuAdmin.route('/admin', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def admin():
 
-    if not current_user.supervisor:
-        return redirect(url_for('MenuAtendente.index'))
+    #if not current_user.supervisor:
+    #    return redirect(url_for('MenuAtendente.index'))
 
     if request.method == 'POST':
         intervalo = request.form['intervalo']
@@ -48,8 +49,9 @@ def update():
         crm = request.form['crm']
         cpf = request.form['cpf']                
         supervisor = 'supervisor' in request.form
+        senha = request.form['senha']
 
-        updateUser(id, name, crm, cpf, supervisor)    
+        updateUser(id, name, crm, cpf, supervisor, senha)    
 
     return redirect(url_for('admin.admin'))
 
