@@ -10,6 +10,7 @@ primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 def index():
     if request.method == 'GET':
         return render_template('form.html', fieldsets=[
+            fieldsetConjunto0,
             fieldsetConjunto1,
             fieldsetConjunto2,
             fieldsetConjunto3,

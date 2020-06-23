@@ -1,3 +1,10 @@
+opcoesTentativa = {
+    "naoatende" : "Não atende o telefone",
+    "naoestava" : "O usuário não estava em casa",
+    "naodisponivel" : "O usuário estava em casa mas não disponível para o atendimento",
+    "recusou" : "Recusou o atendimento"
+}
+
 raca = {
     "negra" : "Negra",
     "amarela" : "Amarela",

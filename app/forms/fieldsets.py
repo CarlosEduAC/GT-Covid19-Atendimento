@@ -1,5 +1,12 @@
 from .sections import *
 
+fieldsetConjunto0 = {
+    "name": "Tentativa",
+    "sections": [
+        tentativa,
+    ],
+}
+
 fieldsetConjunto1 = {
     "name": "Dados pessoais",
     "sections": [
