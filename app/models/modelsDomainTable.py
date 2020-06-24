@@ -84,7 +84,6 @@ class Sintoma(Base, SerializerMixin):
     def __init__(self, value):
         self.value = value
 
-
 class SintomaFamiliar(Base, SerializerMixin):
     __tablename__ = 'sintomasFamiliar'
 
@@ -104,20 +103,10 @@ class IndicadorMedicamento(Base, SerializerMixin):
     def __init__(self, value):
         self.value = value
 
-
 class OrientacaoFinal(Base, SerializerMixin):
     __tablename__ = 'orientacaoFinal'
 
     id = Column('orientacao_final_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-class Esf(Base, SerializerMixin):
-    __tablename__ = 'esf'
-
-    id = Column('esf_id', Integer, primary_key=True)
     value = Column('value', String(150, 'utf8_bin'))
 
     def __init__(self, value):

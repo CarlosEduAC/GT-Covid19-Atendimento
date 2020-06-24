@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy_serializer import SerializerMixin
 from flask_login import UserMixin # userMinx me permite herdar os metodos is_authenticated e os outros que flask login exige que tenha 
 from datetime import datetime
-from models.enums import Parentesco, DoencasCronicas, MotivosSair, Sintomas, IndicadorMedicamento, SintomasFamiliar, OrientacaoFinal, BeneficiosSociais
 
 import base64
 
@@ -49,11 +48,11 @@ class Paciente(Base, SerializerMixin):
         self.raca = raca
         self.dataNasc = dataNasc
    
-class Comorbidade(Base, SerializerMixin):
-    __tablename__ = 'comorbidades'
+# class Comorbidade(Base, SerializerMixin):
+#     __tablename__ = 'comorbidades'
 
-    idComorbidades = Column(Integer, primary_key=True)
-    Descricao = Column(String(150, 'utf8_bin'), nullable=False)
+#     idComorbidades = Column(Integer, primary_key=True)
+#     Descricao = Column(String(150, 'utf8_bin'), nullable=False)
 
 #==================================================
 # Tabelas adicionadas para a tela de adm
@@ -197,3 +196,4 @@ class AtendimentoInicial(Base, SerializerMixin):
 
 
 #Problemas: Alguns campos com Enums são selects
+

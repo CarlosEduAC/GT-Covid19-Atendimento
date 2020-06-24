@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine 
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
+#DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
+DATABASE_URL = 'mysql+pymysql://root:123456@localhost:3306/atendimento_covid_teste'
+
 
 class Database():
     engine = create_engine(DATABASE_URL, echo=False) # A nossa ponte de conexão entre o Python e o Banco.

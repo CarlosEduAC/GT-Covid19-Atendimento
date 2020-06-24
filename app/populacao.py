@@ -1,7 +1,9 @@
-from app.models.modelsDomainTable import *
-from app.controller.database import Database
+from models.modelsDomainTable import *
+from controller.database import Database
 
 dbHelper = Database()
+
+Base.metadata.create_all(bind=dbHelper.engine)
 
 # Opcoes Tentativa
 dbHelper.saveList(OpcaoTentativa, [
@@ -91,7 +93,7 @@ dbHelper.saveList(MotivoSair, [
 ])
 
 # Sintomas
-dbHelper.saveList(SintomaFamiliar, [
+dbHelper.saveList(Sintoma, [
     "Febre",
     "Cansaço",
     "Tosse Seca",
@@ -138,10 +140,4 @@ dbHelper.saveList(OrientacaoFinal, [
     "Discussão do caso com o supervisor",
     "Contato com o serviço",
     "Outros"
-])
-
-# Estrategia de Saude Familiar
-dbHelper.saveList(Esf, [
-    "ESF 1",
-    "ESF 2"
 ])
