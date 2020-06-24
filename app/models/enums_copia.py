@@ -34,7 +34,7 @@ doencasCronicas = {
     "hanseniase" : "Hanseníase"
 }
 
-parentesco = {
+parentescos = {
     "pais" : "Pai/Mãe",
     "filho" : "Filho/Filha",
     "enteado" : "Enteado/Enteada",
@@ -106,7 +106,7 @@ sintomasFamiliar = {
     "nao_apresentou" : "Não apresentou nenhum sintoma"
 }
 
-indicadorMedicamento = {
+indicadoresMedicamento = {
     "medico" : "Médico",
     "enfermeiro" : "Enfermeiro",
     "vizinho_familiar_amigo_conhecido" : "Vizinho/Familiar/Amigo/Conhecido",

@@ -17,7 +17,7 @@ def index():
             fieldsetConjunto4,
             fieldsetConjunto5,
             fieldsetConjunto6,
-        ], now=datetime.today().strftime('%d/%m/%Y'))
+        ], now=datetime.today().strftime('%d/%m/%Y'), primeiroAtendimento =True)
     elif request.method == 'POST':
         registrar(request.form)
 

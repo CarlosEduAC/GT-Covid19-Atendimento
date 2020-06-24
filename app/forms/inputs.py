@@ -1,4 +1,7 @@
-import models.enums_copia as enum
+from controller.database import Database
+from models.modelsDomainTable import *
+
+dbHelper = Database()
 
 # Tentativa
 
@@ -11,7 +14,7 @@ opcoesTentativa = {
         "placeholder": "Outro motivo",
         "class": "tagsinput"
     },
-    "options": enum.opcoesTentativa
+    "options": dbHelper.selectAllData(OpcaoTentativa)
 }
 
 realizaTentativa = {
@@ -68,7 +71,7 @@ sexo = {
     "name": "sexo",
     "label": "Sexo",
     "required": True,
-    "options": enum.sexo
+    "options": dbHelper.selectAllData(Sexo)
 }
 
 raca = {
@@ -77,7 +80,7 @@ raca = {
     "name": "raca",
     "label": "Raça",
     "required": True,
-    "options": enum.raca
+    "options": dbHelper.selectAllData(Raca)
 }
 
 comorbidades = {
@@ -89,7 +92,7 @@ comorbidades = {
         "placeholder": "Outras comorbidades",
         "class": "tagsinput"
     },
-    "options": enum.doencasCronicas
+    "options": dbHelper.selectAllData(DoencaCronica)
 }
 
 dataPrimeiroSintoma = {
@@ -145,7 +148,7 @@ quemIndicouRemedioPaciente = {
     "name": "quemIndicouRemedioPaciente",
     "label": "Quem?",
     "required": True,
-    "options": enum.indicadorMedicamento
+    "options": dbHelper.selectAllData(IndicadorMedicamento)
 }
 
 indicouRemedioPaciente = {
@@ -207,7 +210,7 @@ esf = {
                     "label": "Qual?",
                     "type": "select",
                     "required": True,
-                    "options": enum.esf
+                    "options": dbHelper.selectAllData(Esf)
                 }
             ]
         },
@@ -341,7 +344,7 @@ recebeAuxilio = {
                     "name": "quaisAuxilios",
                     "label": "Quais?",
                     "type": "select",
-                    "options": enum.beneficiosSociais,
+                    "options": dbHelper.selectAllData(BeneficioSocial),
                     "multiselect": True
                 }
             ]
@@ -362,7 +365,7 @@ motivosSairDeCasa = {
     "type": "select",
     "multiselect": True,
     "label": "Se não: quais são os motivos para sair de casa?",
-    "options": enum.motivosSair,
+    "options": dbHelper.selectAllData(MotivoSair),
     "outros": {
         "name": "motivosSairDeCasaField",
         "placeholder": "Outros motivos",
@@ -576,7 +579,7 @@ apresentouSintomasCovid19 = {
     "type": "select",
     "multiselect": True,
     "label": "O Sr/Srª apresentou algum dos sintomas abaixo nos últimos dias (desde do último atendimento em saúde, por exemplo)?",
-    "options": enum.sintomas,
+    "options": dbHelper.selectAllData(Sintoma),
     "outros": {
         "name": "sintomaCovid19Field",
         "placeholder": "Outros sintomas",
@@ -601,7 +604,7 @@ quemIndicouMedicamento = {
     "type": "select",
     "label": "Quem indicou o uso desse medicamento?",
     "required": True,
-    "options": enum.indicadorMedicamento,
+    "options": dbHelper.selectAllData(IndicadorMedicamento),
     "outros": {
         "name": "quemIndicouField",
         "placeholder": "Outro indicador",
@@ -650,7 +653,7 @@ quaisSintomasApresentou = {
     "multiselect": True,
     "label": "Quais sintomas?",
     "required": True,
-    "options": enum.sintomas,
+    "options": dbHelper.selectAllData(Sintoma),
     "outros": {
         "name": "sintomaCovid19Field",
         "placeholder": "Outros sintomas",
@@ -701,7 +704,7 @@ orientacaoFinal = {
     "type": "select",
     "multiselect": True,
     "label": "Orientação final",
-    "options": enum.orientacaoFinal,
+    "options": dbHelper.selectAllData(OrientacaoFinal),
     "outros": {
         "name": "outroAtendimentoField",
         "placeholder": "Outras orientações finais",

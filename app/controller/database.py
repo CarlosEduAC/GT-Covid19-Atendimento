@@ -13,6 +13,13 @@ class Database():
         session = self.Session()
         session.add(data)
         session.commit()
+
+    # Salva objetos a partir de uma lista
+    # (dataList é a lista de objetos que vamos salvar)
+    def saveList(self, model, dataList) -> None:
+        for elem in dataList:
+            self.saveData(model(elem))
+
     
     # Salva uma lista de dados 
     # (data é o objeto que vamos salvar)
@@ -35,7 +42,7 @@ class Database():
             session.commit()
             return [r.to_dict() for r in result]
     
-    # Retorna todas as linhas da Tabela indicada.
+    # Retorna a primeira linha da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectData(self, model): 
         session = self.Session()
