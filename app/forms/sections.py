@@ -1,5 +1,12 @@
 from .inputs import *
 
+tentativa = {
+    "name": "Tentativa",
+    "inputs": [
+        realizaTentativa
+    ]
+}
+
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [

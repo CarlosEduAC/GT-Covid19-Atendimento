@@ -1,5 +1,40 @@
 import models.enums_copia as enum
 
+# Tentativa
+
+opcoesTentativa = {
+    "name": "opcoesTentativa",
+    "label": "Motivos de falha no contato",
+    "type": "select",
+    "multiselect": True,
+    "outros": {
+        "placeholder": "Outro motivo",
+        "class": "tagsinput"
+    },
+    "options": enum.opcoesTentativa
+}
+
+realizaTentativa = {
+    "name": "realizaTentativa",
+    "label": "Conseguiu iniciar o atendimento?",
+    "type": "radio",
+    "required": True,
+    "options": [
+        {
+            "label": "Sim",
+        },
+        {
+            "label": "Não",
+            "fields": [
+               opcoesTentativa
+            ]
+        }
+    ]
+}
+
+
+# Dados básicos
+
 nome = {
     "name": "nome",
     "label": "Nome completo",
