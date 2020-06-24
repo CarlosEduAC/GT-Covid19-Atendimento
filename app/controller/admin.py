@@ -1,6 +1,8 @@
 from controller.database import Database
-from models.models import AdmSaude, TemposContatoAcompanhamento, EstrategiaSaudeFamiliar, Paciente
+from models.models import AdmSaude, TemposContatoAcompanhamento, Paciente
+from models.modelsDomainTable import EstrategiaSaudeFamiliar
 from werkzeug.security import generate_password_hash
+
 
 def getUsers():
     try:
@@ -8,7 +10,8 @@ def getUsers():
 
         return db.selectAllData(AdmSaude)
     except:
-        return [] 
+        return []
+
 
 def removeUser(id):
     db = Database()
@@ -16,16 +19,16 @@ def removeUser(id):
 
 
 def updateUser(id, name, crm, cpf, supervisor, senha):
-
     db = Database()
 
-    #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
+    # new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
 
-    db.updateData(AdmSaude, {'name' : name,
-                             'crm' : crm,
-                             'cpf' : cpf,
-                             'supervisor' : supervisor,
-                             'senha' : generate_password_hash(senha)}, id)
+    db.updateData(AdmSaude, {'name': name,
+                             'crm': crm,
+                             'cpf': cpf,
+                             'supervisor': supervisor,
+                             'senha': generate_password_hash(senha)}, id)
+
 
 # A princípio, a tabela TemposContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.
@@ -37,20 +40,22 @@ def getTimes():
     times = times[0]
     return times["intervalo_contato"], times["tempo_maximo_acompanhamento"]
 
+
 def updateTimes(intervalo, maximo):
     db = Database()
     id = db.selectAllData(TemposContatoAcompanhamento)[0]['id']
-    
+
     db.updateData(TemposContatoAcompanhamento, TemposContatoAcompanhamento(intervalo, maximo), id)
 
-#==================================================
+
+# ==================================================
 
 def getEsf():
     db = Database()
     return db.selectAllData(EstrategiaSaudeFamiliar)
 
-def newEsf(name):
 
+def newEsf(name):
     esf = EstrategiaSaudeFamiliar(name)
 
     db = Database()

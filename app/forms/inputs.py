@@ -29,12 +29,11 @@ realizaTentativa = {
         {
             "label": "Não",
             "fields": [
-               opcoesTentativa
+                opcoesTentativa
             ]
         }
     ]
 }
-
 
 # Dados básicos
 
@@ -112,7 +111,7 @@ doencaCronica = {
         {
             "label": "Sim",
             "fields": [
-               comorbidades
+                comorbidades
             ]
         },
         {
@@ -210,7 +209,7 @@ esf = {
                     "label": "Qual?",
                     "type": "select",
                     "required": True,
-                    "options": dbHelper.selectAllData(Esf)
+                    "options": dbHelper.selectAllData(EstrategiaSaudeFamiliar)
                 }
             ]
         },

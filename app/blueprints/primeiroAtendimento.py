@@ -9,7 +9,14 @@ primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 @primeiroAtendimento.route('/primeiroAtendimento', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('form.html', fieldsets=[
+        form = {
+            "label": "Formulário Primeiro Atendimento",
+            "desc": "Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário",
+            "action": "/primeiroAtendimento",
+            "primeiroAtendimento": True,
+        }
+
+        fieldsets = [
             fieldsetConjunto0,
             fieldsetConjunto1,
             fieldsetConjunto2,
@@ -17,7 +24,9 @@ def index():
             fieldsetConjunto4,
             fieldsetConjunto5,
             fieldsetConjunto6,
-        ], now=datetime.today().strftime('%d/%m/%Y'), primeiroAtendimento =True)
+        ]
+
+        return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'))
     elif request.method == 'POST':
         registrar(request.form)
 

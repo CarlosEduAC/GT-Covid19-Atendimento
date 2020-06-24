@@ -7,11 +7,11 @@
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h3 style="font-weight: 400;">Formulário Primeiro Atendimento</h3>
-                    <p>Este é o formulário a ser preenchido no primeiro contato telefônico com o usuário</p>
+                    <h3 style="font-weight: 400;">{{ form.label }}</h3>
+                    <p>{{ form.desc }}</p>
                 </div>
                 <div class="ibox-content p-0 p-md-4">
-                    <form id="form" action="/primeiroAtendimento" method="POST" class="wizard-big">
+                    <form id="form" action="{{ form.action }}" method="POST" class="wizard-big">
                         {% for fieldset in fieldsets %}
                             <h1>{{ fieldset.name }}</h1>
                             <fieldset class="w-100 p-0 p-md-4">
@@ -24,7 +24,7 @@
                                                 {% for input in section.inputs %}
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
-                                                            {{ switch(input, primeiroAtendimento = primeiroAtendimento) }}
+                                                            {{ switch(input, primeiroAtendimento = form.primeiroAtendimento) }}
                                                         </div>
                                                     </div>
                                                 {% endfor %}
