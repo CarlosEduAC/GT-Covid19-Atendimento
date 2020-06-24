@@ -21,17 +21,12 @@
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
-                <div class="ibox">
-                    <div class="ibox-content">
-                        <form id="form" action="{{ form.action }}" method="POST" class="wizard-big">
-                            {% for field in fieldsets %}
-                                <h1>{{ field.name }}</h1>
-                                <br>
-                                {{ fieldset(field) }}
-                            {% endfor %}
-                        </form>
-                    </div>
-                </div>
+                <form id="form" action="{{ form.action }}" method="POST" class="wizard-big">
+                    {% for field in fieldsets %}
+                        <h1>{{ field.name }}</h1>
+                        {{ fieldset(field) }}
+                    {% endfor %}
+                </form>
             </div>
         </div>
     </div>
