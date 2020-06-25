@@ -14,15 +14,27 @@
     <link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
-          rel="stylesheet">
+    {#    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"#}
+    {#          rel="stylesheet">#}
     <link href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"
           rel="stylesheet">
     <link href="{{ url_for('static', filename='css/app.css') + "?v=0.6" }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='ui/components/transition.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/form.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/dropdown.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/checkbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/icon.min.css') }}" rel="stylesheet">
+
     <style>
         .wizard > .content {
             background: unset;
+            overflow: unset;
+        }
+
+        .ui.form .field:last-child {
+            margin-bottom: 1em;
         }
     </style>
 </head>
@@ -78,6 +90,8 @@
 
         {% block conteudo %} {% endblock %}
 
+        <br>
+
         <div class="footer">
             <div class="float-right">
                 <strong>Copyright</strong> Universidade Federal Fluminense &copy; 2020
@@ -123,6 +137,11 @@
 <script src="{{ url_for('static', filename='js/plugins/chosen/chosen.jquery.js') }}"></script>
 
 
+<script src="{{ url_for('static', filename='ui/components/transition.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/form.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/dropdown.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/checkbox.min.js') }}"></script>
+
 {#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
 
 <script>
@@ -156,6 +175,27 @@
             calendarWeeks: true,
             autoclose: true
         });
+
+
+        $('.ui.dropdown.single').dropdown({
+            onChange: function (value, text, $selectedItem) {
+                const name = $selectedItem.attr('data-name');
+
+                $selectedItem
+                    .closest('.gt-group')
+                    .find(`div[data-name='${name}']:not(.item)`)
+                    .addClass('offscreen')
+
+                $(`div[data-name='${name}'][data-value='${value}']:not(.item)`)
+                    .removeClass('offscreen')
+            }
+        });
+
+        $('.ui.dropdown.multiple').dropdown({
+            allowAdditions: true,
+        });
+
+        $('.ui.checkbox').checkbox();
     });
 
     function radio(input) {

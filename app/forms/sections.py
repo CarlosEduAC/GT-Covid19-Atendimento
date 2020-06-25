@@ -1,16 +1,17 @@
 from .inputs import *
+from forms.inputs_test.dados_basicos import *
 
 tentativa = {
     "name": "Tentativa",
     "inputs": [
-        realizaTentativa
+        select_realizar_tentativa
     ]
 }
 
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        doencaCronica,
+        select_doenca_cronica,
         dataPrimeiroSintoma
     ]
 }
@@ -18,14 +19,14 @@ doencasCronicas = {
 medicamentos = {
     "name": "Medicamentos",
     "inputs": [
-        checkRemedioPaciente
+        toma_medicamento_diariamente
     ]
 }
 
 esfReferencia = {
     "name": "ESF de Referência",
     "inputs": [
-        esf
+        select_estrategia_saude_familia
     ]
 }
 
@@ -35,7 +36,7 @@ informacoesBasicas = {
         nome,
         cpf,
         telefone,
-        aniversario,
+        nascimento,
         sexo,
         raca,
         endereco
@@ -45,23 +46,23 @@ informacoesBasicas = {
 domicilio = {
     "name": "Domicílio",
     "inputs": [
-        moraSozinho
+        select_mora_sozinho
     ]
 }
 
 caracteristicasDomicilioAuxilio = {
     "name": "Características do domicílio e auxílios governamentais",
     "inputs": [
-        qntComodos,
-        aguaEncanada,
-        recebeAuxilio
+        qnt_comodos,
+        select_agua_encanada,
+        select_auxilios
     ]
 }
 
 isolamentoDomiciliar = {
     "name": "Isolamento Domiciliar",
     "inputs": [
-        consegueIsolamentoDomiciliar,
+        select_isolamento_domiciliar,
         consegueManterQuarentena
     ]
 }
@@ -69,7 +70,7 @@ isolamentoDomiciliar = {
 visitas = {
     "name": "Visitas",
     "inputs": [
-        recebeuVisita,
+        select_recebeu_visitas,
     ]
 }
 

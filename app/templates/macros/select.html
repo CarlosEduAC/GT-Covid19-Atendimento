@@ -1,12 +1,28 @@
 {% macro select(input) %}
+    <div class="gt-group">
+        <div class="field">
+            <label>{{ input.label }}</label>
+            <div class="ui selection dropdown {{ 'multiple fluid search' if input.multiple else 'single' }}">
+                <input type="hidden" name="{{ input.name }}">
+                <i class="dropdown icon"></i>
+                <div class="default text">{{ input.placeholder if input.placeholder else 'Selecione...' }}</div>
+                <div class="menu">
+                    {% for opt in input.options %}
+                        <div class="item" data-name="{{ input.name }}"
+                             data-value="{{ opt.id if opt.id else loop.index }}">{{ opt.value }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
 
-    <select class="{{ "chosen-select" if input.multiselect else "form-control" }}" name="{{ input.name }}" {{ "multiple" if input.multiselect}}>
-        {% for option in input.options %}
-            <option value="{{ option.id }}">{{ option.value }}</option>
+        {% for opt in input.options %}
+            {% if opt.fields %}
+                <div data-name="{{ input.name }}" data-value="{{ opt.id if opt.id else loop.index }}" class="offscreen">
+                    {% for field in opt.fields %}
+                        {{ switch(field) }}
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% endfor %}
-    </select>
-
-    {% if input.outros %}
-        {{ switch(input.outros, outros = True) }}
-    {% endif %}
+    </div>
 {% endmacro %}

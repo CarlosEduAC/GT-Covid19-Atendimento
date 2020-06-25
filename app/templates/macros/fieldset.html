@@ -1,23 +1,21 @@
 {% macro fieldset(field) %}
     <fieldset class="p-0 w-100 h-100">
-        {% for section in field.sections %}
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox mb-2">
-                        <div class="ibox-content">
-                            <h3 class="m-t-none m-b">{{ section.name }}</h3>
-                            <div class="hr-line-dashed"></div>
-                            {% for input in section.inputs %}
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        {{ switch(input, primeiroAtendimento = form.primeiroAtendimento) }}
-                                    </div>
-                                </div>
-                            {% endfor %}
+        <div class="ui form">
+            {% for section in field.sections %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox mb-2">
+                            <div class="ibox-content">
+                                <h3 class="m-t-none m-b">{{ section.name }}</h3>
+                                <div class="hr-line-dashed"></div>
+                                {% for input in section.inputs %}
+                                    {{ switch(input, primeiroAtendimento = form.primeiroAtendimento) }}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </fieldset>
 {% endmacro %}
