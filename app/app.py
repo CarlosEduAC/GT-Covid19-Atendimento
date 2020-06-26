@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/bazilio/GT-Covid19-Atendimento/app')
+
 # Importações básicas
 from flask import Flask
 from flask_cors import CORS
