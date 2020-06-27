@@ -167,11 +167,11 @@ from sqlalchemy.ext.declarative import declarative_base
 #     __tablename__ = 'outros_moradores'
 
 #     id_outros_moradores = db.Column(db.Integer, primary_key=True)
-#     id_paciente = db.Column(db.ForeignKey('pacientes.PacienteId'), index=True)
+#     id = db.Column(db.ForeignKey('pacientes.PacienteId'), index=True)
 #     id_notifica = db.Column(db.ForeignKey('notificacao.idNotificacao'), index=True)
 
 #     notificacao = db.relationship('Notificacao', primaryjoin='OutrosMoradore.id_notifica == Notificacao.idNotificacao', backref='outros_moradores')
-#     paciente = db.relationship('Paciente', primaryjoin='OutrosMoradore.id_paciente == Paciente.PacienteId', backref='outros_moradores')
+#     paciente = db.relationship('Paciente', primaryjoin='OutrosMoradore.id == Paciente.PacienteId', backref='outros_moradores')
 
 
 

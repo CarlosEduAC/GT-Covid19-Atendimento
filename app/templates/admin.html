@@ -45,11 +45,11 @@
                                     <td><input class="form-control" type="text" name="crm" value={{user.crm}}></td>
                                     <td><input class="form-control" type="text" name="cpf" value={{user.cpf}}></td>
                                     <td>
-                                        {% if user.supervisor %}
-                                            <input class="form-control" type="checkbox" name="supervisor"
+                                        {% if user.is_supervisor %}
+                                            <input class="form-control" type="checkbox" name="is_supervisor"
                                                 checked></td>
                                         {% else %}
-                                            <input class="form-control" type="checkbox" name="supervisor"></td>
+                                            <input class="form-control" type="checkbox" name="is_supervisor"></td>
                                         {% endif %}
                                         <td><input class="form-control" type="text" name="senha" value="Nova senha"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
