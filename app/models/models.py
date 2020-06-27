@@ -2,8 +2,7 @@ from sqlalchemy import Column, String, Integer, Float, DateTime, Date, ForeignKe
 from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy_serializer import SerializerMixin
-from flask_login import \
-    UserMixin  # userMinx me permite herdar os metodos is_authenticated e os outros que flask login exige que tenha
+from flask_login import UserMixin  # userMinx me permite herdar os metodos is_authenticated e os outros que flask login exige que tenha
 from datetime import datetime
 
 import base64
@@ -13,6 +12,7 @@ Base = declarative_base()
 
 ### a partir desta tabela que cadastro no banco
 class AdmSaude(Base, SerializerMixin, UserMixin):
+
     __tablename__ = 'adm_saude'
 
     id = Column('idadm_saude', Integer, primary_key=True)
@@ -108,7 +108,7 @@ class Atendimento(Base, SerializerMixin):
     # mulherGravida = Column('mulherGravida', Boolean)
     # nomeMulheresGravidas = Column('nomeMulheresGravidas', String)
 
-    # -------Visitas-------
+    # -------Visitas------- # TODO: voltar
     recebeuVisita = Column('recebeuVisita', Boolean)  # Nao opinou como null?
     quemFoiAVisita = Column('quemFoiAVisita', String)
     porqueRecebeuVisita = Column('porqueRecebeuVisita', String)
@@ -162,7 +162,7 @@ class AtendimentoInicial(Base, SerializerMixin):
     doencaCronica = Column('doencaCronica', Boolean)  # Precisa desse boolean? Se não, apenas não terá nenhum registro
     # listaDoencasPaciente = Column('listaDoencasPaciente', Enum(DoencasCronicas)) #Retirar
 
-    # ------Medicamentos-------
+    # ------Medicamentos------- #TODO: voltar
     checkRemedioPaciente = Column('checkRemedioPaciente', Boolean)  # precisa disso? Se não, não haverá nenhum registro.
     # listaMedicamentosPaciente = Column('listaMedicamentosPaciente', String) #Vai virar tabela Medicamento
     # doseRemedioPaciente = Column('doseRemedioPaciente', String) #Vai estar na tabela Medicamento

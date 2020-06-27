@@ -23,9 +23,12 @@
 
     <link href="{{ url_for('static', filename='ui/components/transition.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='ui/components/form.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/input.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='ui/components/dropdown.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='ui/components/checkbox.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='ui/components/icon.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/button.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/popup.min.css') }}" rel="stylesheet">
 
     <style>
         .wizard > .content {
@@ -35,6 +38,15 @@
 
         .ui.form .field:last-child {
             margin-bottom: 1em;
+        }
+
+        .ui.form .fields,
+        .ui.form .fields:last-child {
+            margin-bottom: 0;
+        }
+
+        .gt-hidden {
+            visibility: hidden;
         }
     </style>
 </head>
@@ -141,6 +153,7 @@
 <script src="{{ url_for('static', filename='ui/components/form.min.js') }}"></script>
 <script src="{{ url_for('static', filename='ui/components/dropdown.min.js') }}"></script>
 <script src="{{ url_for('static', filename='ui/components/checkbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/popup.min.js') }}"></script>
 
 {#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
 
@@ -196,6 +209,8 @@
         });
 
         $('.ui.checkbox').checkbox();
+
+        $('.btn-add').popup();
     });
 
     function radio(input) {
@@ -216,6 +231,20 @@
 
         // Tornar todos os inputs ocultos como não obrigatórios
         hiddens.find(".is-required").removeClass("required")
+    }
+
+    function addInput(element) {
+        const fields = $(element).parent().prev();
+
+        const novo = fields.clone()
+        novo.find('label').remove()
+        novo.find('.gt-hidden').removeClass('gt-hidden')
+
+        fields.after(novo)
+    }
+
+    function removeInput(element) {
+        $(element).closest('.fields').remove()
     }
 </script>
 

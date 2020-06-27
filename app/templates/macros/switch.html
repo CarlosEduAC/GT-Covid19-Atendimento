@@ -8,7 +8,11 @@
     {#            {% endif %}#}
     {#        </label>#}
     {#    </div>#}
-    {% if input.type == "radio" %}
+
+    {% if input is iterable and input is not mapping %}
+        {% from 'macros/fields.html' import fields with context %}
+        {{ fields(input) }}
+    {% elif input.type == "radio" %}
         {% from 'macros/radio.html' import radio with context %}
         {{ radio(input) }}
     {% elif input.type == "checkbox" %}
@@ -20,6 +24,19 @@
     {% elif input.type == "date" %}
         {% from 'macros/date.html' import date with context %}
         {{ date(input) }}
+    {% elif input.type == "btn" %}
+        <div class="field {{ 'one wide' if not input.label }}">
+            {% if not input.label %}
+                <label>&nbsp</label>
+            {% endif %}
+            <div onclick="{{ 'addInput(this)' if input.label else 'removeInput(this)' }}"
+                 class="
+                 {{ 'gt-hidden' if not input.label }}
+                 ui {{ input.color if input.color }} icon button small {{ 'labeled' if input.label else 'fluid' }}">
+                <i class="{{ input.icon }} icon"></i>
+                {{ input.label if input.label }}
+            </div>
+        </div>
     {% else %}
         {% from 'macros/text.html' import text with context %}
         {{ text(input) }}

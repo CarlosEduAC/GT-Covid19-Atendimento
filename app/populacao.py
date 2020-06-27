@@ -76,7 +76,7 @@ dbHelper.saveList(BeneficioSocial, [
     "Passe-livre para pessoa com deficiência",
     "Tarifa social de água",
     "Tarifa social de energia elétrica",
-    "Outros.", 
+    "Outros.",
     "Não se insere em nenhum programa ou não recebe benefícíos",
     "Não sabe informar"
 ])

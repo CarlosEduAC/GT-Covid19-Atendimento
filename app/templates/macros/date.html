@@ -1,6 +1,8 @@
 {% macro date(input) %}
     <div class="field">
         <label>{{ input.label }}</label>
-        <input type="text" data-mask="99/99/9999" value="{{ now }}">
+        <div class="ui input small">
+            <input type="text" data-mask="99/99/9999" value="{{ now }}">
+        </div>
     </div>
 {% endmacro %}

@@ -3,13 +3,27 @@ from models.modelsDomainTable import *
 
 db = Database()
 
+
 # Tentativa
 
+btn_trash = {
+    "type": "btn",
+    "icon": "trash",
+    "color": "red",
+}
+
+btn_add = {
+    "type": "btn",
+    "icon": "add",
+    "label": "Mais",
+}
+
 select_realizar_tentativa = {
-    "name": "select_realizar_tentativa",
-    "label": "Conseguiu iniciar o atendimento?",
     "type": "select",
     "required": True,
+    "column": "six",
+    "name": "select_realizar_tentativa",
+    "label": "Conseguiu iniciar o atendimento?",
     "options": [
         {
             "value": "Sim",
@@ -35,16 +49,15 @@ select_realizar_tentativa = {
 
 comorbidades = {
     "name": "comorbidades",
-    "label": "Comorbidades",
+    "label": "Comorbidade",
     "type": "select",
-    "multiple": True,
     "options": db.selectAllData(DoencaCronica)
 }
 
 dataPrimeiroSintoma = {
     "name": "dataPrimeiroSintoma",
     "type": "date",
-    "label": "Qual a data do surgimento dos primeiros sintomas?"
+    "label": "Qual a data do surgimento do primeiro sintoma?"
 }
 
 tiposdoencasCronicas = {
@@ -55,11 +68,13 @@ select_doenca_cronica = {
     "type": "select",
     "name": "select_doenca_cronica",
     "label": "Apresenta alguma doença crônica?",
+    "column": "five",
     "options": [
         {
             "value": "Sim",
             "fields": [
-                comorbidades
+                [comorbidades, dataPrimeiroSintoma, btn_trash],
+                btn_add
             ]
         },
         {
@@ -72,28 +87,27 @@ select_doenca_cronica = {
 }
 
 medicamentos = {
-    "type": "select",
-    "multiple": True,
+    "required": True,
     "name": "medicamentos",
-    "label": "Quais?",
+    "label": "Qual?",
+    "placeholder": "Nome do medicamento",
 }
 
 doseRemedioPaciente = {
     "name": "doseRemedioPaciente",
-    "label": "Como toma esse medicamento?",
+    "label": "Como toma?",
     "placeholder": "Dose, quantidade de vezes ao dia",
     "required": True,
 }
 
 tmpRemedioPaciente = {
     "name": "tmpRemedioPaciente",
-    "label": "Há quanto tempo toma esses medicamentos?",
-    "placeholder": "123 dias"
+    "label": "Há quanto tempo?",
+    "placeholder": "30 dias"
 }
 
 indicador_remedio = {
     "type": "select",
-    "multiple": True,
     "required": True,
     "name": "indicador_remedio",
     "label": "Quem?",
@@ -103,7 +117,7 @@ indicador_remedio = {
 select_indicador_remedio = {
     "type": "select",
     "name": "select_indicador_remedio",
-    "label": "Alguém indicou o uso desses medicamentos?",
+    "label": "Alguém indicou?",
     "required": True,
     "options": [
         {
@@ -130,10 +144,17 @@ toma_medicamento_diariamente = {
         {
             "value": "Sim",
             "fields": [
-                medicamentos,
-                doseRemedioPaciente,
-                tmpRemedioPaciente,
-                select_indicador_remedio
+                # {
+                #     "type": "group"
+                # }
+                # medicamentos,
+                # doseRemedioPaciente,
+                # tmpRemedioPaciente,
+                # select_indicador_remedio
+                # [medicamentos, doseRemedioPaciente, tmpRemedioPaciente, select_indicador_remedio]
+
+                [medicamentos, doseRemedioPaciente, tmpRemedioPaciente, select_indicador_remedio, btn_trash],
+                btn_add,
             ]
         },
         {

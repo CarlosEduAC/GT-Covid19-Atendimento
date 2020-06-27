@@ -11,8 +11,7 @@ tentativa = {
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        select_doenca_cronica,
-        dataPrimeiroSintoma
+        select_doenca_cronica
     ]
 }
 
@@ -33,13 +32,9 @@ esfReferencia = {
 informacoesBasicas = {
     "name": "Informações Básicas do Paciente",
     "inputs": [
-        nome,
-        cpf,
-        telefone,
-        nascimento,
-        sexo,
-        raca,
-        endereco
+        [nome, cpf, telefone],
+        [nascimento, sexo, raca],
+        [endereco, None]
     ]
 }
 
