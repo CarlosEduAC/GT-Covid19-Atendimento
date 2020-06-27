@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 #DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
-DATABASE_URL = 'mysql+pymysql://root:@localhost:3306/gt_covid'
+DATABASE_URL = 'mysql+pymysql://root:123456@localhost:3306/covid'
 
 
 class Database():
@@ -69,7 +69,7 @@ class Database():
     def selectAllDataFilter(self, model, myfilter): 
         # myfilter = nome='Carlos', idade=15
         session = self.Session()
-        result = session.query(model).filter(myFilter).all()
+        result = session.query(model).filter(myfilter).all()
 
         return [r.to_dict() for r in result]
 

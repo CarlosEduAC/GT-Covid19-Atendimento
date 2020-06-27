@@ -1,12 +1,13 @@
 from models.modelsDomainTable import *
 from controller.database import Database
+from models.models import Base
 
 dbHelper = Database()
 
 Base.metadata.create_all(bind=dbHelper.engine)
 
 # Opcoes Tentativa
-dbHelper.saveList(OpcaoTentativa, [
+dbHelper.saveList(Tentativa, [
     "Não atende o telefone",
     "O usuário não estava em casa",
     "O usuário estava em casa mas não disponível para o atendimento",
@@ -14,7 +15,7 @@ dbHelper.saveList(OpcaoTentativa, [
 ])
 
 # Raca
-dbHelper.saveList(Raca, [
+dbHelper.saveList(Etinia, [
     "Negra",
     "Amarela",
     "Branca",
@@ -23,7 +24,7 @@ dbHelper.saveList(Raca, [
 ])
 
 # Sexo
-dbHelper.saveList(Sexo, [
+dbHelper.saveList(Genero, [
     "Masculino",
     "Feminino",
     "Não Opinou"
@@ -110,20 +111,8 @@ dbHelper.saveList(Sintoma, [
     "Não apresentou nenhum sintoma"
 ])
 
-# Sintomas Familiares
-dbHelper.saveList(SintomaFamiliar, [
-    "Tosse",
-    "Dor de cabeça ou no corpo",
-    "Fadiga",
-    "Coriza",
-    "Dor de garganta",
-    "Dificuldade para respirar",
-    "Febre",
-    "Não apresentou nenhum sintoma"
-])
-
 # Indicadores de medicamento
-dbHelper.saveList(IndicadorMedicamento, [
+dbHelper.saveList(Indicador, [
     "Médico",
     "Enfermeiro",
     "Vizinho/Familiar/Amigo/Conhecido",

@@ -1,47 +1,95 @@
-from sqlalchemy import Column, String, Integer, Float, DateTime, Date, ForeignKey, Boolean, Enum
+from sqlalchemy import Column, String
+from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
-
+from models.models import Base
 
 # Tabelas de domínio
 
-class OpcaoTentativa(Base, SerializerMixin):
-    __tablename__ = 'opcoesTentativa'
+class BeneficioSocial(Base, SerializerMixin):
+    __tablename__ = 'beneficios_sociais'
 
-    id = Column('opcoes_tentativa_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class Raca(Base, SerializerMixin):
-    __tablename__ = 'racas'
-
-    id = Column('raca_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class Sexo(Base, SerializerMixin):
-    __tablename__ = 'sexos'
-
-    id = Column('sexo_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
 
     def __init__(self, value):
         self.value = value
 
 
 class DoencaCronica(Base, SerializerMixin):
-    __tablename__ = 'doencasCronicas'
+    __tablename__ = 'doencas_cronicas'
 
-    id = Column('doenca_cronica_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class EstrategiaSaudeFamiliar(Base, SerializerMixin):
+    __tablename__ = 'estrategias_saude_familiar'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class Etinia(Base, SerializerMixin):
+    __tablename__ = 'etinias'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class Genero(Base, SerializerMixin):
+    __tablename__ = 'generos'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class Indicador(Base, SerializerMixin):
+    __tablename__ = 'indicadores'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class Medicamento(Base, SerializerMixin):
+    __tablename__ = 'medicamentos'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class MotivoSair(Base, SerializerMixin):
+    __tablename__ = 'motivos_sair'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
+
+    def __init__(self, value):
+        self.value = value
+
+
+class OrientacaoFinal(Base, SerializerMixin):
+    __tablename__ = 'orientacoes_finais'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
 
     def __init__(self, value):
         self.value = value
@@ -50,28 +98,8 @@ class DoencaCronica(Base, SerializerMixin):
 class Parentesco(Base, SerializerMixin):
     __tablename__ = 'parentescos'
 
-    id = Column('parentesco_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class BeneficioSocial(Base, SerializerMixin):
-    __tablename__ = 'beneficiosSociais'
-
-    id = Column('beneficio_social_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class MotivoSair(Base, SerializerMixin):
-    __tablename__ = 'motivosSair'
-
-    id = Column('motivo_sair_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
 
     def __init__(self, value):
         self.value = value
@@ -80,48 +108,18 @@ class MotivoSair(Base, SerializerMixin):
 class Sintoma(Base, SerializerMixin):
     __tablename__ = 'sintomas'
 
-    id = Column('sintoma_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
 
     def __init__(self, value):
         self.value = value
 
 
-class SintomaFamiliar(Base, SerializerMixin):
-    __tablename__ = 'sintomasFamiliar'
+class Tentativa(Base, SerializerMixin):
+    __tablename__ = 'tentativas'
 
-    id = Column('sintoma_familiar_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class IndicadorMedicamento(Base, SerializerMixin):
-    __tablename__ = 'indicadoresMedicamento'
-
-    id = Column('indicador_medicamento_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class OrientacaoFinal(Base, SerializerMixin):
-    __tablename__ = 'orientacaoFinal'
-
-    id = Column('orientacao_final_id', Integer, primary_key=True)
-    value = Column('value', String(150, 'utf8_bin'))
-
-    def __init__(self, value):
-        self.value = value
-
-
-class EstrategiaSaudeFamiliar(Base, SerializerMixin):
-    __tablename__ = 'estrategia_saude_familiar'
-
-    id = Column(Integer, primary_key=True)
-    value = Column('value', String(150))
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(150), nullable=False)
 
     def __init__(self, value):
         self.value = value
