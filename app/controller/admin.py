@@ -1,6 +1,8 @@
 from controller.database import Database
-from models.models import AdmSaude, TemposContatoAcompanhamento, EstrategiaSaudeFamiliar, Paciente
+from models.models import AdmSaude, Paciente
 from werkzeug.security import generate_password_hash
+from models.models import TempoContatoAcompanhamento
+from models.modelsDomainTable import EstrategiaSaudeFamiliar
 
 def getUsers():
     try:
@@ -18,20 +20,20 @@ def removeUser(id):
 def updateUser(id, name, crm, cpf, supervisor, senha):
 
     db = Database()
-
+    print("Supervisor {}".format(supervisor))
     #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
 
     db.updateData(AdmSaude, {'name' : name,
                              'crm' : crm,
                              'cpf' : cpf,
-                             'supervisor' : supervisor,
+                             'is_supervisor' : supervisor,
                              'senha' : generate_password_hash(senha)}, id)
 
-# A princípio, a tabela TemposContatoAcompanhamento
+# A princípio, a tabela TempoContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.
 def getTimes():
     db = Database()
-    times = db.selectAllData(TemposContatoAcompanhamento)
+    times = db.selectAllData(TempoContatoAcompanhamento)
     if len(times) == 0:
         return 48, 16
     times = times[0]
@@ -39,9 +41,9 @@ def getTimes():
 
 def updateTimes(intervalo, maximo):
     db = Database()
-    id = db.selectAllData(TemposContatoAcompanhamento)[0]['id']
+    id = db.selectAllData(TempoContatoAcompanhamento)[0]['id']
     
-    db.updateData(TemposContatoAcompanhamento, TemposContatoAcompanhamento(intervalo, maximo), id)
+    db.updateData(TempoContatoAcompanhamento, TempoContatoAcompanhamento(intervalo, maximo), id)
 
 #==================================================
 

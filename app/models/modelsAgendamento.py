@@ -1,113 +1,91 @@
-from sqlalchemy import Column, String, Integer, Enum, Float, DateTime, ForeignKey, Boolean
-from sqlalchemy.ext.declarative import declarative_base
-from datetime import datetime
-from models.models import Atendimento, AtendimentoInicial, IndicadorMedicamento, BeneficiosSociais, DoencasCronicas, Parentesco, Sintomas
+from sqlalchemy import Column, ForeignKey, String
+from sqlalchemy.dialects.mysql import INTEGER
+from sqlalchemy.orm import relationship
+from sqlalchemy_serializer import SerializerMixin
+from models.models import Base
 
-Base = declarative_base()
+class AtendimentoBeneficioSocial(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_beneficios_sociais'
 
-# Aqui estão todas as tabelas para campos com valores Enum/com múltiplas opções.
+    id_atendimento_beneficio_sociai = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_beneficio_social = Column(ForeignKey('beneficios_sociais.id'), index=True)
+    outros_beneficios_sociais = Column(String(150))
 
-# A ideia é que precisemos só da tabela que relaciona o item ao atendimento.
-# Como são Enums, não precisamos de tabelas específicas pra eles. Ou seja, ao invés de termos:
-# Atendimento -> AtendimentoDoenca -> Doenca
-# Só precisamos de:
-# Atendimento -> Doenca
-# Todas as tabelas possuem o id do Atendimento/AtendimentoInicial para conseguirmos consultar.
-
-# ------ Tabelas Relacionadas Primeiro Atendimento ----------------------------
-# class Comorbidade(Base):
-#     __tablename__ = 'comorbidade'
-
-#     id = Column('id', Integer, primary_key=True)
-#     idAtendimento = Column('idAtendimento', Integer, ForeignKey(AtendimentoInicial.id))
-
-#     dataPrimeiroSintoma = Column('dataPrimeiroSintoma', DateTime)
-#     comorbidade = Column('comorbidade', String) #Vai virar um Enum?
-#                                                 #Se não, precisaremos de tabela comorbidades?
-
-# Doenca Cronica
-
-class DoencaCronicaAtendimento(Base):
-    __tablename__ = 'doencasCronicasAtendimento'
-    
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey('atendimento.id'))
-    idDoencaCronica = Column('idDoencaCronica', Integer, ForeignKey('doencasCronicas.id'))
+    atendimento = relationship('Atendimento')
+    beneficios_sociai = relationship('BeneficioSocial')
 
 
-# Medicamento
-class MedicamentoAtendimento(Base):
-    __tablename__ = 'medicamentoAtendimento'
+class AtendimentoDoencaCronica(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_doencas_cronicas'
 
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey('atendimento.id'))
-    idMedicamento = Column('idMedicamento', Integer, ForeignKey('medicamentos.id'))
-    idIndicador = Column('idIndicador', Integer, ForeignKey('indicadoresMedicamento.id'))
+    id_atendimento_doenca_cronica = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_doenca_cronica = Column(ForeignKey('doencas_cronicas.id'), index=True)
+    id_medicamento = Column(ForeignKey('medicamentos.id'), index=True)
+    id_indicador = Column(ForeignKey('indicadores.id'), index=True)
+    id_parentesco = Column(ForeignKey('parentescos.id'), index=True)
+    outros_medicamentos = Column(String(150))
+    outros_indicadores = Column(String(150))
+    outras_doencas_cronicas = Column(String(150))
 
-    doseRemedioPaciente = Column('dose', String)
-    tmpRemedioPaciente = Column('tempo', String)
-    indicouRemedioPaciente = Column('indicou', Boolean)
-
-
-class BeneficioSocialAtendimento(Base):
-    __tablename__ = 'beneficiosSociaisAtendimento'
-
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey(AtendimentoInicial.id))
-    idBeneficioSocial = Column('idBeneficioSocial', Integer, ForeignKey('beneficiosSociais.id'))
+    atendimento = relationship('Atendimento')
+    doencas_cronica = relationship('DoencaCronica')
+    indicadore = relationship('Indicador')
+    medicamento = relationship('Medicamento')
+    parentesco = relationship('Parentesco')
 
 
-class MotivosSairAtendimento(Base):
-    __tablename__ = 'motivosSairAtendimento'
+class AtendimentoEstrategiasSaudesFamiliar(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_estrategias_saudes_familiar'
 
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey(Atendimento.id))
-    idMotivosSairDeCasa = Column('idMotivosSairDeCasa', Integer, ForeignKey("motivosSair.id"))
+    id_atendimento_estrategia_saude_familiar = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_estrategia_saude_familiar = Column(ForeignKey('estrategias_saude_familiar.id'), index=True)
+    outras_estrategias_saude_familiar = Column(String(150))
 
-class SintomaAtendimento(Base):
-    __tablename__ = 'sintomasAtendimento'
-
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey(Atendimento.id))
-    idSintoma = Column('idSintoma', ForeignKey("sintomas.id"))
+    atendimento = relationship('Atendimento')
+    estrategias_saude_familiar = relationship('EstrategiaSaudeFamiliar')
 
 
-class MedicamentoSintomasAtendimento(Base):
-    __tablename__ = 'medicamentoSintomasAtendimento'
+class AtendimentoMotivoSair(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_motivos_sair'
 
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey('atendimento.id'))
-    idMedicamento = Column('idMedicamento', Integer, ForeignKey('medicamentos.id'))
-    idIndicador = Column('idIndicador', Integer, ForeignKey('indicadoresMedicamento.id'))
+    id_atendimento_motivo_sair = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_motivo_sair = Column(ForeignKey('motivos_sair.id'), index=True)
+    outros_motivos_sair = Column(String(150))
 
-    doseRemedioPaciente = Column('dose', String)
-    tmpRemedioPaciente = Column('tempo', String)
-    indicouRemedioPaciente = Column('indicou', Boolean)
-
-
-class SintomasCovidFamiliar(Base): #Da pra misturar na tabela Sintomas acima? 
-                                   # Mesmo problema da tabela DoencaCronicaPessoa
-    __tablename__ = 'sintomas_covid_familiar'
-    
-    id = Column('id', Integer, primary_key=True)
-    idPessoa = Column('idPessoa', Integer, ForeignKey(FamiliarDoencaCronicaAtendimento.id))
-
-    sintomaCovid19Field = Column('sintomaCovid19Field', Enum(Sintomas))
-    seFebreDeQuanto = Column('seFebreDeQuanto', Float)
+    atendimento = relationship('Atendimento')
+    motivos_sair = relationship('MotivoSair')
 
 
-class OrientacaoFinal(Base):
-    __tablename__ = 'orientacao_final'
+class AtendimentoOrientacaoFinal(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_orientacoes_finais'
 
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey(Atendimento.id))
+    id_atendimento_orientacao_final = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_orientacao_final = Column(ForeignKey('orientacoes_finais.id'), index=True)
+    comentario = Column(String(255))
+    outras_orientacoes_finais = Column(String(150))
 
-    outroAtendimentoField = Column('outroAtendimentoField', Enum(OrientacaoFinal))
+    atendimento = relationship('Atendimento')
+    orientacoes_finai = relationship('OrientacaoFinal')
 
-class FamiliarDoencaCronicaAtendimento(Base):
-    __tablename__ = 'familiarDoencasCronicas'
 
-    id = Column('id', Integer, primary_key=True)
-    idAtendimento = Column('idAtendimento', Integer, ForeignKey(Atendimento.id))
+class AtendimentoSintoma(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_sintomas'
 
-    familiarDoencaCronica = Column('idDoencaCronica', Integer, ForeignKey('doencasCronicas.id'))
+    id_atendimento_sintoma = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_sintoma = Column(ForeignKey('sintomas.id'), index=True)
+    id_parentesco = Column(ForeignKey('parentescos.id'), index=True)
+    id_medicamento = Column(ForeignKey('medicamentos.id'), index=True)
+    id_indicador = Column(ForeignKey('indicadores.id'), index=True)
+    outros_sintomas = Column(String(150))
+
+    atendimento = relationship('Atendimento')
+    indicadore = relationship('Indicador')
+    medicamento = relationship('Medicamento')
+    parentesco = relationship('Parentesco')
+    sintoma = relationship('Sintoma')

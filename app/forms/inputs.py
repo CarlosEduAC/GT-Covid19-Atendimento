@@ -14,7 +14,7 @@ opcoesTentativa = {
         "placeholder": "Outro motivo",
         "class": "tagsinput"
     },
-    "options": dbHelper.selectAllData(OpcaoTentativa)
+    "options": dbHelper.selectAllData(Tentativa)
 }
 
 realizaTentativa = {
@@ -71,7 +71,7 @@ sexo = {
     "name": "sexo",
     "label": "Sexo",
     "required": True,
-    "options": dbHelper.selectAllData(Sexo)
+    "options": dbHelper.selectAllData(Genero)
 }
 
 raca = {
@@ -80,7 +80,7 @@ raca = {
     "name": "raca",
     "label": "Raça",
     "required": True,
-    "options": dbHelper.selectAllData(Raca)
+    "options": dbHelper.selectAllData(Etinia)
 }
 
 comorbidades = {
@@ -148,7 +148,7 @@ quemIndicouRemedioPaciente = {
     "name": "quemIndicouRemedioPaciente",
     "label": "Quem?",
     "required": True,
-    "options": dbHelper.selectAllData(IndicadorMedicamento)
+    "options": dbHelper.selectAllData(Indicador)
 }
 
 indicouRemedioPaciente = {
@@ -210,7 +210,7 @@ esf = {
                     "label": "Qual?",
                     "type": "select",
                     "required": True,
-                    "options": dbHelper.selectAllData(Esf)
+                    "options": dbHelper.selectAllData(EstrategiaSaudeFamiliar)
                 }
             ]
         },
@@ -604,7 +604,7 @@ quemIndicouMedicamento = {
     "type": "select",
     "label": "Quem indicou o uso desse medicamento?",
     "required": True,
-    "options": dbHelper.selectAllData(IndicadorMedicamento),
+    "options": dbHelper.selectAllData(Indicador),
     "outros": {
         "name": "quemIndicouField",
         "placeholder": "Outro indicador",
