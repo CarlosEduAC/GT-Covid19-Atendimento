@@ -2,12 +2,12 @@ from models.modelsDomainTable import *
 from controller.database import Database
 from models.models import Base
 
-dbHelper = Database()
+db = Database()
 
-Base.metadata.create_all(bind=dbHelper.engine)
+Base.metadata.create_all(bind=db.engine)
 
 # Opcoes Tentativa
-dbHelper.saveList(Tentativa, [
+db.saveList(Tentativa, [
     "Não atende o telefone",
     "O usuário não estava em casa",
     "O usuário estava em casa mas não disponível para o atendimento",
@@ -15,7 +15,7 @@ dbHelper.saveList(Tentativa, [
 ])
 
 # Raca
-dbHelper.saveList(Etinia, [
+db.saveList(Etinia, [
     "Negra",
     "Amarela",
     "Branca",
@@ -24,14 +24,14 @@ dbHelper.saveList(Etinia, [
 ])
 
 # Sexo
-dbHelper.saveList(Genero, [
+db.saveList(Genero, [
     "Masculino",
     "Feminino",
     "Não Opinou"
 ])
 
 # Doencas Cronicas
-dbHelper.saveList(DoencaCronica, [
+db.saveList(DoencaCronica, [
     "Diabetes",
     "Hipertensão",
     "Alzheimer",
@@ -47,7 +47,7 @@ dbHelper.saveList(DoencaCronica, [
 ])
 
 # Parentesco
-dbHelper.saveList(Parentesco, [
+db.saveList(Parentesco, [
     "Pai/Mãe",
     "Filho/Filha",
     "Enteado/Enteada",
@@ -61,7 +61,7 @@ dbHelper.saveList(Parentesco, [
 ])
 
 # Beneficio Social
-dbHelper.saveList(BeneficioSocial, [
+db.saveList(BeneficioSocial, [
     "Aposentadoria para pessoa de baixa renda",
     "Auxílio emergencial",
     "Benefícios eventuais (cesta básica emergencial, vale-Feira, auxílio funeral)",
@@ -83,7 +83,7 @@ dbHelper.saveList(BeneficioSocial, [
 ])
 
 # Motivos para sair de casa
-dbHelper.saveList(MotivoSair, [
+db.saveList(MotivoSair, [
     "Ir ao supermercado ou a farmácia",
     "Trabalhar",
     "Ir a banco/caixas eletrônicos",
@@ -94,7 +94,7 @@ dbHelper.saveList(MotivoSair, [
 ])
 
 # Sintomas
-dbHelper.saveList(Sintoma, [
+db.saveList(Sintoma, [
     "Febre",
     "Cansaço",
     "Tosse Seca",
@@ -112,7 +112,7 @@ dbHelper.saveList(Sintoma, [
 ])
 
 # Indicadores de medicamento
-dbHelper.saveList(Indicador, [
+db.saveList(Indicador, [
     "Médico",
     "Enfermeiro",
     "Vizinho/Familiar/Amigo/Conhecido",
@@ -122,7 +122,7 @@ dbHelper.saveList(Indicador, [
 ])
 
 # Orientacoes finais
-dbHelper.saveList(OrientacaoFinal, [
+db.saveList(OrientacaoFinal, [
     "Encaminhamento para avaliação presencial",
     "Acompanhamento telefônico em 24 horas",
     "Acompanhamento telefônico em 48 horas",
