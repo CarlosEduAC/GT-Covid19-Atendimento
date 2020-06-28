@@ -4,14 +4,14 @@ from forms.inputs_test.dados_basicos import *
 tentativa = {
     "name": "Tentativa",
     "inputs": [
-        select_realizar_tentativa
+        tentativa
     ]
 }
 
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        select_doenca_cronica
+        doenca_cronica
     ]
 }
 
@@ -33,8 +33,8 @@ informacoesBasicas = {
     "name": "Informações Básicas do Paciente",
     "inputs": [
         [nome, cpf, telefone],
-        [nascimento, sexo, raca],
-        [endereco, None]
+        [data_nasc, genero, etnia],
+        endereco
     ]
 }
 

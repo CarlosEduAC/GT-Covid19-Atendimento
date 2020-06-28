@@ -1,11 +1,10 @@
-{% macro trash(i, parent=None, parent_option=None) %}
+{% macro add(i, parent=None, parent_option=None) %}
     <div class="field one wide {{ 'offscreen' if parent }}"
             {{ 'data-parent={}'.format(parent) if parent }}
             {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
-        <label>&nbsp</label>
-        <div onclick="{{ 'addInput(this)' if i.label else 'removeInput(this)' }}"
-             class="ui icon button small disabled {{ 'labeled' if i.label else 'fluid' }}">
-            <i class="trash icon"></i>
+        <div onclick="addInput(this)" class="ui icon green button small labeled">
+            <i class="add icon"></i>
+            Mais
         </div>
     </div>
 {% endmacro %}

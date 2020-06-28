@@ -1,4 +1,4 @@
-{% macro switch(input, outros = False, primeiroAtendimento = False) %}
+{% macro switch(input, parent=None, parent_option=None, primeiroAtendimento=False) %}
     {#    <div class="row">#}
     {#        <label for="{{ input.name }}">#}
     {#            {{ input.label }} {{ '*' if input.required }}#}
@@ -11,7 +11,7 @@
 
     {% if input is iterable and input is not mapping %}
         {% from 'macros/fields.html' import fields with context %}
-        {{ fields(input) }}
+        {{ fields(input, parent=parent, parent_option=parent_option) }}
     {% elif input.type == "radio" %}
         {% from 'macros/radio.html' import radio with context %}
         {{ radio(input) }}
@@ -20,25 +20,18 @@
         {{ checkbox(input) }}
     {% elif input.type == "select" %}
         {% from 'macros/select.html' import select with context %}
-        {{ select(input) }}
+        {{ select(input, parent=parent, parent_option=parent_option) }}
     {% elif input.type == "date" %}
         {% from 'macros/date.html' import date with context %}
         {{ date(input) }}
-    {% elif input.type == "btn" %}
-        <div class="field {{ 'one wide' if not input.label }}">
-            {% if not input.label %}
-                <label>&nbsp</label>
-            {% endif %}
-            <div onclick="{{ 'addInput(this)' if input.label else 'removeInput(this)' }}"
-                 class="
-                 {{ 'gt-hidden' if not input.label }}
-                 ui {{ input.color if input.color }} icon button small {{ 'labeled' if input.label else 'fluid' }}">
-                <i class="{{ input.icon }} icon"></i>
-                {{ input.label if input.label }}
-            </div>
-        </div>
+    {% elif input.type == "btn_trash" %}
+        {% from 'macros/trash.html' import trash with context %}
+        {{ trash(input, parent=parent, parent_option=parent_option) }}
+    {% elif input.type == "btn_add" %}
+        {% from 'macros/add.html' import add with context %}
+        {{ add(input, parent=parent, parent_option=parent_option) }}
     {% else %}
         {% from 'macros/text.html' import text with context %}
-        {{ text(input) }}
+        {{ text(input, parent=parent, parent_option=parent_option) }}
     {% endif %}
 {% endmacro %}

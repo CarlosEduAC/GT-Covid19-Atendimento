@@ -1,8 +1,7 @@
-{% macro fields(inputs) %}
-    {% set nums = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'] %}
-    <div class="fields {{ nums[inputs | length] }} gt-group">
+{% macro fields(inputs, parent=None, parent_option=None) %}
+    <div class="fields equal width gt-group">
         {% for input in inputs %}
-            {{ switch(input, outros, primeiroAtendimento) }}
+            {{ switch(input, parent=parent, parent_option=parent_option) }}
         {% endfor %}
     </div>
 {% endmacro %}

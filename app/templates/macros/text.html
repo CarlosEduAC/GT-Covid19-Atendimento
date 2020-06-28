@@ -1,18 +1,23 @@
 {% from 'macros/mask.html' import mask with context %}
 
-{% macro text(input) %}
-    <div class="field">
-        <label>{{ input.label }}</label>
-        <div class="ui input small {{ 'left action' if input.action }}">
-            {% if input.action %}
-                <button class="ui icon button">
-                    <i class="trash icon"></i>
-                </button>
-            {% endif %}
-            <input name="{{ input.name }}" type="text"
-                   placeholder="{{ input.placeholder if input.placeholder else input.mask }}"
-                   class="{{ 'is-required required' if input.required }} {{ input.class }}"
-                    {{ mask(input) if input.mask }}>
+{% macro text(i, parent=None, parent_option=None) %}
+    <div
+            class="field {{ 'offscreen' if parent }}"
+            {{ 'data-parent={}'.format(parent) if parent }}
+            {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
+        <label for="{{ i.name }}">{{ i.label }}</label>
+        <div class="ui input small">
+            {{ raw_text(i) }}
         </div>
     </div>
+{% endmacro %}
+
+{% macro raw_text(i) %}
+    <input type="{{ i.type }}"
+           id="{{ i.name }}"
+           name="{{ i.name }}"
+           value="{{ i.value }}"
+           placeholder="{{ i.placeholder }}"
+           class="{{ 'is-required required' if input.required }}"
+            {{ mask(i) if i.mask is not none }}>
 {% endmacro %}

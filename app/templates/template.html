@@ -192,14 +192,13 @@
 
         $('.ui.dropdown.single').dropdown({
             onChange: function (value, text, $selectedItem) {
-                const name = $selectedItem.attr('data-name');
+                const data_parent = $selectedItem.attr('data-parent');
 
-                $selectedItem
-                    .closest('.gt-group')
-                    .find(`div[data-name='${name}']:not(.item)`)
-                    .addClass('offscreen')
+                const $parent = $selectedItem.closest('.field').parent()
 
-                $(`div[data-name='${name}'][data-value='${value}']:not(.item)`)
+                $parent.find(`.field[data-parent=${data_parent}]`).addClass('offscreen')
+
+                $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`)
                     .removeClass('offscreen')
             }
         });
@@ -238,7 +237,29 @@
 
         const novo = fields.clone()
         novo.find('label').remove()
-        novo.find('.gt-hidden').removeClass('gt-hidden')
+        novo.find('.disabled').removeClass('disabled')
+
+        const data_index = fields.last().attr('data-index')
+
+        let index;
+
+        if (data_index === undefined) {
+            index = 1
+            fields.last().attr('data-index', index)
+        } else {
+            index = data_index
+        }
+
+        novo.attr('data-index', +index + +1)
+
+        novo.find('input').each(function (i, input) {
+            const name = $(input).attr('name')
+            const new_name = name + (+index + +1)
+            $(input).attr('id', new_name)
+            $(input).attr('name', new_name)
+        })
+
+        novo.find('.dropdown').dropdown('clear')
 
         fields.after(novo)
     }

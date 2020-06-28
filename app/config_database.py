@@ -15,7 +15,7 @@ db.saveList(Tentativa, [
 ])
 
 # Raca
-db.saveList(Etinia, [
+db.saveList(Etnia, [
     "Negra",
     "Amarela",
     "Branca",

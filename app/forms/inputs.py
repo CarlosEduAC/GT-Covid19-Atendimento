@@ -4,45 +4,97 @@ from models.modelsDomainTable import *
 db = Database()
 
 
-# Tentativa
+class Input:
+    def __init__(self, name='', type='text', label='', placeholder='', required=False, mask=None, options=None,
+                 multiselect=False):
+        self.name = name
+        self.type = type
+        self.label = label
+        self.placeholder = placeholder
+        self.required = required
+        self.mask = mask
+        self.options = options
+        self.multiselect = multiselect
 
-btn_trash = {
-    "type": "btn",
-    "icon": "trash",
-    "color": "red",
-}
 
-btn_add = {
-    "type": "btn",
-    "icon": "add",
-    "label": "Mais",
-}
+# =============== Utils ===============
 
-select_realizar_tentativa = {
-    "type": "select",
-    "required": True,
-    "column": "six",
-    "name": "select_realizar_tentativa",
-    "label": "Conseguiu iniciar o atendimento?",
-    "options": [
-        {
-            "value": "Sim",
-        },
-        {
-            "value": "Não",
-            "fields": [
-                {
-                    "type": "select",
-                    "required": True,
-                    "multiple": True,
-                    "name": "atendimento_nao_realizado",
-                    "label": "Motivos de falha no contato",
-                    "options": db.selectAllData(OpcaoTentativa)
-                }
-            ]
-        }
+btn_trash = Input(type='btn_trash')
+
+btn_add = Input(type='btn_add')
+
+# ============= Tentativa =============
+
+tentativa = Input(
+    type='select',
+    name='has_tentativa',
+    label='Conseguiu iniciar o atendimento?',
+    options=[
+        {'value': 'Sim'},
+        {'value': 'Não', 'fields': [
+            Input(
+                type='select',
+                name='id_tentativa',
+                label='Motivos de falha no contato',
+                multiselect=True,
+                options=db.selectAllData(Tentativa)
+            )
+        ]}
     ]
-}
+)
+
+# ============== Paciente ==============
+
+nome = Input(
+    name='nome',
+    label='Nome Completo',
+    placeholder='Nome do paciente',
+    required=True
+)
+
+cpf = Input(
+    name='cpf',
+    label='CPF',
+    placeholder='999.999.999-99',
+    mask='999.999.999-99',
+    required=True
+)
+
+telefone = Input(
+    name='telefone',
+    label='Telefone',
+    mask='(99) 99999999?9',
+    placeholder='(99) 999999999'
+)
+
+endereco = Input(
+    name='endereco',
+    label='Endereço',
+    placeholder='Rua Recife, 32',
+)
+
+data_nasc = Input(
+    name='data_nasc',
+    label='Data de nascimento',
+    mask='99/99/9999',
+    placeholder='99/99/9999'
+)
+
+etnia = Input(
+    type='select',
+    name='id_etnia',
+    label='Etnia',
+    required=True,
+    options=db.selectAllData(Etnia)
+)
+
+genero = Input(
+    type='select',
+    name='id_genero',
+    label='Gênero',
+    required=True,
+    options=db.selectAllData(Genero)
+)
 
 # Dados básicos
 
@@ -54,37 +106,27 @@ comorbidades = {
     "options": db.selectAllData(DoencaCronica)
 }
 
-dataPrimeiroSintoma = {
-    "name": "dataPrimeiroSintoma",
-    "type": "date",
-    "label": "Qual a data do surgimento do primeiro sintoma?"
-}
+data_primeiro_sintoma = Input(
+    name='data_primeiro_sintoma',
+    label='Qual a data do surgimento do primeiro sintoma?',
+    mask='99/99/9999',
+    placeholder='99/99/9999'
+)
 
 tiposdoencasCronicas = {
 
 }
 
-select_doenca_cronica = {
-    "type": "select",
-    "name": "select_doenca_cronica",
-    "label": "Apresenta alguma doença crônica?",
-    "column": "five",
-    "options": [
-        {
-            "value": "Sim",
-            "fields": [
-                [comorbidades, dataPrimeiroSintoma, btn_trash],
-                btn_add
-            ]
-        },
-        {
-            "value": "Não"
-        },
-        {
-            "value": "Não opinou"
-        }
+doenca_cronica = Input(
+    type='select',
+    name='id_doenca_cronica',
+    label='Apresenta alguma doença crônica?',
+    options=[
+        {"value": "Sim", "fields": [[comorbidades, data_primeiro_sintoma, btn_trash], btn_add]},
+        {"value": "Não"},
+        {"value": "Não opinou"},
     ]
-}
+)
 
 medicamentos = {
     "required": True,
@@ -111,7 +153,7 @@ indicador_remedio = {
     "required": True,
     "name": "indicador_remedio",
     "label": "Quem?",
-    "options": db.selectAllData(IndicadorMedicamento)
+    "options": db.selectAllData(Indicador)
 }
 
 select_indicador_remedio = {
@@ -250,7 +292,7 @@ select_mora_sozinho = {
             "fields": [
                 qnt_pessoas_domicilio,
                 qualRelacao,
-                select_doenca_cronica,
+                doenca_cronica,
                 select_mulheres_gravidas
             ]
         }
@@ -540,7 +582,7 @@ quemIndicouMedicamento = {
     "type": "select",
     "label": "Quem indicou o uso desse medicamento?",
     "required": True,
-    "options": db.selectAllData(IndicadorMedicamento),
+    "options": db.selectAllData(Indicador),
 }
 
 comoTomaMedicamento = {

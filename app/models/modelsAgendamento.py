@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from models.models import Base
 
+
 class AtendimentoBeneficioSocial(Base, SerializerMixin):
     __tablename__ = 'atendimentos_beneficios_sociais'
 
