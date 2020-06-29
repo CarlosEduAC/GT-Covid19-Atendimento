@@ -6,9 +6,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from flask_login import UserMixin
 
-import base64
-
 Base = declarative_base()
+
 
 class AdmSaude(Base, SerializerMixin, UserMixin):
     __tablename__ = 'adms_saude'
@@ -46,19 +45,24 @@ class Paciente(Base, SerializerMixin):
     id = Column(INTEGER(11), primary_key=True)
     nome = Column(String(150), nullable=False)
     cpf = Column(String(11), nullable=False)
+    telefone = Column(String(11), nullable=False)
+    endereco = Column(String(255), nullable=False)
     data_nasc = Column(Date)
-    id_etinia = Column(ForeignKey('etinias.id'), index=True)
+    id_etnia = Column(ForeignKey('etnias.id'), index=True)
     id_genero = Column(ForeignKey('generos.id'), index=True)
 
-    etinia = relationship('Etinia')
+    etnia = relationship('Etnia')
     genero = relationship('Genero')
 
-    def __init__(self, nome, cpf, sexo, raca, dataNasc):
+    def __init__(self, nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco):
         self.nome = nome
         self.cpf = cpf
-        self.sexo = sexo
-        self.raca = raca
-        self.dataNasc = dataNasc
+        self.telefone = telefone
+        self.data_nasc = data_nasc
+        self.id_etnia = id_etnia
+        self.id_genero = id_genero
+        self.endereco = endereco
+
 
 class Atendimento(Base, SerializerMixin):
     __tablename__ = 'atendimentos'
@@ -88,6 +92,7 @@ class Agendamento(Base, SerializerMixin):
     adms_saude = relationship('AdmSaude')
     atendimento = relationship('Atendimento')
     paciente = relationship('Paciente')
+
 
 class TempoContatoAcompanhamento(Base, SerializerMixin):
     __tablename__ = 'tempos_contato_acompanhamento'

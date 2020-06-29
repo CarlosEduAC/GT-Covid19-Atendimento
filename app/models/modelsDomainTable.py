@@ -3,6 +3,7 @@ from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy_serializer import SerializerMixin
 from models.models import Base
 
+
 # Tabelas de domínio
 
 class BeneficioSocial(Base, SerializerMixin):
@@ -35,8 +36,8 @@ class EstrategiaSaudeFamiliar(Base, SerializerMixin):
         self.value = value
 
 
-class Etinia(Base, SerializerMixin):
-    __tablename__ = 'etinias'
+class Etnia(Base, SerializerMixin):
+    __tablename__ = 'etnias'
 
     id = Column(INTEGER(11), primary_key=True)
     value = Column(String(150), nullable=False)

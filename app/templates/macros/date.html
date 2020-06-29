@@ -1,9 +1,8 @@
 {% macro date(input) %}
-    <div class="input-group date">
-            <span class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-            </span>
-        <input type="text" class="form-control" data-mask="99/99/9999"
-               value="{{ now }}">
+    <div class="field">
+        <label>{{ input.label }}</label>
+        <div class="ui input small">
+            <input type="text" data-mask="99/99/9999" value="{{ now }}">
+        </div>
     </div>
 {% endmacro %}
