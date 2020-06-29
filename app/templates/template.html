@@ -45,8 +45,10 @@
             margin-bottom: 0;
         }
 
-        .gt-hidden {
-            visibility: hidden;
+        label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -239,6 +241,12 @@
         novo.find('label').remove()
         novo.find('.disabled').removeClass('disabled')
 
+        const data_parent = novo.find('.field').first().attr('data-parent')
+
+        const len = $(`input[type=hidden][name=${data_parent}_len]`)
+
+        len.val(+len.val() + +1)
+
         const data_index = fields.last().attr('data-index')
 
         let index;
@@ -252,9 +260,10 @@
 
         novo.attr('data-index', +index + +1)
 
+
         novo.find('input').each(function (i, input) {
             const name = $(input).attr('name')
-            const new_name = name + (+index + +1)
+            const new_name = name + '_' + (+index + +1)
             $(input).attr('id', new_name)
             $(input).attr('name', new_name)
         })

@@ -18,10 +18,10 @@ def index():
 
         fieldsets = [
             fieldsetConjunto0,
-            # fieldsetConjunto1,
+            fieldsetConjunto1,
             fieldsetConjunto2,
-            # fieldsetConjunto3,
-            # fieldsetConjunto4,
+            fieldsetConjunto3,
+            fieldsetConjunto4,
             # fieldsetConjunto5,
             # fieldsetConjunto6,
         ]
