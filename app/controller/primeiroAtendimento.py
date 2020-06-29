@@ -1,14 +1,43 @@
 from dao.paciente import Paciente
 from datetime import datetime
+from dao.atendimento import AtendimentoBuilder
+from flask_login import current_user
 import re
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+# O QUE FALTA: 
+# 1- Adicionar doenças cronicas/medicamentos
+# 2- Campos que não se encontram nos modelos:
+# 2.1 - campos de isolamento (consegue manter? pq sim? pq não?
+# 2.2 - campos de quarentena (consegue? quantos dias?)
+# 2.3 - campos de visita (recebe? quem visitou? pq?)
+# 3- Informações dos fieldsets 5 e 6#
 
 
 def registrar(form):
+
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+    #Para testes: essas informações precisam vir po parâmetro
+    data=datetime.today()
+    #data = datetime.strptime(data, '%d/%m/%Y').date() if len(data) != 0 else None
+    id_paciente=1
+    id_admsaude =current_user.id
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+    builder = None
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
     has_atendimento = True if form['has_atendimento'] == '1' else False
 
     print('has_atendimento: {}'.format(has_atendimento))
 
     if not has_atendimento:
+
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+        builder = AtendimentoBuilder(True, data, id_paciente, None) #Tem um id para tentativa, mas existem N tentativas..
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
         # ============ Tentativa ============
 
         raw_tentativas = form['tentativas'].split(',')
@@ -26,6 +55,11 @@ def registrar(form):
         print('others_tentativas: {}'.format(others_tentativas))
     else:
         # ============== Paciente ==============
+
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+        builder = AtendimentoBuilder(True, data, id_paciente)
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
 
         nome = data_or_null(form['nome'])
         cpf = data_or_null(form['cpf'], only_num)
@@ -61,6 +95,16 @@ def registrar(form):
             datas_primeiro_sintoma = multiselect(form, 'data_primeiro_sintoma', size)
 
             print('datas_primeiro_sintoma: {}'.format(datas_primeiro_sintoma))
+
+            has_medicamento = multiselect(form, 'has_medicamento', size)
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            #for i in size:
+                #Adicionar doença cronica
+
+                #builder.adicionarDoencaCronica(doencas_cronicas[i], datas_primeiro_sintoma[i])
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
 
         # ============== Medicamento ==============
 
@@ -108,6 +152,12 @@ def registrar(form):
 
             print('others_estrategia_saude_familiar: {}'.format(others_estrategia_saude_familiar))
 
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            for esf in real_estrategia_saude_familiar:
+                builder.inserirEstrategiaSaudeFamiliar(esf)
+                                                    #others_estrategia_saude_familiar)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
         # ============== Domicílio e Auxílios ==============
 
         qnt_comodos = data_or_null(form['qnt_comodos'], int)
@@ -117,6 +167,12 @@ def registrar(form):
         has_agua_encanada = data_or_null(form['has_agua_encanada'], int)
 
         print('has_agua_encanada: {}'.format(has_agua_encanada))
+
+        
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+        builder.inserirAtendimentoInicial(qnt_comodos, endereco, has_agua_encanada)
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
 
         has_auxilio = data_or_null(form['has_auxilio'], int)
 
@@ -130,6 +186,12 @@ def registrar(form):
             others_auxilios = get_others_data(raw_auxilios)
 
             print('others_auxilios: {}'.format(others_auxilios))
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            for auxilio in real_auxilios:
+                builder.inserirBeneficioSocial(auxilio)#, others_auxilios)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
 
         # ============== Isolamento domiciliar ==============
 
@@ -217,6 +279,13 @@ def registrar(form):
             others_motivo_sair = get_others_data(raw_motivo_sair)
 
             print('others_motivo_sair: {}'.format(others_motivo_sair))
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            for motivo in real_motivo_sair:
+                builder.inserirMotivosSair(motivo)#, others_motivo_sair)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+    
+    builder.finalizarPersistencia(id_admsaude, id_paciente)
 
 
 def get_real_data(data: list) -> list:

@@ -41,16 +41,19 @@ def getTimes():
 
 def updateTimes(intervalo, maximo):
     db = Database()
-    id = db.selectAllData(TempoContatoAcompanhamento)[0]['id']
-    
-    db.updateData(TempoContatoAcompanhamento, TempoContatoAcompanhamento(intervalo, maximo), id)
+    times = db.selectAllData(TempoContatoAcompanhamento)
+    if len(times) == 0:
+        db.saveData(TempoContatoAcompanhamento(intervalo, maximo))
+    else:
+        id = times[0]['id']
+        db.updateData(TempoContatoAcompanhamento, TempoContatoAcompanhamento(intervalo, maximo), id)
 
 #==================================================
 
 def getEsf():
     db = Database()
     return db.selectAllData(EstrategiaSaudeFamiliar)
-
+    
 def newEsf(name):
 
     esf = EstrategiaSaudeFamiliar(name)
