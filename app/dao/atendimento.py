@@ -1,10 +1,23 @@
 from controller.database import Database
-from models.models import Atendimento, AtendimentoInicial, Agendamento, TempoContatoAcompanhamento
+from models.models import Atendimento, AtendimentoInicial, Agendamento, TempoContatoAcompanhamento, Paciente
 from datetime import datetime, timedelta
 from models.modelsDomainTable import *
 from models.modelsAgendamento import *
 
 from sqlalchemy import desc
+
+
+def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
+
+    db = Database()
+    paciente = db.selectIf(Paciente, cpf=cpf)
+    if paciente:
+        return paciente.id
+    else:
+        new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
+        db.saveData(new_paciente)
+        return db.selectIf(Paciente, cpf=cpf).id
+        
 
 class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
 
@@ -76,6 +89,7 @@ class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
         self.atendimento.id_atendimento_inicial = id
 
 
+
     def inserirBeneficioSocial(self, id, outros=None):
         
 
@@ -96,6 +110,48 @@ class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
             )
         )
 
+    def inserirParentesco(self, id_parentesco,
+                            id_doenca_cronica=None, data_sintomas=None):
+
+        self.saveRelation(
+            AtendimentoParentesco(
+                id_parentesco = id_parentesco,
+                id_doenca_cronica = id_doenca_cronica,
+                data_sintomas = data_sintomas
+            )
+        )
+
+    
+    def inserirMulherGravida(self, mulher):
+
+        self.saveRelation(
+            AtendimentoMulherGravida(
+                nome_mulher = mulher
+            )
+        )
+
+
+    def inserirVisita(self, quem, porque):
+
+        self.saveRelation(
+            AtendimentoVisita(
+                quem_visitou = quem,
+                porque_visitou = porque
+            )
+        )
+
+    def inserirIsolamento(self, consegue_isolamento, como_porque):
+        
+        self.atendimento.consegue_isolamento = consegue_isolamento
+        if consegue_isolamento:
+            self.atendimento.como_consegue = como_porque
+        else:
+            self.atendimento.porque_nao_consegue = como_porque
+
+    
+    def inserirManterEmCasa(self, consegue_ficar_casa, quantos_dias=None):
+        self.atendimento.consegue_ficar_casa = consegue_ficar_casa
+        self.atendimento.quantos_dias = quantos_dias
 
     def inserirMotivoSair(self, id, outros=None):
         

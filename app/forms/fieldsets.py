@@ -18,7 +18,7 @@ fieldsetConjunto2 = {
     "name": "Dados sobre saúde",
     "sections": [
         doencasCronicas,
-        #medicamentos,
+        medicamentos,
         esfReferencia,
     ],
 }

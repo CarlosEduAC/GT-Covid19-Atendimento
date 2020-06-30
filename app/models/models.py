@@ -75,6 +75,15 @@ class Atendimento(Base, SerializerMixin):
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
     id_tentativa = Column(ForeignKey('tentativas.id'), index=True)
 
+    #--dados isolamento--#
+    consegue_isolamento = Column(TINYINT(4), nullable=False)
+    como_consegue = Column(String(255))
+    porque_nao_consegue = Column(String(255))
+
+    consegue_ficar_casa = Column(TINYINT(4), nullable=False)
+    quantos_dias = Column(INTEGER(11))
+    #------------------------#
+
     atendimentos_iniciai = relationship('AtendimentoInicial')
     paciente = relationship('Paciente')
     tentativa = relationship('Tentativa')
