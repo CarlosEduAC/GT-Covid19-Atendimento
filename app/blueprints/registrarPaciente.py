@@ -1,11 +1,13 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from datetime import datetime
 from dao.paciente import removePaciente, updatePaciente, savePaciente, selectPaciente
+from flask_login import login_required
 import forms.inputs as inputs
 
 registrarPaciente = Blueprint('Paciente', __name__)
 
 @registrarPaciente.route('/paciente', methods=['GET', 'POST'])
+@login_required 
 def registrar():
     if request.method == 'POST':
 
@@ -33,6 +35,7 @@ def registrar():
     return render_template('paciente.html', fields = fields)
 
 @registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
+@login_required 
 def remove():
     if request.method == 'POST':
         id = request.form['paciente_id']
@@ -42,6 +45,7 @@ def remove():
     return redirect(url_for('admin.admin'))
 
 @registrarPaciente.route('/paciente/update', methods=['GET', 'POST'])
+@login_required 
 def update():
     if request.method == 'POST':
         id = request.form['paciente_id']

@@ -2,11 +2,13 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from forms.fieldsets import *
 from controller.primeiroAtendimento import registrar
 from datetime import datetime
+from flask_login import login_required
 
 primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 
 
 @primeiroAtendimento.route('/primeiroAtendimento', methods=['GET', 'POST'])
+@login_required
 def index():
     if request.method == 'GET':
         form = {
