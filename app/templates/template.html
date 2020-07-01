@@ -33,19 +33,19 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span> <span
+                    <a href="/" title= "Atendimento"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span> <span
                             class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/admin"><i class="fa fa-diamond"></i> <span class="nav-label">Tela Admin</span></a>
+                    <a href="/admin" title= "Admin"><i class="fa fa-diamond"></i> <span class="nav-label">Tela Admin</span></a>
                 </li>
                 <li>
-                    <a href="/about"><i class="fa fa-bar-chart-o"></i> <span
+                    <a href="/about" title= "Sobre"><i class="fa fa-bar-chart-o"></i> <span
                             class="nav-label">Primeiro Atendimento</span><span
                             class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/logout">
+                    <a href="/logout" title= "Logout">
                         <i class="fa fa-sign-out"></i>
                         <span class="nav-label">Logout</span>
                         <span class="fa arrow"></span>
@@ -54,13 +54,13 @@
             </ul>
         </div>
     </nav>
-
+    
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Prefeitura XXX - Sistema de Telemonitoramento COVID-19.</span>
+                        <span class="m-r-sm text-muted welcome-message">Prefeitura de XXX - Sistema de Telemonitoramento COVID-19.</span>
                     </li>
                 </ul>
                 <div style="right: 0%;">
@@ -90,6 +90,7 @@
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
 
 <!-- Custom and plugin javascript -->
 <script src="{{ url_for('static', filename='js/inspinia.js') }}"></script>

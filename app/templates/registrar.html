@@ -23,6 +23,13 @@
                     <h3 class="m-t-none m-b">Dados do Atendente</h3>
                     <p>Insira os dados solicitados</p>
                     <div class="hr-line-dashed"></div>
+                    {% with messages = get_flashed_messages()%}
+                    {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ messages[0]}} Cadastre um novo CPF.
+                        </div>
+                    {% endif %}
+                    {% endwith %}
                     <form action="/registrar" method="POST">
                         <div class="form-group  row">
                             <div class="col-sm-6">

@@ -6,7 +6,7 @@ from dao.agendamento import userAgendamentos
 menuAtendente = Blueprint('MenuAtendente', __name__)
 
 @menuAtendente.route('/', methods=['GET'])
-@login_required #só permite acessar esta pagina sé estiver logado
+@login_required 
 def index():
     profissional_atual = current_user.id #ID do profissional acessando
     print(current_user.supervisor)

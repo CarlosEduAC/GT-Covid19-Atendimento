@@ -6,7 +6,7 @@ from flask_login import login_required, LoginManager, current_user
 menuAdmin = Blueprint('admin', __name__)
 
 @menuAdmin.route('/admin', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def admin():
 
     #if not current_user.supervisor:
@@ -33,6 +33,7 @@ def admin():
 
 
 @menuAdmin.route('/admin/remove', methods=['GET', 'POST'])
+@login_required
 def remove():
     if request.method == 'POST':
         id = request.form['user_id']
@@ -42,6 +43,7 @@ def remove():
     return redirect(url_for('admin.admin'))
 
 @menuAdmin.route('/admin/update', methods=['GET', 'POST'])
+@login_required
 def update():
     if request.method == 'POST':
         id = request.form['user_id']
@@ -56,6 +58,7 @@ def update():
     return redirect(url_for('admin.admin'))
 
 @menuAdmin.route('/admin/esf', methods=['POST'])
+@login_required 
 def addEsf():
     if request.method == 'POST':
         esf = request.form["esf"]
