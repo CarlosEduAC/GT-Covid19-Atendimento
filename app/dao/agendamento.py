@@ -9,13 +9,13 @@ def userAgendamentos(user_id):
         session = db.Session()
 
         return session.query(Agendamento, Atendimento).\
-            filter(Agendamento.idAtendimento == Atendimento.id and
+            filter(Agendamento.id_atendimento == Atendimento.id and
                    Agendamento.idUsuario == user_id).\
-                       order_by(Agendamento.dia).\
+                       order_by(Agendamento.data).\
                            with_entities(Atendimento.id.label('id'),
-                                         Agendamento.dia.label('diaAgendamento'),
-                                         Atendimento.primeiro.label('primeiro'),
-                                         Atendimento.dia.label('diaAtendimento')).all()
+                                         Agendamento.data.label('diaAgendamento'),
+                                         Atendimento.is_primeiro.label('primeiro'),
+                                         Atendimento.data.label('diaAtendimento')).all()
 
     except Exception as e:
         print(e)

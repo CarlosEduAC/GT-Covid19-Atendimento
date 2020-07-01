@@ -26,11 +26,11 @@ btn_add = Input(type='btn_add')
 # ============ Atendimento ============
 
 tentativas = Input(
-    type='select',
+    #type='select',
     name='tentativas',
     label='Motivos de falha no contato',
-    multiselect=True,
-    options=db.selectAllData(Tentativa)
+    #multiselect=False,
+    #options=db.selectAllData(Tentativa)
 )
 
 has_atendimento = Input(
@@ -112,16 +112,7 @@ data_primeiro_sintoma = Input(
     placeholder='99/99/9999'
 )
 
-has_doenca_cronica = Input(
-    type='select',
-    name='has_doenca_cronica',
-    label='Apresenta alguma doença crônica?',
-    options=[
-        {"value": "Sim", "fields": [[doenca_cronica, data_primeiro_sintoma, btn_trash], btn_add]},
-        {"value": "Não"},
-        {"value": "Não opinou"},
-    ]
-)
+
 
 # ============== Medicamento ==============
 
@@ -187,6 +178,17 @@ has_medicamento = Input(
         },
         {"value": "Não"},
         {"value": "Não opinou"}
+    ]
+)
+
+has_doenca_cronica = Input(
+    type='select',
+    name='has_doenca_cronica',
+    label='Apresenta alguma doença crônica?',
+    options=[
+        {"value": "Sim", "fields": [[doenca_cronica, data_primeiro_sintoma, btn_trash], btn_add]},
+        {"value": "Não"},
+        {"value": "Não opinou"},
     ]
 )
 

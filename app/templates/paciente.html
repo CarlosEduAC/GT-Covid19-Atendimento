@@ -1,42 +1,55 @@
+{% from 'macros/switch.html' import switch with context %}
+{% from 'macros/fieldset.html' import fieldset with context %}
+
 {% extends "template.html" %}
 {% block conteudo %}
+
 
     <div class="ibox-content">
         <form action="/paciente" method="post">
 
-            <div class="form-group  row"><label class="col-sm-2 col-form-label">Nome</label>
-
-                <div class="col-sm-10"><input name="nome" id="nome" type="text" class="form-control"></div>
-            </div>
-
-            <div class="form-group  row"><label class="col-sm-2 col-form-label">Cpf</label>
-
-                <div class="col-sm-10"><input name="cpf" id="cpf" type="text" class="form-control"></div>
-            </div>
-                          
-            <div class="form-group row"><label class="col-sm-2 col-form-label">Sexo <br/>
-                <small class="text-navy">Normal Bootstrap elements</small></label>
-
-                <div class="col-sm-10">
-                    <div><label> <input name="sexo" type="radio" checked="" value="M" id="masculino" name="optionsRadios"> Masculino</label></div>
-                    <div><label> <input name="sexo" type="radio" value="F" id="feminino" name="optionsRadios"> Feminino</label></div>
-                    <div><label> <input name="sexo" type="radio" value="O" id="outro" name="optionsRadios"> Outro</label></div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.nome) }}
                 </div>
             </div>
-            <div class="hr-line-dashed"></div>
 
-            <div class="form-group  row"><label class="col-sm-2 col-form-label">Raça</label>
-
-                <div class="col-sm-10"><input name="raca" id="raca" type="text" class="form-control"></div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.cpf) }}
+                </div>
             </div>
-            <div class="hr-line-dashed"></div>
 
-            <div class="form-group  row"><label class="col-sm-2 col-form-label">Data de Nascimento</label>
-                <div class="input-group date"  id="data_nasc">
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </span>
-                    <input name="data_nasc" type="text" class="form-control">
+            
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.telefone) }}
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.endereco) }}
+                </div>
+            </div>
+
+            
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.genero) }}
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.etnia) }}
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    {{ switch(fields.dataNasc) }}
                 </div>
             </div>
 
