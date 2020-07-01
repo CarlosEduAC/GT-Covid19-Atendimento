@@ -1,7 +1,9 @@
 from sqlalchemy import create_engine 
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
+#DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
+DATABASE_URL = 'mysql+pymysql://root:@localhost:3306/covid'
+
 
 class Database():
     engine = create_engine(DATABASE_URL, echo=False) # A nossa ponte de conexão entre o Python e o Banco.
@@ -13,6 +15,13 @@ class Database():
         session = self.Session()
         session.add(data)
         session.commit()
+
+    # Salva objetos a partir de uma lista
+    # (dataList é a lista de objetos que vamos salvar)
+    def saveList(self, model, dataList) -> None:
+        for elem in dataList:
+            self.saveData(model(elem))
+
     
     # Salva uma lista de dados 
     # (data é o objeto que vamos salvar)
@@ -35,7 +44,7 @@ class Database():
             session.commit()
             return [r.to_dict() for r in result]
     
-    # Retorna todas as linhas da Tabela indicada.
+    # Retorna a primeira linha da Tabela indicada.
     # (model é o Modelo da tabela desejada. Exemplo: Paciente) 
     def selectData(self, model): 
         session = self.Session()
@@ -60,7 +69,7 @@ class Database():
     def selectAllDataFilter(self, model, myfilter): 
         # myfilter = nome='Carlos', idade=15
         session = self.Session()
-        result = session.query(model).filter(myFilter).all()
+        result = session.query(model).filter(myfilter).all()
 
         return [r.to_dict() for r in result]
 

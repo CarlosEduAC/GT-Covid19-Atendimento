@@ -1,0 +1,10 @@
+{% macro add(i, parent=None, parent_option=None) %}
+    <div class="field one wide {{ 'offscreen' if parent }}"
+            {{ 'data-parent={}'.format(parent) if parent }}
+            {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
+        <div onclick="addInput(this)" class="ui icon green button small labeled">
+            <i class="add icon"></i>
+            Mais
+        </div>
+    </div>
+{% endmacro %}

@@ -9,7 +9,7 @@ menuAtendente = Blueprint('MenuAtendente', __name__)
 @login_required 
 def index():
     profissional_atual = current_user.id #ID do profissional acessando
-    print(current_user.supervisor)
+    print(current_user.is_supervisor)
 
     atendimentos = userAgendamentos(profissional_atual)
 

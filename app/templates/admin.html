@@ -45,11 +45,11 @@
                                     <td><input class="form-control" type="text" name="crm" value={{user.crm}}></td>
                                     <td><input class="form-control" type="text" name="cpf" value={{user.cpf}}></td>
                                     <td>
-                                        {% if user.supervisor %}
-                                            <input class="form-control" type="checkbox" name="supervisor"
+                                        {% if user.is_supervisor %}
+                                            <input class="form-control" type="checkbox" name="is_supervisor"
                                                 checked></td>
                                         {% else %}
-                                            <input class="form-control" type="checkbox" name="supervisor"></td>
+                                            <input class="form-control" type="checkbox" name="is_supervisor"></td>
                                         {% endif %}
                                         <td><input class="form-control" type="text" name="senha" value="Nova senha"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
@@ -84,7 +84,7 @@
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Sexo</th>
-                                <th>Raça</th>
+                                <th>Etnia</th>
                                 <th>Data de Nascimento</th>
                             </tr>
                         </thead>
@@ -131,8 +131,9 @@
                             </form>
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <!-- <input type="text" class="tags-input" /> -->
                                     {% for e in esf %}
-                                    <p>{{e.estrategia}}</p>
+                                        <p>{{e.value}}</p>
                                     {% endfor %}
                                 </div>
                             </div>

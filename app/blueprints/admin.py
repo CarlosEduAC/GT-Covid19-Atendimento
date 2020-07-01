@@ -50,7 +50,7 @@ def update():
         name = request.form['nome']
         crm = request.form['crm']
         cpf = request.form['cpf']                
-        supervisor = 'supervisor' in request.form
+        supervisor = 'is_supervisor' in request.form
         senha = request.form['senha']
 
         updateUser(id, name, crm, cpf, supervisor, senha)    

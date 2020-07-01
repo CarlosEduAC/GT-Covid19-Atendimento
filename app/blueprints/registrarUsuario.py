@@ -13,9 +13,9 @@ def registrar():
         CRM = request.form['crm']
         cpf = request.form['cpf']
         
-        supervisor = 'supervisor' in request.form
+        supervisor = 'is_supervisor' in request.form
 
-        print(supervisor)
+        print("Supervisor registrar {}".format(supervisor))
         senha = request.form['senha']
         #id = request.form['id']
         

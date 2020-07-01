@@ -1,0 +1,7 @@
+{% macro fields(inputs, parent=None, parent_option=None) %}
+    <div class="fields equal width gt-group">
+        {% for input in inputs %}
+            {{ switch(input, parent=parent, parent_option=parent_option) }}
+        {% endfor %}
+    </div>
+{% endmacro %}
