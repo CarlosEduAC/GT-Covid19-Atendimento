@@ -1,4 +1,5 @@
 from models.modelsDomainTable import *
+from models.modelsAgendamento import *
 from controller.database import Database
 from models.models import Base
 
