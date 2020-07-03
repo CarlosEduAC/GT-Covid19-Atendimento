@@ -17,17 +17,19 @@ def removeUser(id):
     db.delete(AdmSaude, id)
 
 
-def updateUser(id, name, crm, cpf, supervisor, senha):
+def updateUser(id, name, crm, cpf, supervisor, senha=None):
 
     db = Database()
     print("Supervisor {}".format(supervisor))
     #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
 
-    db.updateData(AdmSaude, {'name' : name,
-                             'crm' : crm,
-                             'cpf' : cpf,
-                             'is_supervisor' : supervisor,
-                             'senha' : generate_password_hash(senha)}, id)
+    print(crm)
+
+    if senha is None:
+        db.updateData(AdmSaude, AdmSaude(name, crm, cpf, supervisor), id)
+    
+    else:
+        db.updateData(AdmSaude, AdmSaude(name, crm, cpf, supervisor, senha), id)
 
 # A princípio, a tabela TempoContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.

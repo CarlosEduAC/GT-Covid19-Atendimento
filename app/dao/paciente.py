@@ -53,10 +53,10 @@ def updatePaciente(id, nome, cpf, telefone, dataNasc, id_etnia, id_genero, ender
 
     #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
 
-    db.updateData(Paciente, {'nome' : nome,
-                             'cpf' : cpf,
-                             'telefone' : telefone,
-                             'data_nasc' : dataNasc,
-                             'id_etnia' :id_etnia,
-                             'id_genero' : id_genero,
-                             'endereco': endereco}, id)
+    db.updateData(Paciente, Paciente(nome= nome,
+                             cpf= cpf,
+                             telefone = telefone,
+                             data_nasc = dataNasc,
+                             id_etnia = id_etnia,
+                             id_genero = id_genero,
+                             endereco = endereco), id)

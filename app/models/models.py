@@ -19,12 +19,14 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
     is_supervisor = Column(TINYINT(4), nullable=False)
     senha = Column(String(150), nullable=False)
 
-    def __init__(self, nome, crm, cpf, is_supervisor, senha):
+    def __init__(self, nome, crm, cpf, is_supervisor, senha=None):
         self.nome = nome
         self.crm = crm
         self.cpf = cpf
         self.is_supervisor = is_supervisor
-        self.senha = generate_password_hash(senha)
+        if senha is not None:
+            self.senha = generate_password_hash(senha)
+    
 
     def verificaSenha(self, senha):
         return check_password_hash(self.senha, senha)
