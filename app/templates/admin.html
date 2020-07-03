@@ -33,6 +33,7 @@
                                 <th>CRM</th>
                                 <th>CPF</th>
                                 <th>Administrador</th>
+                                <th>Nova senha</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,7 +52,7 @@
                                         {% else %}
                                             <input class="form-control" type="checkbox" name="is_supervisor"></td>
                                         {% endif %}
-                                        <td><input class="form-control" type="text" name="senha" value="Nova senha"></td>
+                                        <td><input class="form-control" type="password" name="senha"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/admin/remove" method="POST">

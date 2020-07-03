@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from datetime import datetime
 from dao.paciente import removePaciente, updatePaciente, savePaciente, selectPaciente
-from flask_login import login_required
+from flask_login import login_required, current_user
 import forms.inputs as inputs
 
 registrarPaciente = Blueprint('Paciente', __name__)
@@ -9,6 +9,10 @@ registrarPaciente = Blueprint('Paciente', __name__)
 @registrarPaciente.route('/paciente', methods=['GET', 'POST'])
 @login_required 
 def registrar():
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
 
         nome = request.form['nome']
@@ -37,6 +41,10 @@ def registrar():
 @registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
 @login_required 
 def remove():
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+    
+    
     if request.method == 'POST':
         id = request.form['paciente_id']
 
@@ -47,6 +55,10 @@ def remove():
 @registrarPaciente.route('/paciente/update', methods=['GET', 'POST'])
 @login_required 
 def update():
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
         id = request.form['paciente_id']
         nome = request.form['nome']

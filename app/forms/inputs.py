@@ -42,6 +42,42 @@ has_atendimento = Input(
         {'value': 'Não', 'fields': [tentativas]}
     ]
 )
+# ============== AdmSaude ==============
+
+adm_nome = Input(
+    name='nome',
+    label='Nome Completo',
+    placeholder='Nome do Usuário',
+    required=True
+)
+
+adm_crm = Input(
+    name='crm',
+    label='CRM',
+    placeholder='CRM do Usuário',
+    required=True
+)
+
+adm_cpf = Input(
+    name='cpf',
+    label='CPF',
+    placeholder='999.999.999-99',
+    mask='999.999.999-99',
+    required=True
+)
+
+adm_senha = Input(
+    name='senha',
+    label='Senha',
+    type='password'
+)
+
+adm_is_supervisor = Input(
+    name='is_supervisor',
+    label='É administrador?',
+    type="checkbox"
+)
+
 
 # ============== Paciente ==============
 

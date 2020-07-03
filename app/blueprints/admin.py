@@ -9,8 +9,8 @@ menuAdmin = Blueprint('admin', __name__)
 @login_required
 def admin():
 
-    #if not current_user.supervisor:
-    #    return redirect(url_for('MenuAtendente.index'))
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
 
     if request.method == 'POST':
         intervalo = request.form['intervalo']
@@ -35,6 +35,10 @@ def admin():
 @menuAdmin.route('/admin/remove', methods=['GET', 'POST'])
 @login_required
 def remove():
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
         id = request.form['user_id']
 
@@ -45,6 +49,10 @@ def remove():
 @menuAdmin.route('/admin/update', methods=['GET', 'POST'])
 @login_required
 def update():
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
         id = request.form['user_id']
         name = request.form['nome']
@@ -60,6 +68,10 @@ def update():
 @menuAdmin.route('/admin/esf', methods=['POST'])
 @login_required 
 def addEsf():
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+
     if request.method == 'POST':
         esf = request.form["esf"]
 
