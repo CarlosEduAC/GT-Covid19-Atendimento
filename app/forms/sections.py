@@ -1,36 +1,38 @@
 from .inputs import *
 
+tentativa = {
+    "name": "Tentativa",
+    "inputs": [
+        has_atendimento
+    ]
+}
+
 doencasCronicas = {
     "name": "Doenças Crônicas",
     "inputs": [
-        doencaCronica,
-        dataPrimeiroSintoma
+        has_doenca_cronica
     ]
 }
 
 medicamentos = {
     "name": "Medicamentos",
     "inputs": [
-        checkRemedioPaciente
+        has_medicamento
     ]
 }
 
 esfReferencia = {
     "name": "ESF de Referência",
     "inputs": [
-        esf
+        has_estrategia_saude_familiar
     ]
 }
 
 informacoesBasicas = {
     "name": "Informações Básicas do Paciente",
     "inputs": [
-        nome,
-        cpf,
-        telefone,
-        aniversario,
-        sexo,
-        raca,
+        [nome, cpf, telefone],
+        [data_nasc, genero, etnia],
         endereco
     ]
 }
@@ -38,31 +40,31 @@ informacoesBasicas = {
 domicilio = {
     "name": "Domicílio",
     "inputs": [
-        moraSozinho
+        mora_sozinho
     ]
 }
 
 caracteristicasDomicilioAuxilio = {
     "name": "Características do domicílio e auxílios governamentais",
     "inputs": [
-        qntComodos,
-        aguaEncanada,
-        recebeAuxilio
+        qnt_comodos,
+        has_agua_encanada,
+        has_auxilio
     ]
 }
 
 isolamentoDomiciliar = {
     "name": "Isolamento Domiciliar",
     "inputs": [
-        consegueIsolamentoDomiciliar,
-        consegueManterQuarentena
+        has_isolamento,
+        mantem_quarentena
     ]
 }
 
 visitas = {
     "name": "Visitas",
     "inputs": [
-        recebeuVisita,
+        recebeu_visita,
     ]
 }
 

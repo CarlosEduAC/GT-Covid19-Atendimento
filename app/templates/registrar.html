@@ -1,3 +1,6 @@
+{% from 'macros/switch.html' import switch with context %}
+{% from 'macros/fieldset.html' import fieldset with context %}
+
 {% extends "template.html" %}
 {% block conteudo %}
 
@@ -23,46 +26,57 @@
                     <h3 class="m-t-none m-b">Dados do Atendente</h3>
                     <p>Insira os dados solicitados</p>
                     <div class="hr-line-dashed"></div>
+                    {% with messages = get_flashed_messages()%}
+                    {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ messages[0]}} Cadastre um novo CPF.
+                        </div>
+                    {% endif %}
+                    {% endwith %}
                     <form action="/registrar" method="POST">
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">Nome</label>
+                                    <!-- <label class="col-sm-1 col-form-label">Nome</label>
                                     <div class="col-sm-11">
                                         <input type="text" class="form-control" name="nome"
                                             placeholder="Inserir nome completo">
-                                    </div>
+                                    </div> -->
+                                    {{ switch(fields.nome) }}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">CRM</label>
+                                    <!-- <label class="col-sm-1 col-form-label">CRM</label>
                                     <div class="col-sm-11">
                                         <input type="text" class="form-control" name="crm" placeholder="Inserir crm">
-                                    </div>
+                                    </div> -->
+                                    {{ switch(fields.crm) }}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">CPF</label>
+                                    <!-- <label class="col-sm-1 col-form-label">CPF</label>
                                     <div class="col-sm-11">
-                                        <input type="text" class="form-control" name="cpf" placeholder="Inserir cpf">
-                                    </div>
+                                        <input type="text" class="form-control" name="cpf" placeholder="Inserir cpf" mask="999.999.999-99">
+                                    </div> -->
+                                    {{ switch(fields.cpf) }}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">Senha</label>
+                                    <!-- <label class="col-sm-1 col-form-label">Senha</label>
                                     <div class="col-sm-11">
-                                        <input type="text" class="form-control" name="senha"
+                                        <input type="password" class="form-control" name="senha"
                                             placeholder="Inserir senha de entre 6 e 10 caracteres" maxlength="10">
-                                    </div>
+                                    </div> -->
+                                    {{ switch(fields.senha) }}
                                 </div>
                             </div>
                         </div>
@@ -72,9 +86,10 @@
                                     <label class="col-sm-2 col-form-label">É administrador?</label>
                                     <div class="col-sm-10">
                                         <div class="i-checks">
-                                            <label style="margin-top: 5px;"> <input type="checkbox" name="supervisor" value="S"> <i></i> Sim </label>
+                                            <label style="margin-top: 5px;"> <input type="checkbox" name="is_supervisor" value="S"> <i></i> Sim </label>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -91,4 +106,10 @@
     </div>
 </div>
 
+
+<div class="col-12 col-md-6">
+    <div class="form-group">
+        {{ switch(fields.dataNasc) }}
+    </div>
+</div>
 {% endblock %}

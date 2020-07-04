@@ -1,11 +1,41 @@
-{% macro select(input) %}
-    <select class="{{ "chosen-select" if input.multiselect else "form-control" }}" name="{{ input.name }}" {{ "multiple" if input.multiselect}}>
-        {% for option in input.options %}
-            <option value="{{ option }}">{{ input.options[option] }}</option>
-        {% endfor %}
-    </select>
+{% macro select(i, parent=None, parent_option=None) %}
+    <div class="field {{ 'offscreen' if parent }}"
+            {{ 'data-parent={}'.format(parent) if parent }}
+            {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
+        <label>{{ i.label }}</label>
+        <div class="ui input small">
+            {{ raw_select(i) }}
+        </div>
+    </div>
 
-    {% if input.outros %}
-        {{ switch(input.outros, outros = True) }}
-    {% endif %}
+    {% for opt in i.options %}
+        {% if opt.fields %}
+            <input type="hidden" name="{{ i.name }}_len" value="1">
+            {% set index = loop.index %}
+            {% for field in opt.fields %}
+                {{ switch(field, parent=i.name, parent_option=opt.id if opt.id else index) }}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro raw_select(i) %}
+    <div class="ui selection dropdown fluid {{ 'multiple search' if i.multiselect else 'single search' }}">
+        <input type="hidden" name="{{ i.name }}">
+        <i class="dropdown icon"></i>
+        <div class="default text">{{ i.placeholder if i.placeholder | length != 0 else 'Selecione...' }}</div>
+        <div class="menu">
+            {% for opt in i.options %}
+                {{ raw_option(i, opt, loop.index) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro raw_option(i, opt, index) %}
+    <div
+            class="item"
+            data-parent="{{ i.name }}"
+            data-value="
+                    {{ 'real_data_' if i.multiselect or i.outros }}{{ opt.id if opt.id else index }}">{{ opt.value }}</div>
 {% endmacro %}

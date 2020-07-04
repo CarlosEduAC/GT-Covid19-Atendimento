@@ -14,12 +14,43 @@
     <link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"
-          rel="stylesheet">
+    {#    <link href="{{ url_for('static', filename='css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}"#}
+    {#          rel="stylesheet">#}
     <link href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}"
           rel="stylesheet">
     <link href="{{ url_for('static', filename='css/app.css') + "?v=0.6" }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/plugins/chosen/bootstrap-chosen.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='ui/components/transition.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/form.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/input.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/dropdown.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/checkbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/icon.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/button.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='ui/components/popup.min.css') }}" rel="stylesheet">
+
+    <style>
+        .wizard > .content {
+            background: unset;
+            overflow: unset;
+        }
+
+        .ui.form .field:last-child {
+            margin-bottom: 1em;
+        }
+
+        .ui.form .fields,
+        .ui.form .fields:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body class="pace-done mini-navbar">
@@ -33,19 +64,21 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span> <span
-                            class="fa arrow"></span></a>
+                    <a href="/" title="Atendimento"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span>
+                        <span
+                                class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/admin"><i class="fa fa-diamond"></i> <span class="nav-label">Tela Admin</span></a>
+                    <a href="/admin" title="Admin"><i class="fa fa-diamond"></i> <span
+                            class="nav-label">Tela Admin</span></a>
                 </li>
                 <li>
-                    <a href="/about"><i class="fa fa-bar-chart-o"></i> <span
+                    <a href="/about" title="Sobre"><i class="fa fa-bar-chart-o"></i> <span
                             class="nav-label">Primeiro Atendimento</span><span
                             class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/logout">
+                    <a href="/logout" title="Logout">
                         <i class="fa fa-sign-out"></i>
                         <span class="nav-label">Logout</span>
                         <span class="fa arrow"></span>
@@ -60,11 +93,11 @@
             <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Prefeitura XXX - Sistema de Telemonitoramento COVID-19.</span>
+                        <span class="m-r-sm text-muted welcome-message">Prefeitura de XXX - Sistema de Telemonitoramento COVID-19.</span>
                     </li>
                 </ul>
                 <div style="right: 0%;">
-                    <a href="login.html">
+                    <a href="/logout">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </div>
@@ -72,6 +105,8 @@
         </div>
 
         {% block conteudo %} {% endblock %}
+
+        <br>
 
         <div class="footer">
             <div class="float-right">
@@ -90,6 +125,7 @@
 <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ url_for('static', filename='js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+
 
 <!-- Custom and plugin javascript -->
 <script src="{{ url_for('static', filename='js/inspinia.js') }}"></script>
@@ -117,6 +153,12 @@
 
 <script src="{{ url_for('static', filename='js/plugins/chosen/chosen.jquery.js') }}"></script>
 
+
+<script src="{{ url_for('static', filename='ui/components/transition.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/form.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/dropdown.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/checkbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='ui/components/popup.min.js') }}"></script>
 
 {#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
 
@@ -151,6 +193,29 @@
             calendarWeeks: true,
             autoclose: true
         });
+
+
+        $('.ui.dropdown.single').dropdown({
+            allowAdditions: true,
+            onChange: function (value, text, $selectedItem) {
+                const data_parent = $selectedItem.attr('data-parent');
+
+                const $parent = $selectedItem.closest('.field').parent()
+
+                $parent.find(`.field[data-parent=${data_parent}]`).addClass('offscreen')
+
+                $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`)
+                    .removeClass('offscreen')
+            }
+        });
+
+        $('.ui.dropdown.multiple').dropdown({
+            allowAdditions: true,
+        });
+
+        $('.ui.checkbox').checkbox();
+
+        $('.btn-add').popup();
     });
 
     function radio(input) {
@@ -171,6 +236,49 @@
 
         // Tornar todos os inputs ocultos como não obrigatórios
         hiddens.find(".is-required").removeClass("required")
+    }
+
+    function addInput(element) {
+        const fields = $(element).parent().prev();
+
+        const novo = fields.clone()
+        novo.find('label').remove()
+        novo.find('.disabled').removeClass('disabled')
+
+        const data_parent = novo.find('.field').first().attr('data-parent')
+
+        const len = $(`input[type=hidden][name=${data_parent}_len]`)
+
+        len.val(+len.val() + +1)
+
+        const data_index = fields.last().attr('data-index')
+
+        let index;
+
+        if (data_index === undefined) {
+            index = 1
+            fields.last().attr('data-index', index)
+        } else {
+            index = data_index
+        }
+
+        novo.attr('data-index', +index + +1)
+
+
+        novo.find('input').each(function (i, input) {
+            const name = $(input).attr('name')
+            const new_name = name + '_' + (+index + +1)
+            $(input).attr('id', new_name)
+            $(input).attr('name', new_name)
+        })
+
+        novo.find('.dropdown').dropdown('clear')
+
+        fields.after(novo)
+    }
+
+    function removeInput(element) {
+        $(element).closest('.fields').remove()
     }
 </script>
 

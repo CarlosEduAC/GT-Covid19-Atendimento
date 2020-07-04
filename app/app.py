@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/bazilio/GT-Covid19-Atendimento/app')
+
 # Importações básicas
 from flask import Flask
 from flask_cors import CORS
@@ -28,8 +31,8 @@ login_manager.login_view = "Login.loginMetodo"
 @login_manager.user_loader
 def getUsuario(usuario_id):
     db = Database()
-    # usuario = AdmSaude(7,"maria", 675, 12345678910, 1,"12345")
-    return db.selectIf(AdmSaude, id=usuario_id)  # (usuario)
+
+    return db.selectIf(AdmSaude, id=usuario_id)
 
 
 app.register_blueprint(about, url_prefix='/')

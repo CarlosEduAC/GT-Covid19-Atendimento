@@ -1,8 +1,19 @@
 from controller.database import Database
 from models.models import Paciente
+from datetime import datetime
+from controller.primeiroAtendimento import data_or_null, only_num
 
-def savePaciente (nome, cpf, sexo, raca, dataNasc):
-    paciente = Paciente(nome, cpf, sexo, raca, dataNasc)
+def savePaciente (nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
+
+    nome = data_or_null(nome)
+    cpf = data_or_null(cpf, only_num)
+    telefone = data_or_null(telefone, only_num)
+    endereco = data_or_null(endereco)
+    dataNasc = datetime.strptime(dataNasc, '%d/%m/%Y').date() if len(dataNasc) != 0 else None
+    id_etnia = data_or_null(id_etnia, int)
+    id_genero = data_or_null(id_genero, int)
+
+    paciente = Paciente(nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco)
 
     try:
         db = Database()
@@ -36,7 +47,7 @@ def removePaciente(id):
     db.delete(Paciente, id)
 
 
-def updatePaciente(id, nome, cpf, sexo, raca, dataNasc):
+def updatePaciente(id, nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
 
     db = Database()
 
@@ -44,6 +55,8 @@ def updatePaciente(id, nome, cpf, sexo, raca, dataNasc):
 
     db.updateData(Paciente, {'nome' : nome,
                              'cpf' : cpf,
-                             'sexo' : sexo,
-                             'raca' : raca,
-                             'dataNasc' : dataNasc}, id)
+                             'telefone' : telefone,
+                             'data_nasc' : dataNasc,
+                             'id_etnia' :id_etnia,
+                             'id_genero' : id_genero,
+                             'endereco': endereco}, id)

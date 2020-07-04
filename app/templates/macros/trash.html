@@ -1,0 +1,11 @@
+{% macro trash(i, parent=None, parent_option=None) %}
+    <div class="field one wide {{ 'offscreen' if parent }}"
+            {{ 'data-parent={}'.format(parent) if parent }}
+            {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
+        <label>&nbsp</label>
+        <div onclick="removeInput(this)"
+             class="ui red icon button small disabled">
+            <i class="trash icon"></i>
+        </div>
+    </div>
+{% endmacro %}

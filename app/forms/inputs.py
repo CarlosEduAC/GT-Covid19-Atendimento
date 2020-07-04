@@ -1,366 +1,453 @@
-import models.enums_copia as enum
+from controller.database import Database
+from models.modelsDomainTable import *
 
-nome = {
-    "name": "nome",
-    "label": "Nome completo",
-    "placeholder": "Nome do paciente",
-    "required": True
-}
+db = Database()
 
-cpf = {
-    "name": "cpf",
-    "label": "CPF",
-    "required": True,
-    "mask": "999.999.999-99"
-}
 
-telefone = {
-    "name": "telefone",
-    "label": "Telefone",
-    "mask": "(99) 99999999?9",
-    "placeholder": "(99) 999999999"
-}
+class Input:
+    def __init__(self, name='', type='text', label='', placeholder='', required=False, mask=None, options=None,
+                 multiselect=False, outros=False):
+        self.name = name
+        self.type = type
+        self.label = label
+        self.placeholder = placeholder
+        self.required = required
+        self.mask = mask
+        self.options = options
+        self.multiselect = multiselect
+        self.outros = outros
 
-aniversario = {
-    "type": "date",
-    "name": "aniversario",
-    "label": "Data de nascimento",
-}
 
-sexo = {
-    "type": "select",
-    "multiselect": False,
-    "name": "sexo",
-    "label": "Sexo",
-    "required": True,
-    "options": enum.sexo
-}
+# =============== Utils ===============
 
-raca = {
-    "type": "select",
-    "multiselect": False,
-    "name": "raca",
-    "label": "Raça",
-    "required": True,
-    "options": enum.raca
-}
+btn_trash = Input(type='btn_trash')
 
-comorbidades = {
-    "name": "comorbidades",
-    "label": "Comorbidades",
-    "type": "select",
-    "multiselect": True,
-    "outros": {
-        "placeholder": "Outras comorbidades",
-        "class": "tagsinput"
-    },
-    "options": enum.doencasCronicas
-}
+btn_add = Input(type='btn_add')
 
-dataPrimeiroSintoma = {
-    "name": "dataPrimeiroSintoma",
-    "label": "Qual a data do surgimento dos primeiros sintomas?"
-}
+# ============ Atendimento ============
 
-tiposdoencasCronicas = {
+tentativas = Input(
+    type='select',
+    name='tentativas',
+    label='Motivos de falha no contato',
+    options=db.selectAllData(Tentativa),
+    outros=True,
+)
 
-}
+has_atendimento = Input(
+    type='select',
+    name='has_atendimento',
+    label='Conseguiu iniciar o atendimento?',
+    options=[
+        {'value': 'Sim'},
+        {'value': 'Não', 'fields': [tentativas]}
+    ]
+)
+# ============== AdmSaude ==============
 
-doencaCronica = {
-    "type": "radio",
-    "name": "doencaCronica",
-    "label": "O Sr/Srª apresenta alguma doença crônica?",
-    "options": [
+adm_nome = Input(
+    name='nome',
+    label='Nome Completo',
+    placeholder='Nome do Usuário',
+    required=True
+)
+
+adm_crm = Input(
+    name='crm',
+    label='CRM',
+    placeholder='CRM do Usuário',
+    required=True
+)
+
+adm_cpf = Input(
+    name='cpf',
+    label='CPF',
+    placeholder='999.999.999-99',
+    mask='999.999.999-99',
+    required=True
+)
+
+adm_senha = Input(
+    name='senha',
+    label='Senha',
+    type='password'
+)
+
+adm_is_supervisor = Input(
+    name='is_supervisor',
+    label='É administrador?',
+    type="checkbox"
+)
+
+# ============== Paciente ==============
+
+nome = Input(
+    name='nome',
+    label='Nome Completo',
+    placeholder='Nome do paciente',
+    required=True
+)
+
+cpf = Input(
+    name='cpf',
+    label='CPF',
+    placeholder='999.999.999-99',
+    mask='999.999.999-99',
+    required=True
+)
+
+telefone = Input(
+    name='telefone',
+    label='Telefone',
+    mask='(99) 99999999?9',
+    placeholder='(99) 999999999'
+)
+
+endereco = Input(
+    name='endereco',
+    label='Endereço',
+    placeholder='Rua Recife, 32',
+)
+
+data_nasc = Input(
+    name='data_nasc',
+    label='Data de nascimento',
+    mask='99/99/9999',
+    placeholder='99/99/9999'
+)
+
+etnia = Input(
+    type='select',
+    name='id_etnia',
+    label='Etnia',
+    required=True,
+    options=db.selectAllData(Etnia)
+)
+
+genero = Input(
+    type='select',
+    name='id_genero',
+    label='Gênero',
+    required=True,
+    options=db.selectAllData(Genero)
+)
+
+# ============== Doença Cronica ==============
+
+doenca_cronica = Input(
+    name='doenca_cronica',
+    type='select',
+    label='Qual?',
+    options=db.selectAllData(DoencaCronica)
+)
+
+data_primeiro_sintoma = Input(
+    name='data_primeiro_sintoma',
+    label='Data de surgimento do primeiro sintoma',
+    mask='99/99/9999',
+    placeholder='99/99/9999'
+)
+
+# ============== Medicamento ==============
+
+medicamento = Input(
+    name='medicamento',
+    label='Qual?',
+    placeholder='Nome do medicamento',
+    required=True
+)
+
+dose_medicamento = Input(
+    name='dose_medicamento',
+    label='Como toma?',
+    placeholder='Dose, quantidade de vezes ao dia',
+    required=True
+)
+
+tempo_medicamento = Input(
+    name='tempo_medicamento',
+    label='Há quanto tempo?',
+    placeholder='30 dias',
+    required=True
+)
+
+indicador_medicamento = Input(
+    name='indicador_medicamento',
+    type='select',
+    label='Quem?',
+    options=db.selectAllData(Indicador),
+    required=True
+)
+
+has_indicador_medicamento = Input(
+    name='has_indicador_medicamento',
+    type='select',
+    label='Alguém indicou?',
+    required=True,
+    options=[
+        {"value": "Sim", "fields": [indicador_medicamento]},
+        {"value": "Não"},
+        {"value": "Não opinou"}
+    ]
+)
+
+has_medicamento = Input(
+    name='has_medicamento',
+    type='select',
+    label='Toma algum medicamento diariamente?',
+    required=True,
+    options=[
         {
-            "label": "Sim",
+            'value': 'Sim',
+            'fields': [
+                [
+                    medicamento,
+                    dose_medicamento,
+                    tempo_medicamento,
+                    has_indicador_medicamento,
+                    btn_trash
+                ],
+                btn_add
+            ],
+        },
+        {"value": "Não"},
+        {"value": "Não opinou"}
+    ]
+)
+
+has_doenca_cronica = Input(
+    type='select',
+    name='has_doenca_cronica',
+    label='Apresenta alguma doença crônica?',
+    options=[
+        {"value": "Sim", "fields": [[doenca_cronica, data_primeiro_sintoma, btn_trash], btn_add]},
+        {"value": "Não"},
+        {"value": "Não opinou"},
+    ]
+)
+
+# ============== ESF ==============
+
+# TODO: Preencher as esfs padrões (config_database.py)
+estrategia_saude_familiar = Input(
+    name='estrategia_saude_familiar',
+    type='select',
+    multiselect=True,
+    label='Qual?',
+    options=db.selectAllData(EstrategiaSaudeFamiliar)
+)
+
+has_estrategia_saude_familiar = Input(
+    name='has_estrategia_saude_familiar',
+    type='select',
+    label='É acompanhado por alguma Estratégia de Saúde da Família?',
+    required=True,
+    options=[
+        {"value": "Sim", "fields": [estrategia_saude_familiar]},
+        {"value": "Não"},
+        {"value": "Não opinou"}
+    ]
+)
+
+# ============== Domicílio e Auxílios ==============
+
+qnt_comodos = Input(
+    name='qnt_comodos',
+    label='Quantos cômodos tem a sua casa?',
+    mask='9?9',
+    required=True,
+)
+
+has_agua_encanada = Input(
+    name='has_agua_encanada',
+    type='select',
+    label='Tem acesso a água na torneira de casa?',
+    options=[
+        {"value": "Sim"},
+        {"value": "Não"}
+    ]
+)
+
+auxilio = Input(
+    name='auxilio',
+    type='select',
+    label='Quais?',
+    multiselect=True,
+    required=True,
+    options=db.selectAllData(BeneficioSocial)
+)
+
+has_auxilio = Input(
+    name='has_auxilio',
+    type='select',
+    label='Está recebendo algum auxílio do governo durante esse período da pandemia?',
+    required=True,
+    options=[
+        {"value": "Sim", "fields": [auxilio]},
+        {"value": "Não"},
+        {"value": "Já pedi mas ainda não recebi"}
+    ]
+)
+
+# ============== Isolamento domiciliar ==============
+
+parentesco = Input(
+    name='parentesco',
+    type='select',
+    label='Qual a relação?',
+    options=db.selectAllData(Parentesco)
+)
+
+parentesco_doenca_cronica = Input(
+    name='parentesco_doenca_cronica',
+    type='select',
+    label='Qual?',
+    options=db.selectAllData(DoencaCronica)
+)
+
+parentesco_data_primeiro_sintoma = Input(
+    name='parentesco_data_primeiro_sintoma',
+    label='Data primeiro sintoma',
+    mask='99/99/9999',
+    placeholder='99/99/9999'
+)
+
+has_parentesco_doenca_cronica = Input(
+    type='select',
+    name='has_parentesco_doenca_cronica',
+    label='Tem doença crônica?',
+    options=[
+        {"value": "Sim", "fields": [
+            parentesco_doenca_cronica,
+            parentesco_data_primeiro_sintoma
+        ]},
+        {"value": "Não"},
+        {"value": "Não opinou"},
+    ]
+)
+
+gravida = Input(
+    name='gravida',
+    type='select',
+    multiselect=True,
+    label='Quem?',
+    required=True,
+    options=[],
+    placeholder='Nome da mulher'
+)
+
+has_gravida = Input(
+    name='has_gravida',
+    type='select',
+    required=True,
+    label='Há mulheres grávidas?',
+    options=[
+        {"value": "Sim", "fields": [gravida]},
+        {"value": "Não"},
+        {"value": "Não há mulheres no domicílio"}
+    ]
+)
+
+mora_sozinho = Input(
+    name='mora_sozinho',
+    type='select',
+    label='Mora sozinho?',
+    required=True,
+    options=[
+        {"value": "Sim"},
+        {
+            "value": "Não",
             "fields": [
-               comorbidades
+                [
+                    parentesco,
+                    has_parentesco_doenca_cronica,
+                    btn_trash
+                ],
+                btn_add,
+                has_gravida,
             ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não opinou"
         }
     ]
-}
+)
 
-listaMedicamentosPaciente = {
-    "name": "listaMedicamentosPaciente",
-    "label": "Qual(is)?",
-    "class": "tagsinput"
-}
+# ============== Visitas ==============
 
-doseRemedioPaciente = {
-    "name": "doseRemedioPaciente",
-    "label": "Como toma esse medicamento?",
-    "placeholder": "Dose, quantidade de vezes ao dia",
-    "required": True,
-}
+visita = Input(
+    name='visita',
+    label='Quem?',
+    placeholder='Sua resposta'
+)
 
-tmpRemedioPaciente = {
-    "name": "tmpRemedioPaciente",
-    "label": "Há quanto tempo toma esses medicamentos?",
-    "placeholder": "123 dias"
-}
+pq_vista = Input(
+    name='pq_visita',
+    label='Porquê?',
+    placeholder='Sua resposta'
+)
 
-quemIndicouRemedioPaciente = {
-    "type": "select",
-    "name": "quemIndicouRemedioPaciente",
-    "label": "Quem?",
-    "required": True,
-    "options": enum.indicadorMedicamento
-}
-
-indicouRemedioPaciente = {
-    "type": "radio",
-    "name": "indicouRemedioPaciente",
-    "label": "Alguém indicou o uso desses medicamentos?",
-    "required": True,
-    "options": [
+recebeu_visita = Input(
+    name='recebeu_visita',
+    type='select',
+    label='Recebeu visitas nos últimos 15 dias?',
+    required=True,
+    options=[
         {
-            "label": "Sim",
-            "fields": [
-                quemIndicouRemedioPaciente
-            ]
+            "value": "Sim",
+            "fields": [[visita, pq_vista, btn_trash], btn_add]
         },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não opinou"
-        }
+        {"value": "Não"},
+        {"value": "Não opinou"}
     ]
-}
+)
 
-checkRemedioPaciente = {
-    "type": "radio",
-    "name": "checkRemedioPaciente",
-    "label": "O Sr/Srª toma algum medicamento diariamente?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                listaMedicamentosPaciente,
-                doseRemedioPaciente,
-                tmpRemedioPaciente,
-                indicouRemedioPaciente
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não opinou"
-        }
+# ============== Isolamento domiciliar ==============
+
+isolamento = Input(
+    name='isolamento',
+    label='Como tem feito esse isolamento?'
+)
+
+nao_isolamento = Input(
+    name='nao_isolamento',
+    label='Porquê?'
+)
+
+has_isolamento = Input(
+    name='has_isolamento',
+    type='select',
+    label='Está conseguindo se manter isolado dos demais?',
+    required=True,
+    options=[
+        {"value": "Sim", "fields": [isolamento]},
+        {"value": "Não", "fields": [nao_isolamento]}
     ]
-}
+)
 
-esf = {
-    "type": "radio",
-    "name": "esf",
-    "label": "O Sr/Srª é acompanhado por alguma Estratégia de Saúde da Família?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                {
-                    "name": "esfDescricao",
-                    "label": "Qual?",
-                    "type": "select",
-                    "required": True,
-                    "options": enum.esf
-                }
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não opinou"
-        }
+dias_quarentena = Input(
+    name='dias_quarentena',
+    label='Há Quantos dias?',
+    mask='9?9'
+)
+
+motivo_sair = Input(
+    name='motivo_sair',
+    type='select',
+    multiselect=True,
+    required=True,
+    label='Quais são os motivos para sair de casa?',
+    options=db.selectAllData(MotivoSair),
+)
+
+mantem_quarentena = Input(
+    name='mantem_quarentena',
+    type='select',
+    label='Você e as pessoas com quem mora estão conseguindo se manter em casa?',
+    required=True,
+    options=[
+        {"value": "Sim", "fields": [dias_quarentena]},
+        {"value": "Não", "fields": [motivo_sair]},
+        {"label": "Sai só para atividades essenciais (banco, supermercado, etc)."}
     ]
-}
-
-# Domicilio
-
-endereco = {
-    "name": "endereco",
-    "label": "O Sr/Srª poderia me confirmar seu endereço, por favor? (Caso haja divergências da ficha, anotar abaixo)",
-}
-
-qntPessoasMesmoDomicilio = {
-    "name": "qntPessoasMesmoDomicilio",
-    "label": "Quantas pessoas moram com você?",
-    "mask": "9?9",
-    "placeholder": "1"
-}
-
-qualRelacao = {
-    "name": "qualRelacao",
-    "label": "Qual a sua relação (pai, filho, tio, etc) com cada pessoa que mora com você e idade de cada uma delas?"
-}
-
-familiarDoencaCronica = {
-    "type": "radio",
-    "name": "familiarDoencaCronica",
-    "label": "Alguma delas apresenta alguma doença crônica?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                comorbidades
-            ]
-        },
-        {
-            "label": "Não"
-        }
-    ]
-}
-
-mulherGravida = {
-    "type": "radio",
-    "name": "mulherGravida",
-    "label": "Caso haja mulheres no domicílio: algumas delas está grávida?",
-    "required": True,
-    "options": ["Sim", "Não", ""],
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                {
-                    "name": "nomeMulheresGravidas",
-                    "label": "Quem?"
-                }
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não se aplica, não há mulheres no domicílio"
-        }
-    ]
-}
-
-moraSozinho = {
-    "name": "moraSozinho",
-    "type": "radio",
-    "label": "O Sr/Srª mora sozinho?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim"
-        },
-        {
-            "label": "Não",
-            "fields": [
-                qntPessoasMesmoDomicilio,
-                qualRelacao,
-                familiarDoencaCronica,
-                mulherGravida
-            ]
-        }
-    ]
-}
-
-# Características do domicílio e auxílios governamentais
-
-qntComodos = {
-    "name": "qntComodos",
-    "label": "Quantos cômodos tem a sua casa?",
-    "required": True,
-    "mask": "9?9",
-    "placeholder": "1"
-}
-
-aguaEncanada = {
-    "name": "aguaEncanada",
-    "type": "radio",
-    "label": "O Sr/Sr tem acesso a agua na torneira de casa?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim"
-        },
-        {
-            "label": "Não"
-        }
-    ],
-}
-
-recebeAuxilio = {
-    "name": "recebeAuxilio",
-    "type": "radio",
-    "label": "O Sr/Srª está recebendo algum auxílio do governo durante esse período da pandemia?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                {
-                    "name": "quaisAuxilios",
-                    "label": "Quais?",
-                    "type": "select",
-                    "options": enum.beneficiosSociais,
-                    "multiselect": True
-                }
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Já pedi mas ainda não recebi"
-        }
-    ]
-}
-
-# Isolamento domiciliar - Lembrar de verificar o fluxo do isolamento domiciliar, proque a parte de manter quarentena aparece duas vezes em dois fluxos diferentes
-
-motivosSairDeCasa = {
-    "name": "motivosSairDeCasa",
-    "type": "select",
-    "multiselect": True,
-    "label": "Se não: quais são os motivos para sair de casa?",
-    "options": enum.motivosSair,
-    "outros": {
-        "name": "motivosSairDeCasaField",
-        "placeholder": "Outros motivos",
-        "class": "tagsinput"
-    }
-}
-
-consegueManterQuarentena = {
-    "name": "consegueManterQuarentena",
-    "type": "radio",
-    "label": "Você e as pessoas com quem mora estão conseguindo se manter em casa?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                {
-                    "name": "quantosDias",
-                    "label": "Há Quantos dias?",
-                }
-            ]
-        },
-        {
-            "label": "Não",
-            "fields": [
-                motivosSairDeCasa
-            ]
-        },
-        {
-            "label": "Sai só para atividades essenciais (banco, supermercado, etc)."
-        }
-    ]
-}
+)
 
 estrategiaComprarAlimentos = {
     "name": "motivosSairDeCasa",
@@ -392,42 +479,6 @@ cuidadoPessoaSairCasa = {
     "hint": "Ouvir o relato e orientar medidas de redução de risco da transmissão ao sair e voltar para casa e higienização dos produtos que vem da rua, considerando o contexto socioeconômico do domicílio. Descrever, sucintamente, no campo abaixo, os problemas identificados e/ou orientações passadas ao usuário.",
     "placeholder": "Sua resposta",
     "required": True
-}
-
-porqueNaoMantemIsolamento = {
-    "label": "Porquê?",
-    "name": "porqueNaoMantemIsolamento",
-    "hint": "Ouvir o relato e, se for possível, orientar o isolamento. Caso não seja possível o isolamento, orientar estratégias de redução de risco de transmissão. Descrever aqui, sucintamente, os motivos, problemas identificados e/ou orientações fornecidas.",
-    "placeholder": "Sua resposta",
-}
-
-porqueMantemIsolamento = {
-    "label": "Como o Sr/Srª tem feito esse isolamento?",
-    "name": "porqueMantemIsolamento",
-    "hint": "Ouvir o relato e passar informações adequadas sobre a manutenção do isolamento. Descrever, sucintamente, no campo abaixo, os problemas identificados e/ou orientações passadas ao usuário.",
-    "placeholder": "Sua resposta",
-}
-
-consegueIsolamentoDomiciliar = {
-    "name": "consegueIsolamentoDomiciliar",
-    "type": "radio",
-    "label": "O Sr/Srª está conseguindo se manter isolado dos demais?",
-    "hint": "Manter-se isolado significa estar sozinho em um cômodo da casa, sem acesso aos demais habitantes a esse cômodo. Se o usuário responder não, orientar o isolamento domiciliar, quando possível. Caso não seja possível o isolamento, orientar estratégias de redução de risco de transmissão.",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                porqueMantemIsolamento
-            ]
-        },
-        {
-            "label": "Não",
-            "fields": [
-                porqueNaoMantemIsolamento
-            ]
-        }
-    ],
 }
 
 dormeMesmaCama = {
@@ -499,54 +550,15 @@ alguemTrabalhaForaDeCasa = {
 
 # Visitas
 
-quemFoiAVisita = {
-    "label": "Quem?",
-    "name": "quemFoiAVisita",
-    "placeholder": "Sua resposta",
-}
-
-porqueRecebeuVisita = {
-    "label": "Porquê?",
-    "name": "porqueRecebeuVisita",
-    "hint": "Após ouvir o relato e considerando o contexto social, econômico e cultural, oriente a não receber visitas em casa e explique o porquê. Caso seja necessário, oriente medidas de redução de risco da transmissão nessas visitas. Descrever, sucintamente, no campo abaixo, o motivo da visita, os problemas identificados e/ou orientações passadas ao usuário.",
-    "placeholder": "Sua resposta",
-}
-
-recebeuVisita = {
-    "name": "recebeuVisita",
-    "type": "radio",
-    "label": "O Sr/Srª recebeu visitas nos últimos 15 dias?",
-    "required": True,
-    "options": [
-        {
-            "label": "Sim",
-            "fields": [
-                quemFoiAVisita,
-                porqueRecebeuVisita
-            ]
-        },
-        {
-            "label": "Não"
-        },
-        {
-            "label": "Não opinou"
-        }
-    ]
-}
 
 # Sintomas COVID 19
 
 apresentouSintomasCovid19 = {
-    "name": "apresentouSintomasCovid19",
     "type": "select",
-    "multiselect": True,
-    "label": "O Sr/Srª apresentou algum dos sintomas abaixo nos últimos dias (desde do último atendimento em saúde, por exemplo)?",
-    "options": enum.sintomas,
-    "outros": {
-        "name": "sintomaCovid19Field",
-        "placeholder": "Outros sintomas",
-        "class": "tagsinput"
-    }
+    "multiple": True,
+    "name": "apresentouSintomasCovid19",
+    "label": "Apresentou algum dos sintomas abaixo nos últimos dias (desde do último atendimento em saúde)?",
+    "options": db.selectAllData(Sintoma),
 }
 
 apresentouFebreQuantosGraus = {
@@ -566,11 +578,7 @@ quemIndicouMedicamento = {
     "type": "select",
     "label": "Quem indicou o uso desse medicamento?",
     "required": True,
-    "options": enum.indicadorMedicamento,
-    "outros": {
-        "name": "quemIndicouField",
-        "placeholder": "Outro indicador",
-    }
+    "options": db.selectAllData(Indicador),
 }
 
 comoTomaMedicamento = {
@@ -582,12 +590,12 @@ comoTomaMedicamento = {
 
 tomouAlgumMedicamentoProsSintomas = {
     "name": "tomouAlgumMedicamentoProsSintomas",
-    "type": "radio",
-    "label": "O Sr/Srª tomou algum medicamento para os sintomas que apresentou?",
+    "type": "select",
+    "label": "Tomou algum medicamento para os sintomas que apresentou?",
     "required": True,
     "options": [
         {
-            "label": "Sim",
+            "value": "Sim",
             "fields": [
                 qualMedicamentoTomou,
                 quemIndicouMedicamento,
@@ -595,10 +603,10 @@ tomouAlgumMedicamentoProsSintomas = {
             ]
         },
         {
-            "label": "Não"
+            "value": "Não"
         },
         {
-            "label": "Não se aplica",
+            "value": "Não se aplica",
         }
     ],
 }
@@ -610,17 +618,12 @@ quemApresentouSintomas = {
 }
 
 quaisSintomasApresentou = {
-    "name": "quaisSintomasApresentou",
     "type": "select",
-    "multiselect": True,
-    "label": "Quais sintomas?",
     "required": True,
-    "options": enum.sintomas,
-    "outros": {
-        "name": "sintomaCovid19Field",
-        "placeholder": "Outros sintomas",
-        "class": "tagsinput"
-    }
+    "multiple": True,
+    "name": "quaisSintomasApresentou",
+    "label": "Quais sintomas?",
+    "options": db.selectAllData(Sintoma)
 }
 
 seFebreDeQuanto = {
@@ -637,12 +640,12 @@ linkNotificacao = {
 
 alguemMaisApresentaSintomaEmCasa = {
     "name": "alguemMaisApresentaSintomaEmCasa",
-    "type": "radio",
+    "type": "select",
     "label": "Alguma outra pessoa da sua residência está apresentando algum sintoma de gripe (febre, tosse, dificuldade de respirar, fadiga, dor no corpo, por exemplo)?",
     "required": True,
     "options": [
         {
-            "label": "Sim",
+            "value": "Sim",
             "fields": [
                 quemApresentouSintomas,
                 quaisSintomasApresentou,
@@ -651,10 +654,10 @@ alguemMaisApresentaSintomaEmCasa = {
             ]
         },
         {
-            "label": "Não"
+            "value": "Não"
         },
         {
-            "label": "Não se aplica, mora sozinho",
+            "value": "Não se aplica, mora sozinho",
         }
     ],
 }
@@ -662,15 +665,11 @@ alguemMaisApresentaSintomaEmCasa = {
 # Encerramento do Atendimento/Orientações Finais
 
 orientacaoFinal = {
-    "name": "orientacaoFinal",
     "type": "select",
-    "multiselect": True,
+    "multiple": True,
+    "name": "orientacaoFinal",
     "label": "Orientação final",
-    "options": enum.orientacaoFinal,
-    "outros": {
-        "name": "outroAtendimentoField",
-        "placeholder": "Outras orientações finais",
-    }
+    "options": db.selectAllData(OrientacaoFinal),
 }
 
 anotarOrientacoes = {
