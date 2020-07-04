@@ -23,9 +23,9 @@ def index():
             fieldsetConjunto1,
             fieldsetConjunto2,
             fieldsetConjunto3,
+            fieldsetConjunto5,
             fieldsetConjunto4,
-            # fieldsetConjunto5,
-            # fieldsetConjunto6,
+            fieldsetConjunto6,
         ]
 
         return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'))
