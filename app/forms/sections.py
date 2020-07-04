@@ -57,7 +57,8 @@ isolamentoDomiciliar = {
     "name": "Isolamento Domiciliar",
     "inputs": [
         has_isolamento,
-        mantem_quarentena
+        mantem_quarentena,
+        cuidado_sair_casa
     ]
 }
 
@@ -70,18 +71,13 @@ visitas = {
 
 sintomascovid = {
     "name": "Perguntas sobre os sintomas da Covid-19",
-    "inputs": [
-        apresentouSintomasCovid19,
-        apresentouFebreQuantosGraus,
-        tomouAlgumMedicamentoProsSintomas,
-        alguemMaisApresentaSintomaEmCasa
-    ]
+    "inputs": [has_sintoma]
 }
 
 orientacoesfinais = {
     "name": "Encerramento do atendimento/Orientações finais",
     "inputs": [
-        orientacaoFinal,
-        anotarOrientacoes
+        orientacao_final,
+        anotar_orientacoes
     ]
 }

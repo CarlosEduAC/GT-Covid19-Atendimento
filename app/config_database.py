@@ -57,8 +57,7 @@ db.saveList(Parentesco, [
     "Avô/Avó",
     "Colega/Amigo/Amiga",
     "Marido/Esposa/Namorado/Namorada",
-    "Primo/Prima",
-    "Outros"
+    "Primo/Prima"
 ])
 
 # Beneficio Social
@@ -78,7 +77,6 @@ db.saveList(BeneficioSocial, [
     "Passe-livre para pessoa com deficiência",
     "Tarifa social de água",
     "Tarifa social de energia elétrica",
-    "Outros.",
     "Não se insere em nenhum programa ou não recebe benefícíos",
     "Não sabe informar"
 ])
@@ -90,8 +88,7 @@ db.saveList(MotivoSair, [
     "Ir a banco/caixas eletrônicos",
     "Ir a casa de familiares e amigos",
     "Trabalho voluntário",
-    "Ir a consultas médicas/fazer exames diagnósticos/tratamentos",
-    "Outros"
+    "Ir a consultas médicas/fazer exames diagnósticos/tratamentos"
 ])
 
 # Sintomas
@@ -118,8 +115,7 @@ db.saveList(Indicador, [
     "Enfermeiro",
     "Vizinho/Familiar/Amigo/Conhecido",
     "Dentista",
-    "Tomou por conta própria",
-    "Outro"
+    "Tomou por conta própria"
 ])
 
 # Orientacoes finais
@@ -128,8 +124,7 @@ db.saveList(OrientacaoFinal, [
     "Acompanhamento telefônico em 24 horas",
     "Acompanhamento telefônico em 48 horas",
     "Discussão do caso com o supervisor",
-    "Contato com o serviço",
-    "Outros"
+    "Contato com o serviço"
 ])
 
 db.saveData(AdmSaude(

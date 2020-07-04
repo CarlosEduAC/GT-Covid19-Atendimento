@@ -202,7 +202,12 @@
 
                 const $parent = $selectedItem.closest('.field').parent()
 
+                $parent.find(`.field[data-parent=${data_parent}]`).closest('.master-fields').addClass('offscreen')
+
                 $parent.find(`.field[data-parent=${data_parent}]`).addClass('offscreen')
+
+                $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`).closest('.master-fields')
+                    .removeClass('offscreen')
 
                 $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`)
                     .removeClass('offscreen')
