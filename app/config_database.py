@@ -1,7 +1,7 @@
 from models.modelsDomainTable import *
 from models.modelsAgendamento import *
 from controller.database import Database
-from models.models import Base
+from models.models import Base, AdmSaude
 
 db = Database()
 
@@ -131,3 +131,19 @@ db.saveList(OrientacaoFinal, [
     "Contato com o serviço",
     "Outros"
 ])
+
+db.saveData(AdmSaude(
+    nome='Edson Onildo Machado do Bonfim Junior',
+    crm=None,
+    cpf='45381108842',
+    is_supervisor=True,
+    senha='32461462'
+))
+
+db.saveData(AdmSaude(
+    nome='Isabela Silva de Carvalho',
+    crm=None,
+    cpf='99999999999',
+    is_supervisor=True,
+    senha='12345678910'
+))

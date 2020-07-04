@@ -8,7 +8,6 @@ from sqlalchemy import desc
 
 
 def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
-
     db = Database()
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
@@ -17,27 +16,27 @@ def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_gener
         new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
         db.saveData(new_paciente)
         return db.selectIf(Paciente, cpf=cpf).id
-        
 
-class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
 
-    #Classe de atendimento que será moficada aos poucos e salva no fim
+class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
+
+    # Classe de atendimento que será moficada aos poucos e salva no fim
     atendimento = None
 
-    #Lista com todas as classes de relacionamento que dependem
-    #do id do atendimento para serem salvas.
+    # Lista com todas as classes de relacionamento que dependem
+    # do id do atendimento para serem salvas.
     relations = []
 
-    #Se não for o atendimento inicial, passa o id do inicial no construtor
+    # Se não for o atendimento inicial, passa o id do inicial no construtor
     def __init__(self, is_primeiro, data, id_paciente,
-                     tentativa=None, id_atendimento_inicial=None, id_inicial=None):
-        
+                 tentativa=None, id_atendimento_inicial=None, id_inicial=None):
+
         self.atendimento = Atendimento()
-        
+
         self.atendimento.is_primeiro = is_primeiro
         self.atendimento.data = data
         self.atendimento.id_paciente = id_paciente
-        self.atendimento.id_atendimento_inicial=id_atendimento_inicial
+        self.atendimento.id_atendimento_inicial = id_atendimento_inicial
         self.atendimento.id_inicial = id_inicial
 
         if tentativa is not None:
@@ -45,21 +44,21 @@ class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
         else:
             self.atendimento.id_tentativa = None
 
-    #Adiciona uma relação à lista.
+    # Adiciona uma relação à lista.
     def saveRelation(self, obj):
         self.relations.append(obj)
-        
-    #Inser uma relação. Adiciona o campo id_atendimento e salva no banco.
+
+    # Inser uma relação. Adiciona o campo id_atendimento e salva no banco.
     def insertRelation(self, obj, id):
         obj.id_atendimento = id
         db = Database()
         db.saveData(obj)
 
-    #Essa função é utilizada caso o valor de uma tabela de dominio
-    #seja passada. Daí, é buscado esse valor no banco. Se não existir,
-    #salva. Se existir, recupera o id.
+    # Essa função é utilizada caso o valor de uma tabela de dominio
+    # seja passada. Daí, é buscado esse valor no banco. Se não existir,
+    # salva. Se existir, recupera o id.
     def encontrarIdValor(self, obj, value):
-        db=Database()
+        db = Database()
         res = db.selectIf(obj, value=value)
         if res is None:
             newObj = obj(value)
@@ -69,133 +68,123 @@ class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
             id = res.id
         return id
 
-
-    #-----------------------------------------------------------------------------
-    #Insere os dados do atendimento inicial.
+    # -----------------------------------------------------------------------------
+    # Insere os dados do atendimento inicial.
     def inserirAtendimentoInicial(self, endereco, qtd_comodos, is_agua_encanada):
-        if(not self.atendimento.is_primeiro): #Caso esse atendimento NAO seja inicial, nao deixa inserir
+        if (not self.atendimento.is_primeiro):  # Caso esse atendimento NAO seja inicial, nao deixa inserir
             return
         inicial = AtendimentoInicial()
         inicial.endereco = endereco
         inicial.qtd_comodos = qtd_comodos
         inicial.is_agua_encanada = is_agua_encanada
-        
+
         db = Database()
         db.saveData(inicial)
 
-        #Recupera o ultimo atendimento inicial salvo para recuperar o ID.
+        # Recupera o ultimo atendimento inicial salvo para recuperar o ID.
         id = db.Session().query(AtendimentoInicial).order_by(desc(AtendimentoInicial.id)).first().id
 
         self.atendimento.id_atendimento_inicial = id
 
-
-
     def inserirBeneficioSocial(self, id, outros=None):
-        
 
         self.saveRelation(
             AtendimentoBeneficioSocial(
-                id_beneficio_social = id,
-                outros_beneficios_sociais = outros
+                id_beneficio_social=id,
+                outros_beneficios_sociais=outros
             )
         )
-    
 
     def inserirEstrategiaSaudeFamiliar(self, id, outros=None):
-        
+
         self.saveRelation(
             AtendimentoEstrategiasSaudesFamiliar(
-                id_estrategia_saude_familiar = id,
-                outras_estrategias_saude_familiar = outros
+                id_estrategia_saude_familiar=id,
+                outras_estrategias_saude_familiar=outros
             )
         )
 
     def inserirParentesco(self, id_parentesco,
-                            id_doenca_cronica=None, data_sintomas=None):
+                          id_doenca_cronica=None, data_sintomas=None):
 
         self.saveRelation(
             AtendimentoParentesco(
-                id_parentesco = id_parentesco,
-                id_doenca_cronica = id_doenca_cronica,
-                data_sintomas = data_sintomas
+                id_parentesco=id_parentesco,
+                id_doenca_cronica=id_doenca_cronica,
+                data_sintomas=data_sintomas
             )
         )
 
-    
     def inserirMulherGravida(self, mulher):
 
         self.saveRelation(
             AtendimentoMulherGravida(
-                nome_mulher = mulher
+                nome_mulher=mulher
             )
         )
-
 
     def inserirVisita(self, quem, porque):
 
         self.saveRelation(
             AtendimentoVisita(
-                quem_visitou = quem,
-                porque_visitou = porque
+                quem_visitou=quem,
+                porque_visitou=porque
             )
         )
 
     def inserirIsolamento(self, consegue_isolamento, como_porque):
-        
+
         self.atendimento.consegue_isolamento = consegue_isolamento
         if consegue_isolamento:
             self.atendimento.como_consegue = como_porque
         else:
             self.atendimento.porque_nao_consegue = como_porque
 
-    
     def inserirManterEmCasa(self, consegue_ficar_casa, quantos_dias=None):
         self.atendimento.consegue_ficar_casa = consegue_ficar_casa
         self.atendimento.quantos_dias = quantos_dias
 
     def inserirMotivoSair(self, id, outros=None):
-        
-        
+
         self.saveRelation(
             AtendimentoMotivoSair(
-                id_motivo_sair = id,
-                outros_motivos_sair = outros
+                id_motivo_sair=id,
+                outros_motivos_sair=outros
             )
         )
-    
 
     def adicionarOrientacaoFinal(self, value, comentarios, outros=None):
-        
+
         id = self.encontrarIdValor(OrientacaoFinal, value)
-        
+
         self.saveRelation(
             AtendimentoOrientacaoFinal(
-                id_orientacao_final = id,
-                comentario = comentarios,
-                outras_orientacoes_finais = outros
+                id_orientacao_final=id,
+                comentario=comentarios,
+                outras_orientacoes_finais=outros
             )
         )
 
-    #-----------------------------------------------------------------------------
-    
+    # -----------------------------------------------------------------------------
+
     def inserirDoencaCronica(self, doenca=None, medicamento=None, indicador=None,
-                        parentesco=None, outros_medicamentos=None,
-                        outros_indicadores=None, outras_doencas=None):
-        
+                             parentesco=None, outros_medicamentos=None,
+                             outros_indicadores=None, outras_doencas=None):
+
         self.saveRelation(
             AtendimentoDoecaCronica(
-                id_doenca_cronica = doenca,
-                id_medicamento = medicamento,
-                id_indicador = indicador,
-                id_parentesco = parentesco,
-                outros_medicamentos = outros_medicamentos,
-                outros_indicadores = outros_indicadores,
-                outras_doencas_cronicas = outras_doencas
+                id_doenca_cronica=doenca,
+                id_medicamento=medicamento,
+                id_indicador=indicador,
+                id_parentesco=parentesco,
+                outros_medicamentos=outros_medicamentos,
+                outros_indicadores=outros_indicadores,
+                outras_doencas_cronicas=outras_doencas
             )
         )
-    
+
     def adicionarSintoma(self, value, medicamento, indicador,
-                            parentesco=None, outros_sintomas=None):
+                         parentesco=None, outros_sintomas=None):
         id_sintoma = self.encontrarIdValor(Sintoma, value)
         id_medicamento = self.encontrarIdValor(Medicamento, medicamento)
         id_indicador = self.encontrarIdValor(Indicador, indicador)
@@ -203,37 +192,37 @@ class AtendimentoBuilder(): #Incluir funções de cadastro de outras tabelas
             id_parentesco = self.encontrarIdValor(Parentesco, parentesco)
         else:
             id_parentesco = None
-        
+
         self.saveRelation(
             AtendimentoSintoma(
-                id_sintoma = id_sintoma,
-                id_medicamento = id_medicamento,
-                id_indicador = id_indicador,
-                id_parentesco = id_parentesco,
-                outros_sintomas = outros_sintomas
+                id_sintoma=id_sintoma,
+                id_medicamento=id_medicamento,
+                id_indicador=id_indicador,
+                id_parentesco=id_parentesco,
+                outros_sintomas=outros_sintomas
             )
         )
+
     # --------------------------------------------------------------------
 
-    def finalizarPersistencia(self, id_adm_saude, id_paciente): #Cadastra o atendimento e o agendamento
+    def finalizarPersistencia(self, id_adm_saude, id_paciente):  # Cadastra o atendimento e o agendamento
 
         db = Database()
 
-        #Finaliza o cadastro do atendimento e recupera o id salvo
+        # Finaliza o cadastro do atendimento e recupera o id salvo
         db.saveData(self.atendimento)
         id_atendimento = db.selectIf(Atendimento, id_paciente=self.atendimento.id_paciente,
-                                                    data=self.atendimento.data).id
+                                     data=self.atendimento.data).id
 
-        #Para cada relacionamento salvo, insere o ID do atendimento e cadastra
+        # Para cada relacionamento salvo, insere o ID do atendimento e cadastra
         for rel in self.relations:
             self.insertRelation(rel, id_atendimento)
 
-
-        #Cálculo da data do próximo atendimento (agendamento)
+        # Cálculo da data do próximo atendimento (agendamento)
         interval = db.selectData(TempoContatoAcompanhamento).intervalo_contato
         data = self.atendimento.data + timedelta(hours=interval)
 
-        #Salva o agendamento
+        # Salva o agendamento
         agendamento = Agendamento()
         agendamento.id_adm_saude = id_adm_saude
         agendamento.id_atendimento = id_atendimento

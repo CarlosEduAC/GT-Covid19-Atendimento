@@ -6,7 +6,7 @@ db = Database()
 
 class Input:
     def __init__(self, name='', type='text', label='', placeholder='', required=False, mask=None, options=None,
-                 multiselect=False):
+                 multiselect=False, outros=False):
         self.name = name
         self.type = type
         self.label = label
@@ -15,6 +15,7 @@ class Input:
         self.mask = mask
         self.options = options
         self.multiselect = multiselect
+        self.outros = outros
 
 
 # =============== Utils ===============
@@ -26,11 +27,11 @@ btn_add = Input(type='btn_add')
 # ============ Atendimento ============
 
 tentativas = Input(
-    #type='select',
+    type='select',
     name='tentativas',
     label='Motivos de falha no contato',
-    #multiselect=False,
-    #options=db.selectAllData(Tentativa)
+    options=db.selectAllData(Tentativa),
+    outros=True,
 )
 
 has_atendimento = Input(
@@ -77,7 +78,6 @@ adm_is_supervisor = Input(
     label='É administrador?',
     type="checkbox"
 )
-
 
 # ============== Paciente ==============
 
@@ -147,8 +147,6 @@ data_primeiro_sintoma = Input(
     mask='99/99/9999',
     placeholder='99/99/9999'
 )
-
-
 
 # ============== Medicamento ==============
 

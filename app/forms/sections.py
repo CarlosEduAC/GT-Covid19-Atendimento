@@ -1,5 +1,4 @@
 from .inputs import *
-from forms.inputs_test.dados_basicos import *
 
 tentativa = {
     "name": "Tentativa",
