@@ -64,21 +64,19 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/" title="Atendimento"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span>
-                        <span
-                                class="fa arrow"></span></a>
+                    <a href="/" title= "Atendimento"><i class="fa fa-th-large"></i> <span class="nav-label">Menu Atendente</span> <span
+                            class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/admin" title="Admin"><i class="fa fa-diamond"></i> <span
-                            class="nav-label">Tela Admin</span></a>
+                    <a href="/admin" title= "Admin"><i class="fa fa-diamond"></i> <span class="nav-label">Tela Admin</span></a>
                 </li>
                 <li>
-                    <a href="/about" title="Sobre"><i class="fa fa-bar-chart-o"></i> <span
+                    <a href="/about" title= "Sobre"><i class="fa fa-bar-chart-o"></i> <span
                             class="nav-label">Primeiro Atendimento</span><span
                             class="fa arrow"></span></a>
                 </li>
                 <li>
-                    <a href="/logout" title="Logout">
+                    <a href="/logout" title= "Logout">
                         <i class="fa fa-sign-out"></i>
                         <span class="nav-label">Logout</span>
                         <span class="fa arrow"></span>
@@ -87,7 +85,7 @@
             </ul>
         </div>
     </nav>
-
+    
     <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0; padding: 10px;">
@@ -196,18 +194,12 @@
 
 
         $('.ui.dropdown.single').dropdown({
-            allowAdditions: true,
             onChange: function (value, text, $selectedItem) {
                 const data_parent = $selectedItem.attr('data-parent');
 
                 const $parent = $selectedItem.closest('.field').parent()
 
-                $parent.find(`.field[data-parent=${data_parent}]`).closest('.master-fields').addClass('offscreen')
-
                 $parent.find(`.field[data-parent=${data_parent}]`).addClass('offscreen')
-
-                $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`).closest('.master-fields')
-                    .removeClass('offscreen')
 
                 $parent.find(`.field[data-parent=${data_parent}][data-parent-option=${value}]`)
                     .removeClass('offscreen')

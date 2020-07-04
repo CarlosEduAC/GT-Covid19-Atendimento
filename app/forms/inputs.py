@@ -6,7 +6,7 @@ db = Database()
 
 class Input:
     def __init__(self, name='', type='text', label='', placeholder='', required=False, mask=None, options=None,
-                 multiselect=False, outros=False, hr=False):
+                 multiselect=False):
         self.name = name
         self.type = type
         self.label = label
@@ -15,8 +15,6 @@ class Input:
         self.mask = mask
         self.options = options
         self.multiselect = multiselect
-        self.outros = outros
-        self.hr = hr
 
 
 # =============== Utils ===============
@@ -28,11 +26,11 @@ btn_add = Input(type='btn_add')
 # ============ Atendimento ============
 
 tentativas = Input(
-    type='select',
+    #type='select',
     name='tentativas',
     label='Motivos de falha no contato',
-    options=db.selectAllData(Tentativa),
-    outros=True,
+    #multiselect=False,
+    #options=db.selectAllData(Tentativa)
 )
 
 has_atendimento = Input(
@@ -79,6 +77,7 @@ adm_is_supervisor = Input(
     label='É administrador?',
     type="checkbox"
 )
+
 
 # ============== Paciente ==============
 
@@ -148,6 +147,8 @@ data_primeiro_sintoma = Input(
     mask='99/99/9999',
     placeholder='99/99/9999'
 )
+
+
 
 # ============== Medicamento ==============
 
@@ -229,6 +230,7 @@ has_doenca_cronica = Input(
 
 # ============== ESF ==============
 
+# TODO: Preencher as esfs padrões (config_database.py)
 estrategia_saude_familiar = Input(
     name='estrategia_saude_familiar',
     type='select',
@@ -312,113 +314,39 @@ parentesco_data_primeiro_sintoma = Input(
     placeholder='99/99/9999'
 )
 
-parentesco_doenca_cronica_medicamento = Input(
-    type='select',
-    name='parentesco_doenca_cronica_medicamento',
-    label='Medicamento',
-    outros=True,
-    options=db.selectAllData(Medicamento)
-)
-
-parentesco_doenca_cronica_medicamento_indicador = Input(
-    type='select',
-    name='parentesco_doenca_cronica_medicamento_indicador',
-    label='Quem indicou',
-    options=db.selectAllData(Indicador)
-)
-
 has_parentesco_doenca_cronica = Input(
     type='select',
     name='has_parentesco_doenca_cronica',
-    label='Algum familiar possui doenças crônicas?',
+    label='Tem doença crônica?',
     options=[
-        {
-            'value': 'Sim',
-            'background': '#fafafa',
-            'title': 'Doenças Crônicas',
-            'fields': [
-                [
-                    parentesco,
-                    parentesco_doenca_cronica,
-                    parentesco_data_primeiro_sintoma,
-                    parentesco_doenca_cronica_medicamento,
-                    parentesco_doenca_cronica_medicamento_indicador,
-                    btn_trash
-                ],
-                Input(type='btn_add', hr=True)
-            ]
-        },
-        {'value': 'Não'}
+        {"value": "Sim", "fields": [
+            parentesco_doenca_cronica,
+            parentesco_data_primeiro_sintoma
+        ]},
+        {"value": "Não"},
+        {"value": "Não opinou"},
     ]
 )
 
-is_gravida = Input(
+gravida = Input(
+    name='gravida',
     type='select',
-    name='is_gravida',
-    label='Está gravida?',
+    multiselect=True,
+    label='Quem?',
+    required=True,
+    options=[],
+    placeholder='Nome da mulher'
+)
+
+has_gravida = Input(
+    name='has_gravida',
+    type='select',
+    required=True,
+    label='Há mulheres grávidas?',
     options=[
-        {'value': 'Sim'},
-        {'value': 'Não'}
-    ]
-)
-
-parentesco_apresentou_sintoma = Input(
-    name='parentesco_apresentou_sintoma',
-    type='select',
-    label='Qual a relação?',
-    options=db.selectAllData(Parentesco)
-)
-
-parentesco_sintoma = Input(
-    type='select',
-    name='parentesco_sintoma',
-    label='Sintoma',
-    options=db.selectAllData(Sintoma)
-)
-
-parentesco_sintoma_medicamento = Input(
-    type='select',
-    name='parentesco_sintoma_medicamento',
-    label='Medicamento',
-    options=db.selectAllData(Medicamento),
-    outros=True,
-)
-
-parentesco_quem_indicou_medicamento = Input(
-    type='select',
-    name='parentesco_quem_indicou_medicamento',
-    label='Quem indicou?',
-    options=db.selectAllData(Indicador)
-)
-
-parentesco_dosagem = Input(
-    name='parentesco_dosagem',
-    label='Qual a dosagem?',
-)
-
-parentesco_has_sintoma = Input(
-    type='select',
-    name='parentesco_has_sintoma',
-    label='Algum familiar apresentou sintomas nos últimos dias?',
-    options=[
-        {
-            'value': 'Sim',
-            'background': '#fafafa',
-            'title': 'Medicamentos',
-            'fields': [
-                [
-                    parentesco_apresentou_sintoma,
-                    parentesco_sintoma,
-                    parentesco_sintoma_medicamento,
-                    parentesco_quem_indicou_medicamento,
-                    parentesco_dosagem,
-                    is_gravida,
-                    btn_trash
-                ],
-                btn_add
-            ]
-        },
-        {'value': 'Não'}
+        {"value": "Sim", "fields": [gravida]},
+        {"value": "Não"},
+        {"value": "Não há mulheres no domicílio"}
     ]
 )
 
@@ -430,10 +358,15 @@ mora_sozinho = Input(
     options=[
         {"value": "Sim"},
         {
-            'value': 'Não',
+            "value": "Não",
             "fields": [
-                has_parentesco_doenca_cronica,
-                parentesco_has_sintoma,
+                [
+                    parentesco,
+                    has_parentesco_doenca_cronica,
+                    btn_trash
+                ],
+                btn_add,
+                has_gravida,
             ]
         }
     ]
@@ -509,7 +442,7 @@ motivo_sair = Input(
 mantem_quarentena = Input(
     name='mantem_quarentena',
     type='select',
-    label='Todos do domicílio conseguem se manter em casa?',
+    label='Você e as pessoas com quem mora estão conseguindo se manter em casa?',
     required=True,
     options=[
         {"value": "Sim", "fields": [dias_quarentena]},
@@ -518,73 +451,37 @@ mantem_quarentena = Input(
     ]
 )
 
-# TODO: Adicionar campo no banco
-cuidado_sair_casa = Input(
-    name='cuidado_sair_casa',
-    label='Cuidados tomados ao sair de casa'
-)
-
-# ============== Sintomas COVID 19 ==============
-
-sintoma = Input(
-    type='select',
-    name='apresentou_sintoma',
-    label='Sintoma',
-    options=db.selectAllData(Sintoma)
-)
-
-sintoma_medicamento = Input(
-    type='select',
-    name='sintoma_medicamento',
-    label='Medicamento',
-    options=db.selectAllData(Medicamento),
-    outros=True,
-)
-
-quem_indicou_medicamento = Input(
-    type='select',
-    name='quem_indicou_medicamento',
-    label='Quem indicou?',
-    options=db.selectAllData(Indicador)
-)
-
-dosagem = Input(
-    name='dosagem',
-    label='Observações',
-)
-
-has_sintoma = Input(
-    type='select',
-    name='has_sintoma',
-    label='Apresentou algum sintoma nos últimos dias?',
-    options=[
+estrategiaComprarAlimentos = {
+    "name": "motivosSairDeCasa",
+    "type": "checkbox",
+    "label": "Qual tem sido a(s) estratégia(s) usada para a compra de alimentos/medicamentos para o domicílio?",
+    "options": [
         {
-            'value': 'Sim',
-            'fields': [
-                [sintoma, sintoma_medicamento, quem_indicou_medicamento, dosagem, btn_trash],
-                btn_add
-            ]
+            "label": "Ida pessoal ao mercado",
         },
-        {'value': 'Não'}
+        {
+            "label": "Entrega em casa (via whatsapp, sites, aplicativos, etc).",
+        },
+        {
+            "label": "Alguém tem feito as compras e deixado no domicílio",
+        },
+        {
+            "label": "Outros",
+            "field": {
+                "name": "estrategiaCompraAlimentoField",
+                "placeholder": "Placeholder",
+            },
+        },
     ]
-)
+}
 
-# ============== Orientações Finais ==============
-
-orientacao_final = Input(
-    type='select',
-    name='orientacao_final',
-    label='Orientação final',
-    options=db.selectAllData(OrientacaoFinal),
-    outros=True,
-)
-
-anotar_orientacoes = Input(
-    name='anotar_orientacoes_finais',
-    label='Anotar aqui orientações, dúvidas do atendimento ou qualquer outra informação relevante',
-)
-
-# ============== Sobraram esses inputs, o que fazer com eles? ==============
+cuidadoPessoaSairCasa = {
+    "name": "cuidadoPessoaSairCasa",
+    "label": "Quais são os cuidados que essa pessoa tem tido ao sair de casa para comprar esses itens? E ao chegar em casa? Ou ao receber os produtos?",
+    "hint": "Ouvir o relato e orientar medidas de redução de risco da transmissão ao sair e voltar para casa e higienização dos produtos que vem da rua, considerando o contexto socioeconômico do domicílio. Descrever, sucintamente, no campo abaixo, os problemas identificados e/ou orientações passadas ao usuário.",
+    "placeholder": "Sua resposta",
+    "required": True
+}
 
 dormeMesmaCama = {
     "name": "dormeMesmaCama",
@@ -656,8 +553,129 @@ alguemTrabalhaForaDeCasa = {
 # Visitas
 
 
+# Sintomas COVID 19
+
+apresentouSintomasCovid19 = {
+    "type": "select",
+    "multiple": True,
+    "name": "apresentouSintomasCovid19",
+    "label": "Apresentou algum dos sintomas abaixo nos últimos dias (desde do último atendimento em saúde)?",
+    "options": db.selectAllData(Sintoma),
+}
+
+apresentouFebreQuantosGraus = {
+    "label": "Caso tenha apresentado febre, de quanto (anotar o maior número relatado)?",
+    "name": "apresentouFebreQuantosGraus",
+    "placeholder": "Sua resposta",
+}
+
+qualMedicamentoTomou = {
+    "label": "Qual?",
+    "name": "qualMedicamentoTomou",
+    "placeholder": "Sua resposta",
+}
+
+quemIndicouMedicamento = {
+    "name": "quemIndicouMedicamento",
+    "type": "select",
+    "label": "Quem indicou o uso desse medicamento?",
+    "required": True,
+    "options": db.selectAllData(Indicador),
+}
+
+comoTomaMedicamento = {
+    "label": "Como está tomando esse(s) medicamento(s)?",
+    "hint": "Ouvir o relato e considerando os problemas identificados ou dúvidas, oriente quanto ao uso adequado do medicamentos. Descreva aqui, sucintamente, os problemas identificados, dúvidas e orientações fornecidas.",
+    "name": "comoTomaMedicamento",
+    "placeholder": "Sua resposta",
+}
+
+tomouAlgumMedicamentoProsSintomas = {
+    "name": "tomouAlgumMedicamentoProsSintomas",
+    "type": "select",
+    "label": "Tomou algum medicamento para os sintomas que apresentou?",
+    "required": True,
+    "options": [
+        {
+            "value": "Sim",
+            "fields": [
+                qualMedicamentoTomou,
+                quemIndicouMedicamento,
+                comoTomaMedicamento,
+            ]
+        },
+        {
+            "value": "Não"
+        },
+        {
+            "value": "Não se aplica",
+        }
+    ],
+}
+
+quemApresentouSintomas = {
+    "label": "Quem?",
+    "name": "quemApresentouSintomas",
+    "placeholder": "Sua resposta",
+}
+
+quaisSintomasApresentou = {
+    "type": "select",
+    "required": True,
+    "multiple": True,
+    "name": "quaisSintomasApresentou",
+    "label": "Quais sintomas?",
+    "options": db.selectAllData(Sintoma)
+}
+
+seFebreDeQuanto = {
+    "label": "Se febre, de quanto (anotar o maior número relatado)?",
+    "name": "seFebreDeQuanto",
+    "placeholder": "Sua resposta",
+}
+
 linkNotificacao = {
     "label": "Caso alguém da casa tenha apresentado sintomas, clique aqui para abrir a ficha de notificação: (link)",
     "name": "linkNotificacao",
+    "placeholder": "Sua resposta",
+}
+
+alguemMaisApresentaSintomaEmCasa = {
+    "name": "alguemMaisApresentaSintomaEmCasa",
+    "type": "select",
+    "label": "Alguma outra pessoa da sua residência está apresentando algum sintoma de gripe (febre, tosse, dificuldade de respirar, fadiga, dor no corpo, por exemplo)?",
+    "required": True,
+    "options": [
+        {
+            "value": "Sim",
+            "fields": [
+                quemApresentouSintomas,
+                quaisSintomasApresentou,
+                seFebreDeQuanto,
+                linkNotificacao
+            ]
+        },
+        {
+            "value": "Não"
+        },
+        {
+            "value": "Não se aplica, mora sozinho",
+        }
+    ],
+}
+
+# Encerramento do Atendimento/Orientações Finais
+
+orientacaoFinal = {
+    "type": "select",
+    "multiple": True,
+    "name": "orientacaoFinal",
+    "label": "Orientação final",
+    "options": db.selectAllData(OrientacaoFinal),
+}
+
+anotarOrientacoes = {
+    "label": "Anotar aqui orientações, dúvidas do atendimento ou qualquer outra informação relevante.",
+    "name": "anotarOrientacoes",
     "placeholder": "Sua resposta",
 }

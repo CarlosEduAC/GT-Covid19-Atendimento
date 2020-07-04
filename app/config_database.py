@@ -1,7 +1,7 @@
 from models.modelsDomainTable import *
 from models.modelsAgendamento import *
 from controller.database import Database
-from models.models import Base, AdmSaude
+from models.models import Base
 
 db = Database()
 
@@ -57,7 +57,8 @@ db.saveList(Parentesco, [
     "Avô/Avó",
     "Colega/Amigo/Amiga",
     "Marido/Esposa/Namorado/Namorada",
-    "Primo/Prima"
+    "Primo/Prima",
+    "Outros"
 ])
 
 # Beneficio Social
@@ -77,6 +78,7 @@ db.saveList(BeneficioSocial, [
     "Passe-livre para pessoa com deficiência",
     "Tarifa social de água",
     "Tarifa social de energia elétrica",
+    "Outros.",
     "Não se insere em nenhum programa ou não recebe benefícíos",
     "Não sabe informar"
 ])
@@ -88,7 +90,8 @@ db.saveList(MotivoSair, [
     "Ir a banco/caixas eletrônicos",
     "Ir a casa de familiares e amigos",
     "Trabalho voluntário",
-    "Ir a consultas médicas/fazer exames diagnósticos/tratamentos"
+    "Ir a consultas médicas/fazer exames diagnósticos/tratamentos",
+    "Outros"
 ])
 
 # Sintomas
@@ -115,7 +118,8 @@ db.saveList(Indicador, [
     "Enfermeiro",
     "Vizinho/Familiar/Amigo/Conhecido",
     "Dentista",
-    "Tomou por conta própria"
+    "Tomou por conta própria",
+    "Outro"
 ])
 
 # Orientacoes finais
@@ -124,21 +128,6 @@ db.saveList(OrientacaoFinal, [
     "Acompanhamento telefônico em 24 horas",
     "Acompanhamento telefônico em 48 horas",
     "Discussão do caso com o supervisor",
-    "Contato com o serviço"
+    "Contato com o serviço",
+    "Outros"
 ])
-
-db.saveData(AdmSaude(
-    nome='Edson Onildo Machado do Bonfim Junior',
-    crm=None,
-    cpf='45381108842',
-    is_supervisor=True,
-    senha='32461462'
-))
-
-db.saveData(AdmSaude(
-    nome='Isabela Silva de Carvalho',
-    crm=None,
-    cpf='99999999999',
-    is_supervisor=True,
-    senha='12345678910'
-))

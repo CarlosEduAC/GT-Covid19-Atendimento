@@ -17,7 +17,7 @@
         {{ radio(input) }}
     {% elif input.type == "checkbox" %}
         {% from 'macros/checkbox.html' import checkbox with context %}
-        {{ checkbox(input, parent=parent, parent_option=parent_option) }}
+        {{ checkbox(input) }}
     {% elif input.type == "select" %}
         {% from 'macros/select.html' import select with context %}
         {{ select(input, parent=parent, parent_option=parent_option) }}

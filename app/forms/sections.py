@@ -1,4 +1,5 @@
 from .inputs import *
+from forms.inputs_test.dados_basicos import *
 
 tentativa = {
     "name": "Tentativa",
@@ -57,8 +58,7 @@ isolamentoDomiciliar = {
     "name": "Isolamento Domiciliar",
     "inputs": [
         has_isolamento,
-        mantem_quarentena,
-        cuidado_sair_casa
+        mantem_quarentena
     ]
 }
 
@@ -71,13 +71,18 @@ visitas = {
 
 sintomascovid = {
     "name": "Perguntas sobre os sintomas da Covid-19",
-    "inputs": [has_sintoma]
+    "inputs": [
+        apresentouSintomasCovid19,
+        apresentouFebreQuantosGraus,
+        tomouAlgumMedicamentoProsSintomas,
+        alguemMaisApresentaSintomaEmCasa
+    ]
 }
 
 orientacoesfinais = {
     "name": "Encerramento do atendimento/Orientações finais",
     "inputs": [
-        orientacao_final,
-        anotar_orientacoes
+        orientacaoFinal,
+        anotarOrientacoes
     ]
 }

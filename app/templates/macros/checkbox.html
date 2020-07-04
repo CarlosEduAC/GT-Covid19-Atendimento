@@ -1,14 +1,21 @@
-{% macro checkbox(input, parent=None, parent_option=None) %}
+{% macro checkbox(input) %}
     {% for option in input.options %}
-        <div class="field {{ 'offscreen' if parent }}"
-                {{ 'data-parent={}'.format(parent) if parent }}
-                {{ 'data-parent-option={}'.format(parent_option) if parent_option }}>
-            <label for="{{ option.name }}">{{ option.value }}</label>
-            <div class="ui checkbox input huge">
-                <input type="checkbox" name="{{ option.name }}"
-                       id="{{ option.name }}">
-                <label>&nbsp;</label>
-            </div>
+        <div class="i-checks">
+            <label>
+                <input type="checkbox" value="">
+                <i></i>
+                {{ input.options[option] }}
+            </label>
         </div>
     {% endfor %}
+
+    {% if input.outros %}
+        <div class="i-checks">
+            <label>
+                <input type="checkbox" value="">
+                <i></i>
+                Outros {{ switch(input.outros, outros = True) }}
+            </label>
+        </div>
+    {% endif %}
 {% endmacro %}
