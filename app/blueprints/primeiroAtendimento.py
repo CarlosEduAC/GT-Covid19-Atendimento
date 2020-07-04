@@ -24,7 +24,7 @@ def index():
             fieldsetConjunto2,
             fieldsetConjunto3,
             fieldsetConjunto4,
-            # fieldsetConjunto5,
+            fieldsetConjunto5,
             # fieldsetConjunto6,
         ]
 

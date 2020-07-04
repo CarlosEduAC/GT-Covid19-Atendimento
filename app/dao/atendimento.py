@@ -28,8 +28,8 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
     relations = []
 
     # Se não for o atendimento inicial, passa o id do inicial no construtor
-    def __init__(self, is_primeiro, data, id_paciente,
-                 tentativa=None, id_atendimento_inicial=None, id_inicial=None):
+    def __init__(self, is_primeiro, data, id_paciente, has_atendimento,
+                 tentativa=None, others_tentativas = None, id_atendimento_inicial=None, id_inicial=None):
 
         self.atendimento = Atendimento()
 
@@ -39,8 +39,13 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
         self.atendimento.id_atendimento_inicial = id_atendimento_inicial
         self.atendimento.id_inicial = id_inicial
 
-        if tentativa is not None:
-            self.atendimento.id_tentativa = self.encontrarIdValor(Tentativa, tentativa)
+        # Verifica se houve alguma tentativa
+        if not has_atendimento:
+            if tentativa is not None and len(tentativa) != 0:
+                self.atendimento.id_tentativa = tentativa[0]
+
+            if others_tentativas is not None and len(others_tentativas) != 0:
+                self.atendimento.outras_tentativas = others_tentativas[0]
         else:
             self.atendimento.id_tentativa = None
 

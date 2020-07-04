@@ -68,19 +68,22 @@ class Atendimento(Base, SerializerMixin):
     __tablename__ = 'atendimentos'
 
     id = Column(INTEGER(11), primary_key=True)
-    is_primeiro = Column(TINYINT(4), nullable=False)
-    data = Column(DateTime, nullable=False)
     id_inicial = Column(INTEGER(11))
     id_atendimento_inicial = Column(ForeignKey('atendimentos_iniciais.id'), index=True)
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
+    is_primeiro = Column(TINYINT(4), nullable=False)
+    data = Column(DateTime, nullable=False)
+
+    #--se nao conseguir realizar o atendimento--#
     id_tentativa = Column(ForeignKey('tentativas.id'), index=True)
+    outras_tentativas = Column(String(255))
 
     #--dados isolamento--#
-    consegue_isolamento = Column(TINYINT(4), nullable=False)
+    consegue_isolamento = Column(TINYINT(4), nullable=True)
     como_consegue = Column(String(255))
     porque_nao_consegue = Column(String(255))
 
-    consegue_ficar_casa = Column(TINYINT(4), nullable=False)
+    consegue_ficar_casa = Column(TINYINT(4), nullable=True)
     quantos_dias = Column(INTEGER(11))
     #------------------------#
 

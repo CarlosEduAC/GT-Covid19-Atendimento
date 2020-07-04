@@ -55,7 +55,7 @@ def registrar(form):
         print('others_tentativas: {}'.format(others_tentativas))
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-        builder = AtendimentoBuilder(True, data, id_paciente, tentativa=real_tentativas)
+        builder = AtendimentoBuilder(True, data, id_paciente, has_atendimento, tentativa=real_tentativas, others_tentativas = others_tentativas)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
     else:
         # ============== Paciente ==============
