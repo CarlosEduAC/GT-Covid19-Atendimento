@@ -31,6 +31,7 @@ def updateUser(id, name, crm, cpf, supervisor, senha=None):
     adm.id = id
     db.updateData(AdmSaude, adm, id)
 
+
 # A princípio, a tabela TempoContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.
 def getTimes():

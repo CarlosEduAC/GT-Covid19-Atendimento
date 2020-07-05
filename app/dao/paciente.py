@@ -55,3 +55,4 @@ def updatePaciente(id, nome, cpf, telefone, dataNasc, id_etnia, id_genero, ender
     paciente.id = id
 
     db.updateData(Paciente, paciente, id)
+
