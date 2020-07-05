@@ -20,16 +20,16 @@ def removeUser(id):
 def updateUser(id, name, crm, cpf, supervisor, senha=None):
 
     db = Database()
-    print("Supervisor {}".format(supervisor))
-    #new_adm = AdmSaude(id, name, crm, cpf, supervisor, "")
-
-    print(crm)
-
+    
+    adm = None
     if senha is None:
-        db.updateData(AdmSaude, AdmSaude(name, crm, cpf, supervisor), id)
+        adm = AdmSaude(name, crm, cpf, supervisor)
     
     else:
-        db.updateData(AdmSaude, AdmSaude(name, crm, cpf, supervisor, senha), id)
+        adm = AdmSaude(name, crm, cpf, supervisor, senha)
+    
+    adm.id = id
+    db.updateData(AdmSaude, adm, id)
 
 # A princípio, a tabela TempoContatoAcompanhamento
 # sempre terá apenas uma entrada. Situaçao provisória.
@@ -48,7 +48,9 @@ def updateTimes(intervalo, maximo):
         db.saveData(TempoContatoAcompanhamento(intervalo, maximo))
     else:
         id = times[0]['id']
-        db.updateData(TempoContatoAcompanhamento, TempoContatoAcompanhamento(intervalo, maximo), id)
+        tempo = TempoContatoAcompanhamento(intervalo, maximo)
+        tempo.id = id
+        db.updateData(TempoContatoAcompanhamento, tempo, id)
 
 #==================================================
 

@@ -25,6 +25,8 @@ def registrar(form):
     builder = None
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
+    print('atendimento: ' + form['has_atendimento'])
+
     has_atendimento = True if form['has_atendimento'] == '1' else False
 
     print('has_atendimento: {}'.format(has_atendimento))
@@ -78,7 +80,7 @@ def registrar(form):
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-        id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
+        # id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
 
         builder = AtendimentoBuilder(True, data, id_paciente)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
@@ -174,7 +176,7 @@ def registrar(form):
         print('has_agua_encanada: {}'.format(has_agua_encanada))
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-        builder.inserirAtendimentoInicial(endereco, qnt_comodos, has_agua_encanada)
+        # builder.inserirAtendimentoInicial(endereco, qnt_comodos, has_agua_encanada)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         has_auxilio = data_or_null(form['has_auxilio'], int)
@@ -317,8 +319,45 @@ def registrar(form):
                 builder.inserirMotivosSair(motivo)  # , others_motivo_sair)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
+        # ============== Sintomas COVID ==============
+
+        has_sintomas = data_or_null(form['has_sintoma'], int)
+
+        print('has_sintomas: {}'.format(mantem_quarentena))
+
+        #VERIFICAR COMO ESSAS INFOS ESTÃO VINDO PARA CADASTRAR
+        if has_sintomas == 1:  # Sim
+            raw_sintomas = form['sintoma'].split(',')
+
+            real_auxilios = get_real_data(raw_sintomas)
+
+            print('real_auxilios: {}'.format(real_auxilios))
+
+            raw_sintoma_medicamento = form['sintoma_medicamento'].split(',')
+
+            real_sintoma_medicamento = get_real_data(raw_sintoma_medicamento)
+
+            print('real_sintoma_medicamento: {}'.format(real_sintoma_medicamento))
+
+            raw_quem_indicou_medicamento = form['quem_indicou_medicamento'].split(',')
+
+            real_quem_indicou_medicamento = get_real_data(raw_quem_indicou_medicamento)
+
+            print('real_quem_indicou_medicamento: {}'.format(real_quem_indicou_medicamento))
+
+        # ============== Orientações Finais ==============
+
+        orientacao_final = form['orientacao_final']
+
+        print(orientacao_final)
+
+        anotacao_orientacoes = form['anotar_orientacoes_finais']
+
+        builder.inserirOrientacaoFinal(orientacao_final, anotacao_orientacoes)
+
+
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    builder.finalizarPersistencia(id_admsaude, id_paciente)
+    # builder.finalizarPersistencia(id_admsaude, id_paciente)
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
 
