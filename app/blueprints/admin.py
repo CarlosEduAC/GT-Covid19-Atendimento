@@ -61,6 +61,10 @@ def update():
         supervisor = 'is_supervisor' in request.form
         senha = request.form['senha']
 
+        if senha == "":
+            senha = None
+       #print("senha: " + senha)
+
         updateUser(id, name, crm, cpf, supervisor, senha)    
 
     return redirect(url_for('admin.admin'))

@@ -91,4 +91,4 @@ class Database:
         session = self.Session()
         data = session.query(model).get(id)
         session.merge(dataUpdate)
-        session.commit
+        session.commit()

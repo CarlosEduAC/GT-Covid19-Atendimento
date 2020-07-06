@@ -158,9 +158,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
             )
         )
 
-    def adicionarOrientacaoFinal(self, value, comentarios, outros=None):
-
-        id = self.encontrarIdValor(OrientacaoFinal, value)
+    def inserirOrientacaoFinal(self, id, comentarios, outros=None):
 
         self.saveRelation(
             AtendimentoOrientacaoFinal(

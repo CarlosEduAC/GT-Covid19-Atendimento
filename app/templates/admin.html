@@ -92,7 +92,7 @@
                         <tbody>
                             {% for paciente in pacientes %}
                             <tr>
-                                <form action="/admin/pacienteupdate" method="POST">
+                                <form action="/paciente/update" method="POST">
                                     <input type="hidden" name="paciente_id" value={{paciente.id}}>
                                     <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
                                     </td>
@@ -102,7 +102,7 @@
                                     <td><input class="form-control" type="text" name="dataNasc" value={{paciente.dataNasc}}></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
-                                <form action="/admin/remove" method="POST">
+                                <form action="/paciente/remove" method="POST">
                                     <input type="hidden" name="paciente_id" value={{paciente.id}}>
                                     <td>
                                         <button type="submit" class="btn btn-w-m btn-primary">Remover</button>
