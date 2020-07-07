@@ -84,9 +84,11 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF</th>
-                                <th>Sexo</th>
+                                <th>Telefone</th>
+                                <th>Genero</th>
                                 <th>Etnia</th>
                                 <th>Data de Nascimento</th>
+                                <th>Endereço</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,9 +99,27 @@
                                     <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
                                     </td>
                                     <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}}></td>
-                                    <td><input class="form-control" type="text" name="sexo" value={{paciente.sexo}}></td>
-                                    <td><input class="form-control" type="text" name="raca" value={{paciente.raca}}></td>
-                                    <td><input class="form-control" type="text" name="dataNasc" value={{paciente.dataNasc}}></td>
+                                    <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}}></td>
+                                    <td><select class="form-control" name="id_genero">
+                                        {% for genero in generos %}
+                                            {% if genero.id == paciente.id_genero %}    
+                                                <option value="{{genero.id}}" selected>{{genero.value}}</option>
+                                            {% else %}
+                                                <option value="{{genero.id}}">{{genero.value}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select></td>
+                                    <td><select class="form-control" name="id_etnia">
+                                        {% for etnia in etnias %}
+                                            {% if etnia.id == paciente.id_etnia %}    
+                                                <option value="{{etnia.id}}" selected>{{etnia.value}}</option>
+                                            {% else %}
+                                                <option value="{{etnia.id}}">{{etnia.value}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select></td>
+                                    <td><input class="form-control" type="text" name="data_nasc" value={{paciente.data_nasc}}></td>
+                                    <td><input class="form-control" type="text" name="endereco" value={{paciente.endereco}}></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/paciente/remove" method="POST">

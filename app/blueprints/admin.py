@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf
+from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf, genero_etnia
 from dao.paciente import getPacientes
 from flask_login import login_required, LoginManager, current_user
 
@@ -28,7 +28,9 @@ def admin():
         users = getUsers()
         pacientes = getPacientes()
 
-        return render_template('admin.html', users = users, pacientes = pacientes,
+        genero, etnia = genero_etnia()
+
+        return render_template('admin.html', users = users, pacientes = pacientes, generos=genero, etnias=etnia,
                                 intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
 
 
