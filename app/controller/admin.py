@@ -1,5 +1,6 @@
 from controller.database import Database
 from models.models import AdmSaude, Paciente
+from models.modelsDomainTable import Etnia, Genero
 from werkzeug.security import generate_password_hash
 from models.models import TempoContatoAcompanhamento
 from models.modelsDomainTable import EstrategiaSaudeFamiliar
@@ -15,6 +16,12 @@ def getUsers():
 def removeUser(id):
     db = Database()
     db.delete(AdmSaude, id)
+
+def genero_etnia():
+    db = Database()
+    genero = db.selectAllData(Genero)
+    etnia = db.selectAllData(Etnia)
+    return genero, etnia
 
 
 def updateUser(id, name, crm, cpf, supervisor, senha=None):

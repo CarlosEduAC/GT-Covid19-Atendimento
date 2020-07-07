@@ -82,7 +82,7 @@ def registrar(form):
 
         # id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
 
-        builder = AtendimentoBuilder(True, data, id_paciente)
+        builder = AtendimentoBuilder(True, data, id_paciente, has_atendimento)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         # ============== Doença Cronica ==============
@@ -228,7 +228,7 @@ def registrar(form):
                 builder.inserirParentesco(parentesco)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-        has_gravida = data_or_null(form['has_gravida'], int)
+        """ has_gravida = data_or_null(form['has_gravida'], int)
 
         print('has_gravida: {}'.format(has_gravida))
 
@@ -240,7 +240,7 @@ def registrar(form):
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for gravida in gravidas:
                 builder.inserirMulherGravida(gravida)
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # """
 
         # ============== Visitas ==============
 
@@ -327,7 +327,7 @@ def registrar(form):
 
         #VERIFICAR COMO ESSAS INFOS ESTÃO VINDO PARA CADASTRAR
         if has_sintomas == 1:  # Sim
-            raw_sintomas = form['sintoma'].split(',')
+            raw_sintomas = form['apresentou_sintoma'].split(',')
 
             real_auxilios = get_real_data(raw_sintomas)
 

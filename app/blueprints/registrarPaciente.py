@@ -63,10 +63,14 @@ def update():
         id = request.form['paciente_id']
         nome = request.form['nome']
         cpf = request.form['cpf']
-        sexo = request.form['sexo']
-        raca = request.form['raca']
-        dataNasc = request.form['dataNasc']  
+        id_genero = request.form['id_genero']
+        id_etnia = request.form['id_etnia']
+        dataNasc = request.form['data_nasc']
+        endereco = request.form['endereco']
+        telefone = request.form['telefone']
 
-        updatePaciente(id, nome, cpf, sexo, raca, dataNasc)    
+        #print(dataNasc)
+
+        updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco)    
 
     return redirect(url_for('admin.admin'))

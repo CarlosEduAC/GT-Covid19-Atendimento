@@ -47,11 +47,13 @@ def removePaciente(id):
     db.delete(Paciente, id)
 
 
-def updatePaciente(id, nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
+def updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco):
 
     db = Database()
 
-    paciente = Paciente(nome,cpf,telefone,dataNasc,id_etnia,id_genero,endereco)
+    paciente = Paciente(nome,cpf,telefone,
+                        datetime.strptime(dataNasc, '%Y-%m-%d').date() if len(dataNasc) != 0 else None,
+                        id_etnia,id_genero,endereco)
     paciente.id = id
 
     db.updateData(Paciente, paciente, id)
