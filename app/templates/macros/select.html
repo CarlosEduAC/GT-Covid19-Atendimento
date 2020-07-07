@@ -44,26 +44,5 @@
     <div
             class="item"
             data-parent="{{ i.name }}"
-            data-value="
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {{ 'real_data_' if i.multiselect or i.outros }}{{ opt.id if opt.id else index }}">{{ opt.value }}</div>
+            data-value="{{ 'real_data_' if i.multiselect or i.outros }}{{ opt.id if opt.id else index }}">{{ opt.value }}</div>
 {% endmacro %}
