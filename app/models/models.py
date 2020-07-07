@@ -81,6 +81,8 @@ class Atendimento(Base, SerializerMixin):
     outras_tentativas = Column(String(255))
 
     #--dados isolamento--#
+    cuidado_sair_casa = Column(String(255))
+
     consegue_isolamento = Column(TINYINT(4), nullable=True)
     como_consegue = Column(String(255))
     porque_nao_consegue = Column(String(255))
