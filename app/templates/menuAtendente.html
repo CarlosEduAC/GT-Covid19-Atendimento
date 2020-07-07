@@ -45,7 +45,7 @@
                                                 <thead>
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
-                                                        <td>Nome do Usuário</td>
+                                                        <td>Usuário</td>
                                                         <td>Primeiro Atendimento?</td>
                                                         <td>Dia do Atendimento</td>
                                                         
@@ -56,17 +56,16 @@
                                                         <div >
                                                             <tr>
                                                                 <td>{{atendimento.diaAgendamento}}</td>
+                                                                <td>{{usuario}}</td>
                                                                 {% if atendimento.primeiro %}
                                                                     <td>Sim</td>
                                                                 {% else %}
                                                                     <td>Não</td>
                                                                 {%endif%}
-                                                                <!-- Nome do usuário-->
-                                                                <td></td>
                                                                 <td>{{atendimento.diaAtendimento}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary"
-                                                                        onclick="window.location.href='/atendimento'">Iniciar Atendimento</button> <!-- Passar o id na rota -->
+                                                                        onclick="window.location.href='/atendimento/{{atendimento.id}}'">Iniciar Atendimento</button> <!-- Passar o id na rota -->
                                                                 </td>
                                                             </tr>
                                                         </div>

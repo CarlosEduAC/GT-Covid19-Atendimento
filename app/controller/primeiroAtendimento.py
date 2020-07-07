@@ -80,7 +80,7 @@ def registrar(form):
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-        # id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
+        id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
 
         builder = AtendimentoBuilder(True, data, id_paciente, has_atendimento)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
@@ -176,7 +176,7 @@ def registrar(form):
         print('has_agua_encanada: {}'.format(has_agua_encanada))
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-        # builder.inserirAtendimentoInicial(endereco, qnt_comodos, has_agua_encanada)
+        builder.inserirAtendimentoInicial(endereco, qnt_comodos, has_agua_encanada)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         has_auxilio = data_or_null(form['has_auxilio'], int)
@@ -203,7 +203,7 @@ def registrar(form):
 
         print('mora_sozinho: {}'.format(mora_sozinho))
 
-        if mora_sozinho == 2:  # Não
+        """ if mora_sozinho == 2:  # Não
             size = data_or_null(form['mora_sozinho_len'], int)
 
             parentescos = multiselect(form, 'parentesco', size)
@@ -226,20 +226,6 @@ def registrar(form):
             # Falta inserir a doença cronica!!!
             for parentesco in parentescos:
                 builder.inserirParentesco(parentesco)
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-
-        """ has_gravida = data_or_null(form['has_gravida'], int)
-
-        print('has_gravida: {}'.format(has_gravida))
-
-        if has_gravida == 1:  # Sim
-            gravidas = form['gravida'].split(',')
-
-            print('gravidas: {}'.format(gravidas))
-
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            for gravida in gravidas:
-                builder.inserirMulherGravida(gravida)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # """
 
         # ============== Visitas ==============
@@ -266,6 +252,10 @@ def registrar(form):
 
         # ============== Isolamento domiciliar ==============
 
+        cuidado_sair_casa = data_or_null(form['cuidado_sair_casa'])
+
+        print('cuidado_sair_casa: {}'.format(cuidado_sair_casa))
+
         has_isolamento = data_or_null(form['has_isolamento'], int)
 
         print('has_isolamento: {}'.format(has_isolamento))
@@ -276,7 +266,7 @@ def registrar(form):
             print('isolamento: {}'.format(isolamento))
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            builder.inserirIsolamento(True, isolamento)
+            builder.inserirIsolamento(True, isolamento, cuidado_sair_casa)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         elif has_isolamento == 2:  # Não
@@ -285,7 +275,7 @@ def registrar(form):
             print('nao_isolamento: {}'.format(nao_isolamento))
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            builder.inserirIsolamento(False, nao_isolamento)
+            builder.inserirIsolamento(False, nao_isolamento, cuidado_sair_casa)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         mantem_quarentena = data_or_null(form['mantem_quarentena'], int)
@@ -319,6 +309,8 @@ def registrar(form):
                 builder.inserirMotivosSair(motivo)  # , others_motivo_sair)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
+
+
         # ============== Sintomas COVID ==============
 
         has_sintomas = data_or_null(form['has_sintoma'], int)
@@ -327,37 +319,39 @@ def registrar(form):
 
         #VERIFICAR COMO ESSAS INFOS ESTÃO VINDO PARA CADASTRAR
         if has_sintomas == 1:  # Sim
-            raw_sintomas = form['apresentou_sintoma'].split(',')
 
-            real_auxilios = get_real_data(raw_sintomas)
+            size = data_or_null(form['has_sintoma_len'], int)
 
-            print('real_auxilios: {}'.format(real_auxilios))
+            real_sintomas = multiselect(form, 'apresentou_sintoma', size)
+            
+            real_sintoma_medicamento = multiselect(form, 'sintoma_medicamento', size)
 
-            raw_sintoma_medicamento = form['sintoma_medicamento'].split(',')
+            real_quem_indicou_medicamento = multiselect(form, 'quem_indicou_medicamento', size)
 
-            real_sintoma_medicamento = get_real_data(raw_sintoma_medicamento)
+            real_dosagem = multiselect(form, 'dosagem', size)
 
-            print('real_sintoma_medicamento: {}'.format(real_sintoma_medicamento))
 
-            raw_quem_indicou_medicamento = form['quem_indicou_medicamento'].split(',')
-
-            real_quem_indicou_medicamento = get_real_data(raw_quem_indicou_medicamento)
-
-            print('real_quem_indicou_medicamento: {}'.format(real_quem_indicou_medicamento))
+            for i in range(size):
+                # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+                builder.inserirSintoma(real_sintomas[i], real_sintoma_medicamento[i],
+                                        real_quem_indicou_medicamento[i], real_dosagem[i])
+                # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         # ============== Orientações Finais ==============
 
-        orientacao_final = form['orientacao_final']
+        orientacao_final = format_real_data(form['orientacao_final'])
 
         print(orientacao_final)
 
-        anotacao_orientacoes = form['anotar_orientacoes_finais']
+        anotacao_orientacoes = data_or_null(form['anotar_orientacoes_finais'])
+
+        print(anotacao_orientacoes)
 
         builder.inserirOrientacaoFinal(orientacao_final, anotacao_orientacoes)
 
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    # builder.finalizarPersistencia(id_admsaude, id_paciente)
+    builder.finalizarPersistencia(id_admsaude, id_paciente)
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
 

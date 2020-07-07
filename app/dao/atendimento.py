@@ -137,7 +137,9 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
             )
         )
 
-    def inserirIsolamento(self, consegue_isolamento, como_porque):
+    def inserirIsolamento(self, consegue_isolamento, como_porque, cuidado_sair):
+        
+        self.atendimento.cuidado_sair_casa = cuidado_sair
 
         self.atendimento.consegue_isolamento = consegue_isolamento
         if consegue_isolamento:
@@ -186,22 +188,16 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
             )
         )
 
-    def adicionarSintoma(self, value, medicamento, indicador,
-                         parentesco=None, outros_sintomas=None):
-        id_sintoma = self.encontrarIdValor(Sintoma, value)
-        id_medicamento = self.encontrarIdValor(Medicamento, medicamento)
-        id_indicador = self.encontrarIdValor(Indicador, indicador)
-        if parentesco is not None:
-            id_parentesco = self.encontrarIdValor(Parentesco, parentesco)
-        else:
-            id_parentesco = None
+    def inserirSintoma(self, id, medicamento, id_indicador, 
+                         dosagem, outros_sintomas=None):
+        id_medicamento = None#self.encontrarIdValor(Medicamento, medicamento)
 
         self.saveRelation(
             AtendimentoSintoma(
-                id_sintoma=id_sintoma,
+                id_sintoma=id,
                 id_medicamento=id_medicamento,
                 id_indicador=id_indicador,
-                id_parentesco=id_parentesco,
+                dosagem = dosagem,
                 outros_sintomas=outros_sintomas
             )
         )

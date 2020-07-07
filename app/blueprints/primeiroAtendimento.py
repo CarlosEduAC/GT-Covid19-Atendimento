@@ -30,7 +30,6 @@ def index():
 
         return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'))
     elif request.method == 'POST':
-        #print(request.form)
         registrar(request.form)
 
         return redirect(url_for('PrimeiroAtendimento.index'))

@@ -8,9 +8,10 @@ atendimento = Blueprint('Atendimento', __name__)
 
 # futuramente, trocar a rota por: /atendimento/<id>
 # no index, passar o id por parâmetro
-@atendimento.route('/atendimento', methods=['GET', 'POST'])
+@atendimento.route('/atendimento/<id>', methods=['GET', 'POST'])
 #@login_required
-def index():
+def index(id):
+    print("Atendimento inicial: " + id)
     if request.method == 'GET':
         form = {
             "label": "Formulário de Atendimento",

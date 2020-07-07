@@ -91,6 +91,7 @@ class AtendimentoSintoma(Base, SerializerMixin):
     #id_parentesco = Column(ForeignKey('parentescos.id'), index=True)
     id_medicamento = Column(ForeignKey('medicamentos.id'), index=True)
     id_indicador = Column(ForeignKey('indicadores.id'), index=True)
+    dosagem = Column(String(150))  #Campo dosagem no formulario
     outros_sintomas = Column(String(150))
 
     atendimento = relationship('Atendimento')

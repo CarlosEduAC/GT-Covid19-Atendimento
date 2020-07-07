@@ -8,9 +8,6 @@ menuAtendente = Blueprint('MenuAtendente', __name__)
 @menuAtendente.route('/', methods=['GET'])
 @login_required 
 def index():
-    profissional_atual = current_user.id #ID do profissional acessando
-    print(current_user.is_supervisor)
+    atendimentos = userAgendamentos(current_user.id)
 
-    atendimentos = userAgendamentos(profissional_atual)
-
-    return render_template('menuAtendente.html', atendimentos = atendimentos)
+    return render_template('menuAtendente.html', atendimentos = atendimentos, usuario=current_user.nome)
