@@ -32,4 +32,4 @@ def index():
     elif request.method == 'POST':
         registrar(request.form)
 
-        return redirect(url_for('PrimeiroAtendimento.index'))
+        return redirect(url_for('MenuAtendente.index'))

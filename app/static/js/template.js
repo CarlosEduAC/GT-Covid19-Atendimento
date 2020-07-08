@@ -15,7 +15,7 @@ $(document).ready(function () {
         onStepChanging: function (event, currentIndex, newIndex) {
             let has_atendimento = parseInt($('input[name="has_atendimento"]').val())
 
-            if (currentIndex === 0 && newIndex === 1 && has_atendimento === 2) {
+            if (currentIndex === 1 && newIndex === 2 && has_atendimento === 2) {
                 console.log('Submetendo formulário...')
                 $('#form').submit()
                 return false;
@@ -47,7 +47,7 @@ $(document).ready(function () {
             return form.valid();
         },
         onStepChanged: function (event, currentIndex, priorIndex) {
-            console.log(`vai bobao`)
+            console.log(`vai bobo`)
             // Suppress (skip) "Warning" step if the user is old enough.
             if (currentIndex === 2 && Number($("#age").val()) >= 18) {
                 console.log("To aqui ó!")
