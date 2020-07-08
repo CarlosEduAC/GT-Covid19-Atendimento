@@ -7,6 +7,11 @@ from models.modelsAgendamento import *
 from sqlalchemy import desc
 
 
+def getInicialPaciente(id_atendimento):
+    db = Database()
+    res = db.selectIf(Atendimento, id=id_atendimento)
+    return (res.id_atendimento_inicial, res.id_paciente)
+
 def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
     db = Database()
     paciente = db.selectIf(Paciente, cpf=cpf)

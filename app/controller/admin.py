@@ -72,3 +72,7 @@ def newEsf(name):
 
     db = Database()
     db.saveData(esf)
+
+def deleteEsf(id):
+    db = Database()
+    db.delete(EstrategiaSaudeFamiliar, id)

@@ -16,7 +16,26 @@ def registrar(form):
     # Para testes: essas informações precisam vir por parâmetro
     data = datetime.today()
     # data = datetime.strptime(data, '%d/%m/%Y').date() if len(data) != 0 else None
-    id_paciente = 1
+    # ============== Paciente ==============
+
+    nome = data_or_null(form['nome'])
+    cpf = data_or_null(form['cpf'], only_num)
+    telefone = data_or_null(form['telefone'], only_num)
+    endereco = data_or_null(form['endereco'])
+    data_nasc = datetime.strptime(form['data_nasc'], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
+    id_etnia = data_or_null(form['id_etnia'], int)
+    id_genero = data_or_null(form['id_genero'], int)
+
+    print('nome: {}'.format(nome))
+    print('cpf: {}'.format(cpf))
+    print('telefone: {}'.format(telefone))
+    print('endereco: {}'.format(endereco))
+    print('data_nasc: {}'.format(data_nasc))
+    print('id_etnia: {}'.format(id_etnia))
+    print('id_genero: {}'.format(id_genero))
+
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+    id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
 
     id_admsaude = current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
@@ -60,28 +79,8 @@ def registrar(form):
         builder = AtendimentoBuilder(True, data, id_paciente, has_atendimento, tentativa=real_tentativas, others_tentativas = others_tentativas)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
     else:
-        # ============== Paciente ==============
-
-        nome = data_or_null(form['nome'])
-        cpf = data_or_null(form['cpf'], only_num)
-        telefone = data_or_null(form['telefone'], only_num)
-        endereco = data_or_null(form['endereco'])
-        data_nasc = datetime.strptime(form['data_nasc'], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
-        id_etnia = data_or_null(form['id_etnia'], int)
-        id_genero = data_or_null(form['id_genero'], int)
-
-        print('nome: {}'.format(nome))
-        print('cpf: {}'.format(cpf))
-        print('telefone: {}'.format(telefone))
-        print('endereco: {}'.format(endereco))
-        print('data_nasc: {}'.format(data_nasc))
-        print('id_etnia: {}'.format(id_etnia))
-        print('id_genero: {}'.format(id_genero))
-
+        
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-
-        id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
-
         builder = AtendimentoBuilder(True, data, id_paciente, has_atendimento)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 

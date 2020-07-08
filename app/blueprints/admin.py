@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, updateTimes, newEsf, genero_etnia
+from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, deleteEsf, updateTimes, newEsf, genero_etnia
 from dao.paciente import getPacientes
 from flask_login import login_required, LoginManager, current_user
 
@@ -82,5 +82,17 @@ def addEsf():
         esf = request.form["esf"]
 
         newEsf(esf)
+
+    return redirect(url_for('admin.admin'))
+
+@menuAdmin.route('/admin/esf/<id>', methods=['POST'])
+@login_required
+def removeEsf(id):
+
+    if not current_user.is_supervisor:
+        return redirect(url_for('MenuAtendente.index'))
+    
+    if request.method == 'POST':
+        deleteEsf(id)
 
     return redirect(url_for('admin.admin'))

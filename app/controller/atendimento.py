@@ -1,4 +1,3 @@
-from dao.paciente import Paciente
 from datetime import datetime
 from dao.atendimento import AtendimentoBuilder, inserirPaciente
 from flask_login import current_user
@@ -10,15 +9,10 @@ import re
 # 2- Informações dos fieldsets 5 e 6#
 
 
-def registrar(form):
+def registrar(form, id_primeiro, id_paciente):
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    #Para testes: essas informações precisam vir por parâmetro
     data=datetime.today()
-    #data = datetime.strptime(data, '%d/%m/%Y').date() if len(data) != 0 else None
-    id_paciente=1
-    id_primeiro_atendimento=None
-    
     id_admsaude =current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
@@ -26,41 +20,41 @@ def registrar(form):
     builder = None
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
+    print('atendimento: ' + form['has_atendimento'])
+
     has_atendimento = True if form['has_atendimento'] == '1' else False
 
     print('has_atendimento: {}'.format(has_atendimento))
 
     if not has_atendimento:
 
-
         # ============ Tentativa ============
 
         # Comentei algumas coisas porque aparentemente so teremos uma tentativa
 
-        #raw_tentativas = form['tentativas'].split(',')
+        raw_tentativas = form['tentativas'].split(',')
 
         # Retorna as chaves da tabela de domínio (list<int>)
         # ex.: [0, 1]
-        #real_tentativas = get_real_data(raw_tentativas)
-        real_tentativas = data_or_null(form['tentativas'])
+        real_tentativas = get_real_data(raw_tentativas)
+        # real_tentativas = data_or_null(form['tentativas'])
 
         print('real_tentativas: {}'.format(real_tentativas))
-        
-        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-        builder = AtendimentoBuilder(False, data, id_paciente, tentativa=real_tentativas,
-                                        id_atendimento_inicial = id_primeiro_atendimento)
-        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         # Retorna as outras opções que não estão na tabela de domínio (list<str>)
         # ex.: ['Paciente saiu para buscar o filho na escola']
-        #others_tentativas = get_others_data(raw_tentativas)
+        others_tentativas = get_others_data(raw_tentativas)
 
-        #print('others_tentativas: {}'.format(others_tentativas))
-    else:
+        print('others_tentativas: {}'.format(others_tentativas))
 
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-        builder = AtendimentoBuilder(False, data, id_paciente,
-                                     id_atendimento_inicial = id_primeiro_atendimento)
+        builder = AtendimentoBuilder(False, data, id_paciente, has_atendimento, id_atendimento_inicial=id_primeiro,
+                                        tentativa=real_tentativas, others_tentativas = others_tentativas)
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+    else:
+        
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+        builder = AtendimentoBuilder(False, data, id_paciente, has_atendimento, id_atendimento_inicial=id_primeiro)
         # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         # ============== Isolamento domiciliar ==============
@@ -69,7 +63,7 @@ def registrar(form):
 
         print('mora_sozinho: {}'.format(mora_sozinho))
 
-        if mora_sozinho == 2:  # Não
+        """ if mora_sozinho == 2:  # Não
             size = data_or_null(form['mora_sozinho_len'], int)
 
             parentescos = multiselect(form, 'parentesco', size)
@@ -92,24 +86,7 @@ def registrar(form):
             # Falta inserir a doença cronica!!!
             for parentesco in parentescos:
                 builder.inserirParentesco(parentesco)
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-
-
-
-        has_gravida = data_or_null(form['has_gravida'], int)
-
-        print('has_gravida: {}'.format(has_gravida))
-
-        if has_gravida == 1:  # Sim
-            gravidas = form['gravida'].split(',')
-
-            print('gravidas: {}'.format(gravidas))
-
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            for gravida in gravidas:
-                builder.inserirMulherGravida(gravida)
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # """
 
         # ============== Visitas ==============
 
@@ -135,6 +112,10 @@ def registrar(form):
 
         # ============== Isolamento domiciliar ==============
 
+        cuidado_sair_casa = data_or_null(form['cuidado_sair_casa'])
+
+        print('cuidado_sair_casa: {}'.format(cuidado_sair_casa))
+
         has_isolamento = data_or_null(form['has_isolamento'], int)
 
         print('has_isolamento: {}'.format(has_isolamento))
@@ -145,7 +126,7 @@ def registrar(form):
             print('isolamento: {}'.format(isolamento))
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            builder.inserirIsolamento(True, isolamento)
+            builder.inserirIsolamento(True, isolamento, cuidado_sair_casa)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         elif has_isolamento == 2:  # Não
@@ -154,7 +135,7 @@ def registrar(form):
             print('nao_isolamento: {}'.format(nao_isolamento))
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            builder.inserirIsolamento(False, nao_isolamento)
+            builder.inserirIsolamento(False, nao_isolamento, cuidado_sair_casa)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         mantem_quarentena = data_or_null(form['mantem_quarentena'], int)
@@ -185,9 +166,50 @@ def registrar(form):
             builder.inserirManterEmCasa(False)
 
             for motivo in real_motivo_sair:
-                builder.inserirMotivosSair(motivo)#, others_motivo_sair)
+                builder.inserirMotivosSair(motivo)  # , others_motivo_sair)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    
+
+
+
+        # ============== Sintomas COVID ==============
+
+        has_sintomas = data_or_null(form['has_sintoma'], int)
+
+        print('has_sintomas: {}'.format(mantem_quarentena))
+
+        #VERIFICAR COMO ESSAS INFOS ESTÃO VINDO PARA CADASTRAR
+        if has_sintomas == 1:  # Sim
+
+            size = data_or_null(form['has_sintoma_len'], int)
+
+            real_sintomas = multiselect(form, 'apresentou_sintoma', size)
+            
+            real_sintoma_medicamento = multiselect(form, 'sintoma_medicamento', size)
+
+            real_quem_indicou_medicamento = multiselect(form, 'quem_indicou_medicamento', size)
+
+            real_dosagem = multiselect(form, 'dosagem', size)
+
+
+            for i in range(size):
+                # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+                builder.inserirSintoma(real_sintomas[i], real_sintoma_medicamento[i],
+                                        real_quem_indicou_medicamento[i], real_dosagem[i])
+                # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+        # ============== Orientações Finais ==============
+
+        orientacao_final = format_real_data(form['orientacao_final'])
+
+        print(orientacao_final)
+
+        anotacao_orientacoes = data_or_null(form['anotar_orientacoes_finais'])
+
+        print(anotacao_orientacoes)
+
+        builder.inserirOrientacaoFinal(orientacao_final, anotacao_orientacoes)
+
+
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
     builder.finalizarPersistencia(id_admsaude, id_paciente)
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #

@@ -70,7 +70,7 @@ class Atendimento(Base, SerializerMixin):
     __tablename__ = 'atendimentos'
 
     id = Column(INTEGER(11), primary_key=True)
-    id_inicial = Column(INTEGER(11))
+    #id_inicial = Column(INTEGER(11)) Aparentemente, o id do atendimento inicial estava duplicado
     id_atendimento_inicial = Column(ForeignKey('atendimentos_iniciais.id'), index=True)
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
     is_primeiro = Column(TINYINT(4), nullable=False)
