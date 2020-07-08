@@ -144,7 +144,7 @@ doenca_cronica = Input(
 
 data_primeiro_sintoma = Input(
     name='data_primeiro_sintoma',
-    label='Data de surgimento do primeiro sintoma',
+    label='Data do diagnóstico?',
     mask='99/99/9999',
     placeholder='99/99/9999'
 )

@@ -21,6 +21,7 @@ def index(id):
 
         fieldsets = [
             fieldsetConjunto0,
+            fieldsetConjunto1,
             fieldsetConjunto4,
             fieldsetConjunto5,
             fieldsetConjunto6

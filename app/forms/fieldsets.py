@@ -1,16 +1,16 @@
 from .sections import *
 
 fieldsetConjunto0 = {
-    "name": "Tentativa",
+    "name": "Dados pessoais",
     "sections": [
-        tentativa,
+        informacoesBasicas,
     ],
 }
 
 fieldsetConjunto1 = {
-    "name": "Dados pessoais",
+    "name": "Tentativa",
     "sections": [
-        informacoesBasicas,
+        tentativa,
     ],
 }
 
