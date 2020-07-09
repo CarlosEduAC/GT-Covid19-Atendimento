@@ -101,13 +101,15 @@ telefone = Input(
     name='telefone',
     label='Telefone',
     mask='(99) 99999999?9',
-    placeholder='(99) 999999999'
+    placeholder='(99) 999999999',
+    required=True
 )
 
 endereco = Input(
     name='endereco',
     label='Endereço',
     placeholder='Rua Recife, 32',
+    required=True
 )
 
 data_nasc = Input(

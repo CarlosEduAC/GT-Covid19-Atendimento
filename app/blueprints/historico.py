@@ -5,7 +5,7 @@ from flask_login import login_required
 historico = Blueprint('Historico', __name__)
 
 @historico.route('/historico', methods=['GET'])
-#@login_required
+@login_required
 def index():
 
     idUsuario = request.args.get('idUsuario')
