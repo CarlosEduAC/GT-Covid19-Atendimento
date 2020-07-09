@@ -9,8 +9,8 @@ def userAgendamentos(user_id):
         session = db.Session()
 
         return session.query(Agendamento, Atendimento).\
-            filter(Agendamento.id_atendimento == Atendimento.id and
-                   Agendamento.idUsuario == user_id).\
+            filter(Agendamento.id_atendimento == Atendimento.id,
+                    Agendamento.id_adm_saude == user_id).\
                        order_by(Agendamento.data).\
                            with_entities(Atendimento.id.label('id'),
                                          Agendamento.data.label('diaAgendamento'),
