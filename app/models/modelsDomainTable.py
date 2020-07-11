@@ -65,7 +65,7 @@ class Indicador(Base, SerializerMixin):
     def __init__(self, value):
         self.value = value
 
-
+#=========COMENTAR DEPOIS=========================
 class Medicamento(Base, SerializerMixin):
     __tablename__ = 'medicamentos'
 
@@ -74,7 +74,7 @@ class Medicamento(Base, SerializerMixin):
 
     def __init__(self, value):
         self.value = value
-
+#==================================================
 
 class MotivoSair(Base, SerializerMixin):
     __tablename__ = 'motivos_sair'

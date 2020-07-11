@@ -89,57 +89,29 @@ def registrar(form):
         has_doenca_cronica = data_or_null(form['has_doenca_cronica'], int)
 
         if has_doenca_cronica == 1:  # Sim
-            size = form['has_doenca_cronica_len']
+            size = data_or_null(form['has_doenca_cronica_len'], int)
 
-            # Retorna uma lista com as chaves da tabela de domínio
-            # Ex: [1, 2, 4]
-            doencas_cronicas = multiselect(form, 'doenca_cronica', size)
+            real_doenca_cronica = multiselect(form, 'doenca_cronica', size)
 
-            print('doencas_cronicas: {}'.format(doencas_cronicas))
+            real_data_primeiro_sintoma = multiselect(form, 'data_primeiro_sintoma', size)
+        
+            real_medicamento = multiselect(form, 'medicamento', size)
 
-            # Retorna uma lista com as datas do primeiro sintoma da doença.
-            # Atenção: o sintoma correspondente está no mesmo índice da variavel [doencas_cronicas]
-            datas_primeiro_sintoma = multiselect(form, 'data_primeiro_sintoma', size)
+            real_indicador_medicamento = multiselect(form, 'indicador_medicamento', size)
 
-            print('datas_primeiro_sintoma: {}'.format(datas_primeiro_sintoma))
+            real_dose_medicamento = multiselect(form, 'dose_medicamento', size)
 
-            has_medicamento = multiselect(form, 'has_medicamento', size)
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            # for i in size:
-            # Adicionar doença cronica
+            for i in range(size):
 
-            # builder.adicionarDoencaCronica(doencas_cronicas[i], datas_primeiro_sintoma[i])
+                data_sintomas = datetime.strptime(real_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
+
+                builder.inserirDoencaCronica(
+                    real_doenca_cronica[i], real_medicamento[i], real_indicador_medicamento[i],
+                    real_dose_medicamento[i], data_sintomas)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-        # ============== Medicamento ==============
-
-        has_medicamento = data_or_null(form['has_medicamento'], int)
-
-        print('has_medicamento: {}'.format(has_medicamento))
-
-        if has_medicamento == 1:  # Sim
-            size = form['has_medicamento_len']
-
-            medicamentos = multiselect(form, 'medicamento', size)
-
-            print('medicamentos: {}'.format(medicamentos))
-
-            doses_medicamento = multiselect(form, 'dose_medicamento', size)
-
-            print('doses_medicamento: {}'.format(doses_medicamento))
-
-            tempos_medicamento = multiselect(form, 'tempo_medicamento', size)
-
-            print('tempos_medicamento: {}'.format(tempos_medicamento))
-
-            has_indicadores_medicamento = multiselect(form, 'has_indicador_medicamento', size)
-
-            print('has_indicadores_medicamento: {}'.format(has_indicadores_medicamento))
-
-            indicadores_medicamento = multiselect(form, 'indicador_medicamento', size)
-
-            print('indicadores_medicamento: {}'.format(indicadores_medicamento))
 
         # ============== ESF ==============
 
@@ -314,7 +286,7 @@ def registrar(form):
 
         has_sintomas = data_or_null(form['has_sintoma'], int)
 
-        print('has_sintomas: {}'.format(mantem_quarentena))
+        print('has_sintomas: {}'.format(has_sintomas))
 
         #VERIFICAR COMO ESSAS INFOS ESTÃO VINDO PARA CADASTRAR
         if has_sintomas == 1:  # Sim
