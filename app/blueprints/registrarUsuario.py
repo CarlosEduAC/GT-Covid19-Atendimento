@@ -18,6 +18,7 @@ def registrar():
         nome = request.form['nome']
         CRM = request.form['crm']
         cpf = only_num(request.form['cpf'])
+        print(cpf)
         
         supervisor = 'is_supervisor' in request.form
 
@@ -33,9 +34,15 @@ def registrar():
             return redirect(url_for('Registrar.registrar'))
         
         usuario = AdmSaude(nome, CRM, cpf, supervisor, senha)      
-        db.saveData(usuario)
+        if usuario.validar():
+            print('CPF válido')
+            #usuario = AdmSaude(nome, CRM, cpf, supervisor, senha)      
+            db.saveData(usuario)
 
-        return redirect(url_for('admin.admin'))
+            return redirect(url_for('admin.admin'))
+        else:
+            print('inválido')
+            flash('CPF inválido.')
 
     fields = {
         "nome" :inputs.adm_nome,

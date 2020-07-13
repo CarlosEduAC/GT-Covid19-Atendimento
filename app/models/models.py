@@ -1,3 +1,4 @@
+import re
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Column, Date, DateTime, ForeignKey, String
 from sqlalchemy.dialects.mysql import INTEGER, TINYINT
@@ -5,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from flask_login import UserMixin
+
 
 Base = declarative_base()
 
@@ -30,6 +32,37 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
 
     def verificaSenha(self, senha):
         return check_password_hash(self.senha, senha)
+
+    def validar(self):
+        if not self.cpf:
+            return False
+        
+        c_cpf = self.calculoCPF(self.cpf[:9])
+        novo_cpf = self.calculoCPF(c_cpf)
+        
+        if novo_cpf == self.cpf:
+            return True
+        return False
+    
+    def calculoCPF(self, nove_cpf):
+        if not nove_cpf:
+            return False
+
+        seq = nove_cpf[0] * len(nove_cpf)
+
+        if seq == nove_cpf:
+            return False
+
+        soma = 0
+        for ch, mult in enumerate(range(len(nove_cpf)+1, 1, -1)):
+            soma += int(nove_cpf[ch]) * mult
+
+        print(soma%11)        
+        res = 11 - (soma%11)
+        print(res)
+        res = res if res <= 9 else 0
+
+        return nove_cpf + str(res)
 
 
 class AtendimentoInicial(Base, SerializerMixin):
