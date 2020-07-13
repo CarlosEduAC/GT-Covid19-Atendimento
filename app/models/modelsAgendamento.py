@@ -1,5 +1,5 @@
 from sqlalchemy import Column, ForeignKey, String, DateTime
-from sqlalchemy.dialects.mysql import INTEGER
+from sqlalchemy.dialects.mysql import INTEGER, TINYINT
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from models.models import Base
@@ -18,7 +18,7 @@ class AtendimentoBeneficioSocial(Base, SerializerMixin):
     beneficios_sociai = relationship('BeneficioSocial')
 
 
-class AtendimentoDoencaCronica(Base, SerializerMixin):
+""" class AtendimentoDoencaCronica(Base, SerializerMixin):
     __tablename__ = 'atendimentos_doencas_cronicas'
 
     #id_atendimento_doenca_cronica = Column(INTEGER(11), primary_key=True)
@@ -38,7 +38,7 @@ class AtendimentoDoencaCronica(Base, SerializerMixin):
     doencas_cronica = relationship('DoencaCronica')
     indicadore = relationship('Indicador')
     medicamento = relationship('Medicamento')
-    #parentesco = relationship('Parentesco')
+    #parentesco = relationship('Parentesco') """
 
 
 class AtendimentoEstrategiasSaudesFamiliar(Base, SerializerMixin):
@@ -81,24 +81,59 @@ class AtendimentoOrientacaoFinal(Base, SerializerMixin):
     orientacoes_finai = relationship('OrientacaoFinal')
 
 
-class AtendimentoSintoma(Base, SerializerMixin):
+""" class AtendimentoSintoma(Base, SerializerMixin):
     __tablename__ = 'atendimentos_sintomas'
 
     #id_atendimento_sintoma = Column(INTEGER(11), primary_key=True)
     id = Column(INTEGER(11), primary_key=True)
     id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
     id_sintoma = Column(ForeignKey('sintomas.id'), index=True)
-    #id_parentesco = Column(ForeignKey('parentescos.id'), index=True)
-    id_medicamento = Column(ForeignKey('medicamentos.id'), index=True)
+    id_doenca_cronica = Column(ForeignKey('doencas_cronicas.id'), index=True)
+    id_parentesco = Column(ForeignKey('parentescos.id'), index=True) #Adicionar campo, adicionar "Mulher grávida"
+    #id_medicamento = Column(ForeignKey('medicamentos.id'), index=True) #Vai virar string (alterar campo)
     id_indicador = Column(ForeignKey('indicadores.id'), index=True)
-    dosagem = Column(String(150))  #Campo dosagem no formulario
+
+    medicamento = Column(String(150)) #novo campo
+    dosagem = Column(String(150))
+    data_sintomas = Column(DateTime) #novo campo
+    is_mulher_gravida = Column(TINYINT(4)) # novo campo
+
     outros_sintomas = Column(String(150))
+    outras_doencas_cronicas = Column(String(150)) #novo campo
 
     atendimento = relationship('Atendimento')
     indicadore = relationship('Indicador')
-    medicamento = relationship('Medicamento')
-    #parentesco = relationship('Parentesco')
+    #medicamento = relationship('Medicamento')
+    parentesco = relationship('Parentesco')
     sintoma = relationship('Sintoma')
+    doencas_cronica = relationship('DoencaCronica') """
+
+class AtendimentoRelacao(Base, SerializerMixin):
+    __tablename__ = 'atendimentos_relacao'
+
+    #id_atendimento_sintoma = Column(INTEGER(11), primary_key=True)
+    id = Column(INTEGER(11), primary_key=True)
+    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
+    id_sintoma = Column(ForeignKey('sintomas.id'), index=True)
+    id_doenca_cronica = Column(ForeignKey('doencas_cronicas.id'), index=True)
+    id_parentesco = Column(ForeignKey('parentescos.id'), index=True) #Adicionar campo, adicionar "Mulher grávida"
+    #id_medicamento = Column(ForeignKey('medicamentos.id'), index=True) #Vai virar string (alterar campo)
+    id_indicador = Column(ForeignKey('indicadores.id'), index=True)
+
+    medicamento = Column(String(150)) #novo campo
+    dosagem = Column(String(150))
+    data_sintomas = Column(DateTime) #novo campo
+    is_mulher_gravida = Column(TINYINT(4)) # novo campo
+
+    outros_sintomas = Column(String(150))
+    outras_doencas_cronicas = Column(String(150)) #novo campo
+
+    atendimento = relationship('Atendimento')
+    indicadore = relationship('Indicador')
+    #medicamento = relationship('Medicamento')
+    parentesco = relationship('Parentesco')
+    sintoma = relationship('Sintoma')
+    doencas_cronica = relationship('DoencaCronica')
 
 class AtendimentoVisita(Base, SerializerMixin):
     __tablename__ = 'atendimentos_visitas'
@@ -113,27 +148,3 @@ class AtendimentoVisita(Base, SerializerMixin):
 
 
 #=========================================================================================
-
-class AtendimentoParentesco(Base, SerializerMixin):
-    __tablename__ = 'atendimentos_parentescos'
-
-    #id_atendimento_parentesco = Column(INTEGER(11), primary_key=True)
-    id = Column(INTEGER(11), primary_key=True)
-    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
-    id_parentesco = Column(ForeignKey('parentescos.id'), index=True)
-    id_doenca_cronica = Column(ForeignKey('doencas_cronicas.id'), index=True)
-    data_sintomas = Column(DateTime, nullable=False)
-
-    atendimento = relationship('Atendimento')
-    parentesco = relationship('Parentesco')
-    doencas_cronica = relationship('DoencaCronica')
-
-class AtendimentoMulherGravida(Base, SerializerMixin):
-    __tablename__ = 'atendimentos_mulheres_gravidas'
-
-    #id_atendimento_mulheres_gravidas = Column(INTEGER(11), primary_key=True)
-    id = Column(INTEGER(11), primary_key=True)
-    id_atendimento = Column(ForeignKey('atendimentos.id'), nullable=False, index=True)
-    nome_mulher = Column(String(150), nullable=False)
-
-    atendimento = relationship('Atendimento')

@@ -155,9 +155,8 @@ data_primeiro_sintoma = Input(
 
 medicamento = Input(
     name='medicamento',
-    label='Qual?',
-    placeholder='Nome do medicamento',
-    required=True
+    label='Medicamento',#'Qual?',
+    placeholder='Nome do medicamento'
 )
 
 dose_medicamento = Input(
@@ -177,7 +176,7 @@ tempo_medicamento = Input(
 indicador_medicamento = Input(
     name='indicador_medicamento',
     type='select',
-    label='Quem?',
+    label='Quem indicou?',
     options=db.selectAllData(Indicador),
     required=True
 )
@@ -223,7 +222,10 @@ has_doenca_cronica = Input(
     name='has_doenca_cronica',
     label='Apresenta alguma doença crônica?',
     options=[
-        {"value": "Sim", "fields": [[doenca_cronica, data_primeiro_sintoma, btn_trash], btn_add]},
+        {"value": "Sim", "fields": [[doenca_cronica, data_primeiro_sintoma, 
+                                     medicamento, indicador_medicamento, 
+                                     dose_medicamento, btn_trash], 
+                                    btn_add]},
         {"value": "Não"},
         {"value": "Não opinou"},
     ]
@@ -536,11 +538,9 @@ sintoma = Input(
 )
 
 sintoma_medicamento = Input(
-    type='select',
     name='sintoma_medicamento',
     label='Medicamento',
-    options=db.selectAllData(Medicamento),
-    outros=True,
+    placeholder='Nome do medicamento'
 )
 
 quem_indicou_medicamento = Input(
