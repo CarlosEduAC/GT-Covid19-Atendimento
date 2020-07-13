@@ -105,11 +105,6 @@ def registrar(form):
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size):
 
-                print(str(real_doenca_cronica[i]))
-
-                if real_doenca_cronica[i] == None:
-                    continue
-
                 data_sintomas = datetime.strptime(real_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(real_data_primeiro_sintoma[i]) != 0 else None
 
                 builder.inserirDoencaCronica(
