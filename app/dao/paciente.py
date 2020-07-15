@@ -58,3 +58,5 @@ def updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, ender
 
     db.updateData(Paciente, paciente, id)
 
+
+
