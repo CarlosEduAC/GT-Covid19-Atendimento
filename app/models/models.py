@@ -33,36 +33,35 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
     def verificaSenha(self, senha):
         return check_password_hash(self.senha, senha)
 
-    def validar(self):
+    def validarCPF(self):
         if not self.cpf:
             return False
         
-        c_cpf = self.calculoCPF(self.cpf[:9])
-        novo_cpf = self.calculoCPF(c_cpf)
+        num_cpf = self.calculoCPF(self.cpf[:9])
+        num_cpf = self.calculoCPF(num_cpf)
         
-        if novo_cpf == self.cpf:
+        if num_cpf == self.cpf:
             return True
         return False
     
-    def calculoCPF(self, nove_cpf):
-        if not nove_cpf:
+    #gera cpf válido a partir do cpf que foi dado como input
+    def calculoCPF(self, num_cpf):
+        if not num_cpf:
             return False
 
-        seq = nove_cpf[0] * len(nove_cpf)
+        seq = num_cpf[0] * len(num_cpf)
 
-        if seq == nove_cpf:
+        if seq == num_cpf:
             return False
 
         soma = 0
-        for ch, mult in enumerate(range(len(nove_cpf)+1, 1, -1)):
-            soma += int(nove_cpf[ch]) * mult
-
-        print(soma%11)        
+        for ch, mult in enumerate(range(len(num_cpf)+1, 1, -1)):
+            soma += int(num_cpf[ch]) * mult
+      
         res = 11 - (soma%11)
-        print(res)
         res = res if res <= 9 else 0
 
-        return nove_cpf + str(res)
+        return num_cpf + str(res)
 
 
 class AtendimentoInicial(Base, SerializerMixin):
