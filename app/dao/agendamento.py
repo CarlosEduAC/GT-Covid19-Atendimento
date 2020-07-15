@@ -1,5 +1,5 @@
 from controller.database import Database
-from models.models import Agendamento, Atendimento
+from models.models import Agendamento, Atendimento, Paciente
 
 
 def userAgendamentos(user_id):
@@ -8,11 +8,13 @@ def userAgendamentos(user_id):
         db = Database()
         session = db.Session()
 
-        return session.query(Agendamento, Atendimento).\
+        return session.query(Agendamento, Atendimento, Paciente).\
             filter(Agendamento.id_atendimento == Atendimento.id,
-                    Agendamento.id_adm_saude == user_id).\
+                    Agendamento.id_adm_saude == user_id,
+                    Atendimento.id_paciente == Paciente.id).\
                        order_by(Agendamento.data).\
                            with_entities(Atendimento.id.label('id'),
+                                         Paciente.nome.label('nomePaciente'),
                                          Agendamento.data.label('diaAgendamento'),
                                          Atendimento.is_primeiro.label('primeiro'),
                                          Atendimento.data.label('diaAtendimento')).all()

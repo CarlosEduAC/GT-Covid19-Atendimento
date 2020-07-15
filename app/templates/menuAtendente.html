@@ -45,7 +45,7 @@
                                                 <thead>
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
-                                                        <td>Usuário</td>
+                                                        <td>Paciente</td>
                                                         <td>Primeiro Atendimento?</td>
                                                         <td>Dia do Atendimento</td>
                                                         
@@ -56,7 +56,7 @@
                                                         <div >
                                                             <tr>
                                                                 <td>{{atendimento.diaAgendamento}}</td>
-                                                                <td>{{usuario}}</td>
+                                                                <td>{{atendimento.nomePaciente}}</td>
                                                                 {% if atendimento.primeiro %}
                                                                     <td>Sim</td>
                                                                 {% else %}

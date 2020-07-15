@@ -6,7 +6,6 @@ from models.modelsAgendamento import *
 
 from sqlalchemy import desc
 
-
 def getInicialPaciente(id_atendimento):
     db = Database()
     res = db.selectIf(Atendimento, id=id_atendimento)
@@ -21,7 +20,6 @@ def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_gener
         new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
         db.saveData(new_paciente)
         return db.selectIf(Paciente, cpf=cpf).id
-
 
 class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
