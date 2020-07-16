@@ -1,7 +1,18 @@
 from controller.database import Database
 from models.models import Paciente
 from datetime import datetime
-from controller.primeiroAtendimento import data_or_null, only_num
+from controller.formfuncs import *
+
+
+def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
+    db = Database()
+    paciente = db.selectIf(Paciente, cpf=cpf)
+    if paciente:
+        return paciente.id
+    else:
+        new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
+        db.saveData(new_paciente)
+        return db.selectIf(Paciente, cpf=cpf).id
 
 def savePaciente (nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
 
