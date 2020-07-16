@@ -1,5 +1,5 @@
 from controller.database import Database
-from models.models import Atendimento, AtendimentoInicial, Agendamento, TempoContatoAcompanhamento, Paciente
+from models.models import Atendimento, AtendimentoInicial, Agendamento, TempoContatoAcompanhamento
 from datetime import datetime, timedelta
 from models.modelsDomainTable import *
 from models.modelsAgendamento import *
@@ -10,16 +10,6 @@ def getInicialPaciente(id_atendimento):
     db = Database()
     res = db.selectIf(Atendimento, id=id_atendimento)
     return (res.id_atendimento_inicial, res.id_paciente)
-
-def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
-    db = Database()
-    paciente = db.selectIf(Paciente, cpf=cpf)
-    if paciente:
-        return paciente.id
-    else:
-        new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
-        db.saveData(new_paciente)
-        return db.selectIf(Paciente, cpf=cpf).id
 
 class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
