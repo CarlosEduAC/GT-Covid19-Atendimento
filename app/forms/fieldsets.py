@@ -1,5 +1,25 @@
 from .sections import *
 
+""" class Fieldset():
+    def __init__(self, name, sections):
+        self.name = name
+        self.sections = sections
+    
+    def preencherPaciente(self, paciente):
+        self.sections[0].inserirInfoPaciente(paciente) """
+
+
+def preencherPaciente(fieldset, paciente):
+    fieldset["sections"][0] = inserirInfoPaciente(fieldset["sections"][0], paciente)
+    return fieldset
+
+""" fieldsetConjuntoUsuario = Fieldset(
+    name="Dados Pessoais",
+    sections=[
+        informacoesBasicasPreenchidas
+    ]
+) """
+
 fieldsetConjunto0 = {
     "name": "Dados pessoais",
     "sections": [

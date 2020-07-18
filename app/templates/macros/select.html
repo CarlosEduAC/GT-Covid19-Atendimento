@@ -31,18 +31,26 @@
     <div class="ui selection dropdown fluid {{ 'search' if i.outros or i.multiselect }} {{ 'multiple' if i.multiselect else 'single' }}">
         <input type="hidden" name="{{ i.name }}">
         <i class="dropdown icon"></i>
-        <div class="default text">{{ i.placeholder if i.placeholder | length != 0 else 'Selecione...' }}</div>
+        
+        {% if i.hasSelected %}
+            <div class="text">{{ i.selected }}</div>
+        {% else %}
+            <div class="default text">{{ i.placeholder if i.placeholder | length != 0 else 'Selecione...' }}</div>
+        {% endif %}
+
         <div class="menu">
             {% for opt in i.options %}
-                {{ raw_option(i, opt, loop.index) }}
+                {{ raw_option(i, opt, loop.index, opt.selected) }}
             {% endfor %}
         </div>
     </div>
 {% endmacro %}
 
-{% macro raw_option(i, opt, index) %}
+{% macro raw_option(i, opt, index, selected=False) %}
     <div
-            class="item"
+            class="item {{'active' if selected}}"
             data-parent="{{ i.name }}"
-            data-value="{{ 'real_data_' if i.multiselect or i.outros }}{{ opt.id if opt.id else index }}">{{ opt.value }}</div>
+            data-value="{{ 'real_data_' if i.multiselect or i.outros }}{{ opt.id if opt.id else index }}"
+            {{'selected' if selected}}>{{ opt.value }}</div>
+            
 {% endmacro %}

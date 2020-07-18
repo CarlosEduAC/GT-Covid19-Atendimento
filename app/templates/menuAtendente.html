@@ -55,14 +55,14 @@
                                                     {% for atendimento in atendimentos %}
                                                         <div >
                                                             <tr>
-                                                                <td>{{atendimento.diaAgendamento}}</td>
+                                                                <td>{{formatTime(atendimento.diaAgendamento, '%d/%m/%Y %H:%M:%S')}}</td>
                                                                 <td>{{atendimento.nomePaciente}}</td>
                                                                 {% if atendimento.primeiro %}
                                                                     <td>Sim</td>
                                                                 {% else %}
                                                                     <td>Não</td>
                                                                 {%endif%}
-                                                                <td>{{atendimento.diaAtendimento}}</td>
+                                                                <td>{{formatTime(atendimento.diaAtendimento, '%d/%m/%Y %H:%M:%S')}}</td>
                                                                 <td>
                                                                     <button type="button" class="btn btn-w-m btn-primary"
                                                                         onclick="window.location.href='/atendimento/{{atendimento.id}}'">Iniciar Atendimento</button> <!-- Passar o id na rota -->
