@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from forms.fieldsets import *
 from controller.atendimento import registrar
 from dao.atendimento import getInicialPaciente
+from dao.paciente import getPaciente
 from flask_login import login_required 
 from datetime import datetime
 
@@ -21,8 +22,12 @@ def index(id):
             "action": "/atendimento/{}".format(id),
         }
 
+        (_, id_paciente) = getInicialPaciente(id)
+
+        paciente = getPaciente(id_paciente)
+
         fieldsets = [
-            fieldsetConjunto0,
+            preencherPaciente(fieldsetConjunto0, paciente),
             fieldsetConjunto1,
             fieldsetConjunto4,
             fieldsetConjunto5,

@@ -45,6 +45,11 @@ def selectPaciente ():
 
     print(pacientes)
 
+def getPaciente(id):
+    db = Database()
+
+    return db.selectIf(Paciente, id = id)
+
 def getPacientes():
     try:
         db = Database()

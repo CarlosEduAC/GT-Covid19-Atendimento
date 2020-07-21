@@ -1,5 +1,6 @@
 from controller.database import Database
 from models.models import Agendamento, Atendimento, Paciente
+from datetime import datetime
 
 
 def userAgendamentos(user_id):

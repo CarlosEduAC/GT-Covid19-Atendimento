@@ -14,9 +14,23 @@ class Input:
         self.required = required
         self.mask = mask
         self.options = options
+        #-----------------------
+        self.hasSelected = False
+        self.selected = None
+        #-----------------------
         self.multiselect = multiselect
         self.outros = outros
         self.hr = hr
+    
+    def setValue(self, value):
+        if(self.type == 'select'):
+            for opt in self.options:
+                if opt['id'] == value:
+                    opt['selected'] = True
+                    self.hasSelected = True
+                    self.selected = opt['value']
+        else:
+            self.value = value
 
 
 # =============== Utils ===============
