@@ -27,7 +27,7 @@ def index(id):
         paciente = getPaciente(id_paciente)
 
         fieldsets = [
-            preencherPaciente(fieldsetConjunto0, paciente),
+            preencherPaciente(paciente),
             fieldsetConjunto1,
             fieldsetConjunto4,
             fieldsetConjunto5,

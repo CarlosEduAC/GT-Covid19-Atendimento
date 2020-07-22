@@ -31,6 +31,7 @@ class Input:
                     self.selected = opt['value']
         else:
             self.value = value
+        return self
 
 
 # =============== Utils ===============
