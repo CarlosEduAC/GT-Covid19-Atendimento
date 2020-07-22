@@ -1,40 +1,25 @@
 from datetime import datetime
+from copy import deepcopy
 from .inputs import *
 
-""" class Section():
-    def __init__(self, name, inputs):
-        self.name = name
-        self.inputs = inputs
+def inserirInfoPaciente(paciente):
+    return {
+        "name": "Informações Básicas do Paciente",
+        "inputs": [
+            [
+                deepcopy(nome).setValue(paciente.nome),
+                deepcopy(cpf).setValue(paciente.cpf),
+                deepcopy(telefone).setValue(paciente.telefone)
+            ],
+            [
+                deepcopy(data_nasc).setValue(datetime.strftime(paciente.data_nasc, "%d/%m/%Y") if paciente.data_nasc is not None else ""),
+                deepcopy(genero).setValue(paciente.id_genero),
+                deepcopy(etnia).setValue(paciente.id_etnia)
+            ],
+            deepcopy(endereco).setValue(paciente.endereco)
+        ]
+    }
     
-    def inserirInfoPaciente(self, paciente):
-        self.inputs[0][0].setValue(paciente.nome)
-        self.inputs[0][1].setValue(paciente.cpf)
-        self.inputs[0][2].setValue(paciente.telefone)
-        self.inputs[1][0].setValue(datetime.strftime(paciente.data_nasc, "%d/%m/%Y"))
-        self.inputs[1][1].setValue(paciente.id_genero)
-        self.inputs[1][2].setValue(paciente.id_etnia)
-        self.inputs[2].setValue(paciente.endereco) """
-
-def inserirInfoPaciente(section, paciente):
-    section["inputs"][0][0].setValue(paciente.nome)
-    section["inputs"][0][1].setValue(paciente.cpf)
-    section["inputs"][0][2].setValue(paciente.telefone)
-    section["inputs"][1][0].setValue(datetime.strftime(paciente.data_nasc, "%d/%m/%Y"))
-    section["inputs"][1][1].setValue(paciente.id_genero)
-    section["inputs"][1][2].setValue(paciente.id_etnia)
-    section["inputs"][2].setValue(paciente.endereco)
-
-    return section
-
-""" informacoesBasicasPreenchidas = Section(
-    name = "Informações Básicas do Paciente",
-    inputs = [
-        [nome, cpf, telefone],
-        [data_nasc, genero, etnia],
-        endereco
-    ]
-) """
-
 
 tentativa = {
     "name": "Tentativa",
