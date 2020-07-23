@@ -39,14 +39,13 @@
                                     <div class="full-height-scroll">
                                         <div class="table-responsive">
                                             
-                                            
-
-                                            <table class="table table-striped table-hover">
-                                                <thead>
+                                            <table class="table table-hover">
+                                                <thead class="thead-light">
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
                                                         <td>Paciente</td>
-                                                        <td>Primeiro Atendimento?</td>
+                                                        <td>Telefone</td>
+                                                        <td>Primeiro?</td>
                                                         <td>Dia do Atendimento</td>
                                                         
                                                     </tr>
@@ -54,9 +53,20 @@
                                                 <tbody>
                                                     {% for atendimento in atendimentos %}
                                                         <div >
-                                                            <tr>
+                                                            <tr class="
+                                                                {% if atendimento.importance == 1 %}
+                                                                    table-danger
+
+                                                                {% elif atendimento.importance == 2 %}
+                                                                    table-warning
+                                                                {% else %}
+                                                                    table-success
+                                                                
+                                                                {% endif %}"
+                                                            >
                                                                 <td>{{formatTime(atendimento.diaAgendamento, '%d/%m/%Y %H:%M:%S')}}</td>
                                                                 <td>{{atendimento.nomePaciente}}</td>
+                                                                <td>{{atendimento.telefonePaciente}}</td>
                                                                 {% if atendimento.primeiro %}
                                                                     <td>Sim</td>
                                                                 {% else %}
@@ -64,7 +74,16 @@
                                                                 {%endif%}
                                                                 <td>{{formatTime(atendimento.diaAtendimento, '%d/%m/%Y %H:%M:%S')}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-w-m btn-primary"
+                                                                    <button type="button" class="btn btn-w-m 
+                                                                    {% if atendimento.importance == 1 %}
+                                                                        btn btn-light
+
+                                                                    {% elif atendimento.importance == 2 %}
+                                                                        btn btn-light
+                                                                    {% else %}
+                                                                        btn btn-light
+                                                                    {% endif %}
+                                                                    "
                                                                         onclick="window.location.href='/atendimento/{{atendimento.id}}'">Iniciar Atendimento</button> <!-- Passar o id na rota -->
                                                                 </td>
                                                             </tr>
