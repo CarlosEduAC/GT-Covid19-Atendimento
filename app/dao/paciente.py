@@ -8,6 +8,8 @@ def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_gener
     db = Database()
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
+        # atualizar paciente
+        updatePaciente(paciente.id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco)
         return paciente.id
     else:
         new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)

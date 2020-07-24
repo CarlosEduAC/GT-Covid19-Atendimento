@@ -9,7 +9,22 @@ menuAtendente = Blueprint('MenuAtendente', __name__)
 @menuAtendente.route('/', methods=['GET'])
 @login_required 
 def index():
-    print(current_user.id)
-    atendimentos = userAgendamentos(current_user.id)
+
+    atendimentos = list(map(
+        setImportance, 
+        userAgendamentos(current_user.id)))
 
     return render_template('menuAtendente.html', atendimentos = atendimentos, formatTime = datetime.strftime)
+
+def setImportance(atendimento):
+    today = datetime.today().date()
+    time = atendimento['diaAgendamento'].date()
+    
+    if(today > time):
+        atendimento['importance'] = 1
+    elif(today == time):
+        atendimento['importance'] = 2
+    else:
+        atendimento['importance'] = 3
+    
+    return atendimento
