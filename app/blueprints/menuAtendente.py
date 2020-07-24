@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, send_from_directory
+from flask import Blueprint, render_template
 from flask_login import login_required, LoginManager, current_user
 from datetime import datetime
 from flask_weasyprint import HTML, render_pdf
