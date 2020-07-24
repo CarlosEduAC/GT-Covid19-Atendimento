@@ -1,0 +1,66 @@
+<div class="tab-content">
+    <div id="tab-1" class="tab-pane active">
+        <div class="full-height-scroll">
+            <div id="tab-1" class="tab-pane active">
+                <div class="full-height-scroll">
+                    <div class="table-responsive">
+                        
+                        <table class="table table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <td>Dia do Agendamento</td>
+                                    <td>Paciente</td>
+                                    <td>Telefone</td>
+                                    <td>Primeiro?</td>
+                                    <td>Dia do Atendimento</td>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for atendimento in atendimentos %}
+                                    <div >
+                                        <tr class="
+                                            {% if atendimento.importance == 1 %}
+                                                table-danger
+                                            {% elif atendimento.importance == 2 %}
+                                                table-warning
+                                            {% else %}
+                                                table-success
+                                            
+                                            {% endif %}"
+                                        >
+                                            <td>{{formatTime(atendimento.diaAgendamento, '%d/%m/%Y %H:%M:%S')}}</td>
+                                            <td>{{atendimento.nomePaciente}}</td>
+                                            <td>{{atendimento.telefonePaciente}}</td>
+                                            {% if atendimento.primeiro %}
+                                                <td>Sim</td>
+                                            {% else %}
+                                                <td>Não</td>
+                                            {%endif%}
+                                            <td>{{formatTime(atendimento.diaAtendimento, '%d/%m/%Y %H:%M:%S')}}</td>
+                                            {% if not pdf %}
+                                                <td>
+                                                    <button type="button" class="btn btn-w-m 
+                                                    {% if atendimento.importance == 1 %}
+                                                        btn btn-light
+
+                                                    {% elif atendimento.importance == 2 %}
+                                                        btn btn-light
+                                                    {% else %}
+                                                        btn btn-light
+                                                    {% endif %}
+                                                    "
+                                                        onclick="window.location.href='/atendimento/{{atendimento.id}}'">Iniciar Atendimento</button> <!-- Passar o id na rota -->
+                                                </td>
+                                            {%endif%}
+                                        </tr>
+                                    </div>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
