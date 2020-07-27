@@ -10,3 +10,7 @@
 .wizard > .content > .body label.error {
     display: none !important;
 }
+
+#selected-file {
+    display: none;
+}
