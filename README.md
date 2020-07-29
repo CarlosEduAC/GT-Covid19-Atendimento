@@ -7,6 +7,8 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 - Necessário ter o [GIT](https://git-scm.com/downloads) instalado na máquina
 
 - Necessário ter o [MySQL](https://www.mysql.com/) instalado na máquina (Devs novos sem acesso a VPN da UFRJ)
+  
+- Necessário ter o [WeasyPrint](https://weasyprint.readthedocs.io/en/latest/install.html) instalado para geração do PDF de agendamentos. Escolha o passo-a-passo para instalação do seu Sistema Operacional.
 
 - Fazer o ![Fork](https://raw.githubusercontent.com/carlosbazilio/github-images/master/fork.png) do [projeto](https://github.com/CarlosEduAC/GT-Covid19-Atendimento) 
 
@@ -26,7 +28,7 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 
     - Criar banco com nome 'covid3'
 
-    - **python app/config_database.py** *(Cria o esquema no banco com ORM)*
+    - **python app/config_database.py dev** *(Cria o esquema no banco local com ORM)*
 
 - Rodar o sistema
 
