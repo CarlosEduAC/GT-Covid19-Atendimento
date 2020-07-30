@@ -18,8 +18,10 @@
             <div class="ibox ">
                 <div class="ibox-title">
                     <h5>Lista de Atendimentos</h5>
-                    <button class="btn btn-outline btn-primary"
-                        onclick="window.location.href='/pdf'">PDF de Atendimentos</button>
+                    {% if incluiBotaoPdf %}
+                        <button class="btn btn-outline btn-primary"
+                            onclick="window.location.href='/pdf'">PDF de Atendimentos</button>
+                    {%endif%}
                 </div>
                 <div class="ibox-content">
                     <div class="row">
