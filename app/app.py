@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_login import LoginManager
 from models.models import AdmSaude
 from controller.database import Database
+from controller.pdfInclusao import incluiPdf
 
 # Importação de rotas 
 from blueprints.about import about
@@ -19,6 +20,9 @@ from blueprints.registrarPaciente import registrarPaciente
 from blueprints.primeiroAtendimento import primeiroAtendimento
 from blueprints.historico import historico
 
+if incluiPdf():
+    from blueprints.pdfAgendamento import pdfAgendamento
+
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
@@ -27,13 +31,11 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "Login.loginMetodo"
 
-
 @login_manager.user_loader
 def getUsuario(usuario_id):
     db = Database()
 
     return db.selectIf(AdmSaude, id=usuario_id)
-
 
 app.register_blueprint(about, url_prefix='/')
 app.register_blueprint(login, url_prefix='/')
@@ -44,6 +46,9 @@ app.register_blueprint(registrarUsuario, url_prefix='/')
 app.register_blueprint(registrarPaciente, url_prefix='/')
 app.register_blueprint(primeiroAtendimento, url_prefix='/')
 app.register_blueprint(historico, url_prefix='/')
+
+if incluiPdf():
+    app.register_blueprint(pdfAgendamento, url_prefix='/')
 
 CORS(app)
 
