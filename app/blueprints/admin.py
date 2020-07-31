@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from controller.admin import getUsers, removeUser, updateUser, getTimes, getEsf, deleteEsf, updateTimes, newEsf, genero_etnia
 from dao.paciente import getPacientes
 from flask_login import login_required, LoginManager, current_user
+from blueprints.login import ler_dados
 
 menuAdmin = Blueprint('admin', __name__)
 
@@ -31,7 +32,7 @@ def admin():
         genero, etnia = genero_etnia()
 
         return render_template('admin.html', users = users, pacientes = pacientes, generos=genero, etnias=etnia,
-                                intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf)
+                                intervalo=intervalo, tempo_maximo=tempo_maximo, esf=esf, dados = ler_dados())
 
 
 @menuAdmin.route('/admin/remove', methods=['GET', 'POST'])
