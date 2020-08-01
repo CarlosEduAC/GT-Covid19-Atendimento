@@ -4,6 +4,7 @@ from controller.database import Database
 from controller.primeiroAtendimento import only_num
 from flask_login import login_required, current_user
 import forms.inputs as inputs
+from blueprints.login import ler_dados
 
 registrarUsuario = Blueprint('Registrar', __name__)
 
@@ -48,4 +49,4 @@ def registrar():
         "is_supervisor" : inputs.adm_is_supervisor,
     }
 
-    return render_template('registrar.html', fields=fields)
+    return render_template('registrar.html', fields=fields, dados = ler_dados())

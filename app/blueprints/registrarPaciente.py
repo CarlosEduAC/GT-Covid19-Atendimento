@@ -3,6 +3,7 @@ from datetime import datetime
 from dao.paciente import removePaciente, updatePaciente, savePaciente, selectPaciente
 from flask_login import login_required, current_user
 import forms.inputs as inputs
+from blueprints.login import ler_dados
 
 registrarPaciente = Blueprint('Paciente', __name__)
 
@@ -36,7 +37,7 @@ def registrar():
         "endereco" : inputs.endereco,
         "telefone" : inputs.telefone
     }
-    return render_template('paciente.html', fields = fields)
+    return render_template('paciente.html', dados = ler_dados(), fields = fields)
 
 @registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
 @login_required 

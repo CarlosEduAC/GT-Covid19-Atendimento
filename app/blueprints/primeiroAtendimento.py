@@ -3,6 +3,7 @@ from forms.fieldsets import *
 from controller.primeiroAtendimento import registrar
 from datetime import datetime
 from flask_login import login_required
+from blueprints.login import ler_dados
 
 primeiroAtendimento = Blueprint('PrimeiroAtendimento', __name__)
 
@@ -28,7 +29,7 @@ def index():
             fieldsetConjunto6,
         ]
 
-        return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'))
+        return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'), dados = ler_dados())
     elif request.method == 'POST':
         registrar(request.form)
 
