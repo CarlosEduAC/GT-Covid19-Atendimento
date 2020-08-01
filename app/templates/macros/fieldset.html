@@ -6,7 +6,17 @@
                     <div class="col-lg-12">
                         <div class="ibox mb-2">
                             <div class="ibox-content">
-                                <h3 class="m-t-none m-b">{{ section.name }}</h3>
+                                <h3 class="m-t-none m-b">
+                                    {{ section.name }}
+                                    {% if not form.primeiroAtendimento and section.view %}
+                                        {% set columns = ",".join(section.columns) %}
+
+                                        <a href="#"
+                                           onClick="window.open('/historico?idUsuario=1&sectionName={{ section.name }}&view={{ section.view }}&columns={{ columns }}',
+                                                   'pagename','resizable,height=400,width=600'); return false;"><i
+                                                class="fa fa-history"></i></a>
+                                    {% endif %}
+                                </h3>
                                 <div class="hr-line-dashed"></div>
                                 {% for input in section.inputs %}
                                     {{ switch(input, primeiroAtendimento = form.primeiroAtendimento) }}

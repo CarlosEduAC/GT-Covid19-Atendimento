@@ -246,6 +246,14 @@ has_doenca_cronica = Input(
     ]
 )
 
+
+parentesco_residente_mesma_casa = Input(
+    name='parentesco_residente_mesma_casa',
+    type='select',
+    label='Quem mora com você?',
+    options=db.selectAllData(Parentesco)
+)
+
 # ============== ESF ==============
 
 estrategia_saude_familiar = Input(
@@ -451,6 +459,8 @@ mora_sozinho = Input(
         {
             'value': 'Não',
             "fields": [
+                [parentesco_residente_mesma_casa, btn_trash],
+                btn_add,
                 has_parentesco_doenca_cronica,
                 parentesco_has_sintoma,
             ]

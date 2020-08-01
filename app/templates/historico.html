@@ -7,18 +7,30 @@
 
 <body>
 
-<table class="table table-striped">
+<table class="table table-striped table-responsive">
 <thead>
 <tr>
-    <th>{{ historico.label }}</th>
-    <th>Data</th>
+    {% for column in historico.columns %}
+        <th>{{ column | replace("_", " ") | capitalize }}</th>
+    {% endfor %}
 </tr>
 </thead>
 <tbody>
     {% for content in historico.content %}
         <tr>
-            <td>{{ content.value }}</td>
-            <td>{{ content.date }}</td>
+            {% for i in range(0, content | length, 1) %}
+                {% if content[i] == None %}
+                    <td>-</td>
+                {% else %}
+                    {% if content[i] == 1 %}
+                        <td>Sim</td>
+                    {% elif content[i] == 0 %}
+                        <td>Não</td>
+                    {% else %}
+                        <td>{{ content[i] }}</td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
         </tr>
     {% endfor %}
 </tbody>

@@ -6,10 +6,12 @@ from models.modelsAgendamento import *
 
 from sqlalchemy import desc
 
+
 def getInicialPaciente(id_atendimento):
     db = Database()
     res = db.selectIf(Atendimento, id=id_atendimento)
     return (res.id_atendimento_inicial, res.id_paciente)
+
 
 class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
@@ -22,7 +24,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
     # Se não for o atendimento inicial, passa o id do inicial no construtor
     def __init__(self, is_primeiro, data, id_paciente, has_atendimento,
-                 tentativa=None, others_tentativas = None, id_atendimento_inicial=None, id_inicial=None):
+                 tentativa=None, others_tentativas=None, id_atendimento_inicial=None, id_inicial=None):
 
         self.atendimento = Atendimento()
 
@@ -112,7 +114,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
         )
 
     def inserirIsolamento(self, consegue_isolamento, como_porque, cuidado_sair):
-        
+
         self.atendimento.cuidado_sair_casa = cuidado_sair
 
         self.atendimento.consegue_isolamento = consegue_isolamento
@@ -155,38 +157,38 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
                 medicamento=medicamento,
                 dosagem=dosagem,
                 id_indicador=id_indicador,
-                data_sintomas = data_sintomas,
+                data_sintomas=data_sintomas,
                 outras_doencas_cronicas=outras_doencas_cronicas
             )
         )
 
-    def inserirSintoma(self, id, medicamento, id_indicador, 
-                         dosagem, outros_sintomas=None):
+    def inserirSintoma(self, id, medicamento, id_indicador,
+                       dosagem, outros_sintomas=None):
 
         self.saveRelation(
             AtendimentoRelacao(
                 id_sintoma=id,
                 medicamento=medicamento,
                 id_indicador=id_indicador,
-                dosagem = dosagem,
+                dosagem=dosagem,
                 outros_sintomas=outros_sintomas
             )
         )
-    
-    def inserirParentesco(self, id_parentesco, is_mulher_gravida=False, id_sintoma=None, 
+
+    def inserirParentesco(self, id_parentesco, is_mulher_gravida=False, id_sintoma=None,
                           id_doenca_cronica=None, data_sintomas=None,
                           medicamento=None, id_indicador=None, dosagem=None):
 
         self.saveRelation(
             AtendimentoRelacao(
                 id_parentesco=id_parentesco,
-                is_mulher_gravida = is_mulher_gravida,
-                id_sintoma = id_sintoma,
+                is_mulher_gravida=is_mulher_gravida,
+                id_sintoma=id_sintoma,
                 id_doenca_cronica=id_doenca_cronica,
                 data_sintomas=data_sintomas,
                 medicamento=medicamento,
-                id_indicador = id_indicador,
-                dosagem = dosagem
+                id_indicador=id_indicador,
+                dosagem=dosagem
             )
         )
 
