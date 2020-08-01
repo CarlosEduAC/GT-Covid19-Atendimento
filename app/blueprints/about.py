@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request
 from json import load
+from blueprints.login import ler_dados
 
 about = Blueprint('About', __name__)
 
@@ -14,4 +15,4 @@ def index():
             membros = None
             print(e)
 
-        return render_template('about.html', membros = membros)
+        return render_template('about.html', membros = membros, dados = ler_dados())

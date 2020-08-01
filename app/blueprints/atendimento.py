@@ -5,6 +5,7 @@ from dao.atendimento import getInicialPaciente
 from dao.paciente import getPaciente
 from flask_login import login_required 
 from datetime import datetime
+from blueprints.login import ler_dados
 
 atendimento = Blueprint('Atendimento', __name__)
 
@@ -34,7 +35,7 @@ def index(id):
             fieldsetConjunto6
         ]
 
-        return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'))
+        return render_template('form.html', form=form, fieldsets=fieldsets, now=datetime.today().strftime('%d/%m/%Y'), dados = ler_dados())
     elif request.method == 'POST':
 
         (id_inicial, id_paciente) = getInicialPaciente(id)
