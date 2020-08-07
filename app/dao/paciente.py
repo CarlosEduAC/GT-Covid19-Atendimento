@@ -9,20 +9,19 @@ def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_gener
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
         # atualizar paciente
-        updatePaciente(paciente.id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco)
+        updatePaciente(paciente.id, nome, cpf, telefone, id_etnia, id_genero, data_nasc, endereco)
         return paciente.id
     else:
         new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
         db.saveData(new_paciente)
         return db.selectIf(Paciente, cpf=cpf).id
 
-def savePaciente (nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
 
+def savePaciente(nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
     nome = data_or_null(nome)
     cpf = data_or_null(cpf, only_num)
     telefone = data_or_null(telefone, only_num)
     endereco = data_or_null(endereco)
-    dataNasc = datetime.strptime(dataNasc, '%d/%m/%Y').date() if len(dataNasc) != 0 else None
     id_etnia = data_or_null(id_etnia, int)
     id_genero = data_or_null(id_genero, int)
 
@@ -32,11 +31,12 @@ def savePaciente (nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
         db = Database()
         db.saveData(paciente)
     except Exception as e:
-        print (e)
+        print(e)
 
-def selectPaciente ():
+
+def selectPaciente():
     pacientes = []
-        
+
     try:
         db = Database()
         response = db.selectAllData(Paciente)
@@ -47,10 +47,12 @@ def selectPaciente ():
 
     print(pacientes)
 
+
 def getPaciente(id):
     db = Database()
 
-    return db.selectIf(Paciente, id = id)
+    return db.selectIf(Paciente, id=id)
+
 
 def getPacientes():
     try:
@@ -58,7 +60,8 @@ def getPacientes():
 
         return db.selectAllData(Paciente)
     except:
-        return [] 
+        return []
+
 
 def removePaciente(id):
     db = Database()
@@ -66,15 +69,11 @@ def removePaciente(id):
 
 
 def updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco):
-
     db = Database()
 
-    paciente = Paciente(nome,cpf,telefone,
-                        datetime.strptime(dataNasc, '%Y-%m-%d').date() if len(dataNasc) != 0 else None,
-                        id_etnia,id_genero,endereco)
+    paciente = Paciente(nome, cpf, telefone,
+                        dataNasc,
+                        id_etnia, id_genero, endereco)
     paciente.id = id
 
     db.updateData(Paciente, paciente, id)
-
-
-

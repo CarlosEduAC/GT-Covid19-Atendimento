@@ -7,7 +7,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
 from flask_login import UserMixin
 
-
 Base = declarative_base()
 
 
@@ -28,7 +27,6 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
         self.is_supervisor = is_supervisor
         if senha is not None:
             self.senha = generate_password_hash(senha)
-    
 
     def verificaSenha(self, senha):
         return check_password_hash(self.senha, senha)
@@ -36,15 +34,15 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
     def validarCPF(self):
         if not self.cpf:
             return False
-        
+
         num_cpf = self.calculoCPF(self.cpf[:9])
         num_cpf = self.calculoCPF(num_cpf)
-        
+
         if num_cpf == self.cpf:
             return True
         return False
-    
-    #gera cpf válido a partir do cpf que foi dado como input
+
+    # gera cpf válido a partir do cpf que foi dado como input
     def calculoCPF(self, num_cpf):
         if not num_cpf:
             return False
@@ -55,10 +53,10 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
             return False
 
         soma = 0
-        for ch, mult in enumerate(range(len(num_cpf)+1, 1, -1)):
+        for ch, mult in enumerate(range(len(num_cpf) + 1, 1, -1)):
             soma += int(num_cpf[ch]) * mult
-      
-        res = 11 - (soma%11)
+
+        res = 11 - (soma % 11)
         res = res if res <= 9 else 0
 
         return num_cpf + str(res)
@@ -102,17 +100,17 @@ class Atendimento(Base, SerializerMixin):
     __tablename__ = 'atendimentos'
 
     id = Column(INTEGER(11), primary_key=True)
-    #id_inicial = Column(INTEGER(11)) Aparentemente, o id do atendimento inicial estava duplicado
+    # id_inicial = Column(INTEGER(11)) Aparentemente, o id do atendimento inicial estava duplicado
     id_atendimento_inicial = Column(ForeignKey('atendimentos_iniciais.id'), index=True)
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
     is_primeiro = Column(TINYINT(4), nullable=False)
     data = Column(DateTime, nullable=False)
 
-    #--se nao conseguir realizar o atendimento--#
+    # --se nao conseguir realizar o atendimento--#
     id_tentativa = Column(ForeignKey('tentativas.id'), index=True)
     outras_tentativas = Column(String(255))
 
-    #--dados isolamento--#
+    # --dados isolamento--#
     cuidado_sair_casa = Column(String(255))
 
     consegue_isolamento = Column(TINYINT(4))
@@ -121,7 +119,7 @@ class Atendimento(Base, SerializerMixin):
 
     consegue_ficar_casa = Column(TINYINT(4))
     quantos_dias = Column(INTEGER(11))
-    #------------------------#
+    # ------------------------#
 
     atendimentos_iniciai = relationship('AtendimentoInicial')
     paciente = relationship('Paciente')
