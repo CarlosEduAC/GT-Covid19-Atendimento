@@ -17,15 +17,16 @@ def index(id):
     print("Atendimento inicial: " + id)
 
     if request.method == 'GET':
+        (_, id_paciente) = getInicialPaciente(id)
+
+        paciente = getPaciente(id_paciente)
+
         form = {
             "label": "Formulário de Atendimento",
             "desc": "Este é o formulário a ser preenchido nos contatos telefônicos com o usuário",
             "action": "/atendimento/{}".format(id),
+            "id_paciente": id_paciente,
         }
-
-        (_, id_paciente) = getInicialPaciente(id)
-
-        paciente = getPaciente(id_paciente)
 
         fieldsets = [
             preencherPaciente(paciente),
