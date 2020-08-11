@@ -18,19 +18,21 @@ def registrar():
 
         nome = request.form['nome']
         cpf = request.form['cpf']
+        cns = request.form['cns']
         id_genero = request.form['id_genero']
         id_etnia = request.form['id_etnia']
         dataNasc = request.form['data_nasc']
         endereco = request.form['endereco']
         telefone = request.form['telefone']
 
-        savePaciente(nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco)
+        savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco)
 
         return redirect(url_for('admin.admin'))
     
     fields = {
         "nome" :inputs.nome,
         "cpf" : inputs.cpf,
+        "cns" : inputs.cns,
         "genero" : inputs.genero,
         "etnia" : inputs.etnia,
         "dataNasc" : inputs.data_nasc,
@@ -64,6 +66,7 @@ def update():
         id = request.form['paciente_id']
         nome = request.form['nome']
         cpf = request.form['cpf']
+        cns = request.form['cns']
         id_genero = request.form['id_genero']
         id_etnia = request.form['id_etnia']
         dataNasc = request.form['data_nasc']
@@ -72,6 +75,6 @@ def update():
 
         #print(dataNasc)
 
-        updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco)    
+        updatePaciente(id, nome, cpf, cns, telefone, id_etnia, id_genero, dataNasc, endereco)    
 
     return redirect(url_for('admin.admin'))

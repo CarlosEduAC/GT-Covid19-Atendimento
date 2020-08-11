@@ -4,28 +4,29 @@ from datetime import datetime
 from controller.formfuncs import *
 
 
-def inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero):
+def inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero):
     db = Database()
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
         # atualizar paciente
-        updatePaciente(paciente.id, nome, cpf, telefone, id_etnia, id_genero, data_nasc, endereco)
+        updatePaciente(paciente.id, nome, cpf, cns, telefone, id_etnia, id_genero, data_nasc, endereco)
         return paciente.id
     else:
-        new_paciente = Paciente(nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco)
+        new_paciente = Paciente(nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco)
         db.saveData(new_paciente)
         return db.selectIf(Paciente, cpf=cpf).id
 
 
-def savePaciente(nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco):
+def savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco):
     nome = data_or_null(nome)
     cpf = data_or_null(cpf, only_num)
+    cns = data_or_null(cns, only_num)
     telefone = data_or_null(telefone, only_num)
     endereco = data_or_null(endereco)
     id_etnia = data_or_null(id_etnia, int)
     id_genero = data_or_null(id_genero, int)
 
-    paciente = Paciente(nome, cpf, telefone, dataNasc, id_etnia, id_genero, endereco)
+    paciente = Paciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco)
 
     try:
         db = Database()
@@ -68,10 +69,10 @@ def removePaciente(id):
     db.delete(Paciente, id)
 
 
-def updatePaciente(id, nome, cpf, telefone, id_etnia, id_genero, dataNasc, endereco):
+def updatePaciente(id, nome, cpf, cns, telefone, id_etnia, id_genero, dataNasc, endereco):
     db = Database()
 
-    paciente = Paciente(nome, cpf, telefone,
+    paciente = Paciente(nome, cpf, cns, telefone,
                         dataNasc,
                         id_etnia, id_genero, endereco)
     paciente.id = id
