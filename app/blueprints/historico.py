@@ -3,6 +3,7 @@ from mock import objs
 from flask_login import login_required
 from sqlalchemy import text
 from controller.database import Database
+from datetime import datetime
 
 engine = Database().engine
 
@@ -29,4 +30,4 @@ def index():
         "columns": columns.split(',')
     }
 
-    return render_template('historico.html', historico=historico)
+    return render_template('historico.html', historico=historico, formatTime = datetime.strftime)

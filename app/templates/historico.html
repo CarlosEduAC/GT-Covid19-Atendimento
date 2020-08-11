@@ -18,7 +18,8 @@
 <tbody>
     {% for content in historico.content %}
         <tr>
-            {% for i in range(0, content | length, 1) %}
+            <td>{{formatTime(content[0], '%d/%m/%Y %H:%M:%S')}}</td>
+            {% for i in range(1, content | length, 1) %}
                 {% if content[i] == None %}
                     <td>-</td>
                 {% else %}

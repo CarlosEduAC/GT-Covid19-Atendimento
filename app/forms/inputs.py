@@ -131,7 +131,8 @@ data_nasc = Input(
     name='data_nasc',
     label='Data de nascimento',
     mask='99/99/9999',
-    placeholder='99/99/9999'
+    placeholder='99/99/9999',
+    required=True
 )
 
 etnia = Input(
@@ -523,7 +524,7 @@ has_isolamento = Input(
 dias_quarentena = Input(
     name='dias_quarentena',
     label='Há Quantos dias?',
-    mask='9?9'
+    mask='9?999'
 )
 
 motivo_sair = Input(
