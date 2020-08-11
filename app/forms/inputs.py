@@ -117,7 +117,7 @@ cns = Input(
     label='CNS',
     placeholder='999.999.999.999.999',
     mask='999.999.999.999.999',
-    required=True
+    required=False
 )
 
 telefone = Input(
