@@ -21,7 +21,7 @@ def registrar():
         cns = request.form['cns']
         id_genero = request.form['id_genero']
         id_etnia = request.form['id_etnia']
-        dataNasc = request.form['data_nasc']
+        dataNasc = datetime.strptime(request.form['data_nasc'], '%d/%m/%Y').date() if len(request.form['data_nasc']) != 0 else None
         endereco = request.form['endereco']
         telefone = request.form['telefone']
 
@@ -69,7 +69,7 @@ def update():
         cns = request.form['cns']
         id_genero = request.form['id_genero']
         id_etnia = request.form['id_etnia']
-        dataNasc = request.form['data_nasc']
+        dataNasc = datetime.strptime(request.form['data_nasc'], '%d/%m/%Y').date() if len(request.form['data_nasc']) != 0 else None
         endereco = request.form['endereco']
         telefone = request.form['telefone']
 
