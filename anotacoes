@@ -1,0 +1,65 @@
+        # ============== Isolamento domiciliar ==============
+
+        mora_sozinho = data_or_null(form['mora_sozinho'], int)
+
+        print('mora_sozinho: {}'.format(mora_sozinho))
+
+        if mora_sozinho == 2:  # Não
+
+            #Parentesco Doença Cronica
+            """size = data_or_null(form['has_parentesco_doenca_cronica_len'], int)
+
+            parentesco = multiselect(form, 'parentesco', size)
+
+            print('parentesco: {}'.format(parentesco))
+
+            parentesco_doenca_cronica = multiselect(form, 'parentesco_doenca_cronica', size)
+
+            print('parentesco_doenca_cronica: {}'.format(parentesco_doenca_cronica))
+
+            parentesco_data_primeiro_sintoma = multiselect(form, 'parentesco_data_primeiro_sintoma', size)
+
+            print('parentesco_data_primeiro_sintoma: {}'.format(parentesco_data_primeiro_sintoma))
+
+            parentesco_doenca_cronica_medicamento = multiselect(form, 'parentesco_doenca_cronica_medicamento', size)
+
+            print('parentesco_doenca_cronica_medicamento: {}'.format(parentesco_doenca_cronica_medicamento))
+
+            parentesco_doenca_cronica_medicamento_indicador = multiselect(form, 'parentesco_doenca_cronica_medicamento_indicador', size)
+
+            print('parentesco_doenca_cronica_medicamento_indicador: {}'.format(parentesco_doenca_cronica_medicamento_indicador))
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            # Alterar para iterar sobre os campos acima
+            #for parentesco in parentescos:
+            #    builder.inserirParentesco(parentesco)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+            #Parentesco Sintomas
+            size = data_or_null(form['parentesco_has_sintoma_len'], int)
+
+            parentesco_apresentou_sintoma = multiselect(form, 'parentesco_apresentou_sintoma', size)
+
+            print('parentesco_apresentou_sintoma: {}'.format(parentesco_apresentou_sintoma))
+
+            parentesco_sintoma = multiselect(form, 'parentesco_sintoma', size)
+
+            print('parentesco_sintoma: {}'.format(parentesco_sintoma))
+
+            parentesco_sintoma_medicamento = multiselect(form, 'parentesco_sintoma_medicamento', size)
+
+            print('parentesco_sintoma_medicamento: {}'.format(parentesco_sintoma_medicamento))
+
+            parentesco_quem_indicou_medicamento = multiselect(form, 'parentesco_quem_indicou_medicamento', size)
+
+            print('parentesco_quem_indicou_medicamento: {}'.format(parentesco_quem_indicou_medicamento))
+
+            parentesco_dosagem = multiselect(form, 'parentesco_dosagem', size)
+
+            print('parentesco_dosagem: {}'.format(parentesco_dosagem))
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            # Alterar para iterar sobre os campos acima
+            #for parentesco in parentescos:
+            #    builder.inserirParentesco(parentesco)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # """

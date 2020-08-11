@@ -59,30 +59,89 @@ def registrar(form, id_primeiro, id_paciente):
 
         print('mora_sozinho: {}'.format(mora_sozinho))
 
-        """ if mora_sozinho == 2:  # Não
-            size = data_or_null(form['mora_sozinho_len'], int)
+        if mora_sozinho == 2:  # Não
+            size_parentescos = data_or_null(form['mora_sozinho_len'], int)
 
-            parentescos = multiselect(form, 'parentesco', size)
+            parentescos = multiselect(form, 'parentesco_residente_mesma_casa', size_parentescos)
 
             print('parentescos: {}'.format(parentescos))
 
-            has_parentescos_doenca_cronica = multiselect(form, 'has_parentesco_doenca_cronica', size)
+            #Parentesco Doença Cronica
+            size_doencas = data_or_null(form['has_parentesco_doenca_cronica_len'], int)
 
-            print('has_parentescos_doenca_cronica: {}'.format(has_parentescos_doenca_cronica))
+            parentesco = multiselect(form, 'parentesco', size_doencas)
 
-            parentescos_doenca_cronica = multiselect(form, 'parentesco_doenca_cronica', size)
+            print('parentesco: {}'.format(parentesco))
 
-            print('parentescos_doenca_cronica: {}'.format(parentescos_doenca_cronica))
+            parentesco_doenca_cronica = multiselect(form, 'parentesco_doenca_cronica', size_doencas)
 
-            parentescos_data_primeiro_sintoma = multiselect(form, 'parentesco_data_primeiro_sintoma', size)
+            print('parentesco_doenca_cronica: {}'.format(parentesco_doenca_cronica))
 
-            print('parentescos_data_primeiro_sintoma: {}'.format(parentescos_data_primeiro_sintoma))
+            parentesco_data_primeiro_sintoma = multiselect(form, 'parentesco_data_primeiro_sintoma', size_doencas)
+
+            print('parentesco_data_primeiro_sintoma: {}'.format(parentesco_data_primeiro_sintoma))
+
+            parentesco_doenca_cronica_medicamento = multiselect(form, 'parentesco_doenca_cronica_medicamento', size_doencas)
+
+            print('parentesco_doenca_cronica_medicamento: {}'.format(parentesco_doenca_cronica_medicamento))
+
+            parentesco_doenca_cronica_medicamento_indicador = multiselect(form, 'parentesco_doenca_cronica_medicamento_indicador', size_doencas)
+
+            print('parentesco_doenca_cronica_medicamento_indicador: {}'.format(parentesco_doenca_cronica_medicamento_indicador))
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-            # Falta inserir a doença cronica!!!
-            for parentesco in parentescos:
-                builder.inserirParentesco(parentesco)
-            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ # """
+            for i in range(size_doencas):
+                print("doenca cronica: " + str(i) + "\n")
+                builder.inserirParentesco(
+                    id_parentesco = parentesco[i], id_doenca_cronica = parentesco_doenca_cronica[i],
+                    data_sintomas = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(parentesco_data_primeiro_sintoma[i]) != 0 else None,
+                    medicamento = parentesco_doenca_cronica_medicamento[i],
+                    id_indicador =  parentesco_doenca_cronica_medicamento_indicador[i])
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+            #Parentesco Sintomas
+            size_sintomas = data_or_null(form['parentesco_has_sintoma_len'], int)
+
+            parentesco_apresentou_sintoma = multiselect(form, 'parentesco_apresentou_sintoma', size_sintomas)
+
+            print('parentesco_apresentou_sintoma: {}'.format(parentesco_apresentou_sintoma))
+
+            parentesco_sintoma = multiselect(form, 'parentesco_sintoma', size_sintomas)
+
+            print('parentesco_sintoma: {}'.format(parentesco_sintoma))
+
+            parentesco_sintoma_medicamento = multiselect(form, 'parentesco_sintoma_medicamento', size_sintomas)
+
+            print('parentesco_sintoma_medicamento: {}'.format(parentesco_sintoma_medicamento))
+
+            parentesco_quem_indicou_medicamento = multiselect(form, 'parentesco_quem_indicou_medicamento', size_sintomas)
+
+            print('parentesco_quem_indicou_medicamento: {}'.format(parentesco_quem_indicou_medicamento))
+
+            parentesco_dosagem = multiselect(form, 'parentesco_dosagem', size_sintomas)
+
+            print('parentesco_dosagem: {}'.format(parentesco_dosagem))
+
+            is_gravida = multiselect(form, 'is_gravida', size_sintomas)
+
+            print('is_gravida: {}'.format(is_gravida))
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            for i in range(size_sintomas):
+                print("sintoma: " + str(i) + "\n")
+                builder.inserirParentesco(
+                    id_parentesco = parentesco_apresentou_sintoma[i], is_mulher_gravida = is_gravida[i],
+                    id_sintoma = parentesco_sintoma[i], medicamento = parentesco_sintoma_medicamento[i],
+                    id_indicador = parentesco_quem_indicou_medicamento[i], dosagem = parentesco_dosagem[i])
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+            # Aqui sao inseridos apenas os parentescos inseridos que não possuem doenças
+            # crônicas nem sintomas
+            for p in [item for item in parentescos if item not in parentesco and item not in parentesco_apresentou_sintoma]:
+                print("sobra: " + str(p) + "\n")
+                builder.inserirParentesco(id_parentesco = p)
+            # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
         # ============== Visitas ==============
 
