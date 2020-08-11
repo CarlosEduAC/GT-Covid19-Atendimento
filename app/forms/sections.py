@@ -10,6 +10,7 @@ def inserirInfoPaciente(paciente):
             [
                 deepcopy(nome).setValue(paciente.nome),
                 deepcopy(cpf).setValue(paciente.cpf),
+                deepcopy(cns).setValue(paciente.cns),
                 deepcopy(telefone).setValue(paciente.telefone)
             ],
             [
@@ -54,7 +55,7 @@ esfReferencia = {
 informacoesBasicas = {
     "name": "Informações Básicas do Paciente",
     "inputs": [
-        [nome, cpf, telefone],
+        [nome, cpf, cns, telefone],
         [data_nasc, genero, etnia],
         endereco
     ]

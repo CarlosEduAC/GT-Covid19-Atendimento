@@ -12,6 +12,7 @@ def registrar(form):
 
     nome = data_or_null(form['nome'])
     cpf = data_or_null(form['cpf'], only_num)
+    cns = data_or_null(form['cns'], only_num)
     telefone = data_or_null(form['telefone'], only_num)
     endereco = data_or_null(form['endereco'])
     data_nasc = datetime.strptime(form['data_nasc'], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
@@ -20,6 +21,7 @@ def registrar(form):
 
     print('nome: {}'.format(nome))
     print('cpf: {}'.format(cpf))
+    print('cns: {}'.format(cns))
     print('telefone: {}'.format(telefone))
     print('endereco: {}'.format(endereco))
     print('data_nasc: {}'.format(data_nasc))
@@ -27,7 +29,7 @@ def registrar(form):
     print('id_genero: {}'.format(id_genero))
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    id_paciente = inserirPaciente(nome, cpf, telefone, endereco, data_nasc, id_etnia, id_genero)
+    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero)
 
     id_admsaude = current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #

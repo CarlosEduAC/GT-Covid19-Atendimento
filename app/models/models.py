@@ -77,6 +77,7 @@ class Paciente(Base, SerializerMixin):
     id = Column(INTEGER(11), primary_key=True)
     nome = Column(String(150), nullable=False)
     cpf = Column(String(11), nullable=False)
+    cns = Column(String(15), nullable=False)
     telefone = Column(String(11), nullable=False)
     endereco = Column(String(255), nullable=False)
     data_nasc = Column(Date)
@@ -86,9 +87,10 @@ class Paciente(Base, SerializerMixin):
     etnia = relationship('Etnia')
     genero = relationship('Genero')
 
-    def __init__(self, nome, cpf, telefone, data_nasc, id_etnia, id_genero, endereco):
+    def __init__(self, nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco):
         self.nome = nome
         self.cpf = cpf
+        self.cns = cns
         self.telefone = telefone
         self.data_nasc = data_nasc
         self.id_etnia = id_etnia

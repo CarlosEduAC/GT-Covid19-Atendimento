@@ -6,7 +6,7 @@ if len(sys.argv) == 1: # Banco de dados de produção
     DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
 else:
     if 'dev' in sys.argv[1].lower(): # Banco de dados local
-        DATABASE_URL = 'mysql+pymysql://root:123456@localhost:3306/covid3'
+        DATABASE_URL = 'mysql+pymysql://root:Jv@ 37221847@localhost:3306/covid3'
     else: # Banco de dados de teste
         DATABASE_URL = 'mysql+pymysql://covid:Covid_UFF_UFRJ@10.77.0.29:3306/atendimento_covid_teste'
 

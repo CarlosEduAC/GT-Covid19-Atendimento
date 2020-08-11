@@ -80,6 +80,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF</th>
+                                <th>CNS</th>
                                 <th>Telefone</th>
                                 <th>Genero</th>
                                 <th>Etnia</th>
@@ -95,6 +96,7 @@
                                     <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
                                     </td>
                                     <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}}></td>
+                                    <td><input class="form-control" type="text" name="cns" value={{paciente.cns}}></td>
                                     <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}}></td>
                                     <td><select class="form-control" name="id_genero">
                                         {% for genero in generos %}

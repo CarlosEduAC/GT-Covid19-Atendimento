@@ -112,6 +112,14 @@ cpf = Input(
     required=True
 )
 
+cns = Input(
+    name='cns',
+    label='CNS',
+    placeholder='999.999.999.999.999',
+    mask='999.999.999.999.999',
+    required=True
+)
+
 telefone = Input(
     name='telefone',
     label='Telefone',
