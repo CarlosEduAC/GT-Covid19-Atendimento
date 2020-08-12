@@ -41,8 +41,8 @@
                                     <input type="hidden" name="user_id" value={{user.id}}>
                                     <td><input class="form-control" type="text" name="nome" value={{user.nome}}>
                                     </td>
-                                    <td><input class="form-control" type="text" name="crm" value={{user.crm}}></td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{user.cpf}}></td>
+                                    <td><input class="form-control" type="text" name="crm" value={{user.crm}} maxlength="20"></td>
+                                    <td><input class="form-control" type="text" name="cpf" value={{user.cpf}} maxlength="11"></td>
                                     <td>
                                         {% if user.is_supervisor %}
                                             <input class="form-control" type="checkbox" name="is_supervisor"
@@ -95,9 +95,9 @@
                                     <input type="hidden" name="paciente_id" value={{paciente.id}}>
                                     <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
                                     </td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}}></td>
-                                    <td><input class="form-control" type="text" name="cns" value={{paciente.cns}}></td>
-                                    <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}}></td>
+                                    <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}} maxlength="11"></td>
+                                    <td><input class="form-control" type="text" name="cns" value={{paciente.cns}} maxlength="15"></td>
+                                    <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}} maxlength="11"></td>
                                     <td><select class="form-control" name="id_genero">
                                         {% for genero in generos %}
                                             {% if genero.id == paciente.id_genero %}    

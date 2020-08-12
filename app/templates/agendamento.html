@@ -1,10 +1,26 @@
 {% if pdf %}
 <style>
-    table, th, td {
-      border: 1px solid black;
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
     }
+
+    thead{
+        background-color: #2f4050;
+        color: white;
+    }
+
+    thead,td{
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
 </style>
 {%endif%}
+
 <div class="tab-content">
     <div id="tab-1" class="tab-pane active">
         <div class="full-height-scroll">
