@@ -30,7 +30,10 @@
                                 <th>Nome</th>
                                 <th>CRM</th>
                                 <th>CPF</th>
-                                <th>Administrador</th>
+                                {% if master %}
+                                    <th>Cidade</th>
+                                {% endif %}
+                                <th>Perfil</th>
                                 <th>Nova senha</th>
                             </tr>
                         </thead>
@@ -39,18 +42,34 @@
                             <tr>
                                 <form action="/admin/update" method="POST">
                                     <input type="hidden" name="user_id" value={{user.id}}>
-                                    <td><input class="form-control" type="text" name="nome" value={{user.nome}}>
+                                    <td><input class="form-control" type="text" name="nome" value="{{user.nome}}">
                                     </td>
-                                    <td><input class="form-control" type="text" name="crm" value={{user.crm}} maxlength="20"></td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{user.cpf}} maxlength="11"></td>
+                                    <td><input class="form-control" type="text" name="crm" maxlength="20" value="{{user.crm}}"></td>
+                                    <td><input class="form-control" type="text" name="cpf" maxlength="11" value="{{user.cpf}}"></td>
+                                    
+                                    {% if master %}
+                                    <td><select class="form-control" name="cidade" placeholder="Selecione">
+                                        <option value="{{0}}" selected>Sem Cidade</option>
+                                        {% for cidade in cidades %}
+                                            {% if cidade.id == user.id_cidade %}    
+                                                <option value="{{cidade.id}}" selected>{{cidade.value}}</option>
+                                            {% else %}
+                                                <option value="{{cidade.id}}">{{cidade.value}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select></td>
+                                    {% endif %}
+                                    
                                     <td>
-                                        {% if user.is_supervisor %}
-                                            <input class="form-control" type="checkbox" name="is_supervisor"
-                                                checked></td>
-                                        {% else %}
-                                            <input class="form-control" type="checkbox" name="is_supervisor"></td>
-                                        {% endif %}
-                                        <td><input class="form-control" type="password" name="senha"></td>
+                                        <select class="form-control" name="perfil">
+                                            <option value="comum" {{ 'selected' if user.perfil == 'comum'}}>Comum</option>
+                                            <option value="admin" {{ 'selected' if user.perfil == 'admin'}}>Admin</option>
+                                            {% if master %}
+                                                <option value="master" {{ 'selected' if user.perfil == 'master'}}>Master</option>
+                                            {% endif %}
+                                        </select>
+                                    </td>
+                                    <td><input class="form-control" type="password" name="senha"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/admin/remove" method="POST">
@@ -93,11 +112,11 @@
                             <tr>
                                 <form action="/paciente/update" method="POST">
                                     <input type="hidden" name="paciente_id" value={{paciente.id}}>
-                                    <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
+                                    <td><input class="form-control" type="text" name="nome" value="{{paciente.nome}}">
                                     </td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}} maxlength="11"></td>
-                                    <td><input class="form-control" type="text" name="cns" value={{paciente.cns}} maxlength="15"></td>
-                                    <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}} maxlength="11"></td>
+                                    <td><input class="form-control" type="text" name="cpf" maxlength="11" value="{{paciente.cpf}}"></td>
+                                    <td><input class="form-control" type="text" name="cns" maxlength="15" value="{{paciente.cns}}" ></td>
+                                    <td><input class="form-control" type="text" name="telefone" maxlength="11" value="{{paciente.telefone}}"></td>
                                     <td><select class="form-control" name="id_genero">
                                         {% for genero in generos %}
                                             {% if genero.id == paciente.id_genero %}    
@@ -116,8 +135,8 @@
                                             {% endif %}
                                         {% endfor %}
                                     </select></td>
-                                    <td><input class="form-control" type="text" name="data_nasc" value={{paciente.data_nasc}}></td>
-                                    <td><input class="form-control" type="text" name="endereco" value={{paciente.endereco}}></td>
+                                    <td><input class="form-control" type="text" name="data_nasc" value="{{paciente.data_nasc}}"></td>
+                                    <td><input class="form-control" type="text" name="endereco" value="{{paciente.endereco}}"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/paciente/remove" method="POST">

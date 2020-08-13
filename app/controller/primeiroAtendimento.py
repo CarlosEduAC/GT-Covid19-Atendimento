@@ -29,7 +29,7 @@ def registrar(form):
     print('id_genero: {}'.format(id_genero))
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero)
+    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero, current_user.id_cidade)
 
     id_admsaude = current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #

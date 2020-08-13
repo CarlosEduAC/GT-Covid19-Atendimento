@@ -1,6 +1,6 @@
 import re
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import Column, Date, DateTime, ForeignKey, String
+from sqlalchemy import Column, Date, DateTime, ForeignKey, String, Enum
 from sqlalchemy.dialects.mysql import INTEGER, TINYINT
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -17,16 +17,21 @@ class AdmSaude(Base, SerializerMixin, UserMixin):
     nome = Column(String(150), nullable=False)
     crm = Column(String(20))
     cpf = Column(String(11))
-    is_supervisor = Column(TINYINT(4), nullable=False)
+    #is_supervisor = Column(TINYINT(4), nullable=False)
+    perfil = Column(Enum('comum', 'admin', 'master'))
     senha = Column(String(150), nullable=False)
 
-    def __init__(self, nome, crm, cpf, is_supervisor, senha=None):
+    id_cidade = Column(ForeignKey('cidades.id'), index=True)
+    cidade = relationship('Cidade')
+
+    def __init__(self, nome, crm, cpf, perfil, senha=None, id_cidade=None):
         self.nome = nome
         self.crm = crm
         self.cpf = cpf
-        self.is_supervisor = is_supervisor
+        self.perfil = perfil
         if senha is not None:
             self.senha = generate_password_hash(senha)
+        self.id_cidade = id_cidade
 
     def verificaSenha(self, senha):
         return check_password_hash(self.senha, senha)
@@ -77,17 +82,19 @@ class Paciente(Base, SerializerMixin):
     id = Column(INTEGER(11), primary_key=True)
     nome = Column(String(150), nullable=False)
     cpf = Column(String(11), nullable=False)
-    cns = Column(String(15), nullable=False)
+    cns = Column(String(15))
     telefone = Column(String(11), nullable=False)
     endereco = Column(String(255), nullable=False)
     data_nasc = Column(Date)
     id_etnia = Column(ForeignKey('etnias.id'), index=True)
     id_genero = Column(ForeignKey('generos.id'), index=True)
+    id_cidade = Column(ForeignKey('cidades.id'), index=True)
 
     etnia = relationship('Etnia')
     genero = relationship('Genero')
+    cidade = relationship('Cidade')
 
-    def __init__(self, nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco):
+    def __init__(self, nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco, id_cidade):
         self.nome = nome
         self.cpf = cpf
         self.cns = cns
@@ -96,6 +103,7 @@ class Paciente(Base, SerializerMixin):
         self.id_etnia = id_etnia
         self.id_genero = id_genero
         self.endereco = endereco
+        self.id_cidade = id_cidade
 
 
 class Atendimento(Base, SerializerMixin):
@@ -149,6 +157,24 @@ class TempoContatoAcompanhamento(Base, SerializerMixin):
     intervalo_contato = Column('intervalo_contato', INTEGER(11))
     tempo_maximo_acompanhamento = Column('tempo_maximo_acompanhamento', INTEGER(11))
 
-    def __init__(self, intervalo_contato, tempo_maximo_acompanhamento):
+    id_cidade = Column(ForeignKey('cidades.id'), index=True)
+    cidade = relationship('Cidade')
+
+    def __init__(self, intervalo_contato, tempo_maximo_acompanhamento, id_cidade):
         self.intervalo_contato = intervalo_contato
         self.tempo_maximo_acompanhamento = tempo_maximo_acompanhamento
+        self.id_cidade = id_cidade
+
+
+class Cidade(Base, SerializerMixin):
+    __tablename__ = 'cidades'
+
+    id = Column(INTEGER(11), primary_key=True)
+    value = Column(String(60), nullable=False)
+    nome = Column(String(60), nullable=False)
+    telefone = Column(String(11))
+
+    def __init__(self, nome, telefone):
+        self.value = nome
+        self.nome = nome
+        self.telefone = telefone

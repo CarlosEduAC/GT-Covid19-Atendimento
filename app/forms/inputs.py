@@ -1,5 +1,6 @@
 from controller.database import Database
 from models.modelsDomainTable import *
+from models.models import Cidade
 
 db = Database()
 
@@ -93,6 +94,13 @@ adm_is_supervisor = Input(
     name='is_supervisor',
     label='É administrador?',
     type="checkbox"
+)
+
+cidade = Input(
+    name='cidade',
+    label='Cidade',
+    type='select',
+    options=db.selectAllData(Cidade)
 )
 
 # ============== Paciente ==============

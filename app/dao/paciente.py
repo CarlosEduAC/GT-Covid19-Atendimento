@@ -4,7 +4,7 @@ from datetime import datetime
 from controller.formfuncs import *
 
 
-def inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero):
+def inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero, id_cidade=None):
     db = Database()
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
@@ -12,12 +12,12 @@ def inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_
         updatePaciente(paciente.id, nome, cpf, cns, telefone, id_etnia, id_genero, data_nasc, endereco)
         return paciente.id
     else:
-        new_paciente = Paciente(nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco)
+        new_paciente = Paciente(nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco, id_cidade)
         db.saveData(new_paciente)
         return db.selectIf(Paciente, cpf=cpf).id
 
 
-def savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco):
+def savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco, id_cidade=None):
     nome = data_or_null(nome)
     cpf = data_or_null(cpf, only_num)
     cns = data_or_null(cns, only_num)
@@ -26,7 +26,7 @@ def savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endere
     id_etnia = data_or_null(id_etnia, int)
     id_genero = data_or_null(id_genero, int)
 
-    paciente = Paciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco)
+    paciente = Paciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco, id_cidade)
 
     try:
         db = Database()
@@ -55,9 +55,12 @@ def getPaciente(id):
     return db.selectIf(Paciente, id=id)
 
 
-def getPacientes():
+def getPacientes(id_cidade=None):
     try:
         db = Database()
+
+        if id_cidade is not None:
+            return db.selectAllDataByFilter(Paciente, id_cidade = id_cidade)
 
         return db.selectAllData(Paciente)
     except:
