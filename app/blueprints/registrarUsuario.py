@@ -38,12 +38,12 @@ def registrar():
             return redirect(url_for('Registrar.registrar'))
         
         usuario = AdmSaude(nome, CRM, cpf, supervisor, senha, id_cidade)      
-        #if usuario.validarCPF():     
-        db.saveData(usuario)
+        if usuario.validarCPF():     
+            db.saveData(usuario)
 
-        return redirect(url_for('admin.admin'))
-        #else:
-        #    flash('CPF inválido.')
+            return redirect(url_for('admin.admin'))
+        else:
+            flash('CPF inválido.')
 
     fields = {
         "nome" :inputs.adm_nome,

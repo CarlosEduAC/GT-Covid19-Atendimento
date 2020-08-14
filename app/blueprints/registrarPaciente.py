@@ -44,7 +44,7 @@ def registrar():
 @registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
 @login_required 
 def remove():
-    if not c(current_user.perfil == 'master' or current_user.perfil == 'admin'):
+    if not (current_user.perfil == 'master' or current_user.perfil == 'admin'):
         return redirect(url_for('MenuAtendente.index'))
     
     

@@ -9,7 +9,7 @@ def inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_
     paciente = db.selectIf(Paciente, cpf=cpf)
     if paciente:
         # atualizar paciente
-        updatePaciente(paciente.id, nome, cpf, cns, telefone, id_etnia, id_genero, data_nasc, endereco)
+        updatePaciente(paciente.id, nome, cpf, cns, telefone, id_etnia, id_genero, data_nasc, endereco, id_cidade)
         return paciente.id
     else:
         new_paciente = Paciente(nome, cpf, cns, telefone, data_nasc, id_etnia, id_genero, endereco, id_cidade)
@@ -72,12 +72,15 @@ def removePaciente(id):
     db.delete(Paciente, id)
 
 
-def updatePaciente(id, nome, cpf, cns, telefone, id_etnia, id_genero, dataNasc, endereco):
+def updatePaciente(id, nome, cpf, cns, telefone, id_etnia, id_genero, dataNasc, endereco, id_cidade=None):
     db = Database()
+
+    if id_cidade is None:
+        id_cidade = getPaciente(id).id_cidade
 
     paciente = Paciente(nome, cpf, cns, telefone,
                         dataNasc,
-                        id_etnia, id_genero, endereco)
+                        id_etnia, id_genero, endereco, id_cidade)
     paciente.id = id
 
     db.updateData(Paciente, paciente, id)
