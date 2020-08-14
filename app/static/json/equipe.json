@@ -70,5 +70,13 @@
         "email": "matheus.antonio.c@outlook.com",
         "imagem": "static/img/avatars/matheus.png",
         "funcao": "Desenvolvedor"
+    },
+    {
+        "nome": "João Victor",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/jo%C3%A3o-victor-soares-gomes-27496b1b1/",
+        "email": "joaovsg@id.uff.br",
+        "imagem": "static/img/avatars/joao.jpeg",
+        "funcao": "Desenvolvedor"
     }
 ]

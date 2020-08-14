@@ -41,7 +41,7 @@
                             {% for user in users %}
                             <tr>
                                 <form action="/admin/update" method="POST">
-                                    <input type="hidden" name="user_id" value={{user.id}}>
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
                                     <td><input class="form-control" type="text" name="nome" value="{{user.nome}}">
                                     </td>
                                     <td><input class="form-control" type="text" name="crm" maxlength="20" value="{{user.crm}}"></td>
@@ -73,7 +73,7 @@
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/admin/remove" method="POST">
-                                    <input type="hidden" name="user_id" value={{user.id}}>
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
                                     <td>
                                         <button type="submit" class="btn btn-w-m btn-primary">Remover</button>
                                     </td>
@@ -111,7 +111,7 @@
                             {% for paciente in pacientes %}
                             <tr>
                                 <form action="/paciente/update" method="POST">
-                                    <input type="hidden" name="paciente_id" value={{paciente.id}}>
+                                    <input type="hidden" name="paciente_id" value="{{paciente.id}}">
                                     <td><input class="form-control" type="text" name="nome" value="{{paciente.nome}}">
                                     </td>
                                     <td><input class="form-control" type="text" name="cpf" maxlength="11" value="{{paciente.cpf}}"></td>
@@ -140,7 +140,7 @@
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/paciente/remove" method="POST">
-                                    <input type="hidden" name="paciente_id" value={{paciente.id}}>
+                                    <input type="hidden" name="paciente_id" value="{{paciente.id}}">
                                     <td>
                                         <button type="submit" class="btn btn-w-m btn-primary">Remover</button>
                                     </td>
