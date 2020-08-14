@@ -38,11 +38,11 @@
                             {% for user in users %}
                             <tr>
                                 <form action="/admin/update" method="POST">
-                                    <input type="hidden" name="user_id" value={{user.id}}>
-                                    <td><input class="form-control" type="text" name="nome" value={{user.nome}}>
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
+                                    <td><input class="form-control" type="text" name="nome" value="{{user.nome}}">
                                     </td>
-                                    <td><input class="form-control" type="text" name="crm" value={{user.crm}} maxlength="20"></td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{user.cpf}} maxlength="11"></td>
+                                    <td><input class="form-control" type="text" name="crm" value="{{user.crm}}" maxlength="20"></td>
+                                    <td><input class="form-control" type="text" name="cpf" value="{{user.cpf}}" maxlength="11"></td>
                                     <td>
                                         {% if user.is_supervisor %}
                                             <input class="form-control" type="checkbox" name="is_supervisor"
@@ -54,7 +54,7 @@
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/admin/remove" method="POST">
-                                    <input type="hidden" name="user_id" value={{user.id}}>
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
                                     <td>
                                         <button type="submit" class="btn btn-w-m btn-primary">Remover</button>
                                     </td>
@@ -92,12 +92,11 @@
                             {% for paciente in pacientes %}
                             <tr>
                                 <form action="/paciente/update" method="POST">
-                                    <input type="hidden" name="paciente_id" value={{paciente.id}}>
-                                    <td><input class="form-control" type="text" name="nome" value={{paciente.nome}}>
-                                    </td>
-                                    <td><input class="form-control" type="text" name="cpf" value={{paciente.cpf}} maxlength="11"></td>
-                                    <td><input class="form-control" type="text" name="cns" value={{paciente.cns}} maxlength="15"></td>
-                                    <td><input class="form-control" type="text" name="telefone" value={{paciente.telefone}} maxlength="11"></td>
+                                    <input type="hidden" name="paciente_id" value="{{paciente.id}}">
+                                    <td><input class="form-control" type="text" name="nome" value="{{paciente.nome}}"></td>
+                                    <td><input class="form-control" type="text" name="cpf" value="{{paciente.cpf}}" maxlength="11"></td>
+                                    <td><input class="form-control" type="text" name="cns" value="{{paciente.cns}}" maxlength="15"></td>
+                                    <td><input class="form-control" type="text" name="telefone" value="{{paciente.telefone}}" maxlength="11"></td>
                                     <td><select class="form-control" name="id_genero">
                                         {% for genero in generos %}
                                             {% if genero.id == paciente.id_genero %}    
@@ -116,12 +115,12 @@
                                             {% endif %}
                                         {% endfor %}
                                     </select></td>
-                                    <td><input class="form-control" type="text" name="data_nasc" value={{paciente.data_nasc}}></td>
-                                    <td><input class="form-control" type="text" name="endereco" value={{paciente.endereco}}></td>
+                                    <td><input class="form-control" type="text" name="data_nasc" value="{{paciente.data_nasc}}"></td>
+                                    <td><input class="form-control" type="text" name="endereco" value="{{paciente.endereco}}"></td>
                                     <td><button type="submit" class="btn btn-w-m btn-primary">Salvar</button></td>
                                 </form>
                                 <form action="/paciente/remove" method="POST">
-                                    <input type="hidden" name="paciente_id" value={{paciente.id}}>
+                                    <input type="hidden" name="paciente_id" value="{{paciente.id}}">
                                     <td>
                                         <button type="submit" class="btn btn-w-m btn-primary">Remover</button>
                                     </td>

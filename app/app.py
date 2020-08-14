@@ -8,6 +8,7 @@ from flask_login import LoginManager
 from models.models import AdmSaude
 from controller.database import Database
 from controller.pdfInclusao import incluiPdf
+import logging
 
 # Importação de rotas 
 from blueprints.about import about
@@ -24,6 +25,10 @@ if incluiPdf():
     from blueprints.pdfAgendamento import pdfAgendamento
 
 app = Flask(__name__)
+
+# Configura log para ser gerado em arquivo e no stdout (saida padrao)
+logging.basicConfig(filename='telemonitoramento.log',level=logging.DEBUG)
+logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
 app.config.from_pyfile('config.py')
 
