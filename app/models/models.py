@@ -77,7 +77,7 @@ class Paciente(Base, SerializerMixin):
     id = Column(INTEGER(11), primary_key=True)
     nome = Column(String(150), nullable=False)
     cpf = Column(String(11), nullable=False)
-    cns = Column(String(15), nullable=False)
+    cns = Column(String(15))
     telefone = Column(String(11), nullable=False)
     endereco = Column(String(255), nullable=False)
     data_nasc = Column(Date)
@@ -107,6 +107,7 @@ class Atendimento(Base, SerializerMixin):
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
     is_primeiro = Column(TINYINT(4), nullable=False)
     data = Column(DateTime, nullable=False)
+    fez_atendimento = Column(TINYINT(1)) 
 
     # --se nao conseguir realizar o atendimento--#
     id_tentativa = Column(ForeignKey('tentativas.id'), index=True)
