@@ -130,19 +130,3 @@ db.saveList(OrientacaoFinal, [
 db.saveData(TempoContatoAcompanhamento(
     48, 16
 ))
-
-""" db.saveData(AdmSaude(
-    nome='Edson Onildo Machado do Bonfim Junior',
-    crm=None,
-    cpf='45381108842',
-    is_supervisor=True,
-    senha='32461462'
-))
-
-db.saveData(AdmSaude(
-    nome='Isabela Silva de Carvalho',
-    crm=None,
-    cpf='99999999999',
-    is_supervisor=True,
-    senha='12345678910'
-)) """

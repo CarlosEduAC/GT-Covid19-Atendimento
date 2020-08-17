@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import INTEGER
 from sqlalchemy_serializer import SerializerMixin
 from models.models import Base
@@ -32,8 +33,12 @@ class EstrategiaSaudeFamiliar(Base, SerializerMixin):
     id = Column(INTEGER(11), primary_key=True)
     value = Column(String(150), nullable=False)
 
-    def __init__(self, value):
-        self.value = value
+    id_cidade = Column(ForeignKey('cidades.id'), index=True)
+    cidade = relationship('Cidade')
+
+    def __init__(self, value, id_cidade=None):
+        self.value = value,
+        self.id_cidade = id_cidade
 
 
 class Etnia(Base, SerializerMixin):

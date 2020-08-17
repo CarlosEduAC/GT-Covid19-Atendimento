@@ -11,7 +11,7 @@ registrarPaciente = Blueprint('Paciente', __name__)
 @login_required 
 def registrar():
 
-    if not current_user.is_supervisor:
+    if not (current_user.perfil == 'master' or current_user.perfil == 'admin'):
         return redirect(url_for('MenuAtendente.index'))
 
     if request.method == 'POST':
@@ -25,7 +25,7 @@ def registrar():
         endereco = request.form['endereco']
         telefone = request.form['telefone']
 
-        savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco)
+        savePaciente(nome, cpf, cns, telefone, dataNasc, id_etnia, id_genero, endereco, current_user.id_cidade)
 
         return redirect(url_for('admin.admin'))
     
@@ -39,12 +39,12 @@ def registrar():
         "endereco" : inputs.endereco,
         "telefone" : inputs.telefone
     }
-    return render_template('paciente.html', dados = ler_dados(), fields = fields)
+    return render_template('paciente.html', dados = ler_dados(), fields = fields, master=(current_user.perfil == 'master'))
 
 @registrarPaciente.route('/paciente/remove', methods=['GET', 'POST'])
 @login_required 
 def remove():
-    if not current_user.is_supervisor:
+    if not (current_user.perfil == 'master' or current_user.perfil == 'admin'):
         return redirect(url_for('MenuAtendente.index'))
     
     
@@ -59,7 +59,7 @@ def remove():
 @login_required 
 def update():
 
-    if not current_user.is_supervisor:
+    if not (current_user.perfil == 'master' or current_user.perfil == 'admin'):
         return redirect(url_for('MenuAtendente.index'))
 
     if request.method == 'POST':

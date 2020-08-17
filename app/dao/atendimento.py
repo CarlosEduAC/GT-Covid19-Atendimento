@@ -194,7 +194,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
     # --------------------------------------------------------------------
 
-    def finalizarPersistencia(self, id_adm_saude, id_paciente):  # Cadastra o atendimento e o agendamento
+    def finalizarPersistencia(self, id_adm_saude, id_paciente, id_cidade=None):  # Cadastra o atendimento e o agendamento
 
         db = Database()
 
@@ -208,7 +208,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
             self.insertRelation(rel, id_atendimento)
 
         # Cálculo da data do próximo atendimento (agendamento)
-        interval = db.selectData(TempoContatoAcompanhamento).intervalo_contato
+        interval = db.selectIf(TempoContatoAcompanhamento, id_cidade = id_cidade).intervalo_contato
         data = self.atendimento.data + timedelta(hours=interval)
 
         # Salva o agendamento

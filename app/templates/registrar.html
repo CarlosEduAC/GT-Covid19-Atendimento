@@ -37,11 +37,6 @@
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <!-- <label class="col-sm-1 col-form-label">Nome</label>
-                                    <div class="col-sm-11">
-                                        <input type="text" class="form-control" name="nome"
-                                            placeholder="Inserir nome completo">
-                                    </div> -->
                                     {{ switch(fields.nome) }}
                                 </div>
                             </div>
@@ -49,10 +44,6 @@
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <!-- <label class="col-sm-1 col-form-label">CRM</label>
-                                    <div class="col-sm-11">
-                                        <input type="text" class="form-control" name="crm" placeholder="Inserir crm">
-                                    </div> -->
                                     {{ switch(fields.crm) }}
                                 </div>
                             </div>
@@ -60,10 +51,6 @@
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <!-- <label class="col-sm-1 col-form-label">CPF</label>
-                                    <div class="col-sm-11">
-                                        <input type="text" class="form-control" name="cpf" placeholder="Inserir cpf" mask="999.999.999-99">
-                                    </div> -->
                                     {{ switch(fields.cpf) }}
                                 </div>
                             </div>
@@ -71,23 +58,31 @@
                         <div class="form-group  row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <!-- <label class="col-sm-1 col-form-label">Senha</label>
-                                    <div class="col-sm-11">
-                                        <input type="password" class="form-control" name="senha"
-                                            placeholder="Inserir senha de entre 6 e 10 caracteres" maxlength="10">
-                                    </div> -->
                                     {{ switch(fields.senha) }}
                                 </div>
                             </div>
                         </div>
+                        {% if master %}
+                        <div class="form-group  row">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    {{ switch(fields.cidade) }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">É administrador?</label>
-                                    <div class="col-sm-10">
-                                        <div class="i-checks">
-                                            <label style="margin-top: 5px;"> <input type="checkbox" name="is_supervisor" value="S"> <i></i> Sim </label>
-                                        </div>
+                                    <label class="col-sm-2 col-form-label">Perfil</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="perfil">
+                                            <option value="comum">Comum</option>
+                                            <option value="admin">Admin</option>
+                                            {% if master %}
+                                                <option value="master">Master</option>
+                                            {% endif %}
+                                        </select>
                                     </div>
                                     
                                 </div>

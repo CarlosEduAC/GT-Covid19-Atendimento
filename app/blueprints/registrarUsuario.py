@@ -12,17 +12,21 @@ registrarUsuario = Blueprint('Registrar', __name__)
 @login_required
 def registrar():
 
-    if not current_user.is_supervisor:
+    if not (current_user.perfil == 'master' or current_user.perfil == 'admin'):
         return redirect(url_for('MenuAtendente.index'))
 
     if request.method == 'POST':
         nome = request.form['nome']
         CRM = request.form['crm']
         cpf = only_num(request.form['cpf'])
-        
-        supervisor = 'is_supervisor' in request.form
 
-        print("Supervisor registrar {}".format(supervisor))
+        if 'cidade' in request.form:
+            id_cidade = request.form['cidade']
+        else:
+            id_cidade = current_user.id_cidade
+        
+        supervisor = request.form['perfil']
+
         senha = request.form['senha']
         #id = request.form['id']
         
@@ -33,7 +37,7 @@ def registrar():
             flash('CPF já cadastrado.')
             return redirect(url_for('Registrar.registrar'))
         
-        usuario = AdmSaude(nome, CRM, cpf, supervisor, senha)      
+        usuario = AdmSaude(nome, CRM, cpf, supervisor, senha, id_cidade)      
         if usuario.validarCPF():     
             db.saveData(usuario)
 
@@ -46,7 +50,7 @@ def registrar():
         "crm" : inputs.adm_crm,
         "cpf" : inputs.adm_cpf,
         "senha" : inputs.adm_senha,
-        "is_supervisor" : inputs.adm_is_supervisor,
+        "cidade" : inputs.cidade
     }
 
-    return render_template('registrar.html', fields=fields, dados = ler_dados())
+    return render_template('registrar.html', fields=fields, dados = ler_dados(), master=(current_user.perfil == 'master'))

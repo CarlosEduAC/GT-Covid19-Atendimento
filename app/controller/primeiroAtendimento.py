@@ -29,7 +29,7 @@ def registrar(form):
     print('id_genero: {}'.format(id_genero))
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero)
+    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero, current_user.id_cidade)
 
     id_admsaude = current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
@@ -98,6 +98,7 @@ def registrar(form):
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size):
+                if real_doenca_cronica[i] is None: continue
 
                 data_sintomas = datetime.strptime(real_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(real_data_primeiro_sintoma[i]) != 0 else None
 
@@ -200,6 +201,7 @@ def registrar(form):
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size_doencas):
+                if parentesco[i] is None: continue
                 builder.inserirParentesco(
                     id_parentesco = parentesco[i], id_doenca_cronica = parentesco_doenca_cronica[i],
                     data_sintomas = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(parentesco_data_primeiro_sintoma[i]) != 0 else None,
@@ -236,6 +238,7 @@ def registrar(form):
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size_sintomas):
+                if parentesco_apresentou_sintoma[i] is None: continue
                 builder.inserirParentesco(
                     id_parentesco = parentesco_apresentou_sintoma[i], is_mulher_gravida = is_gravida[i],
                     id_sintoma = parentesco_sintoma[i], medicamento = parentesco_sintoma_medicamento[i],
@@ -246,6 +249,7 @@ def registrar(form):
             # Aqui sao inseridos apenas os parentescos inseridos que não possuem doenças
             # crônicas nem sintomas
             for p in [item for item in parentescos if item not in parentesco and item not in parentesco_apresentou_sintoma]:
+                if p is None: continue
                 builder.inserirParentesco(id_parentesco = p)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
@@ -268,6 +272,7 @@ def registrar(form):
 
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for visita, motivo in zip(visitas, pqs_visita):
+                if visita is None and motivo is None: continue
                 builder.inserirVisita(visita, motivo)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
@@ -327,7 +332,7 @@ def registrar(form):
             builder.inserirManterEmCasa(False)
 
             for motivo in real_motivo_sair:
-                builder.inserirMotivosSair(motivo)  # , others_motivo_sair)
+                builder.inserirMotivoSair(motivo)  # , others_motivo_sair)
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
 
@@ -352,6 +357,7 @@ def registrar(form):
 
 
             for i in range(size):
+                if real_sintomas[i] is None: continue
                 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
                 builder.inserirSintoma(real_sintomas[i], real_sintoma_medicamento[i],
                                         real_quem_indicou_medicamento[i], real_dosagem[i])
