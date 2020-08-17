@@ -172,10 +172,8 @@ class Cidade(Base, SerializerMixin):
 
     id = Column(INTEGER(11), primary_key=True)
     value = Column(String(60), nullable=False)
-    nome = Column(String(60), nullable=False)
     telefone = Column(String(11))
 
     def __init__(self, nome, telefone):
         self.value = nome
-        self.nome = nome
         self.telefone = telefone
