@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from forms.fieldsets import *
 from controller.atendimento import registrar
-from dao.atendimento import getInicialPaciente
+from dao.atendimento import getInicialPaciente, setFezAtendimento
 from dao.paciente import getPaciente
 from flask_login import login_required 
 from datetime import datetime
@@ -44,5 +44,7 @@ def index(id):
         #print(str(id_inicial) + " - " + str(id_paciente))
 
         registrar(request.form, id_inicial, id_paciente)
+
+        setFezAtendimento(id)
 
         return redirect(url_for('MenuAtendente.index'))

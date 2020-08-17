@@ -115,6 +115,7 @@ class Atendimento(Base, SerializerMixin):
     id_paciente = Column(ForeignKey('pacientes.id'), nullable=False, index=True)
     is_primeiro = Column(TINYINT(4), nullable=False)
     data = Column(DateTime, nullable=False)
+    fez_atendimento = Column(TINYINT(1)) 
 
     # --se nao conseguir realizar o atendimento--#
     id_tentativa = Column(ForeignKey('tentativas.id'), index=True)

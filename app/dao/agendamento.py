@@ -12,7 +12,8 @@ def userAgendamentos(user_id):
             session.query(Agendamento, Atendimento, Paciente).\
             filter(Agendamento.id_atendimento == Atendimento.id,
                     Agendamento.id_adm_saude == user_id,
-                    Atendimento.id_paciente == Paciente.id).\
+                    Atendimento.id_paciente == Paciente.id,
+                    Atendimento.fez_atendimento == 0).\
                        order_by(Agendamento.data).\
                            with_entities(Atendimento.id.label('id'),
                                          Paciente.nome.label('nomePaciente'),

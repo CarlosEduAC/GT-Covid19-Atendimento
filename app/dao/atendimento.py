@@ -3,6 +3,7 @@ from models.models import Atendimento, AtendimentoInicial, Agendamento, TempoCon
 from datetime import datetime, timedelta
 from models.modelsDomainTable import *
 from models.modelsAgendamento import *
+from copy import deepcopy
 
 from sqlalchemy import desc
 
@@ -12,6 +13,12 @@ def getInicialPaciente(id_atendimento):
     res = db.selectIf(Atendimento, id=id_atendimento)
     return (res.id_atendimento_inicial, res.id_paciente)
 
+def setFezAtendimento(id_atendimento):
+    db = Database()
+    res = db.selectIf(Atendimento, id=id_atendimento)
+    atendimento = deepcopy(res)
+    atendimento.fez_atendimento = 1
+    db.updateData(Atendimento,atendimento,id_atendimento)
 
 class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
 
@@ -33,6 +40,7 @@ class AtendimentoBuilder:  # Incluir funções de cadastro de outras tabelas
         self.atendimento.id_paciente = id_paciente
         self.atendimento.id_atendimento_inicial = id_atendimento_inicial
         self.atendimento.id_inicial = id_inicial
+        self.atendimento.fez_atendimento = 0
 
         # Verifica se houve alguma tentativa
         if not has_atendimento:
