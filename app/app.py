@@ -27,7 +27,8 @@ if incluiPdf():
 app = Flask(__name__)
 
 # Configura log para ser gerado em arquivo e no stdout (saida padrao)
-logging.basicConfig(filename='telemonitoramento.log',level=logging.DEBUG)
+log_format = '%(asctime)s  %(levelname)s %(filename)s: %(message)s'
+logging.basicConfig(filename='telemonitoramento.log', format=log_format, level=logging.DEBUG)
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
 app.config.from_pyfile('config.py')
