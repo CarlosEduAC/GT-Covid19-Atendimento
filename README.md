@@ -65,15 +65,27 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
     - Comentar detalhando as informações sobre a atualização
 
 
-# Execução das migrations
+# Migrations
 
 - Para usar as migrations, a biblioteca alembic precisa estar instalada.
-- Todos os comandos devem ser executados dentro da pasta app
-- Para gerar uma migration automaticamente, executar:
+
+- Configuração inicial
+
+  - A pasta alembic, assim como o arquivo alembic.ini, são gerados automaticamente a partir do comando (executar dentro da pasta app):
+
+        alembic init
+
+  - Dentro do arquivo alembic/env.py deve ser importado o Base utilizado pelos modelos da aplicação e ele deve ser atribuído à variável target_metadata.
+  - No arquivo alembic.ini, deve ser definida a string de conexão utilizada pela aplicação
+
+- Criação e execução das migrations
+
+  - Todos os comandos devem ser executados dentro da pasta app
+  - Para gerar uma migration automaticamente, executar:
 
         alembic revision --autogenerate -m "nome da migration"
 
-- O nome da migration deve ser único para cada migration executada
-- Para executar a última migration adicionada, executar:
+  - O nome da migration deve ser único para cada migration executada
+  - Para executar a última migration adicionada, executar:
 
         alembic upgrade head
