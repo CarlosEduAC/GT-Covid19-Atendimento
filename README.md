@@ -63,3 +63,17 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
     - ![New pull request](https://raw.githubusercontent.com/carlosbazilio/github-images/master/pr.png)
 
     - Comentar detalhando as informações sobre a atualização
+
+
+# Execução das migrations
+
+- Para usar as migrations, a biblioteca alembic precisa estar instalada.
+- Todos os comandos devem ser executados dentro da pasta app
+- Para gerar uma migration automaticamente, executar:
+
+        alembic revision --autogenerate -m "nome da migration"
+
+- O nome da migration deve ser único para cada migration executada
+- Para executar a última migration adicionada, executar:
+
+        alembic upgrade head
