@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, String, DateTime
 from sqlalchemy.dialects.mysql import INTEGER, TINYINT
 from sqlalchemy.orm import relationship
 from sqlalchemy_serializer import SerializerMixin
-from models.models import Base
+from models.modelsDomainTable import Base
 
 
 class AtendimentoBeneficioSocial(Base, SerializerMixin):
