@@ -71,11 +71,6 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 
 - Configuração inicial
 
-  - A pasta alembic, assim como o arquivo alembic.ini, são gerados automaticamente a partir do comando (executar dentro da pasta app):
-
-        alembic init
-
-  - Dentro do arquivo alembic/env.py deve ser importado o Base utilizado pelos modelos da aplicação e ele deve ser atribuído à variável target_metadata.
   - No arquivo alembic.ini, deve ser definida a string de conexão utilizada pela aplicação
 
 - Criação e execução das migrations
