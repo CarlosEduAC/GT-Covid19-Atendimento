@@ -72,15 +72,28 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 - Configuração inicial
 
   - No arquivo alembic.ini, deve ser definida a string de conexão utilizada pela aplicação
+  - Para atualizar seu banco, execute:
+
+        alembic upgrade head
 
 - Criação e execução das migrations
 
   - Todos os comandos devem ser executados dentro da pasta app
-  - Para gerar uma migration automaticamente, executar:
+  - Para gerar uma migration automaticamente (caso você apenas tenha feito alterações nos modelos), executar:
 
         alembic revision --autogenerate -m "nome da migration"
 
-  - O nome da migration deve ser único para cada migration executada
-  - Para executar a última migration adicionada, executar:
+  - O nome da migration deve ser único para cada migration executada e descrever qual foi a modificação
+  - Para criar uma migration, execute:
+
+        alembic revision -m "nome da migration"
+
+  - Um arquivo novo será gerado dentro de alembic/versions. Modifique o método "upgrade" para realizar as modificações necessárias da sua migration e o método "downgrade" para realizar as operações necessárias para revertê-la
+
+  - Para executar as migrations, execute:
 
         alembic upgrade head
+
+  - Caso queira reverter a ultima migration executada, execute:
+
+        alembic downgrade -1
