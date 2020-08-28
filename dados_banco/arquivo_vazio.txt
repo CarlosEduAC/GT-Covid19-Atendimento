@@ -1,0 +1,2 @@
+Arquivo vazio que força criação da pasta no Git.
+Esta pasta é necessário para criação do volume no Docker

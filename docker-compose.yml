@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  bd:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always   
+    environment:
+      MYSQL_DATABASE: covid3
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - dados_banco:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    container_name: bd_mysql
+  web:
+    image: app_telemonitoramento
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - bd
+    container_name: app_flask
+volumes:
+  dados_banco:

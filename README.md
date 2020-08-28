@@ -1,7 +1,7 @@
 # GT-Covid19-Atendimento
 Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Covid-19.
 
-# Passo a passo para iniciar o projeto
+# Passo a passo para iniciar o projeto sem o DOCKER
 - Necessário ter o [Python 3](https://www.python.org/downloads/) instalado na máquina
 
 - Necessário ter o [GIT](https://git-scm.com/downloads) instalado na máquina
@@ -38,6 +38,20 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
   
     - **python app/app.py** *(Acessa banco de dados de produção. Necessário ter VPN configurada)*
 
+# Passo a passo para iniciar o projeto com o DOCKER
+
+- Necessário ter o [GIT](https://git-scm.com/downloads) instalado na máquina
+
+- Necessário ter o [Docker Desktop](https://www.docker.com/products/docker-desktop) instalado na máquina
+
+- Clonar o projeto do seu repositório para uma pasta local em sua máquina
+
+    - git clone "Link do projeto forkado no seu github" (https://github.com/*seu-usuario-github*/GT-Covid19-Atendimento)
+
+- Construir imagens e rodar o sistema
+
+    - **docker-compose up --build** *(Rodar de dentro do diretório do projeto)*
+
 # Passo a passo para atualização do projeto
 
 - Caso nunca tenha feito uma atualização, configure para seu repositório local apontar para o repositório principal (*faça isso apenas uma vez*)
@@ -63,7 +77,6 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
     - ![New pull request](https://raw.githubusercontent.com/carlosbazilio/github-images/master/pr.png)
 
     - Comentar detalhando as informações sobre a atualização
-
 
 # Migrations
 

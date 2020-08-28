@@ -1,3 +1,5 @@
+import os
+
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -8,6 +10,16 @@ from alembic import context
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+section = config.config_ini_section
+if os.environ.get("USER_DOCKER_TELEMONITORAMENTO") != None: # Uso do Docker
+    config.set_section_option(section, "DB_USER", os.environ.get("USER_DOCKER_TELEMONITORAMENTO"))
+    config.set_section_option(section, "DB_PASS", os.environ.get("PASS_DOCKER_TELEMONITORAMENTO"))
+    config.set_section_option(section, "DB_MACHINE", os.environ.get("BD_DOCKER_TELEMONITORAMENTO"))
+else: # Acesso local
+    config.set_section_option(section, "DB_USER", "matheus")
+    config.set_section_option(section, "DB_PASS", "matheus")
+    config.set_section_option(section, "DB_MACHINE", "localhost")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

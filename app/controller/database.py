@@ -5,8 +5,11 @@ import sys
 if len(sys.argv) == 1: # Banco de dados de produção
     DATABASE_URL = 'mysql+pymysql://gtcovid19_atendimento:z20hLrZSgtcylKCR@10.77.0.104:3306/gtcovid19_atendimento'
 else:
-    if 'dev' in sys.argv[1].lower(): # Banco de dados local
-        DATABASE_URL = 'mysql+pymysql://root:Jv@ 37221847@localhost:3306/covid3'
+    if 'dev' in sys.argv: # Banco de dados local
+        if 'docker' in sys.argv:
+            DATABASE_URL = 'mysql+pymysql://root:123456@bd:3306/covid3'
+        else:
+            DATABASE_URL = 'mysql+pymysql://root:Jv@ 37221847@localhost:3306/covid3'
     else: # Banco de dados de teste
         DATABASE_URL = 'mysql+pymysql://gtcovid19_atendimento:z20hLrZSgtcylKCR@10.77.0.104:3306/gtcovid19_atendimento'
 
