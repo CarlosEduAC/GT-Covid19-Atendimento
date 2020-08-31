@@ -84,7 +84,7 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 
 - Configuração inicial
 
-  - No arquivo alembic.ini, deve ser definida a string de conexão utilizada pela aplicação
+  - No arquivo alembic/env.py, devem ser definidos os valores DB_USER, DB_PASS e DB_MACHINE para criação da string de conexão utilizada pela aplicação
   - Para atualizar seu banco, execute:
 
         alembic upgrade head
