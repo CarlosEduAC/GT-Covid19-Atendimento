@@ -28,4 +28,4 @@ EXPOSE 5000
 
 COPY populatedb_runapp.sh populatedb_runapp.sh
 RUN ["chmod", "+x", "populatedb_runapp.sh"]
-ENTRYPOINT ["env", "USER_DOCKER_TELEMONITORAMENTO=root", "PASS_DOCKER_TELEMONITORAMENTO=123456", "BD_DOCKER_TELEMONITORAMENTO=bd", "./populatedb_runapp.sh"]
+ENTRYPOINT ["./populatedb_runapp.sh"]
