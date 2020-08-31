@@ -50,7 +50,7 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 
 - Construir imagens e rodar o sistema
 
-    - **docker-compose up --build** *(Rodar de dentro do diretório do projeto)*
+    - **docker-compose up --build** *(Rodar de dentro do diretório do projeto; Rodar com sudo no Linux)*
 
 # Passo a passo para atualização do projeto
 
