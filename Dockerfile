@@ -20,12 +20,13 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 # Instala bibliotecas para visualizacao de PDF
-RUN apt-get install --yes libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev
+RUN apt-get install --yes libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev dos2unix
 
 COPY app .
 
 EXPOSE 5000
 
 COPY populatedb_runapp.sh populatedb_runapp.sh
+RUN dos2unix populatedb_runapp.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
 RUN ["chmod", "+x", "populatedb_runapp.sh"]
 ENTRYPOINT ["./populatedb_runapp.sh"]
