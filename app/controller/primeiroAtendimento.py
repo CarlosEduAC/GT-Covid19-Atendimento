@@ -100,7 +100,12 @@ def registrar(form):
             for i in range(size):
                 if real_doenca_cronica[i] is None: continue
 
-                data_sintomas = datetime.strptime(real_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(real_data_primeiro_sintoma[i]) != 0 else None
+                if real_data_primeiro_sintoma[i] is None:
+                    data_sintomas = None
+                else:
+                    data_sintomas = datetime.strptime(real_data_primeiro_sintoma[i], '%d/%m/%Y').date() \
+                    if len(real_data_primeiro_sintoma[i]) != 0 \
+                    else None
 
                 builder.inserirDoencaCronica(
                     real_doenca_cronica[i], real_medicamento[i], real_indicador_medicamento[i],
@@ -202,9 +207,17 @@ def registrar(form):
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size_doencas):
                 if parentesco[i] is None: continue
+
+                if parentesco_data_primeiro_sintoma[i] is None:
+                    data = None
+                else:
+                    data = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() \
+                        if len(parentesco_data_primeiro_sintoma[i]) != 0 \
+                        else None
+
                 builder.inserirParentesco(
                     id_parentesco = parentesco[i], id_doenca_cronica = parentesco_doenca_cronica[i],
-                    data_sintomas = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(parentesco_data_primeiro_sintoma[i]) != 0 else None,
+                    data_sintomas = data,
                     medicamento = parentesco_doenca_cronica_medicamento[i],
                     id_indicador =  parentesco_doenca_cronica_medicamento_indicador[i])
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
