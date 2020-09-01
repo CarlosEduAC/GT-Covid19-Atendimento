@@ -116,9 +116,18 @@ def registrar(form, id_primeiro, id_paciente):
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
             for i in range(size_doencas):
                 if parentesco[i] is None: continue
+
+                if parentesco_data_primeiro_sintoma[i] is None:
+                    data = None
+                else:
+                    data = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() \
+                        if len(parentesco_data_primeiro_sintoma[i]) != 0 \
+                        else None
+
+
                 builder.inserirParentesco(
                     id_parentesco = parentesco[i], id_doenca_cronica = parentesco_doenca_cronica[i],
-                    data_sintomas = datetime.strptime(parentesco_data_primeiro_sintoma[i], '%d/%m/%Y').date() if len(parentesco_data_primeiro_sintoma[i]) != 0 else None,
+                    data_sintomas = data,
                     medicamento = parentesco_doenca_cronica_medicamento[i],
                     id_indicador =  parentesco_doenca_cronica_medicamento_indicador[i])
             # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #

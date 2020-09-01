@@ -150,4 +150,15 @@ def upgrade():
 
 
 def downgrade():
-    pass
+    op.execute("DELETE FROM adms_saude;")
+    op.execute("DELETE FROM tempos_contato_acompanhamento;")
+    op.execute("DELETE FROM orientacoes_finais;")
+    op.execute("DELETE FROM indicadores;")
+    op.execute("DELETE FROM sintomas;")
+    op.execute("DELETE FROM motivos_sair;")
+    op.execute("DELETE FROM beneficios_sociais;")
+    op.execute("DELETE FROM parentescos;")
+    op.execute("DELETE FROM doencas_cronicas;")
+    op.execute("DELETE FROM generos;")
+    op.execute("DELETE FROM etnias;")
+    op.execute("DELETE FROM tentativas;")
