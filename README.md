@@ -52,6 +52,12 @@ Sistema web responsável pelo telemonitoramento de pacientes com suspeita de Cov
 
     - **docker-compose up --build** *(Rodar de dentro do diretório do projeto; Rodar com sudo no Linux)*
 
+# Usuário de Teste
+
+- Nas migrations, um usuário para testes é adicionado para ser usado localmente ao iniciar a aplicação pela primeira vez:
+  - CPF: 01010101010
+  - Senha: 123456789
+
 # Passo a passo para atualização do projeto
 
 - Caso nunca tenha feito uma atualização, configure para seu repositório local apontar para o repositório principal (*faça isso apenas uma vez*)
