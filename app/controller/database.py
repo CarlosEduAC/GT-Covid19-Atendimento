@@ -14,7 +14,7 @@ else:
         DATABASE_URL = 'mysql+pymysql://gtcovid19_atendimento:z20hLrZSgtcylKCR@10.77.0.104:3306/gtcovid19_atendimento'
 
 class Database:
-    engine = create_engine(DATABASE_URL, echo=False)  # A nossa ponte de conexão entre o Python e o Banco.
+    engine = create_engine(DATABASE_URL, echo=False, pool_pre_ping=True)  # A nossa ponte de conexão entre o Python e o Banco.
     Session = sessionmaker(bind=engine)  # Faz um meio de campo entre os objetos que criamos no Python e o engine.
 
     # Salva um objeto específico
