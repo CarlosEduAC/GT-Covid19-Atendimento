@@ -10,3 +10,98 @@
 .wizard > .content > .body label.error {
     display: none !important;
 }
+
+.appointments-headline {
+    padding-top: 30px;
+}
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .users-table, .patients-table, .appointments-table {
+        margin-top: 1rem;
+    }
+
+    .users-table table, .users-table thead, .users-table tbody, .users-table th, .users-table td, .users-table tr,
+    .patients-table table, .patients-table thead, .patients-table tbody, .patients-table th, .patients-table td,
+    .patients-table tr, .appointments-table table, .appointments-table thead, .appointments-table tbody,
+    .appointments-table th, .appointments-table td, .appointments-table tr {
+        display: block;
+    }
+
+    .users-table thead tr, .patients-table thead tr, .appointments-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .users-table tr, .patients-table tr, .appointments-table tr {
+        border: 1px solid #e7eaec;
+        border-top: none;
+    }
+
+    .users-table td, .patients-table td, .appointments-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .users-table td input, .users-table td select, .users-table td span,
+    .patients-table td input, .patients-table td select, .patients-table td span,
+    .appointments-table td input, .appointments-table td select, .appointments-table td span {
+        margin-top: 24px;
+        padding-left: 3px;
+    }
+
+    .users-table td span, .patients-table td span, .appointments-table td span {
+        display: inline-block;
+    }
+
+    .users-table td:before, .patients-table td:before, .appointments-table td:before {
+        position: absolute;
+        top: 6px;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    form.wizard > .steps > ul {
+        float: left;
+        width: 100%;
+    }
+    form.wizard > .steps > ul > li {
+        width: 100%;
+    }
+
+    form label {
+        overflow: visible;
+        text-overflow: ellipsis;
+        white-space: break-spaces;
+    }
+
+    .users-table td:nth-of-type(1):before { content: "Nome"; }
+    .users-table td:nth-of-type(2):before { content: "CRM"; }
+    .users-table td:nth-of-type(3):before { content: "CPF"; }
+    .users-table td:nth-of-type(4):before { content: "Administrador"; }
+    .users-table td:nth-of-type(5):before { content: "Nova senha"; }
+    .users-table td:nth-of-type(6):before { content: ""; }
+    .users-table td:nth-of-type(7):before { content: ""; }
+
+    .patients-table td:nth-of-type(1):before { content: "Nome"; }
+    .patients-table td:nth-of-type(2):before { content: "CPF"; }
+    .patients-table td:nth-of-type(3):before { content: "Telefone"; }
+    .patients-table td:nth-of-type(4):before { content: "Gênero"; }
+    .patients-table td:nth-of-type(5):before { content: "Etnia"; }
+    .patients-table td:nth-of-type(6):before { content: "Data de Nascimento"; }
+    .patients-table td:nth-of-type(7):before { content: "Endereço"; }
+    .patients-table td:nth-of-type(8):before { content: ""; }
+    .patients-table td:nth-of-type(9):before { content: ""; }
+
+    .appointments-table td:nth-of-type(1):before { content: "Dia do Agendamento"; }
+    .appointments-table td:nth-of-type(2):before { content: "Paciente"; }
+    .appointments-table td:nth-of-type(3):before { content: "Primeiro Atendimento?"; }
+    .appointments-table td:nth-of-type(4):before { content: "Dia do Atendimento"; }
+    .appointments-table td:nth-of-type(5):before { content: ""; }
+}
