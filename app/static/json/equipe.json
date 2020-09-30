@@ -78,5 +78,13 @@
         "email": "joaovsg@id.uff.br",
         "imagem": "static/img/avatars/joao.jpeg",
         "funcao": "Desenvolvedor"
+    },
+    {
+        "nome": "Anselmo Alves",
+        "universidade": "Universidade Federal Fluminense",
+        "cv": "https://www.linkedin.com/in/anselmo-alves-3384239/",
+        "email": "anselmoluizalves@gmail.com",
+        "imagem": "static/img/avatars/anselmo.jpeg",
+        "funcao": "Desenvolvedor"
     }
 ]
