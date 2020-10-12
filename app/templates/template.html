@@ -51,6 +51,8 @@
             white-space: nowrap;
         }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="pace-done mini-navbar">
@@ -163,7 +165,7 @@
 <script src="{{ url_for('static', filename='ui/components/checkbox.min.js') }}"></script>
 <script src="{{ url_for('static', filename='ui/components/popup.min.js') }}"></script>
 
-{#<script src="{{ url_for('static', filename='js/app.js') + "?v=0.6" }}"></script>#}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
 <script>
     $(document).ready(function () {
