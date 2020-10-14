@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from flask_login import login_required, LoginManager, current_user
 from datetime import datetime
 from controller.pdfInclusao import incluiPdf
@@ -7,6 +7,11 @@ from blueprints.login import ler_dados
 from dao.agendamento import userAgendamentos
 
 menuAtendente = Blueprint('MenuAtendente', __name__)
+
+@menuAtendente.route('/sw.js', methods=['GET'])
+@login_required
+def sw():
+    return current_app.send_static_file('js/sw.js')
 
 @menuAtendente.route('/', methods=['GET'])
 @login_required 

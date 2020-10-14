@@ -13,6 +13,53 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
+    <div id="pending-atendimentos-table" class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Atendimentos pendentes</h2>
+                        </div>
+                    </div>
+                    <p>
+                        Lista de atendimentos que não foram sincronizados devido à falhas de conexão
+                    </p>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="full-height-scroll">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="full-height-scroll">
+                                        <div class="table-responsive">
+
+                                            <table class="table table-hover">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <td>Dia do Agendamento</td>
+                                                        <td>Paciente</td>
+                                                        <td>Telefone</td>
+                                                        <td>Primeiro?</td>
+                                                        <td>Dia do Atendimento</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="pending-list">
+                                                </tbody>
+                                            </table>
+
+                                            <button id="sync-all-button" type="button" class="btn btn-w-m btn btn-light">
+                                                Sincronizar Atendimentos
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox ">
@@ -42,6 +89,122 @@
         </div>
     </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+const getFailedAtendimentosArray = () => JSON.parse(localStorage.getItem('failedAtendimentos')) ?? [];
+
+let failedAtendimentosArray = getFailedAtendimentosArray();
+
+const itemId = (atendimentoObj) => ('atendimento-pendente-list-item-' + atendimentoObj.failed_at);
+
+function deleteItem(index) {
+    failedAtendimentosArray.splice(index, 1);
+    localStorage.setItem('failedAtendimentos', JSON.stringify(failedAtendimentosArray));
+
+    renderRows(failedAtendimentosArray);
+}
+
+const syncError = () => Swal.fire({
+    title: 'Ops!',
+    text: 'Não foi possível sincronizar. Talvez você não possua conexão com a internet... :(',
+    icon: 'error',
+    confirmButtonText: 'Ok'
+});
+
+function syncInfo(atendimentoObj, index, batch = 'false', batchEnd = 'false') {
+    const bodyFormData = new FormData();
+
+    Object.keys(atendimentoObj).map((key) => {
+        bodyFormData.append(key, atendimentoObj[key]);
+    });
+
+    // timestamp is needed for ignoring cache
+    // sync param is needed so it can be ignored by the service worker in case it fails
+    return axios({
+        method: 'post',
+        url: `/primeiroAtendimento?sync=1&timestamp=${new Date().getTime()}&index=${index}&batch=${batch}&batch_end=${batchEnd}`,
+        data: bodyFormData,
+        headers: {'Content-Type': 'multipart/form-data', 'Cache-Control': 'no-cache'}
+    });
+}
+
+function setEventListeners() {
+    // sets the event listeners for the 'sync' and 'delete' buttons for each item
+    failedAtendimentosArray.map((atendimentoObj, index) => {
+        $('#' + itemId(atendimentoObj) + '-sync').on('click', async () => {
+            await syncInfo(atendimentoObj, index)
+                .catch((err) => {
+                    syncError();
+                });
+        });
+        $('#' + itemId(atendimentoObj) + '-delete').on('click', async (event) => {
+            deleteItem(index);
+        });
+    });
+}
+
+function renderRows(failedAtendimentosArray) {
+    if (failedAtendimentosArray.length === 0) {
+        $('#pending-atendimentos-table').hide();
+    }
+
+    // creates html for all rows in the table
+    const rows = failedAtendimentosArray.map((atendimentoObj) => {
+        const date = new Date(atendimentoObj.failed_at);
+        const fullDate = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+
+        return (
+            `<div id="${itemId(atendimentoObj)}">` +
+            '<tr class="table-success">' +
+            `<td>${fullDate}</td>` +
+            `<td>${atendimentoObj.nome}</td>` +
+            `<td>${atendimentoObj.telefone}</td>` +
+            `<td>${fullDate}</td>` +
+            `<td>${fullDate}</td>` +
+            '<td>'+
+            `<button id="${itemId(atendimentoObj) + '-sync'}" type="button" class="btn btn-w-m btn btn-light">` +
+            'Sincronizar' +
+            '</button> ' +
+            `<button id="${itemId(atendimentoObj) + '-delete'}" type="button" class="btn btn-w-m btn btn-danger">` +
+            'Deletar' +
+            '</button>' +
+            '</td>' +
+            '</tr>' +
+            '</div>'
+        );
+    });
+
+    // appends the rows to the document
+    $('#pending-list').html(rows.join(''));
+    setEventListeners();
+}
+
+$(document).ready(function() {
+
+    renderRows(failedAtendimentosArray);
+
+    // event handling for the 'sync all' button
+    $('#sync-all-button').on('click', () => {
+
+        // crazy ass algorithm that has to be this way to prevent bugs
+        // (it has to start from the last element. trust me)
+        function fetchLoop(index) {
+            if (index >= 0) {
+                const batchEnd = index === failedAtendimentosArray.length - 1 ? 'true' : 'false';
+                const atendimentoObj = failedAtendimentosArray[index];
+                syncInfo(atendimentoObj, index, 'true', batchEnd)
+                    .then(() => fetchLoop(index-1))
+                    .catch(() => syncError());
+            }
+        }
+
+        fetchLoop(failedAtendimentosArray.length - 1);
+    });
+
+});
+</script>
 
 
 {% endblock %}
