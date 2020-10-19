@@ -7,7 +7,6 @@ self.addEventListener('install', function(event) {
                         [
                             '/',
                             '/primeiroAtendimento',
-                            '/atendimentosPendentes',
                             '/static/css/app.css'
                         ]
                   );
