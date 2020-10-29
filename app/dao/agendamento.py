@@ -17,6 +17,7 @@ def userAgendamentos(user_id):
                        order_by(Agendamento.data).\
                            with_entities(Atendimento.id.label('id'),
                                          Paciente.nome.label('nomePaciente'),
+                                         Paciente.id.label('idPaciente'),
                                          Paciente.telefone.label('telefonePaciente'),
                                          Agendamento.data.label('diaAgendamento'),
                                          Atendimento.is_primeiro.label('primeiro'),
