@@ -1,26 +1,37 @@
-const CACHE_NAME = 'covid-19-app';
+// Names of the two caches used in this version of the service worker.
+// Change to v2, etc. when you update any of the local resources, which will
+// in turn trigger the install event again.
+const PRECACHE = 'precache-v7';
+const RUNTIME = 'runtime';
 
-self.addEventListener('install', function(event) {
-      event.waitUntil(
-            caches.open(CACHE_NAME).then(function(cache) {
-                  return cache.addAll(
-                        [
-                            '/',
-                            '/primeiroAtendimento',
-                            '/static/css/app.css'
-                        ]
-                  );
-            })
-      );
+// A list of local resources we always want to be cached.
+const PRECACHE_URLS = [
+    '/',
+    '/primeiroAtendimento',
+    '/static/css/app.css'
+];
+
+// The install handler takes care of precaching the resources we always need.
+self.addEventListener('install', event => {
+    event.waitUntil(
+        caches.open(PRECACHE)
+            .then(cache => cache.addAll(PRECACHE_URLS))
+            .then(self.skipWaiting())
+    );
 });
 
-
-self.addEventListener('install', function (event) {
-    event.waitUntil(self.skipWaiting()); // Activate worker immediately
-});
-
-self.addEventListener('activate', function (event) {
-    event.waitUntil(self.clients.claim()); // Become available to all pages
+// The activate handler takes care of cleaning up old caches.
+self.addEventListener('activate', event => {
+    const currentCaches = [PRECACHE, RUNTIME];
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+        }).then(cachesToDelete => {
+            return Promise.all(cachesToDelete.map(cacheToDelete => {
+                return caches.delete(cacheToDelete);
+            }));
+        }).then(() => self.clients.claim())
+    );
 });
 
 self.addEventListener('fetch', (event) => {

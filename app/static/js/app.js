@@ -41,7 +41,8 @@ $(document).ready(function () {
                             !url.searchParams.get('batch')
                             || (url.searchParams.get('batch') && url.searchParams.get('batch_end'))
                         ) {
-                            document.location.reload(true);
+
+                            document.location.replace('/');
                         }
                     }
                     break;
