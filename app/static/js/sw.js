@@ -1,7 +1,7 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-v7';
+const PRECACHE = 'precache-v2.0';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
@@ -36,10 +36,6 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(async function() {
-        // Try the cache
-        const cachedResponse = await caches.match(event.request);
-        if (cachedResponse) return cachedResponse;
-
         try {
             const returnResponse = await fetch(event.request.clone());
             if (event.request.method === 'POST') {
@@ -55,6 +51,19 @@ self.addEventListener('fetch', (event) => {
                     });
                 });
             }
+
+            // isso checa se estamos fazendo uma requisição pra algum ítem que está listado para ser salvo em cache
+            // e atualiza o cache nesse caso
+            PRECACHE_URLS.map((x) => {
+                const url = new URL(event.request.url);
+                if (x === url.pathname) {
+                    caches.open(PRECACHE)
+                        // isso torna as requisições custosas por duplicá-las
+                        // mas não encontrei uma alternativa já que é impossível fazer cache.put()
+                        // com o clone da resposta
+                        .then(cache => cache.addAll([event.request]));
+                }
+            });
 
             // Fall back to network
             return returnResponse;
@@ -72,6 +81,11 @@ self.addEventListener('fetch', (event) => {
                     });
                 });
             }
+
+            // Try the cache
+            const cachedResponse = await caches.match(event.request);
+            if (cachedResponse) return cachedResponse;
+
             // If both fail, show a generic fallback:
             return caches.match('/');
             // However, in reality you'd have many different
