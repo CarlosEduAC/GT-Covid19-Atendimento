@@ -68,7 +68,6 @@ self.addEventListener('fetch', (event) => {
                         // mas não encontrei uma alternativa já que é impossível fazer cache.put()
                         // com o clone da resposta
                         .then(cache => cache.addAll([event.request]));
-                    console.log('xdd');
                 }
             });
 
