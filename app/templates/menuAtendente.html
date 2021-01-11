@@ -13,7 +13,7 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div id="pending-atendimentos-table" class="row">
+    <div id="pending-atendimentos-table" class="row" style="display: none">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-content">
@@ -36,11 +36,11 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <td>Dia do Agendamento</td>
-                                                        <td>Paciente</td>
-                                                        <td>Telefone</td>
-                                                        <td>Primeiro?</td>
-                                                        <td>Dia do Atendimento</td>
-                                                        <td></td>
+{#                                                        <td>Paciente</td>#}
+{#                                                        <td>Telefone</td>#}
+{#                                                        <td>Primeiro?</td>#}
+{#                                                        <td>Dia do Atendimento</td>#}
+{#                                                        <td></td>#}
                                                     </tr>
                                                 </thead>
                                                 <tbody id="pending-list">
@@ -91,7 +91,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/jquery-3.1.1.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
 <script>
 const getFailedAtendimentosArray = () => JSON.parse(localStorage.getItem('failedAtendimentos')) ?? [];
 
@@ -146,8 +146,8 @@ function setEventListeners() {
 }
 
 function renderRows(failedAtendimentosArray) {
-    if (failedAtendimentosArray.length === 0) {
-        $('#pending-atendimentos-table').hide();
+    if (failedAtendimentosArray.length > 0) {
+        $('#pending-atendimentos-table').show();
     }
 
     // creates html for all rows in the table
@@ -159,18 +159,18 @@ function renderRows(failedAtendimentosArray) {
             `<div id="${itemId(atendimentoObj)}">` +
             '<tr class="table-success">' +
             `<td>${fullDate}</td>` +
-            `<td>${atendimentoObj.nome}</td>` +
-            `<td>${atendimentoObj.telefone}</td>` +
-            `<td>Sim</td>` +
-            `<td>${fullDate}</td>` +
-            '<td>'+
-            `<button id="${itemId(atendimentoObj) + '-sync'}" type="button" class="btn btn-w-m btn btn-light">` +
-            'Sincronizar' +
-            '</button> ' +
-            `<button id="${itemId(atendimentoObj) + '-delete'}" type="button" class="btn btn-w-m btn btn-danger">` +
-            'Deletar' +
-            '</button>' +
-            '</td>' +
+            {#`<td>${atendimentoObj.nome}</td>` +#}
+            {#`<td>${atendimentoObj.telefone}</td>` +#}
+            {#`<td>!${atendimentoObj.id_inicial} ? 'Sim' : 'Não'</td>` +#}
+            {#`<td>${fullDate}</td>` +#}
+            {#'<td>'+#}
+            {#`<button id="${itemId(atendimentoObj) + '-sync'}" type="button" class="btn btn-w-m btn btn-light">` +#}
+            {#'Sincronizar' +#}
+            {#'</button> ' +#}
+            {#`<button id="${itemId(atendimentoObj) + '-delete'}" type="button" class="btn btn-w-m btn btn-danger">` +#}
+            {#'Deletar' +#}
+            {#'</button>' +#}
+            {#'</td>' +#}
             '</tr>' +
             '</div>'
         );
