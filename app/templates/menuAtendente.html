@@ -120,11 +120,20 @@ function syncInfo(atendimentoObj, index, batch = 'false', batchEnd = 'false') {
         bodyFormData.append(key, atendimentoObj[key]);
     });
 
+    let url = '/primeiroAtendimento';
+
+    // quando tem id_inicial, então significa que não se trata de um primeiro atendimento
+    // dava pra dedicar um campo específico no atendimentoObj para indicar a ação que está sendo realizada
+    // e associar a um switch-case aqui, caso a aplicação fique mais complexa e exija mais rotas offline
+    if (!!atendimentoObj.id_inicial) {
+        url = '/atendimento/novo';
+    }
+
     // timestamp is needed for ignoring cache
     // sync param is needed so it can be ignored by the service worker in case it fails
     return axios({
         method: 'post',
-        url: `/primeiroAtendimento?sync=1&timestamp=${new Date().getTime()}&index=${index}&batch=${batch}&batch_end=${batchEnd}`,
+        url: url + `?sync=1&timestamp=${new Date().getTime()}&index=${index}&batch=${batch}&batch_end=${batchEnd}`,
         data: bodyFormData,
         headers: {'Content-Type': 'multipart/form-data', 'Cache-Control': 'no-cache'}
     });
@@ -153,7 +162,7 @@ function renderRows(failedAtendimentosArray) {
     // creates html for all rows in the table
     const rows = failedAtendimentosArray.map((atendimentoObj) => {
         const date = new Date(atendimentoObj.failed_at);
-        const fullDate = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear();
+        const fullDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 
         return (
             `<div id="${itemId(atendimentoObj)}">` +
@@ -195,7 +204,9 @@ $(document).ready(function() {
                 const batchEnd = index === failedAtendimentosArray.length - 1 ? 'true' : 'false';
                 const atendimentoObj = failedAtendimentosArray[index];
                 syncInfo(atendimentoObj, index, 'true', batchEnd)
-                    .then(() => fetchLoop(index-1))
+                    .then((response) => {
+                        fetchLoop(index-1);
+                    })
                     .catch(() => syncError());
             }
         }

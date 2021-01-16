@@ -79,11 +79,11 @@ def index_sem_id():
     
     elif request.method == 'POST':
 
-        (id_inicial, id_paciente) = getInicialPaciente(id)
+        (id_inicial, id_paciente) = getInicialPaciente(id_inicial)
 
         #print(str(id_inicial) + " - " + str(id_paciente))
 
-        registrar(request.form, id_inicial, id_paciente)
+        registrar(request.form, id_inicial, id_paciente, True)
 
         setFezAtendimento(id)
 

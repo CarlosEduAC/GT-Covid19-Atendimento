@@ -6,32 +6,33 @@ from controller.formfuncs import *
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
 
-def registrar(form, id_primeiro, id_paciente):
+def registrar(form, id_primeiro, id_paciente, sem_paciente=False):
 
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
     data=datetime.today()
     # ============== Paciente ==============
 
-    nome = data_or_null(form['nome'])
-    cpf = data_or_null(form['cpf'], only_num)
-    cns = data_or_null(form['cns'], only_num)
-    telefone = data_or_null(form['telefone'], only_num)
-    endereco = data_or_null(form['endereco'])
-    data_nasc = datetime.strptime(form['data_nasc'], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
-    id_etnia = data_or_null(form['id_etnia'], int)
-    id_genero = data_or_null(form['id_genero'], int)
+    if not sem_paciente:
+        nome = data_or_null(form['nome'])
+        cpf = data_or_null(form['cpf'], only_num)
+        cns = data_or_null(form['cns'], only_num)
+        telefone = data_or_null(form['telefone'], only_num)
+        endereco = data_or_null(form['endereco'])
+        data_nasc = datetime.strptime(form['data_nasc'], '%d/%m/%Y').date() if len(form['data_nasc']) != 0 else None
+        id_etnia = data_or_null(form['id_etnia'], int)
+        id_genero = data_or_null(form['id_genero'], int)
 
-    print('nome: {}'.format(nome))
-    print('cpf: {}'.format(cpf))
-    print('cns: {}'.format(cns))
-    print('telefone: {}'.format(telefone))
-    print('endereco: {}'.format(endereco))
-    print('data_nasc: {}'.format(data_nasc))
-    print('id_etnia: {}'.format(id_etnia))
-    print('id_genero: {}'.format(id_genero))
+        print('nome: {}'.format(nome))
+        print('cpf: {}'.format(cpf))
+        print('cns: {}'.format(cns))
+        print('telefone: {}'.format(telefone))
+        print('endereco: {}'.format(endereco))
+        print('data_nasc: {}'.format(data_nasc))
+        print('id_etnia: {}'.format(id_etnia))
+        print('id_genero: {}'.format(id_genero))
 
-    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
-    id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero, current_user.id_cidade)
+        # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+        id_paciente = inserirPaciente(nome, cpf, cns, telefone, endereco, data_nasc, id_etnia, id_genero, current_user.id_cidade)
     
     id_admsaude =current_user.id
     # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
