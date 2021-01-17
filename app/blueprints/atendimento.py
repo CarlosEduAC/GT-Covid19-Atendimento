@@ -56,9 +56,9 @@ def index(id):
 def index_sem_id():
 
     if request.json is not None:
-        id_inicial = request.json['id']
+        id = request.json['id']
     else:
-        id_inicial = 1
+        id = 1
 
     if request.method == 'GET':
 
@@ -79,7 +79,7 @@ def index_sem_id():
     
     elif request.method == 'POST':
 
-        (id_inicial, id_paciente) = getInicialPaciente(id_inicial)
+        (id_inicial, id_paciente) = getInicialPaciente(id)
 
         #print(str(id_inicial) + " - " + str(id_paciente))
 
