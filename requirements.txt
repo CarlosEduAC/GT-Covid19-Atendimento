@@ -16,7 +16,7 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 numpy==1.19.1
 pandas==1.0.3
-Pillow==7.2.0
+Pillow==9.0.1
 pycparser==2.20
 PyMySQL==0.9.3
 Pyphen==0.9.5
